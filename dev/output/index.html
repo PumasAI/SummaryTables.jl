@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Output · SummaryTables.jl</title><meta name="title" content="Output · SummaryTables.jl"/><meta property="og:title" content="Output · SummaryTables.jl"/><meta property="twitter:title" content="Output · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">SummaryTables</a></li><li class="is-active"><a class="tocitem" href>Output</a><ul class="internal"><li><a class="tocitem" href="#HTML"><span>HTML</span></a></li><li><a class="tocitem" href="#LaTeX"><span>LaTeX</span></a></li><li><a class="tocitem" href="#docx"><span>docx</span></a></li><li><a class="tocitem" href="#Typst"><span>Typst</span></a></li></ul></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../predefined_tables/listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../predefined_tables/summarytable/"><code>summarytable</code></a></li><li><a class="tocitem" href="../predefined_tables/table_one/"><code>table_one</code></a></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Output</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Output</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/output.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Output"><a class="docs-heading-anchor" href="#Output">Output</a><a id="Output-1"></a><a class="docs-heading-anchor-permalink" href="#Output" title="Permalink"></a></h1><h2 id="HTML"><a class="docs-heading-anchor" href="#HTML">HTML</a><a id="HTML-1"></a><a class="docs-heading-anchor-permalink" href="#HTML" title="Permalink"></a></h2><p>In IDEs that support the <code>MIME&quot;text/html&quot;</code> or <code>MIME&quot;juliavscode/html&quot;</code> types, just <code>display</code>ing a <code>Table</code> will render it in HTML for you. All examples in this documentation are rendered this way. Alternatively, you can print HTML to any IO object via <code>show(io, MIME&quot;text/html&quot;, table)</code>.</p><h2 id="LaTeX"><a class="docs-heading-anchor" href="#LaTeX">LaTeX</a><a id="LaTeX-1"></a><a class="docs-heading-anchor-permalink" href="#LaTeX" title="Permalink"></a></h2><p>You can print LaTeX code to any IO via <code>show(io, MIME&quot;text/latex&quot;, table)</code>. Keep in mind that the <code>threeparttable</code>, <code>multirow</code> and <code>booktabs</code> packages need to separately be included in your preamble due to the way LaTeX documents are structured.</p><pre><code class="language-julia hljs">using SummaryTables
+using DataFrames
+using tectonic_jll
+
+
+mkpath(joinpath(@__DIR__, &quot;outputs&quot;))
+
+data = DataFrame(
+    sex = [&quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = [&quot;A&quot;, &quot;0&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+tbl = table_one(
+    data,
+    [:age =&gt; &quot;Age (years)&quot;, :blood_type =&gt; &quot;Blood type&quot;, :smoker =&gt; &quot;Smoker&quot;],
+    groupby = :sex =&gt; &quot;Sex&quot;,
+    show_n = true
+)
+
+# render latex in a temp directory
+mktempdir() do dir
+    texfile = joinpath(dir, &quot;main.tex&quot;)
+
+    open(texfile, &quot;w&quot;) do io
+        # add the necessary packages in the preamble
+        println(io, raw&quot;&quot;&quot;
+            \documentclass{article}
+            \usepackage{threeparttable}
+            \usepackage{multirow}
+            \usepackage{booktabs}
+            \begin{document}
+        &quot;&quot;&quot;)
+
+        # print the table as latex code
+        show(io, MIME&quot;text/latex&quot;(), tbl)
+
+        println(io, raw&quot;\end{document}&quot;)
+    end
+
+    # render the tex file to pdf
+    tectonic_jll.tectonic() do bin
+        run(`$bin $texfile`)
+    end
+
+    cp(joinpath(dir, &quot;main.pdf&quot;), joinpath(@__DIR__, &quot;outputs&quot;, &quot;example.pdf&quot;))
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">note: Running TeX ...
+note: downloading SHA256SUM
+note: downloading ts1cmr.fd
+note: Rerunning TeX because &quot;main.aux&quot; changed ...
+note: Running xdvipdfmx ...
+note: Writing `/tmp/jl_Mcwtvt/main.pdf` (10.10 KiB)
+note: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)</code></pre><p>Download <code>example.pdf</code>:</p><a href="./../outputs/example.pdf"><img src="./../assets/icon_pdf.png" width="60"><h2 id="docx"><a class="docs-heading-anchor" href="#docx">docx</a><a id="docx-1"></a><a class="docs-heading-anchor-permalink" href="#docx" title="Permalink"></a></h2><p>To get docx output, you need to use the WriteDocx.jl package because this format is not plain-text like LaTeX or HTML. The table node you get out of the <code>to_docx</code> function can be placed into sections on the same level as paragraphs.</p><pre><code class="language-julia hljs">using SummaryTables
+using DataFrames
+import WriteDocx as W
+
+
+mkpath(joinpath(@__DIR__, &quot;outputs&quot;))
+
+data = DataFrame(
+    sex = [&quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = [&quot;A&quot;, &quot;0&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+tbl = table_one(
+    data,
+    [:age =&gt; &quot;Age (years)&quot;, :blood_type =&gt; &quot;Blood type&quot;, :smoker =&gt; &quot;Smoker&quot;],
+    groupby = :sex =&gt; &quot;Sex&quot;,
+    show_n = true
+)
+
+doc = W.Document(
+            W.Body([
+                W.Section([
+                    SummaryTables.to_docx(tbl)
+                ])
+            ])
+        )
+
+W.save(joinpath(@__DIR__, &quot;outputs&quot;, &quot;example.docx&quot;), doc)</code></pre><p>Download <code>example.docx</code>:</p><a href="./../outputs/example.docx"><img src="./../assets/icon_docx.png" width="60"><h2 id="Typst"><a class="docs-heading-anchor" href="#Typst">Typst</a><a id="Typst-1"></a><a class="docs-heading-anchor-permalink" href="#Typst" title="Permalink"></a></h2><p>You can print <a href="https://github.com/typst/typst">Typst</a> table code to any IO via <code>show(io, MIME&quot;text/typst&quot;, table)</code>. The Typst backend is using the <a href="https://github.com/PgBiel/typst-tablex/">tablex</a> package. Due to the way Typst&#39;s package manager works, you do not have to add any other information to your <code>.typ</code> file to make SummaryTables&#39;s typst code work.</p><pre><code class="language-julia hljs">using SummaryTables
+using DataFrames
+using Typst_jll
+
+
+mkpath(joinpath(@__DIR__, &quot;outputs&quot;))
+
+data = DataFrame(
+    sex = [&quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = [&quot;A&quot;, &quot;0&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+tbl = table_one(
+    data,
+    [:age =&gt; &quot;Age (years)&quot;, :blood_type =&gt; &quot;Blood type&quot;, :smoker =&gt; &quot;Smoker&quot;],
+    groupby = :sex =&gt; &quot;Sex&quot;,
+    show_n = true
+)
+
+# render latex in a temp directory
+mktempdir() do dir
+    typfile = joinpath(dir, &quot;example.typ&quot;)
+
+    open(typfile, &quot;w&quot;) do io
+        # print the table as latex code
+        show(io, MIME&quot;text/typst&quot;(), tbl)
+    end
+
+    # render the tex file to pdf
+    Typst_jll.typst() do bin
+        run(`$bin compile $typfile`)
+    end
+
+    cp(joinpath(dir, &quot;example.pdf&quot;), joinpath(@__DIR__, &quot;outputs&quot;, &quot;example_typst.pdf&quot;))
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">downloading @preview/tablex:0.0.8
+ 41.8 KiB /  41.8 KiB (100 %)  41.8 KiB/s in  0s ETA:  0s</code></pre><p>Download <code>example_typst.pdf</code>:</p><a href="./../outputs/example_typst.pdf"><img src="./../assets/icon_pdf.png" width="60"></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« SummaryTables</a><a class="docs-footer-nextpage" href="../predefined_tables/listingtable/"><code>listingtable</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.3.0 on <span class="colophon-date" title="Monday 25 March 2024 13:48">Monday 25 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
