@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{1}{c}}
+\toprule
+0.124\tnote{A} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft,para]
+\footnotesize
+\item[A]Note 1
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

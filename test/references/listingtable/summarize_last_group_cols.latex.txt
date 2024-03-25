@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{9}{lcrcrcrcr}}
+\toprule
+ & \textbf{group1} &  & \textbf{group1} &  & \textbf{group1} &  & \textbf{group1} &  \\
+ & a &  & a &  & b &  & b &  \\
+ & \textbf{group2} &  & \textbf{group2} &  & \textbf{group2} &  & \textbf{group2} &  \\
+ & e &  & f &  & e &  & f &  \\
+\textbf{group3} & \textbf{value1} & \textbf{mean} & \textbf{value1} & \textbf{mean} & \textbf{value1} & \textbf{mean} & \textbf{value1} & \textbf{mean} \\
+\midrule
+c & 1 & 1 & 2 & 2 & 5 & 5 & 6 & 6 \\
+d & 3 & 3 & 4 & 4 & 7 & 7 & 8 & 8 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

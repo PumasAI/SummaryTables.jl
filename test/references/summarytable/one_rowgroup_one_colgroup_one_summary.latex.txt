@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{llcc}}
+\toprule
+ &  & \multicolumn{2}{c}{\textbf{Group 2}} \\
+\cmidrule{3-4}
+ &  & e & f \\
+\textbf{Group 1} &  & \multicolumn{2}{c}{\textbf{value1}} \\
+\midrule
+a & \textbf{mean} & 2 & 3 \\
+b & \textbf{mean} & 6 & 7 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

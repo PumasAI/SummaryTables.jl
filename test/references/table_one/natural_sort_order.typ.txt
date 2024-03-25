@@ -1,0 +1,35 @@
+
+#[
+#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
+
+#tablex(
+    columns: 6,
+    auto-vlines: false,
+    auto-hlines: false,
+    column-gutter: 0.25em,
+    hlinex(y: 0, stroke: 1pt),
+    cellx(colspan: 4, x: 2, y: 0, align: center + top)[*dose*],
+    hlinex(y: 1, start: 2, end: 6, stroke: 0.75pt),
+    cellx(colspan: 1, x: 1, y: 1, align: center + top)[*Overall*],
+    cellx(colspan: 1, x: 2, y: 1, align: center + top)[1 mg],
+    cellx(colspan: 1, x: 3, y: 1, align: center + top)[5 mg],
+    cellx(colspan: 1, x: 4, y: 1, align: center + top)[10 mg],
+    cellx(colspan: 1, x: 5, y: 1, align: center + top)[50 mg],
+    hlinex(y: 2, stroke: 0.75pt),
+    cellx(colspan: 1, x: 0, y: 2, align: left + top)[*value*],
+    cellx(colspan: 1, x: 0, y: 3, align: left + top)[#h(12.0pt)Mean (SD)],
+    cellx(colspan: 1, x: 1, y: 3, align: center + top)[3 (1.41)],
+    cellx(colspan: 1, x: 2, y: 3, align: center + top)[2.67 (2.08)],
+    cellx(colspan: 1, x: 3, y: 3, align: center + top)[2.67 (1.53)],
+    cellx(colspan: 1, x: 4, y: 3, align: center + top)[4.33 (0.577)],
+    cellx(colspan: 1, x: 5, y: 3, align: center + top)[2.33 (0.577)],
+    cellx(colspan: 1, x: 0, y: 4, align: left + top)[#h(12.0pt)Median [Min, Max]],
+    cellx(colspan: 1, x: 1, y: 4, align: center + top)[3 [1, 5]],
+    cellx(colspan: 1, x: 2, y: 4, align: center + top)[2 [1, 5]],
+    cellx(colspan: 1, x: 3, y: 4, align: center + top)[3 [1, 4]],
+    cellx(colspan: 1, x: 4, y: 4, align: center + top)[4 [4, 5]],
+    cellx(colspan: 1, x: 5, y: 4, align: center + top)[2 [2, 3]],
+    hlinex(y: 5, stroke: 1pt),
+
+)
+]

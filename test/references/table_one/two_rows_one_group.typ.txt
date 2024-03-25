@@ -1,0 +1,42 @@
+
+#[
+#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
+
+#tablex(
+    columns: 4,
+    auto-vlines: false,
+    auto-hlines: false,
+    column-gutter: 0.25em,
+    hlinex(y: 0, stroke: 1pt),
+    cellx(colspan: 2, x: 2, y: 0, align: center + top)[*group1*],
+    hlinex(y: 1, start: 2, end: 4, stroke: 0.75pt),
+    cellx(colspan: 1, x: 1, y: 1, align: center + top)[*Overall*],
+    cellx(colspan: 1, x: 2, y: 1, align: center + top)[a],
+    cellx(colspan: 1, x: 3, y: 1, align: center + top)[b],
+    hlinex(y: 2, stroke: 0.75pt),
+    cellx(colspan: 1, x: 0, y: 2, align: left + top)[*value1*],
+    cellx(colspan: 1, x: 0, y: 3, align: left + top)[#h(12.0pt)Mean (SD)],
+    cellx(colspan: 1, x: 1, y: 3, align: center + top)[4.5 (2.45)],
+    cellx(colspan: 1, x: 2, y: 3, align: center + top)[2.5 (1.29)],
+    cellx(colspan: 1, x: 3, y: 3, align: center + top)[6.5 (1.29)],
+    cellx(colspan: 1, x: 0, y: 4, align: left + top)[#h(12.0pt)Median [Min, Max]],
+    cellx(colspan: 1, x: 1, y: 4, align: center + top)[4.5 [1, 8]],
+    cellx(colspan: 1, x: 2, y: 4, align: center + top)[2.5 [1, 4]],
+    cellx(colspan: 1, x: 3, y: 4, align: center + top)[6.5 [5, 8]],
+    cellx(colspan: 1, x: 0, y: 5, align: left + top)[*value2*],
+    cellx(colspan: 1, x: 0, y: 6, align: left + top)[#h(12.0pt)a],
+    cellx(colspan: 1, x: 1, y: 6, align: center + top)[3 (37.5%)],
+    cellx(colspan: 1, x: 2, y: 6, align: center + top)[2 (50%)],
+    cellx(colspan: 1, x: 3, y: 6, align: center + top)[1 (25%)],
+    cellx(colspan: 1, x: 0, y: 7, align: left + top)[#h(12.0pt)b],
+    cellx(colspan: 1, x: 1, y: 7, align: center + top)[3 (37.5%)],
+    cellx(colspan: 1, x: 2, y: 7, align: center + top)[1 (25%)],
+    cellx(colspan: 1, x: 3, y: 7, align: center + top)[2 (50%)],
+    cellx(colspan: 1, x: 0, y: 8, align: left + top)[#h(12.0pt)c],
+    cellx(colspan: 1, x: 1, y: 8, align: center + top)[2 (25%)],
+    cellx(colspan: 1, x: 2, y: 8, align: center + top)[1 (25%)],
+    cellx(colspan: 1, x: 3, y: 8, align: center + top)[1 (25%)],
+    hlinex(y: 9, stroke: 1pt),
+
+)
+]

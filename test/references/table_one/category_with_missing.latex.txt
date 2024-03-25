@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{lccc}}
+\toprule
+ &  & \multicolumn{2}{c}{\textbf{group}} \\
+\cmidrule{3-4}
+ & \textbf{Overall} & 1 & 2 \\
+\midrule
+\textbf{category} &  &  &  \\
+\hspace{12.0pt}a & 1 (12.5\%) & 1 (25\%) & 0 (0\%) \\
+\hspace{12.0pt}b & 3 (37.5\%) & 2 (50\%) & 1 (25\%) \\
+\hspace{12.0pt}c & 3 (37.5\%) & 1 (25\%) & 2 (50\%) \\
+\hspace{12.0pt}Missing & 1 (12.5\%) & 0 (0\%) & 1 (25\%) \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

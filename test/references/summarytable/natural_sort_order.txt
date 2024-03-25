@@ -1,0 +1,105 @@
+<table class="st-a14a3200">
+    <style>
+        .st-a14a3200 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-a14a3200 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-a14a3200 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-a14a3200 sub {
+            line-height: 0;
+        }
+
+        .st-a14a3200 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">id</td>
+        <td style="font-weight:bold;text-align:left;">dose</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">1</td>
+        <td style="text-align:left;">1 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">50 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">5</td>
+        <td style="text-align:left;">1 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">50 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">8</td>
+        <td style="text-align:left;">1 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">50 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">10</td>
+        <td style="text-align:left;">5 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">10 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">50</td>
+        <td style="text-align:left;">5 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">10 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">80</td>
+        <td style="text-align:left;">5 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">10 mg</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>

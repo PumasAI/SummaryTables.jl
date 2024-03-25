@@ -1,0 +1,97 @@
+<table class="st-7c9c0c7d">
+    <style>
+        .st-7c9c0c7d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-7c9c0c7d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-7c9c0c7d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-7c9c0c7d sub {
+            line-height: 0;
+        }
+
+        .st-7c9c0c7d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">d</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="padding-bottom: 3.0pt;text-align:left;">a</td>
+        <td style="padding-bottom: 3.0pt;text-align:left;">e</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">1</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">1</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">a</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">f</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">2</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">2</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">b</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">e</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">5</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">7</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">5</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">7</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">b</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">f</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">6</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:center;">8</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-top: 3.0pt;text-align:center;">6</td>
+        <td style="padding-top: 3.0pt;text-align:center;">8</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>

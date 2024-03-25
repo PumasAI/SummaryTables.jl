@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{5}{lllcc}}
+\toprule
+ &  &  & \multicolumn{2}{c}{\textbf{Group 3}} \\
+\cmidrule{4-5}
+\textbf{Group 1} & \textbf{group2} &  & c & d \\
+\midrule
+\multirow[t]{4}{*}{a} & \multirow[t]{2}{*}{e} & \textbf{mean} & 1 & 3 \\
+ &  & \textbf{std} & NaN & NaN \\
+ & \multirow[t]{2}{*}{f} & \textbf{mean} & 2 & 4 \\
+ &  & \textbf{std} & NaN & NaN \\
+\multirow[t]{4}{*}{b} & \multirow[t]{2}{*}{e} & \textbf{mean} & 5 & 7 \\
+ &  & \textbf{std} & NaN & NaN \\
+ & \multirow[t]{2}{*}{f} & \textbf{mean} & 6 & 8 \\
+ &  & \textbf{std} & NaN & NaN \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

@@ -1,0 +1,98 @@
+<table class="st-ae5beebb">
+    <style>
+        .st-ae5beebb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-ae5beebb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-ae5beebb br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-ae5beebb sub {
+            line-height: 0;
+        }
+
+        .st-ae5beebb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Group 3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">d</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Group 1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td rowspan="4" style="text-align:left;">a</td>
+        <td rowspan="2" style="text-align:left;">e</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">NaN</td>
+        <td style="text-align:center;">NaN</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">f</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">NaN</td>
+        <td style="text-align:center;">NaN</td>
+    </tr>
+    <tr>
+        <td rowspan="4" style="text-align:left;">b</td>
+        <td rowspan="2" style="text-align:left;">e</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">7</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">NaN</td>
+        <td style="text-align:center;">NaN</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">f</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">8</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">NaN</td>
+        <td style="text-align:center;">NaN</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>

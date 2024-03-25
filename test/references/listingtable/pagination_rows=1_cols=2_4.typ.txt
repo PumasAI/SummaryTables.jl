@@ -1,0 +1,27 @@
+
+#[
+#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
+
+#tablex(
+    columns: 3,
+    auto-vlines: false,
+    auto-hlines: false,
+    column-gutter: 0.25em,
+    hlinex(y: 0, stroke: 1pt),
+    cellx(colspan: 2, x: 1, y: 0, align: center + top)[*group1*],
+    hlinex(y: 1, start: 1, end: 3, stroke: 0.75pt),
+    cellx(colspan: 2, x: 1, y: 1, align: center + top)[b],
+    cellx(colspan: 2, x: 1, y: 2, align: center + top)[*group2*],
+    hlinex(y: 3, start: 1, end: 3, stroke: 0.75pt),
+    cellx(colspan: 1, x: 1, y: 3, align: center + top)[e],
+    cellx(colspan: 1, x: 2, y: 3, align: center + top)[f],
+    cellx(colspan: 1, x: 0, y: 4, align: left + top)[*group3*],
+    cellx(colspan: 2, x: 1, y: 4, align: center + top)[*value1*],
+    hlinex(y: 5, stroke: 0.75pt),
+    cellx(colspan: 1, x: 0, y: 5, align: left + top)[d],
+    cellx(colspan: 1, x: 1, y: 5, align: center + top)[7],
+    cellx(colspan: 1, x: 2, y: 5, align: center + top)[8],
+    hlinex(y: 6, stroke: 1pt),
+
+)
+]

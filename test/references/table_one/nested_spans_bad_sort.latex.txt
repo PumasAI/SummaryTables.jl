@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{6}{lccccc}}
+\toprule
+ &  & \multicolumn{4}{c}{\textbf{y}} \\
+\cmidrule{3-6}
+ &  & A & \multicolumn{2}{c}{B} & A \\
+ &  & \textbf{z} & \multicolumn{2}{c}{\textbf{z}} & \textbf{z} \\
+\cmidrule{3-3}\cmidrule{4-5}\cmidrule{6-6}
+ & \textbf{Overall} & C & C & D & D \\
+\midrule
+\textbf{x} &  &  &  &  &  \\
+\hspace{12.0pt}Mean (SD) & 3.5 (1.87) & 1.5 (0.707) & 3 (NaN) & 4.5 (0.707) & 6 (NaN) \\
+\hspace{12.0pt}Median [Min, Max] & 3.5 [1, 6] & 1.5 [1, 2] & 3 [3, 3] & 4.5 [4, 5] & 6 [6, 6] \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

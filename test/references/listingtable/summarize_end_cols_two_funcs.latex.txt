@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{7}{lccccrr}}
+\toprule
+ & \multicolumn{4}{c}{\textbf{group1}} &  &  \\
+\cmidrule{2-5}
+ & \multicolumn{2}{c}{a} & \multicolumn{2}{c}{b} &  &  \\
+ & \multicolumn{2}{c}{\textbf{group2}} & \multicolumn{2}{c}{\textbf{group2}} &  &  \\
+\cmidrule{2-3}\cmidrule{4-5}
+ & e & f & e & f &  &  \\
+\textbf{group3} & \multicolumn{4}{c}{\textbf{value1}} & \textbf{mean} & \textbf{std} \\
+\midrule
+c & 1 & 2 & 5 & 6 & 3.5 & 2.38 \\
+d & 3 & 4 & 7 & 8 & 5.5 & 2.38 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

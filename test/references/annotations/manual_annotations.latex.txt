@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+A\tnote{X} & B\tnote{Y} \\
+C\tnote{1} & D\tnote{2} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft,para]
+\footnotesize
+\item[1]Note 3
+\item[2]Note 4
+\item[X]Note 1
+\item[Y]Note 2
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

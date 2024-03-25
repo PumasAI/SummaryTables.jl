@@ -1,0 +1,37 @@
+<table class="st-f42cb06e">
+    <style>
+        .st-f42cb06e {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-f42cb06e tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-f42cb06e br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-f42cb06e sub {
+            line-height: 0;
+        }
+
+        .st-f42cb06e sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">0.124<sup>A</sup></td>
+    </tr>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="1" style="font-size: 0.8em;"><sup>A</sup> Note 1</td></tr>
+</table>

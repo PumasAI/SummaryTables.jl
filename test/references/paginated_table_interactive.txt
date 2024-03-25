@@ -1,0 +1,277 @@
+<div>
+<script>
+function showPaginatedPage(el, index){
+    const container = el.parentElement.querySelector('div');
+    for (var i = 0; i<container.children.length; i++){
+        container.children[i].style.display = i == index ? 'block' : 'none';
+    }
+}
+</script>
+
+<button onclick="showPaginatedPage(this, 0)">
+Page 1
+</button>
+
+<button onclick="showPaginatedPage(this, 1)">
+Page 2
+</button>
+
+<button onclick="showPaginatedPage(this, 2)">
+Page 3
+</button>
+
+<button onclick="showPaginatedPage(this, 3)">
+Page 4
+</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table class="st-f5558740">
+    <style>
+        .st-f5558740 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-f5558740 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-f5558740 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-f5558740 sub {
+            line-height: 0;
+        }
+
+        .st-f5558740 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">a</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">f</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group3</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">c</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table class="st-49405443">
+    <style>
+        .st-49405443 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-49405443 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-49405443 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-49405443 sub {
+            line-height: 0;
+        }
+
+        .st-49405443 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">f</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group3</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">c</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 3</h3>
+<table class="st-9209a8dc">
+    <style>
+        .st-9209a8dc {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-9209a8dc tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-9209a8dc br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-9209a8dc sub {
+            line-height: 0;
+        }
+
+        .st-9209a8dc sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">a</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">f</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group3</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">d</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 4</h3>
+<table class="st-a16d1ac2">
+    <style>
+        .st-a16d1ac2 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-a16d1ac2 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-a16d1ac2 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-a16d1ac2 sub {
+            line-height: 0;
+        }
+
+        .st-a16d1ac2 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">f</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group3</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">d</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">8</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>

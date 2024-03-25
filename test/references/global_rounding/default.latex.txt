@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+1.41 & 1.24e7 \\
+1.06e8 & 0.00111 \\
+1.23 \& 0.00123 & \begin{tabular}{@{}c@{}}1.23 \\ 0.00123\end{tabular} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
