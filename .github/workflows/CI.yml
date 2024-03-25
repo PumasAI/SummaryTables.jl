@@ -42,7 +42,7 @@ jobs:
         arch:
           - x64
     steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
           persist-credentials: false
       - uses: julia-actions/setup-julia@f40c4b69330df1d22e7590c12e76dc2f9c66e0bc
