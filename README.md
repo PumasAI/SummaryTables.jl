@@ -42,17 +42,19 @@ table_one(
 
 ```julia
 data = DataFrame(
-    concentration = [1.2, 4.5, 2.0, 1.5, 0.1, 1.8, 3.2, 1.8, 1.2, 0.2],
-    id = repeat([1, 2], inner = 5),
-    time = repeat([0, 0.5, 1, 2, 3], 2)
+    concentration = [1.2, 4.5, 2.0, 1.5, 0.1, 1.8, 3.2, 1.8, 1.2, 0.2,
+        1.7, 4.2, 1.0, 0.9, 0.3, 1.7, 3.7, 1.2, 1.0, 0.2],
+    id = repeat([1, 2, 3, 4], inner = 5),
+    dose = repeat([100, 200], inner = 10),
+    time = repeat([0, 0.5, 1, 2, 3], 4)
 )
 
-listingtable(
+tbl = listingtable(
     data,
     :concentration => "Concentration (ng/mL)",
-    rows = :id => "ID",
+    rows = [:dose => "Dose (mg)", :id => "ID"],
     cols = :time => "Time (hr)",
-    summarize_rows = [
+    summarize_rows = :dose => [
         length => "N",
         mean => "Mean",
         std => "SD",
