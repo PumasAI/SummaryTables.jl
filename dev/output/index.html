@@ -302,7 +302,7 @@ note: downloading ckx.map
 note: downloading texglyphlist.txt
 note: downloading pdfglyphlist.txt
 note: downloading glyphlist.txt
-note: Writing `/tmp/jl_Hl18xz/main.pdf` (10.10 KiB)
+note: Writing `/tmp/jl_YKP3jb/main.pdf` (10.10 KiB)
 note: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)</code></pre><p>Download <code>example.pdf</code>:</p><a href="./../outputs/example.pdf"><img src="./../assets/icon_pdf.png" width="60"><h2 id="docx"><a class="docs-heading-anchor" href="#docx">docx</a><a id="docx-1"></a><a class="docs-heading-anchor-permalink" href="#docx" title="Permalink"></a></h2><p>To get docx output, you need to use the WriteDocx.jl package because this format is not plain-text like LaTeX or HTML. The table node you get out of the <code>to_docx</code> function can be placed into sections on the same level as paragraphs.</p><pre><code class="language-julia hljs">using SummaryTables
 using DataFrames
 import WriteDocx as W
