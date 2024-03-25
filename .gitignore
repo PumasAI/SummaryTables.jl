@@ -1,0 +1,6 @@
+Manifest.toml
+*.pdf
+/output
+/cache
+/docs/build
+.DS_Store

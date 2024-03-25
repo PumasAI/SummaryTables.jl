@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+missing &  \\
+11 & 12 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

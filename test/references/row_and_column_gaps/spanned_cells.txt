@@ -1,0 +1,53 @@
+<table class="st-d7f76253">
+    <style>
+        .st-d7f76253 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-d7f76253 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-d7f76253 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-d7f76253 sub {
+            line-height: 0;
+        }
+
+        .st-d7f76253 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="padding-bottom: 2.0pt;text-align:center;"></td>
+        <td colspan="3" style="padding-bottom: 2.0pt;text-align:center;">Spanned columns</td>
+    </tr>
+    <tr>
+        <td rowspan="3" style="padding-top: 2.0pt;text-align:center;">Spanned rows</td>
+        <td style="padding-right:2.0pt;padding-top: 2.0pt;text-align:center;"></td>
+        <td style="padding-left:2.0pt;padding-top: 2.0pt;text-align:center;"></td>
+        <td style="padding-top: 2.0pt;text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-right:2.0pt;text-align:center;"></td>
+        <td style="padding-left:2.0pt;text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-right:2.0pt;text-align:center;"></td>
+        <td style="padding-left:2.0pt;text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>

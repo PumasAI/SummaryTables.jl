@@ -1,0 +1,8 @@
+[Export]
+enabled = true
+output_dir = "output"
+offer_binder = false
+
+[Pluto]
+[Pluto.compiler]
+threads = 1

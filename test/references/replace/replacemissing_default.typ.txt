@@ -1,0 +1,18 @@
+
+#[
+#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
+
+#tablex(
+    columns: 2,
+    auto-vlines: false,
+    auto-hlines: false,
+    column-gutter: 0.25em,
+    hlinex(y: 0, stroke: 1pt),
+    cellx(colspan: 1, x: 0, y: 0, align: center + top)[-],
+    cellx(colspan: 1, x: 1, y: 0, align: center + top)[-],
+    cellx(colspan: 1, x: 0, y: 1, align: center + top)[1],
+    cellx(colspan: 1, x: 1, y: 1, align: center + top)[2],
+    hlinex(y: 2, stroke: 1pt),
+    cellx(colspan: 2, x: 0, y: 2)[#text(size: 0.8em)[- No value]],
+)
+]

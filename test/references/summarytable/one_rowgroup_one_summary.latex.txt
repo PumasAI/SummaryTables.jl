@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{llc}}
+\toprule
+\textbf{Group 1} &  & \textbf{value1} \\
+\midrule
+a & \textbf{mean} & 2.5 \\
+b & \textbf{mean} & 6.5 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

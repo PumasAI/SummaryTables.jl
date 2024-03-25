@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{lllc}}
+\toprule
+\textbf{id} & \textbf{dose} &  & \textbf{value} \\
+\midrule
+\multirow[t]{2}{*}{1} & 1 mg & \textbf{mean} & 5 \\
+ & 50 mg & \textbf{mean} & 2 \\
+\multirow[t]{2}{*}{5} & 1 mg & \textbf{mean} & 1 \\
+ & 50 mg & \textbf{mean} & 2 \\
+\multirow[t]{2}{*}{8} & 1 mg & \textbf{mean} & 2 \\
+ & 50 mg & \textbf{mean} & 3 \\
+\multirow[t]{2}{*}{10} & 5 mg & \textbf{mean} & 4 \\
+ & 10 mg & \textbf{mean} & 5 \\
+\multirow[t]{2}{*}{50} & 5 mg & \textbf{mean} & 3 \\
+ & 10 mg & \textbf{mean} & 4 \\
+\multirow[t]{2}{*}{80} & 5 mg & \textbf{mean} & 1 \\
+ & 10 mg & \textbf{mean} & 4 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

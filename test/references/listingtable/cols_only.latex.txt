@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{8}{cccccccc}}
+\toprule
+\multicolumn{8}{c}{\textbf{group1}} \\
+\cmidrule{1-8}
+\multicolumn{4}{c}{a} & \multicolumn{4}{c}{b} \\
+\multicolumn{4}{c}{\textbf{group2}} & \multicolumn{4}{c}{\textbf{group2}} \\
+\cmidrule{1-4}\cmidrule{5-8}
+\multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} & \multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} \\
+\multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} \\
+\cmidrule{1-2}\cmidrule{3-4}\cmidrule{5-6}\cmidrule{7-8}
+c & d & c & d & c & d & c & d \\
+\multicolumn{8}{c}{\textbf{value1}} \\
+\midrule
+1 & 3 & 2 & 4 & 5 & 7 & 6 & 8 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

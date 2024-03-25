@@ -1,0 +1,44 @@
+name: Documentation
+
+on:
+  merge_group:
+  pull_request:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+concurrency:
+  # Skip intermediate builds: all builds except for builds on the `master` branch
+  # Cancel intermediate builds: only pull request builds
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref != 'refs/heads/master' || github.run_number }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+jobs:
+  build:
+    env:
+        JULIA_PKG_SERVER: ${{ secrets.JULIA_PKG_SERVER }}
+    permissions:
+      contents: write
+      statuses: write
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+      pull-requests: write
+    runs-on: [based-on-debian, self-hosted, linux, x64]
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - uses: julia-actions/setup-julia@f40c4b69330df1d22e7590c12e76dc2f9c66e0bc
+        with:
+          version: '1'
+      - uses: PumasAI/add-private-registry@9e7f77818be0d19044e5e752205b6ded86af2cb8
+        with:
+          juliahub_token_encoded: ${{ secrets.JULIAPRO_TOKEN_ENCODED }}
+          private_registry_name: ${{ secrets.PUMASREGISTRY_NAME }}
+          private_registry_uuid: ${{ secrets.PUMASREGISTRY_UUID }}
+      - name: Install dependencies
+        run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
+      - name: Build and deploy
+        env:
+          JULIA_DEBUG: Documenter
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: julia --project=docs/ docs/make.jl

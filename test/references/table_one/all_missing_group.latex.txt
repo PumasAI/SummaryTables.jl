@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{lccc}}
+\toprule
+ &  & \multicolumn{2}{c}{\textbf{group}} \\
+\cmidrule{3-4}
+ & \textbf{Overall} & 1 & 2 \\
+\midrule
+\textbf{empty} &  &  &  \\
+\hspace{12.0pt}Mean (SD) & 2 (1) & NC & 2 (1) \\
+\hspace{12.0pt}Median [Min, Max] & 2 [1, 3] & NC & 2 [1, 3] \\
+\hspace{12.0pt}Missing & 3 (50\%) & 3 (100\%) & 0 (0\%) \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft,para]
+\footnotesize
+NC - Not computable
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

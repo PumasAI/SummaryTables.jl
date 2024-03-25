@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{lcc}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{group1}} \\
+\cmidrule{2-3}
+ & \multicolumn{2}{c}{a} \\
+ & \multicolumn{2}{c}{\textbf{group2}} \\
+\cmidrule{2-3}
+ & e & f \\
+\textbf{group3} & \multicolumn{2}{c}{\textbf{value1}} \\
+\midrule
+c & 1 & 2 \\
+d & 3 & 4 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

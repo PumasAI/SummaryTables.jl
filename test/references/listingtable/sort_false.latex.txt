@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{5}{llccc}}
+\toprule
+ &  & \multicolumn{3}{c}{\textbf{parameters}} \\
+\cmidrule{3-5}
+ &  & T\textsubscript{max} & C\textsuperscript{max} & \begin{tabular}{@{}c@{}}One Line \\ Another Line\end{tabular} \\
+\textbf{group2} & \textbf{group} & \multicolumn{3}{c}{\textbf{value}} \\
+\midrule
+\multirow[t]{2}{*}{1} & 1 & 1 & 5 & 9 \\
+ & 3 & 3 & 7 & 11 \\
+\multirow[t]{2}{*}{2} & 2 & 2 & 6 & 10 \\
+ & 4 & 4 & 8 & 12 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

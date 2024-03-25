@@ -1,0 +1,48 @@
+name: CompatHelper
+on:
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  JULIA_PKG_SERVER: ${{ secrets.JULIA_PKG_SERVER }}
+
+jobs:
+  CompatHelper:
+    runs-on: [based-on-debian, self-hosted, linux, x64]
+    steps:
+      - uses: julia-actions/setup-julia@f40c4b69330df1d22e7590c12e76dc2f9c66e0bc
+        with:
+          version: '1.9'
+
+      - name: Add the Pumas Registry
+        uses: PumasAI/add-private-registry@93e0d6c748c851aabfeac9f27e5c6d211a05dc33
+        with:
+          juliahub_token_encoded: ${{ secrets.JULIAPRO_TOKEN_ENCODED }}
+          private_registry_name: ${{ secrets.PUMASREGISTRY_NAME }}
+          private_registry_uuid: ${{ secrets.PUMASREGISTRY_UUID }}
+
+      - name: "Install CompatHelper"
+        run: |
+          import Pkg
+          name = "CompatHelper"
+          uuid = "aa819f21-2bde-4658-8897-bab36330d9b7"
+          version = "3"
+          Pkg.add(; name, uuid, version)
+        shell: julia --color=yes {0}
+
+      - name: "Run CompatHelper"
+        run: |
+          import CompatHelper, Pkg
+          CompatHelper.main(
+            registries = [Pkg.RegistrySpec(uuid=ri.uuid) for ri in Pkg.Registry.reachable_registries()],
+            use_existing_registries = true
+          )
+        shell: julia --color=yes {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMPATHELPER_PRIV: ${{ secrets.DOCUMENTER_KEY }}

@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{cc@{\hskip 4.0pt}c@{\hskip 8.0pt}c}}
+\toprule
+1, 1 & 1, 2 & 1, 3 & 1, 4 \\[4.0pt]
+2, 1 & 2, 2 & 2, 3 & 2, 4 \\[8.0pt]
+3, 1 & 3, 2 & 3, 3 & 3, 4 \\
+4, 1 & 4, 2 & 4, 3 & 4, 4 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

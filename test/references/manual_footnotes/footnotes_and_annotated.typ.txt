@@ -1,0 +1,16 @@
+
+#[
+#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
+
+#tablex(
+    columns: 2,
+    auto-vlines: false,
+    auto-hlines: false,
+    column-gutter: 0.25em,
+    hlinex(y: 0, stroke: 1pt),
+    cellx(colspan: 1, x: 0, y: 0, align: center + top)[Cell 1#super[1]],
+    cellx(colspan: 1, x: 1, y: 0, align: center + top)[Cell 2],
+    hlinex(y: 1, stroke: 1pt),
+    cellx(colspan: 2, x: 0, y: 1)[#super[1]#text(size: 0.8em)[Note 1]#h(1.5em, weak: true)First footnote.#h(1.5em, weak: true)Second footnote.],
+)
+]

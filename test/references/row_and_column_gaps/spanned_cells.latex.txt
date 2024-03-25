@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{cc@{\hskip 4.0pt}cc}}
+\toprule
+ & \multicolumn{3}{c}{Spanned columns} \\[4.0pt]
+\multirow[t]{3}{*}{Spanned rows} &  &  &  \\
+ &  &  &  \\
+ &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

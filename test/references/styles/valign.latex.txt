@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{cccc}}
+\toprule
+Row 1 & \multirow[t]{3}{*}{top} & \multirow[c]{3}{*}{center} & \multirow[b]{3}{*}{bottom} \\
+Row 2 &  &  &  \\
+Row 3 &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
