@@ -49,7 +49,7 @@ data = DataFrame(
     time = repeat([0, 0.5, 1, 2, 3], 4)
 )
 
-tbl = listingtable(
+listingtable(
     data,
     :concentration => "Concentration (ng/mL)",
     rows = [:dose => "Dose (mg)", :id => "ID"],
@@ -64,6 +64,25 @@ tbl = listingtable(
 
 ![](/_readme/listingtable.svg)
 
+```julia
+categories = ["Deciduous", "Deciduous", "Evergreen", "Evergreen", "Evergreen"]
+species = ["Beech", "Oak", "Fir", "Spruce", "Pine"]
+data = rand(4, 5)
+labels = ["", "", "Size", Annotated("Water consumption", "Liters per year"), "Age", "Value"]
+
+body = [
+    Cell.(categories, bold = true, merge = true, border_bottom = true)';
+    Cell.(species)';
+    Cell.(data)
+]
+
+Table(hcat(
+    Cell.(labels, italic = true, halign = :right),
+    body
+))
+```
+
+![](/_readme/custom_table.svg)
 
 ## Comparison with PrettyTables.jl
 

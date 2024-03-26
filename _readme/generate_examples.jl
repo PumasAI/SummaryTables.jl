@@ -58,3 +58,24 @@ tbl = listingtable(
 
 save_svg(tbl, joinpath(@__DIR__, "listingtable.svg"))
 
+##
+
+categories = ["Deciduous", "Deciduous", "Evergreen", "Evergreen", "Evergreen"]
+species = ["Beech", "Oak", "Fir", "Spruce", "Pine"]
+data = rand(4, 5)
+labels = ["", "", "Size", Annotated("Water consumption", "Liters per year"), "Age", "Value"]
+
+body = [
+    Cell.(categories, bold = true, merge = true, border_bottom = true)';
+    Cell.(species)';
+    Cell.(data)
+]
+
+tbl = Table(hcat(
+    Cell.(labels, italic = true, halign = :right),
+    body
+))
+
+save_svg(tbl, joinpath(@__DIR__, "custom_table.svg"))
+
+
