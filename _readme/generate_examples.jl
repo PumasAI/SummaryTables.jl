@@ -8,7 +8,7 @@ function save_svg(tbl, svgfile)
         cd(dir) do
             open("input.typ", "w") do io
                 println(io, """
-                #set page(margin: 3pt, width: auto, height: auto)
+                #set page(margin: 3pt, width: auto, height: auto, fill: white)
                 #set text(12pt)
                 """)
                 show(io, MIME"text/typst"(), tbl)
