@@ -9,5 +9,5 @@
     [Cell 1],
     [Cell 2],
     table.hline(y: 1, stroke: 1pt),
-    table.cell(colspan: 2)[First footnote.#h(1.5em, weak: true)Second footnote.],
+    table.cell(align: left, colspan: 2)[First footnote.#h(1.5em, weak: true)Second footnote.],
 )

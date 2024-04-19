@@ -8,5 +8,5 @@
     table.hline(y: 0, stroke: 1pt),
     [0.124#super[A]],
     table.hline(y: 1, stroke: 1pt),
-    table.cell(colspan: 1)[#super[A]#text(size: 0.8em)[Note 1]],
+    table.cell(align: left, colspan: 1)[#super[A]#text(size: 0.8em)[Note 1]],
 )
