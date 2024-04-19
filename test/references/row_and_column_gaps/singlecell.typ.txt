@@ -1,30 +1,26 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 4,
     columns: 4,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 0, y: 0, align: center + top)[1, 1],
-    cellx(colspan: 1, x: 1, y: 0, align: center + top)[1, 2],
-    cellx(colspan: 1, x: 2, y: 0, align: center + top)[1, 3],
-    cellx(colspan: 1, x: 3, y: 0, align: center + top)[1, 4],
-    cellx(colspan: 1, x: 0, y: 1, align: center + top)[2, 1],
-    cellx(colspan: 1, x: 1, y: 1, align: center + top)[2, 2],
-    cellx(colspan: 1, x: 2, y: 1, align: center + top)[2, 3],
-    cellx(colspan: 1, x: 3, y: 1, align: center + top)[2, 4],
-    cellx(colspan: 1, x: 0, y: 2, align: center + top)[3, 1],
-    cellx(colspan: 1, x: 1, y: 2, align: center + top)[3, 2],
-    cellx(colspan: 1, x: 2, y: 2, align: center + top)[3, 3],
-    cellx(colspan: 1, x: 3, y: 2, align: center + top)[3, 4],
-    cellx(colspan: 1, x: 0, y: 3, align: center + top)[4, 1],
-    cellx(colspan: 1, x: 1, y: 3, align: center + top)[4, 2],
-    cellx(colspan: 1, x: 2, y: 3, align: center + top)[4, 3],
-    cellx(colspan: 1, x: 3, y: 3, align: center + top)[4, 4],
-    hlinex(y: 4, stroke: 1pt),
-
+    align: (center, center, center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [1, 1],
+    [1, 2],
+    [1, 3],
+    [1, 4],
+    [2, 1],
+    [2, 2],
+    [2, 3],
+    [2, 4],
+    [3, 1],
+    [3, 2],
+    [3, 3],
+    [3, 4],
+    [4, 1],
+    [4, 2],
+    [4, 3],
+    [4, 4],
+    table.hline(y: 4, stroke: 1pt),
 )
-]

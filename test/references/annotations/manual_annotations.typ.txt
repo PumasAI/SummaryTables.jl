@@ -1,18 +1,15 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 2,
     columns: 2,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 0, y: 0, align: center + top)[A#super[X]],
-    cellx(colspan: 1, x: 1, y: 0, align: center + top)[B#super[Y]],
-    cellx(colspan: 1, x: 0, y: 1, align: center + top)[C#super[1]],
-    cellx(colspan: 1, x: 1, y: 1, align: center + top)[D#super[2]],
-    hlinex(y: 2, stroke: 1pt),
-    cellx(colspan: 2, x: 0, y: 2)[#super[1]#text(size: 0.8em)[Note 3]#h(1.5em, weak: true)#super[2]#text(size: 0.8em)[Note 4]#h(1.5em, weak: true)#super[X]#text(size: 0.8em)[Note 1]#h(1.5em, weak: true)#super[Y]#text(size: 0.8em)[Note 2]],
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [A#super[X]],
+    [B#super[Y]],
+    [C#super[1]],
+    [D#super[2]],
+    table.hline(y: 2, stroke: 1pt),
+    table.cell(colspan: 2)[#super[1]#text(size: 0.8em)[Note 3]#h(1.5em, weak: true)#super[2]#text(size: 0.8em)[Note 4]#h(1.5em, weak: true)#super[X]#text(size: 0.8em)[Note 1]#h(1.5em, weak: true)#super[Y]#text(size: 0.8em)[Note 2]],
 )
-]

@@ -1,25 +1,25 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 7,
     columns: 2,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 1, y: 0, align: center + top)[*group1*],
-    cellx(colspan: 1, x: 1, y: 1, align: center + top)[a],
-    cellx(colspan: 1, x: 1, y: 2, align: center + top)[*group2*],
-    cellx(colspan: 1, x: 1, y: 3, align: center + top)[f],
-    cellx(colspan: 1, x: 0, y: 4, align: left + top)[*group3*],
-    cellx(colspan: 1, x: 1, y: 4, align: center + top)[*value1*],
-    hlinex(y: 5, stroke: 0.75pt),
-    cellx(colspan: 1, x: 0, y: 5, align: left + top)[c],
-    cellx(colspan: 1, x: 1, y: 5, align: center + top)[2],
-    cellx(colspan: 1, x: 0, y: 6, align: left + top)[d],
-    cellx(colspan: 1, x: 1, y: 6, align: center + top)[4],
-    hlinex(y: 7, stroke: 1pt),
-
+    align: (left, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [],
+    [*group1*],
+    [],
+    [a],
+    [],
+    [*group2*],
+    [],
+    [f],
+    [*group3*],
+    [*value1*],
+    table.hline(y: 5, stroke: 0.75pt),
+    [c],
+    [2],
+    [d],
+    [4],
+    table.hline(y: 7, stroke: 1pt),
 )
-]

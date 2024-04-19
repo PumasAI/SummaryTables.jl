@@ -1,20 +1,16 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 3,
     columns: 2,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 0, y: 0, align: center + top)[1.4142135623730951],
-    cellx(colspan: 1, x: 1, y: 0, align: center + top)[1.2352131000001e7],
-    cellx(colspan: 1, x: 0, y: 1, align: center + top)[1.0607182119320439e8],
-    cellx(colspan: 1, x: 1, y: 1, align: center + top)[0.0011096125449903673],
-    cellx(colspan: 1, x: 0, y: 2, align: center + top)[1.23456 & 0.0012345],
-    cellx(colspan: 1, x: 1, y: 2, align: center + top)[1.23456 #linebreak() 0.0012345],
-    hlinex(y: 3, stroke: 1pt),
-
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [1.4142135623730951],
+    [1.2352131000001e7],
+    [1.0607182119320439e8],
+    [0.0011096125449903673],
+    [1.23456 & 0.0012345],
+    [1.23456 #linebreak() 0.0012345],
+    table.hline(y: 3, stroke: 1pt),
 )
-]

@@ -1,20 +1,17 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 3,
     columns: 2,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 1, y: 0, align: center + top)[*value1*],
-    hlinex(y: 1, stroke: 0.75pt),
-    cellx(colspan: 1, x: 0, y: 1, align: left + top)[*mean*],
-    cellx(colspan: 1, x: 1, y: 1, align: center + top)[4.5],
-    cellx(colspan: 1, x: 0, y: 2, align: left + top)[*SD*],
-    cellx(colspan: 1, x: 1, y: 2, align: center + top)[2.45],
-    hlinex(y: 3, stroke: 1pt),
-
+    align: (left, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [],
+    [*value1*],
+    table.hline(y: 1, stroke: 0.75pt),
+    [*mean*],
+    [4.5],
+    [*SD*],
+    [2.45],
+    table.hline(y: 3, stroke: 1pt),
 )
-]
