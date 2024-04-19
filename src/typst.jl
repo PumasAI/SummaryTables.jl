@@ -14,29 +14,28 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     
     print(io, """
 
-    #[
-    #import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-    #tablex(
+    #table(
         columns: $(size(matrix, 2)),
-        auto-vlines: false,
-        auto-hlines: false,
         column-gutter: 0.25em,
+        stroke: none,
     """)
 
-    println(io, "    hlinex(y: 0, stroke: 1pt),")
+    println(io, "    table.hline(y: 0, stroke: 1pt),")
+
+    _colspan(n) = n == 1 ? "" : "colspan: $n, "
+    _rowspan(n) = n == 1 ? "" : "rowspan: $n, "
 
     running_index = 0
     for row in 1:size(matrix, 1)
         if row == ct.footer
-            println(io, "    hlinex(y: $(row-1), stroke: 0.75pt),")
+            println(io, "    table.hline(y: $(row-1), stroke: 0.75pt),")
         end
         for col in 1:size(matrix, 2)
             index = matrix[row, col]
             if index > running_index
                 cell = cells[index]
                 if cell.value !== nothing
-                    print(io, "    cellx(colspan: $(length(cell.span[2])), x: $(col-1), y: $(row-1), align: $(typst_align(cell.style)))[")
+                    print(io, "    table.cell($(_rowspan(length(cell.span[1])))$(_colspan(length(cell.span[2])))align: $(typst_align(cell.style)))[")
                     cell.style.bold && print(io, "*")
                     cell.style.italic && print(io, "_")
                     cell.style.underline && print(io, "#underline[")
@@ -48,20 +47,20 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
                     print(io, "],\n")
                 end
                 if cell.style.border_bottom
-                    println(io, "    hlinex(y: $(row), start: $(cell.span[2].start-1), end: $(cell.span[2].stop), stroke: 0.75pt),")
+                    println(io, "    table.hline(y: $(row), start: $(cell.span[2].start-1), end: $(cell.span[2].stop), stroke: 0.75pt),")
                 end
                 running_index = index
             end
         end
         if row == ct.header
-            println(io, "    hlinex(y: $(row), stroke: 0.75pt),")
+            println(io, "    table.hline(y: $(row), stroke: 0.75pt),")
         end
     end
 
-    println(io, "    hlinex(y: $(size(matrix, 1)), stroke: 1pt),")
+    println(io, "    table.hline(y: $(size(matrix, 1)), stroke: 1pt),")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        print(io, "    cellx(colspan: $(size(matrix, 2)), x: 0, y: $(size(matrix, 1)))[")
+        print(io, "    table.cell(colspan: $(size(matrix, 2)))[")
 
         for (i, (annotation, label)) in enumerate(annotations)
             i > 1 && print(io, "#h(1.5em, weak: true)")
@@ -80,11 +79,10 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
             _showas(io, MIME"text/typst"(), footnote)
         end
 
-        print(io, "],") # cellx()[
+        println(io, "],") # table.cell()[
     end
 
-    println(io, "\n)") # tablex(
-    println(io, "]") # #[
+    println(io, ")") # table()
     return
 end
 

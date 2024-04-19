@@ -120,8 +120,8 @@ Download `example.docx`:
 ## Typst
 
 You can print [Typst](https://github.com/typst/typst) table code to any IO via `show(io, MIME"text/typst", table)`.
-The Typst backend is using the [tablex](https://github.com/PgBiel/typst-tablex/) package.
-Due to the way Typst's package manager works, you do not have to add any other information to your `.typ` file to make SummaryTables's typst code work.
+From SummaryTables v2.0 on, the Typst backend is using the native table functionality in Typst v0.11.
+Previous versions used the [tablex](https://github.com/PgBiel/typst-tablex/) package.
 
 ```@example
 using SummaryTables
