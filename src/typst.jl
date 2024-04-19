@@ -7,6 +7,8 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
 
     matrix = create_cell_matrix(cells)
 
+    column_alignments = most_common_column_alignments(cells, matrix)
+
     validate_rowgaps(ct.rowgaps, size(matrix, 1))
     validate_colgaps(ct.colgaps, size(matrix, 2))
     rowgaps = Dict(ct.rowgaps)
@@ -15,15 +17,30 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     print(io, """
 
     #table(
+        rows: $(size(matrix, 1)),
         columns: $(size(matrix, 2)),
         column-gutter: 0.25em,
+        align: ($(join(column_alignments, ", "))),
         stroke: none,
     """)
 
     println(io, "    table.hline(y: 0, stroke: 1pt),")
 
-    _colspan(n) = n == 1 ? "" : "colspan: $n, "
-    _rowspan(n) = n == 1 ? "" : "rowspan: $n, "
+    _colspan(n) = n == 1 ? "" : "colspan: $n"
+    _rowspan(n) = n == 1 ? "" : "rowspan: $n"
+    function _align(style, icol)
+        halign = style.halign === column_alignments[icol] ?  nothing : typst_halign(style.halign)
+        valign = style.valign === :top ?  nothing : typst_valign(style.valign)
+        if halign === nothing && valign === nothing
+            ""
+        elseif halign === nothing
+            "align: $valign"
+        elseif valign === nothing
+            "align: $halign"
+        else
+            "align: $halign + $valign"
+        end
+    end
 
     running_index = 0
     for row in 1:size(matrix, 1)
@@ -34,8 +51,19 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
             index = matrix[row, col]
             if index > running_index
                 cell = cells[index]
-                if cell.value !== nothing
-                    print(io, "    table.cell($(_rowspan(length(cell.span[1])))$(_colspan(length(cell.span[2])))align: $(typst_align(cell.style)))[")
+                if cell.value === nothing
+                    println(io, "    [],")
+                else
+                    options = join(filter(!isempty, [
+                        _rowspan(length(cell.span[1])),
+                        _colspan(length(cell.span[2])),
+                        _align(cell.style, col)
+                    ]), ", ")
+                    if isempty(options)
+                        print(io, "    [")
+                    else
+                        print(io, "    table.cell(", options, ")[")
+                    end
                     cell.style.bold && print(io, "*")
                     cell.style.italic && print(io, "_")
                     cell.style.underline && print(io, "#underline[")
@@ -93,12 +121,11 @@ function _showas(io::IO, M::MIME"text/typst", m::Multiline)
     end
 end
 
-function typst_align(s::CellStyle)
-    string(
-        s.halign === :left ? "left" : s.halign === :right ? "right" : s.halign === :center ? "center" : error("Invalid halign $(s.halign)"),
-        " + ",
-        s.valign === :top ? "top" : s.valign === :bottom ? "bottom" : s.valign === :center ? "horizon" : error("Invalid valign $(s.valign)"),
-    )
+function typst_halign(halign)
+    halign === :left ? "left" : halign === :right ? "right" : halign === :center ? "center" : error("Invalid halign $(halign)")
+end
+function typst_valign(valign)
+    valign === :top ? "top" : valign === :bottom ? "bottom" : valign === :center ? "horizon" : error("Invalid valign $(s.valign)")
 end
 
 function _showas(io::IO, ::MIME"text/typst", r::ResolvedAnnotation)

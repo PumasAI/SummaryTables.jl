@@ -12,13 +12,7 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
     rowgaps = Dict(ct.rowgaps)
     colgaps = Dict(ct.colgaps)
 
-    column_alignment_counts = StatsBase.countmap((cell.span[2], cell.style.halign) for cell in cells if cell.value !== nothing)
-    
-    alignments = (:center, :left, :right)
-    column_alignments = map(1:size(matrix,2)) do i_col
-        i_max = argmax(get(column_alignment_counts, (i_col:i_col, al), 0) for al in alignments)
-        return alignments[i_max]
-    end
+    column_alignments = most_common_column_alignments(cells, matrix)
     colspec = let
         iob = IOBuffer()
         for (icol, al) in enumerate(column_alignments)
@@ -152,6 +146,16 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
 
 
     return
+end
+
+function most_common_column_alignments(cells, matrix)
+    column_alignment_counts = StatsBase.countmap((cell.span[2], cell.style.halign) for cell in cells if cell.value !== nothing)
+    
+    alignments = (:center, :left, :right)
+    return map(1:size(matrix,2)) do i_col
+        i_max = argmax(get(column_alignment_counts, (i_col:i_col, al), 0) for al in alignments)
+        return alignments[i_max]
+    end
 end
 
 function get_class_styles(class, table_styles)
