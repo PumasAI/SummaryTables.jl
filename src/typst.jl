@@ -88,7 +88,10 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     println(io, "    table.hline(y: $(size(matrix, 1)), stroke: 1pt),")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        print(io, "    table.cell(colspan: $(size(matrix, 2)))[")
+        align = _align(CellStyle(halign = :left), 1)
+        colspan = "colspan: $(size(matrix, 2))"
+        options = join(filter(!isempty, [align, colspan]), ", ")
+        print(io, "    table.cell($options)[")
 
         for (i, (annotation, label)) in enumerate(annotations)
             i > 1 && print(io, "#h(1.5em, weak: true)")
