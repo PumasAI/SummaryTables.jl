@@ -1,21 +1,19 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 4,
     columns: 2,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 1, y: 0, align: center + top)[*Overall*],
-    hlinex(y: 1, stroke: 0.75pt),
-    cellx(colspan: 1, x: 0, y: 1, align: left + top)[*Value 1*],
-    cellx(colspan: 1, x: 0, y: 2, align: left + top)[#h(12.0pt)Mean (SD)],
-    cellx(colspan: 1, x: 1, y: 2, align: center + top)[4.5 (2.45)],
-    cellx(colspan: 1, x: 0, y: 3, align: left + top)[#h(12.0pt)Median [Min, Max]],
-    cellx(colspan: 1, x: 1, y: 3, align: center + top)[4.5 [1, 8]],
-    hlinex(y: 4, stroke: 1pt),
-
+    align: (left, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [],
+    [*Overall*],
+    table.hline(y: 1, stroke: 0.75pt),
+    [*Value 1*],
+    [],
+    [#h(12.0pt)Mean (SD)],
+    [4.5 (2.45)],
+    [#h(12.0pt)Median [Min, Max]],
+    [4.5 [1, 8]],
+    table.hline(y: 4, stroke: 1pt),
 )
-]

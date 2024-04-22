@@ -1,15 +1,12 @@
 
-#[
-#import "@preview/tablex:0.0.8": tablex, cellx, hlinex
-
-#tablex(
+#table(
+    rows: 1,
     columns: 1,
-    auto-vlines: false,
-    auto-hlines: false,
     column-gutter: 0.25em,
-    hlinex(y: 0, stroke: 1pt),
-    cellx(colspan: 1, x: 0, y: 0, align: center + top)[0.124#super[A]],
-    hlinex(y: 1, stroke: 1pt),
-    cellx(colspan: 1, x: 0, y: 1)[#super[A]#text(size: 0.8em)[Note 1]],
+    align: (center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [0.124#super[A]],
+    table.hline(y: 1, stroke: 1pt),
+    table.cell(align: left, colspan: 1)[#super[A]#text(size: 0.8em)[Note 1]],
 )
-]

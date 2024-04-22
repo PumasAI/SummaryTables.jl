@@ -6,3 +6,6 @@ Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 Typst_jll = "eb4b1da6-20f6-5c66-9826-fdb8ad410d0e"
 tectonic_jll = "d7dd28d6-a5e6-559c-9131-7eb760cdacc5"
+
+[compat]
+Typst_jll = "0.11"
