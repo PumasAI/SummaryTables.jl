@@ -1,14 +1,15 @@
-name: Regenerate Readme
+name: Check up-to-date Readme
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
 
-permissions:
-  actions: write
-  contents: write
-  pull-requests: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   readme:
@@ -23,17 +24,7 @@ jobs:
         with:
           version: pre-release
       - name: Render readme
-        run: |
-          julia _readme/make.jl
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update stale README
-          title: Update stale README
-          branch: create-pull-request/update-readme
-          delete-branch: true
-          add-paths: |
-            README.md
-            README_files/*
+        run: julia _readme/make.jl
+      - name: Succeed if there is no git diff output
+        run: git diff --exit-code
       
