@@ -4,3 +4,4 @@ Manifest.toml
 /cache
 /docs/build
 .DS_Store
+.quarto
