@@ -32,7 +32,7 @@ using SummaryTables, DataFrames, Statistics, Typst_jll
 
 Base.delete_method(only(methods(Base.show, (IO, MIME"text/html", SummaryTables.Table))))
 
-function Base.show(io::IO, ::MIME"image/svg+xml", tbl::SummaryTables.Table)
+function Base.show(io::IO, ::MIME"image/png", tbl::SummaryTables.Table)
     mktempdir() do dir
         input = joinpath(dir, "input.typ")
         open(input, "w") do io
@@ -42,7 +42,7 @@ function Base.show(io::IO, ::MIME"image/svg+xml", tbl::SummaryTables.Table)
                         """)
             show(io, MIME"text/typst"(), tbl)
         end
-        output = joinpath(dir, "output.svg")
+        output = joinpath(dir, "output.png")
         run(`$(typst()) compile $input $output`)
         print(io, read(output, String))
     end

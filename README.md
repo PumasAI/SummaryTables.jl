@@ -38,7 +38,7 @@ table_one(
 )
 ```
 
-![](README_files/figure-commonmark/cell-3-output-1.svg)
+![](README_files/figure-commonmark/cell-3-output-1.png)
 
 ``` julia
 data = DataFrame(
@@ -62,7 +62,7 @@ listingtable(
 )
 ```
 
-![](README_files/figure-commonmark/cell-4-output-1.svg)
+![](README_files/figure-commonmark/cell-4-output-1.png)
 
 ``` julia
 categories = ["Deciduous", "Deciduous", "Evergreen", "Evergreen", "Evergreen"]
@@ -87,7 +87,7 @@ Table(hcat(
 ))
 ```
 
-![](README_files/figure-commonmark/cell-5-output-1.svg)
+![](README_files/figure-commonmark/cell-5-output-1.png)
 
 ## Comparison with PrettyTables.jl
 
