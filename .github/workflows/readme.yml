@@ -1,0 +1,39 @@
+name: Regenerate Readme
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1'
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: pre-release
+      - name: Render readme
+        run: |
+          julia _readme/make.jl
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update stale README
+          title: Update stale README
+          branch: create-pull-request/update-readme
+          delete-branch: true
+          add-paths: |
+            README.md
+            README_files/*
+      
