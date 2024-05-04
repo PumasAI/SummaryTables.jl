@@ -32,7 +32,7 @@ using SummaryTables, DataFrames, Statistics, Typst_jll
 
 Base.delete_method(only(methods(Base.show, (IO, MIME"text/html", SummaryTables.Table))))
 
-function Base.show(io::IO, ::MIME"image/png", tbl::SummaryTables.Table)
+function Base.show(io::IO, ::MIME"image/svg+xml", tbl::SummaryTables.Table)
     mktempdir() do dir
         input = joinpath(dir, "input.typ")
         open(input, "w") do io
@@ -42,9 +42,25 @@ function Base.show(io::IO, ::MIME"image/png", tbl::SummaryTables.Table)
                         """)
             show(io, MIME"text/typst"(), tbl)
         end
-        output = joinpath(dir, "output.png")
+        output = joinpath(dir, "output.svg")
         run(`$(typst()) compile $input $output`)
-        print(io, read(output, String))
+        str = read(output, String)
+        ids = Dict{String,Int}()
+
+        function simple_id(s)
+            string(get!(ids, s) do
+                length(ids)
+            end, base = 16)
+        end
+
+        # typst uses ids that are not stable across runs or OSes or something,
+        # also they're quite long so as we don't use inlined svg we just simplify them
+        # to the position at which they appear first
+        replace(io, str,
+            r"(?<=xlink:href=\"#).*?(?=\")" => simple_id,
+            r"(?<=id=\").*?(?=\")" => simple_id,
+            r"(?<=url\(#).*?(?=\))" => simple_id,
+        )
     end
 end
 ```
