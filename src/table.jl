@@ -406,9 +406,9 @@ function _listingtable(
         ungroup = false
     )
 
-    gdf_rows = DataFrames.groupby(df, rowsymbols, sort = false)
+    gdf_rows = DataFrames.groupby(df, rowsymbols, sort = sort ? (; lt = natural_lt) : false)
     row_keys = Tuple.(keys(gdf_rows))
-    gdf_cols = DataFrames.groupby(df, colsymbols, sort = false)
+    gdf_cols = DataFrames.groupby(df, colsymbols, sort = sort ? (; lt = natural_lt) : false)
     col_keys = Tuple.(keys(gdf_cols))
 
     lt = ListingTable(

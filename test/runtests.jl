@@ -351,6 +351,9 @@ end
             for (i, page) in enumerate(pt.pages)
                 reftest(t, "references/listingtable/pagination_rows=2_summarized_grouplevel_1_$i")
             end
+
+            t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
+            reftest(t, "references/listingtable/missing_groups")
         end
 
         @testset "summarytable" begin
