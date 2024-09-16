@@ -586,6 +586,19 @@ end
             reftest(t, "references/character_escaping/problematic_characters")
         end
 
+        @testset "Merged cells with special values" begin
+            contents = [
+                Multiline("A", "B"),
+                Superscript("Sup"),
+                Subscript("Sub"),
+                Concat("A", "B"),
+                Annotated("Label", "Annotation"),
+            ]
+            cells = Cell.(contents, merge = true)
+            t = Table(hcat(cells, cells))
+            reftest(t, "references/merged_cells/custom_datatypes")
+        end
+
         @testset "Styles" begin
             cells = [
                 SpannedCell(1, 1, "Row 1"),

@@ -258,9 +258,9 @@ A `Multiline` value may only be used as the top-level value of a cell, so
 `Cell(Multiline(...))` is allowed but `Cell(Concat(Multiline(...), ...))` is not.
 """
 struct Multiline
-    values::Vector{Any}
+    values::Tuple
+    Multiline(args...) = new(args)
 end
-Multiline(args...) = Multiline(Any[args...])
 
 """
     Concat(args...)
@@ -532,7 +532,7 @@ end
 apply_rounder(x, r::Rounder) = x
 apply_rounder(x::AbstractFloat, r::Rounder) = RoundedFloat(x, r.round_digits, r.round_mode, r.trailing_zeros)
 apply_rounder(x::Concat, r::Rounder) = Concat(map(arg -> apply_rounder(arg, r), x.args)...)
-apply_rounder(x::Multiline, r::Rounder) = Multiline(map(arg -> apply_rounder(arg, r), x.values))
+apply_rounder(x::Multiline, r::Rounder) = Multiline(map(arg -> apply_rounder(arg, r), x.values)...)
 apply_rounder(x::Annotated, r::Rounder) = Annotated(apply_rounder(x.value, r), x.annotation, x.label)
 
 function postprocess_cell(cell::Cell, r::Rounder)
