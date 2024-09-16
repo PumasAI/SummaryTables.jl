@@ -133,6 +133,12 @@ end
         sort!(_df, [:group2, :group])
     end
 
+    df_missing_groups = DataFrame(
+        value = 1:6,
+        A = ['c', 'c', 'c', 'b', 'b', 'a'],
+        B = [4, 2, 8, 2, 4, 4]
+    )
+
     @testset for func in [as_html, as_latex, as_docx, as_typst]
         reftest(t, path) = @testset "$path" run_reftest(t, path, func)
 
@@ -345,6 +351,9 @@ end
             for (i, page) in enumerate(pt.pages)
                 reftest(t, "references/listingtable/pagination_rows=2_summarized_grouplevel_1_$i")
             end
+
+            t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
+            reftest(t, "references/listingtable/missing_groups")
         end
 
         @testset "summarytable" begin
@@ -383,6 +392,9 @@ end
             @test_throws SortingError t = summarytable(unsortable_df, :value, rows = :parameters, cols = [:group2, :group], summary = [mean])
             t = summarytable(unsortable_df, :value, cols = :parameters, rows = [:group2, :group], summary = [mean], sort = false)
             reftest(t, "references/summarytable/sort_false")
+
+            t = summarytable(df_missing_groups, :value, rows = :A, cols = :B, summary = [sum])
+            reftest(t, "references/summarytable/missing_groups")
         end
 
         @testset "annotations" begin
