@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+\multicolumn{2}{c}{\begin{tabular}{@{}c@{}}A \\ B\end{tabular}} \\
+\multicolumn{2}{c}{\textsuperscript{Sup}} \\
+\multicolumn{2}{c}{\textsubscript{Sub}} \\
+\multicolumn{2}{c}{AB} \\
+\multicolumn{2}{c}{Label\tnote{1}} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft,para]
+\footnotesize
+\item[1]Annotation
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

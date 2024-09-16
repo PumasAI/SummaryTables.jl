@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [2.0.2] - 2024-09-16
+
+- Fixed issue where cells would not merge if they stored a `Multiline` value [#29](https://github.com/PumasAI/SummaryTables.jl/pull/29).
+
 ## [2.0.1] - 2024-09-16
 
 - Fixed incorrect order of column group keys in `summarytable` and `listingtable` when some row/col group combinations were missing [#25](https://github.com/PumasAI/SummaryTables.jl/pull/25).
