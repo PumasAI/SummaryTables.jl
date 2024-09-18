@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{8}{lccccccc}}
+\toprule
+ &  & \multicolumn{6}{c}{\textbf{group1}} \\
+\cmidrule{3-8}
+ &  & \multicolumn{3}{c}{a} & \multicolumn{3}{c}{b} \\
+ &  & \multicolumn{2}{c}{\textbf{group2}} &  & \multicolumn{2}{c}{\textbf{group2}} &  \\
+\cmidrule{3-4}\cmidrule{6-7}
+ & \textbf{Overall} & e & f & Overall & e & f & Overall \\
+\midrule
+\textbf{value1} &  &  &  &  &  &  &  \\
+\hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2 (1.41) & 3 (1.41) & 2.5 (1.29) & 6 (1.41) & 7 (1.41) & 6.5 (1.29) \\
+\hspace{12.0pt}Median [Min, Max] & 4.5 [1, 8] & 2 [1, 3] & 3 [2, 4] & 2.5 [1, 4] & 6 [5, 7] & 7 [6, 8] & 6.5 [5, 8] \\
+\textbf{value2} &  &  &  &  &  &  &  \\
+\hspace{12.0pt}a & 3 (37.5\%) & 1 (50\%) & 1 (50\%) & 2 (50\%) & 1 (50\%) & 0 (0\%) & 1 (25\%) \\
+\hspace{12.0pt}b & 3 (37.5\%) & 0 (0\%) & 1 (50\%) & 1 (25\%) & 1 (50\%) & 1 (50\%) & 2 (50\%) \\
+\hspace{12.0pt}c & 2 (25\%) & 1 (50\%) & 0 (0\%) & 1 (25\%) & 0 (0\%) & 1 (50\%) & 1 (25\%) \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
