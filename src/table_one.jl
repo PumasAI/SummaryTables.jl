@@ -280,6 +280,9 @@ function table_one(
 
     groupsymbols = [g.symbol for g in groups]
 
+    _group_overalls(a::AbstractVector{Symbol}) = collect(a)
+    _group_overalls(s::Symbol) = [s]
+    group_overalls = _group_overalls(group_overalls) 
     if !isempty(groupsymbols) && first(groupsymbols) in group_overalls
         throw(ArgumentError("Cannot show overall values for topmost group $(repr(first(groupsymbols))) as it would be equivalent to the `show_overall` option. Grouping is $groupsymbols"))
     end
