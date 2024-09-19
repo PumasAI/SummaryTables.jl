@@ -414,46 +414,44 @@ function table_one(
             end
             push!(columns, data_col)
 
-            if ikey > 1
-                # go from smallest to largest group if there are multiple at this border
-                for ii in length(group_overall_indices):-1:1
-                    i_overall_group = group_overall_indices[ii]
-                    i_parent_group = i_overall_group - 1
-                    next_key = length(df_analyses) == ikey ? nothing : keys(df_analyses)[ikey+1]
-                    if next_key === nothing || key[i_parent_group] != next_key[i_parent_group] || ikey == length(df_analyses)
-                        group_overall_col = Cell[]
+            # go from smallest to largest group if there are multiple at this border
+            for ii in length(group_overall_indices):-1:1
+                i_overall_group = group_overall_indices[ii]
+                i_parent_group = i_overall_group - 1
+                next_key = length(df_analyses) == ikey ? nothing : keys(df_analyses)[ikey+1]
+                if next_key === nothing || key[i_parent_group] != next_key[i_parent_group] || ikey == length(df_analyses)
+                    group_overall_col = Cell[]
 
-                        for i in 1:i_parent_group
-                            # we assign merge groups according to the value in the parent group,
-                            # this way cells can never merge across their parent groups
-                            mergegroup = i == 1 ? 0 : mergegroups[i-1][key[i-1]]
-                            push!(group_overall_col, Cell(groups[i].name, tableone_column_header_spanned(); merge = true, mergegroup))
-                            push!(group_overall_col, Cell(group_key_title(i), tableone_column_header_key(); merge = true, mergegroup))
-                        end
-
-                        for _ in 1:(2 * (n_groups-i_parent_group))-1
-                            push!(group_overall_col, Cell(nothing))
-                        end
-
-                        agg_key = Tuple(key)[1:i_overall_group-1]
-                        title = if show_n
-                            Multiline("Overall", "(n=$(nrow(dfs_group_overall[ii][agg_key])))")
-                        else
-                            "Overall"
-                        end
-                        push!(group_overall_col, Cell(title))
-
-                        gdf_group_overall = gdfs_group_overall[ii]
-                        _gdf = gdf_group_overall[agg_key]
-                        for icol in i_overall_group:ncol(_gdf)
-                            push!(group_overall_col, Cell(nothing))
-                            for result in _gdf[1, icol]
-                                push!(group_overall_col, Cell(result[1]))
-                            end
-                        end
-
-                        push!(columns, group_overall_col)
+                    for i in 1:i_overall_group
+                        # we assign merge groups according to the value in the parent group,
+                        # this way cells can never merge across their parent groups
+                        mergegroup = i == 1 ? 0 : mergegroups[i-1][key[i-1]]
+                        push!(group_overall_col, Cell(groups[i].name, tableone_column_header_spanned(); merge = true, mergegroup))
+                        i < i_overall_group && push!(group_overall_col, Cell(group_key_title(i), tableone_column_header_key(); merge = true, mergegroup))
                     end
+
+                    agg_key = Tuple(key)[1:i_overall_group-1]
+                    title = if show_n
+                        Multiline("Overall", "(n=$(nrow(dfs_group_overall[ii][agg_key])))")
+                    else
+                        "Overall"
+                    end
+                    push!(group_overall_col, Cell(title))
+
+                    for _ in 1:(2 * (n_groups-i_overall_group))
+                        push!(group_overall_col, Cell(nothing))
+                    end
+
+                    gdf_group_overall = gdfs_group_overall[ii]
+                    _gdf = gdf_group_overall[agg_key]
+                    for icol in i_overall_group:ncol(_gdf)
+                        push!(group_overall_col, Cell(nothing))
+                        for result in _gdf[1, icol]
+                            push!(group_overall_col, Cell(result[1]))
+                        end
+                    end
+
+                    push!(columns, group_overall_col)
                 end
             end
         end
