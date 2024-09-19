@@ -240,6 +240,7 @@ function table_one(
     analyses;
     groupby = [],
     show_overall = true,
+    group_overalls = Symbol[],
     show_pvalues = false,
     show_tests = true,
     show_confints = false,
@@ -275,9 +276,22 @@ function table_one(
         analysis.variable => type
     end)
 
-    cells = SpannedCell[]
+    columns = Vector{Cell}[]
 
     groupsymbols = [g.symbol for g in groups]
+
+    _group_overalls(a::AbstractVector{Symbol}) = collect(a)
+    _group_overalls(s::Symbol) = [s]
+    group_overalls = _group_overalls(group_overalls) 
+    if !isempty(groupsymbols) && first(groupsymbols) in group_overalls
+        throw(ArgumentError("Cannot show overall values for topmost group $(repr(first(groupsymbols))) as it would be equivalent to the `show_overall` option. Grouping is $groupsymbols"))
+    end
+
+    other_syms = setdiff(group_overalls, groupsymbols)
+    if !isempty(other_syms)
+        throw(ArgumentError("Invalid group symbols in `group_overalls`: $other_syms. Grouping is $groupsymbols"))
+    end
+    
     if sort && !isempty(groupsymbols)
         try
             Base.sort!(df, groupsymbols, lt = natural_lt)
@@ -292,13 +306,25 @@ function table_one(
         compare_groups = [make_testfunction(show_pvalues, show_tests, show_confints, typedict, merge(default_tests(), tests), combine); compare_groups]
     end
 
-    rows_per_group = [nrow(g) for g in gdf]
+    rows_per_groups = map(1:n_groups) do k
+        _gdf = DataFrames.groupby(df, groupsymbols[1:k], sort = false)
+        DataFrames.combine(_gdf, nrow, ungroup = false)
+    end
 
     funcvector = [a.variable => a.func for a in _analyses]
     df_analyses = DataFrames.combine(gdf, funcvector; ungroup = false)
     if show_overall
         df_overall = DataFrames.combine(df, funcvector)
-    end 
+    end
+    group_overall_indices = Base.sort(map(sym -> findfirst(==(sym), groupsymbols), group_overalls))
+
+    dfs_group_overall = map(group_overall_indices) do i
+        DataFrames.groupby(df, groupsymbols[1:i-1], sort = false)
+    end
+
+    gdfs_group_overall = map(dfs_group_overall) do _gdf
+        return DataFrames.combine(_gdf, funcvector, ungroup = false)
+    end
 
     analysis_labels = map(n_groups+1:n_groups+length(_analyses)) do i_col
         col = df_analyses[1][!, i_col]
@@ -311,83 +337,126 @@ function table_one(
     end
 
     n_values_per_analysis = map(length, analysis_labels)
-    analysis_offsets = [0; cumsum(1 .+ n_values_per_analysis)[1:end-1]]
 
     header_offset = n_groups == 0 ? 2 : n_groups * 2 + 1
 
-    values_spans = nested_run_length_encodings(keys(gdf))
-    all_spanranges = [spanranges(spans) for (values, spans) in values_spans]
-
-    n_groupcols = n_groups == 0 ? 0 : maximum(x -> x.stop, all_spanranges[1])
+    ana_title_col = Cell[]
+    for _ in 1:max(1, 2 * n_groups)
+        push!(ana_title_col, Cell(nothing))
+    end
+    for (analysis, labels) in zip(_analyses, analysis_labels)
+        push!(ana_title_col, Cell(analysis.name, tableone_variable_header()))
+        for label in labels
+            push!(ana_title_col, Cell(label, tableone_analysis_name()))
+        end
+    end
+    push!(columns, ana_title_col)
 
     if show_overall
-        coloffset = 1
+        overall_col = Cell[]
+        for _ in 1:max(0, 2 * n_groups - 1)
+            push!(overall_col, Cell(nothing))
+        end
         title = if show_n
             Multiline("Overall", "(n=$(nrow(df)))")
         else
             "Overall"
         end
-        cell = SpannedCell(n_groups == 0 ? 1 : 2 * n_groups, 2, title, tableone_column_header())
-        push!(cells, cell)
-    else
-        coloffset = 0
+        push!(overall_col, Cell(title, tableone_column_header()))
+
+        for col in eachcol(df_overall)
+            push!(overall_col, Cell(nothing))
+            for result in only(col)
+                push!(overall_col, Cell(result[1]))
+            end
+        end
+
+        push!(columns, overall_col)
     end
 
-    # add column headers for groups
-    for i_groupkey in 1:n_groups
-        headerspanranges = i_groupkey == 1 ? [1:length(keys(gdf))] : all_spanranges[i_groupkey-1]
-        for headerspanrange in headerspanranges
-            header_offset_range = headerspanrange .+ 1 .+ coloffset
-            
-            cell = SpannedCell(i_groupkey * 2 - 1, header_offset_range, groups[i_groupkey].name, tableone_column_header_spanned())
-            push!(cells, cell)
-        end
-        values, _ = values_spans[i_groupkey]
-        ranges = all_spanranges[i_groupkey]
-        for (value, range) in zip(values, ranges)
-            label_offset_range = range .+ 1 .+ coloffset
-            n_entries = sum(rows_per_group[range])
-            label = if show_n
-                Multiline(format_value(value), "(n=$n_entries)")
-            else
-                format_value(value)
-            end
-            cell = SpannedCell(i_groupkey * 2, label_offset_range, label, tableone_column_header_key())
-            push!(cells, cell)
-        end
+    # value => index dictionaries for each grouping level
+    mergegroups = map(1:n_groups) do i
+        Dict(reverse(t) for t in enumerate(unique(key[i] for key in keys(gdf))))
     end
 
-    for (i_ana, analysis) in enumerate(_analyses)
+    if n_groups > 0
+        for (ikey, (key, ggdf)) in enumerate(pairs(df_analyses))
 
-        offset = header_offset + analysis_offsets[i_ana]
-        cell = SpannedCell(offset, 1, analysis.name, tableone_variable_header())
-        push!(cells, cell)
-
-        for (i_func, funcname) in enumerate(analysis_labels[i_ana])
-            cell = SpannedCell(offset + i_func, 1, funcname, tableone_analysis_name())
-            push!(cells, cell)
-        end
-
-        if show_overall
-            val = only(df_overall[!, i_ana])
-            for i_func in 1:n_values_per_analysis[i_ana]
-                cell = SpannedCell(offset + i_func, 2, val[i_func][1], tableone_body())
-                push!(cells, cell)
+            function group_key_title(igroup)
+                groupkey = ggdf[1, igroup]
+                title = if show_n
+                    nrows_gdf = rows_per_groups[igroup]
+                    reduced_key = Tuple(key)[1:igroup]
+                    nrows = only(nrows_gdf[reduced_key].nrow)
+                    Multiline(groupkey, "(n=$nrows)")
+                else
+                    groupkey
+                end
             end
-        end 
-        
-        if n_groups > 0          
-            for (i_group, ggdf) in enumerate(df_analyses)
-                val = only(ggdf[!, n_groups + i_ana])
-                for i_func in 1:n_values_per_analysis[i_ana]
-                    cell = SpannedCell(offset + i_func, coloffset + 1 + i_group, val[i_func][1], tableone_body())
-                    push!(cells, cell)
+
+            data_col = Cell[]
+            if n_groups == 0
+                push!(data_col, Cell(nothing))
+            end
+            for i in 1:n_groups
+                # we assign merge groups according to the value in the parent group,
+                # this way cells can never merge across their parent groups
+                mergegroup = i == 1 ? 0 : mergegroups[i-1][key[i-1]]
+                
+                push!(data_col, Cell(groups[i].name, tableone_column_header_spanned(); merge = true, mergegroup))
+                push!(data_col, Cell(group_key_title(i), tableone_column_header_key(); merge = true, mergegroup))
+            end
+            for icol in (n_groups+1):ncol(ggdf)
+                push!(data_col, Cell(nothing))
+                for result in ggdf[1, icol]
+                    push!(data_col, Cell(result[1]))
+                end
+            end
+            push!(columns, data_col)
+
+            # go from smallest to largest group if there are multiple at this border
+            for ii in length(group_overall_indices):-1:1
+                i_overall_group = group_overall_indices[ii]
+                i_parent_group = i_overall_group - 1
+                next_key = length(df_analyses) == ikey ? nothing : keys(df_analyses)[ikey+1]
+                if next_key === nothing || key[i_parent_group] != next_key[i_parent_group] || ikey == length(df_analyses)
+                    group_overall_col = Cell[]
+
+                    for i in 1:i_overall_group
+                        # we assign merge groups according to the value in the parent group,
+                        # this way cells can never merge across their parent groups
+                        mergegroup = i == 1 ? 0 : mergegroups[i-1][key[i-1]]
+                        push!(group_overall_col, Cell(groups[i].name, tableone_column_header_spanned(); merge = true, mergegroup))
+                        i < i_overall_group && push!(group_overall_col, Cell(group_key_title(i), tableone_column_header_key(); merge = true, mergegroup))
+                    end
+
+                    agg_key = Tuple(key)[1:i_overall_group-1]
+                    title = if show_n
+                        Multiline("Overall", "(n=$(nrow(dfs_group_overall[ii][agg_key])))")
+                    else
+                        "Overall"
+                    end
+                    push!(group_overall_col, Cell(title))
+
+                    for _ in 1:(2 * (n_groups-i_overall_group))
+                        push!(group_overall_col, Cell(nothing))
+                    end
+
+                    gdf_group_overall = gdfs_group_overall[ii]
+                    _gdf = gdf_group_overall[agg_key]
+                    for icol in i_overall_group:ncol(_gdf)
+                        push!(group_overall_col, Cell(nothing))
+                        for result in _gdf[1, icol]
+                            push!(group_overall_col, Cell(result[1]))
+                        end
+                    end
+
+                    push!(columns, group_overall_col)
                 end
             end
         end
     end
 
-    compcolumn_offset = n_groupcols + (show_overall ? 1 : 0) + 1
     for comp in compare_groups
         # the logic here is much less clean than it could be because of the way
         # column names have to be passed via pairs, and it cannot be guaranteed from typing
@@ -403,29 +472,36 @@ function table_one(
         colnames = [map(last, v) for v in values]
         unique_colnames = unique(colnames)
         @assert length(unique_colnames) == 1 "All column names must be the same, found $colnames" 
+        unique_colnames = only(unique_colnames)
 
-        # set column headers
-        for (ival, name) in enumerate(only(unique_colnames))
-            cell = SpannedCell(header_offset-1, compcolumn_offset+ival, name, tableone_column_header())
-            push!(cells, cell)
-        end
+        for i_comp in 1:length(unique_colnames)
+            comp_col = Cell[]
 
-        for (j, val) in enumerate(values)
-            # set column values
-            for (ival, (value, _)) in enumerate(val)
-                cell = SpannedCell(analysis_offsets[j] + header_offset, compcolumn_offset+ival, value, tableone_body())
-                push!(cells, cell)
+            for _ in 1:(2 * n_groups - 1)
+                push!(comp_col, Cell(nothing))
             end
+
+            name = unique_colnames[i_comp]
+            push!(comp_col, Cell(name, tableone_column_header()))
+
+            for (j, val) in enumerate(values)
+                value, _ = val[i_comp]
+                push!(comp_col, Cell(value, tableone_body()))
+                for _ in 1:n_values_per_analysis[j]
+                    push!(comp_col, Cell(nothing))
+                end
+            end
+            push!(columns, comp_col)
         end
-        compcolumn_offset += nvalues
     end
 
+    cells = reduce(hcat, columns)
     Table(cells, header_offset-1, nothing; celltable_kws...)
 end
 
 tableone_column_header() = CellStyle(halign = :center, bold = true)
 tableone_column_header_spanned() = CellStyle(halign = :center, bold = true, border_bottom = true)
-tableone_column_header_key() = CellStyle(halign = :center)
+tableone_column_header_key() = CellStyle(; halign = :center)
 tableone_variable_header() = CellStyle(bold = true, halign = :left)
 tableone_body() = CellStyle()
 tableone_analysis_name() = CellStyle(indent_pt = 12, halign = :left)

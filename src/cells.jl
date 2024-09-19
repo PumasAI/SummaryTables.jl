@@ -87,6 +87,7 @@ Some types with special behavior are:
 struct Cell
     value
     style::CellStyle
+    Cell(value, style::CellStyle; kwargs...) = new(value, CellStyle(style; kwargs...))
 end
 
 Base.adjoint(c::Cell) = c # simplifies making row vectors out of column vectors of Cells with '

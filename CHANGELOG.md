@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Added ability to show "Overall" statistics for subgroups in `table_one` [#30](https://github.com/PumasAI/SummaryTables.jl/pull/30).
+
 ## [2.0.2] - 2024-09-16
 
 - Fixed issue where cells would not merge if they stored a `Multiline` value [#29](https://github.com/PumasAI/SummaryTables.jl/pull/29).
