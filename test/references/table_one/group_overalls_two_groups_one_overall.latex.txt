@@ -12,8 +12,8 @@
  &  & \multicolumn{6}{c}{\textbf{group1}} \\
 \cmidrule{3-8}
  &  & \multicolumn{3}{c}{a} & \multicolumn{3}{c}{b} \\
- &  & \multicolumn{2}{c}{\textbf{group2}} &  & \multicolumn{2}{c}{\textbf{group2}} &  \\
-\cmidrule{3-4}\cmidrule{6-7}
+ &  & \multicolumn{3}{c}{\textbf{group2}} & \multicolumn{3}{c}{\textbf{group2}} \\
+\cmidrule{3-5}\cmidrule{6-8}
  & \textbf{Overall} & e & f & Overall & e & f & Overall \\
 \midrule
 \textbf{value1} &  &  &  &  &  &  &  \\

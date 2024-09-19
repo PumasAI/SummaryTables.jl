@@ -1,6 +1,6 @@
-<table class="st-9d269722">
+<table class="st-c417a6c8">
     <style>
-        .st-9d269722 {
+        .st-c417a6c8 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,22 +9,22 @@
             line-height: 1.2em;
         }
 
-        .st-9d269722 tr td {
+        .st-c417a6c8 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-9d269722 br {
+        .st-c417a6c8 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-9d269722 sub {
+        .st-c417a6c8 sub {
             line-height: 0;
         }
 
-        .st-9d269722 sup {
+        .st-c417a6c8 sup {
             line-height: 0;
         }
     </style>
@@ -57,14 +57,10 @@
     <tr>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
-        <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
-        <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
-        <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
-        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>

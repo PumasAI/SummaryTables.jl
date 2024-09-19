@@ -12,12 +12,12 @@
  &  & \multicolumn{10}{c}{\textbf{group1}} \\
 \cmidrule{3-12}
  &  & \multicolumn{5}{c}{\begin{tabular}{@{}c@{}}a \\ (n=4)\end{tabular}} & \multicolumn{5}{c}{\begin{tabular}{@{}c@{}}b \\ (n=4)\end{tabular}} \\
- &  & \multicolumn{4}{c}{\textbf{group2}} &  & \multicolumn{4}{c}{\textbf{group2}} &  \\
-\cmidrule{3-6}\cmidrule{8-11}
- &  & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} &  & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} &  \\
+ &  & \multicolumn{5}{c}{\textbf{group2}} & \multicolumn{5}{c}{\textbf{group2}} \\
+\cmidrule{3-7}\cmidrule{8-12}
+ &  & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} & \begin{tabular}{@{}c@{}}Overall \\ (n=4)\end{tabular} & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} & \begin{tabular}{@{}c@{}}Overall \\ (n=4)\end{tabular} \\
  &  & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} &  & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} &  \\
 \cmidrule{3-4}\cmidrule{5-6}\cmidrule{8-9}\cmidrule{10-11}
- & \textbf{\begin{tabular}{@{}c@{}}Overall \\ (n=8)\end{tabular}} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Overall \\ (n=4)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Overall \\ (n=4)\end{tabular} \\
+ & \textbf{\begin{tabular}{@{}c@{}}Overall \\ (n=8)\end{tabular}} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} &  & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} &  \\
 \midrule
 \textbf{value1} &  &  &  &  &  &  &  &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 1 (NaN) & 3 (NaN) & 2 (NaN) & 4 (NaN) & 2.5 (1.29) & 5 (NaN) & 7 (NaN) & 6 (NaN) & 8 (NaN) & 6.5 (1.29) \\

@@ -15,8 +15,8 @@
  &  & \multicolumn{6}{c}{\textbf{group2}} & \multicolumn{6}{c}{\textbf{group2}} \\
 \cmidrule{3-8}\cmidrule{9-14}
  &  & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} \\
- &  & \multicolumn{2}{c}{\textbf{group3}} &  & \multicolumn{2}{c}{\textbf{group3}} &  & \multicolumn{2}{c}{\textbf{group3}} &  & \multicolumn{2}{c}{\textbf{group3}} &  \\
-\cmidrule{3-4}\cmidrule{6-7}\cmidrule{9-10}\cmidrule{12-13}
+ &  & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} \\
+\cmidrule{3-5}\cmidrule{6-8}\cmidrule{9-11}\cmidrule{12-14}
  & \textbf{\begin{tabular}{@{}c@{}}Overall \\ (n=8)\end{tabular}} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Overall \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Overall \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Overall \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Overall \\ (n=2)\end{tabular} \\
 \midrule
 \textbf{value1} &  &  &  &  &  &  &  &  &  &  &  &  &  \\
