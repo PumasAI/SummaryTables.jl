@@ -227,7 +227,7 @@ can be stratified by one, or more, variables using the `groupby` keyword.
   - `combine`: An object from `MultipleTesting` to use when combining p-values.
   - `show_total`: Display the total column summary. Default is `true`.
   - `group_totals`: A group `Symbol` or vector of symbols specifying for which group levels totals should be added. Any group levels but the topmost can be chosen (the topmost being already handled by the `show_total` option). Default is `Symbol[]`.
-  - `total_identifier`: The identifier for all total columns. Default is `"Total"`.
+  - `total_name`: The name for all total columns. Default is `"Total"`.
   - `show_n`: Display the number of rows for each group key next to its label.
   - `show_pvalues`: Display the `P-Value` column. Default is `false`.
   - `show_testnames`: Display the `Test` column. Default is `false`.
@@ -248,7 +248,7 @@ function table_one(
     show_total = true,
     show_overall = nothing, # deprecated in version 3
     group_totals = Symbol[],
-    total_identifier = "Total",
+    total_name = "Total",
     show_pvalues = false,
     show_tests = true,
     show_confints = false,
@@ -268,7 +268,7 @@ function table_one(
     n_groups = length(groups)
 
     if show_overall !== nothing
-        @warn """`show_overall` has been deprecated, use `show_total` instead. You can change the identifier back from "Total" to "Overall" using the `total_identifier` keyword argument"""
+        @warn """`show_overall` has been deprecated, use `show_total` instead. You can change the identifier back from "Total" to "Overall" using the `total_name` keyword argument"""
         show_total = show_overall
     end
     show_total || n_groups > 0 || error("`show_total` can't be false if there are no groups.")
@@ -370,9 +370,9 @@ function table_one(
             push!(total_col, Cell(nothing))
         end
         title = if show_n
-            Multiline(total_identifier, "(n=$(nrow(df)))")
+            Multiline(total_name, "(n=$(nrow(df)))")
         else
-            total_identifier
+            total_name
         end
         push!(total_col, Cell(title, tableone_column_header()))
 
@@ -444,9 +444,9 @@ function table_one(
 
                     agg_key = Tuple(key)[1:i_total_group-1]
                     title = if show_n
-                        Multiline(total_identifier, "(n=$(nrow(dfs_group_total[ii][agg_key])))")
+                        Multiline(total_name, "(n=$(nrow(dfs_group_total[ii][agg_key])))")
                     else
-                        total_identifier
+                        total_name
                     end
                     push!(group_total_col, Cell(title))
 
