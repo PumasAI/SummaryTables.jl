@@ -212,6 +212,18 @@ data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
 table_one(data, :x, groupby = :y, show_total = false)
 ```
 
+## Keyword: `total_identifier`
+
+The object that will be used to identify total columns. Can be of any value that SummaryTables knows how to display.
+
+```@example
+using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
+
+table_one(data, :x, groupby = :y, total_identifier = "Overall")
+```
+
 ## Keyword: `sort`
 
 By default, group entries are sorted.
