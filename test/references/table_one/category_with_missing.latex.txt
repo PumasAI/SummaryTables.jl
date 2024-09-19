@@ -11,7 +11,7 @@
 \toprule
  &  & \multicolumn{2}{c}{\textbf{group}} \\
 \cmidrule{3-4}
- & \textbf{Overall} & 1 & 2 \\
+ & \textbf{Total} & 1 & 2 \\
 \midrule
 \textbf{category} &  &  &  \\
 \hspace{12.0pt}a & 1 (12.5\%) & 1 (25\%) & 0 (0\%) \\

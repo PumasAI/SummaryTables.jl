@@ -14,7 +14,7 @@
  &  & \multicolumn{2}{c}{a} & \multicolumn{2}{c}{b} &  &  \\
  &  & \multicolumn{2}{c}{\textbf{group2}} & \multicolumn{2}{c}{\textbf{group2}} &  &  \\
 \cmidrule{3-4}\cmidrule{5-6}
- & \textbf{Overall} & e & f & e & f & \textbf{P-Value} & \textbf{Test} \\
+ & \textbf{Total} & e & f & e & f & \textbf{P-Value} & \textbf{Test} \\
 \midrule
 \textbf{value1} &  &  &  &  &  & 0.063 & UnequalVarianceTTest \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2 (1.41) & 3 (1.41) & 6 (1.41) & 7 (1.41) &  &  \\

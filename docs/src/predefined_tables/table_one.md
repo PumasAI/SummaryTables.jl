@@ -199,9 +199,9 @@ data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
 table_one(data, :x, groupby = :y, show_n = true)
 ```
 
-## Keyword: `show_overall`
+## Keyword: `show_total`
 
-When `show_overall` is set to `false`, the column summarizing all groups together is hidden.
+When `show_total` is set to `false`, the column summarizing all groups together is hidden.
 Use this only when `groupby` is set, otherwise the resulting table will be empty.
 
 ```@example
@@ -209,7 +209,7 @@ using SummaryTables
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
 
-table_one(data, :x, groupby = :y, show_overall = false)
+table_one(data, :x, groupby = :y, show_total = false)
 ```
 
 ## Keyword: `sort`

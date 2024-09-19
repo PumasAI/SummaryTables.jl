@@ -11,7 +11,7 @@
 \toprule
  &  & \multicolumn{2}{c}{\textbf{group1}} &  &  &  \\
 \cmidrule{3-4}
- & \textbf{Overall} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\
+ & \textbf{Total} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\
 \midrule
 \textbf{value1} &  &  &  & 0.005 & UnequalVarianceTTest & (-6.234, -1.766) \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\

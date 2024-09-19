@@ -11,7 +11,7 @@
 \toprule
  &  & \multicolumn{2}{c}{\textbf{group}} \\
 \cmidrule{3-4}
- & \textbf{Overall} & 1 & 2 \\
+ & \textbf{Total} & 1 & 2 \\
 \midrule
 \textbf{empty} &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 2 (1) & NC & 2 (1) \\

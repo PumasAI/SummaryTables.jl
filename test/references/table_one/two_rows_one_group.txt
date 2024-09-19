@@ -1,6 +1,6 @@
-<table class="st-8f5845a4">
+<table class="st-73643fbf">
     <style>
-        .st-8f5845a4 {
+        .st-73643fbf {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,22 +9,22 @@
             line-height: 1.2em;
         }
 
-        .st-8f5845a4 tr td {
+        .st-73643fbf tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-8f5845a4 br {
+        .st-73643fbf br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-8f5845a4 sub {
+        .st-73643fbf sub {
             line-height: 0;
         }
 
-        .st-8f5845a4 sup {
+        .st-73643fbf sup {
             line-height: 0;
         }
     </style>
@@ -36,7 +36,7 @@
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">a</td>
         <td style="text-align:center;">b</td>
     </tr>
