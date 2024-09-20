@@ -188,7 +188,7 @@
               <w:end w:val="none" w:color="auto" w:sz="8"/>
               <w:start w:val="none" w:color="auto" w:sz="8"/>
             </w:tcBorders>
-            <w:gridSpan w:val="6"/>
+            <w:gridSpan w:val="8"/>
             <w:hideMark/>
           </w:tcPr>
           <w:p>
@@ -229,7 +229,7 @@
               <w:end w:val="none" w:color="auto" w:sz="4"/>
               <w:start w:val="none" w:color="auto" w:sz="4"/>
             </w:tcBorders>
-            <w:gridSpan w:val="4"/>
+            <w:gridSpan w:val="6"/>
             <w:tcMar>
               <w:bottom w:w="40"/>
             </w:tcMar>
@@ -243,7 +243,7 @@
               <w:rPr>
                 <w:b/>
               </w:rPr>
-              <w:t>y</w:t>
+              <w:t>group1</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -276,6 +276,7 @@
         </w:tc>
         <w:tc>
           <w:tcPr>
+            <w:gridSpan w:val="3"/>
             <w:tcMar/>
             <w:vAlign w:val="top"/>
           </w:tcPr>
@@ -285,13 +286,13 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>A</w:t>
+              <w:t>a</w:t>
             </w:r>
           </w:p>
         </w:tc>
         <w:tc>
           <w:tcPr>
-            <w:gridSpan w:val="2"/>
+            <w:gridSpan w:val="3"/>
             <w:tcMar/>
             <w:vAlign w:val="top"/>
           </w:tcPr>
@@ -301,22 +302,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>B</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-        <w:tc>
-          <w:tcPr>
-            <w:tcMar/>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr/>
-              <w:t>A</w:t>
+              <w:t>b</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -354,6 +340,7 @@
               <w:end w:val="none" w:color="auto" w:sz="4"/>
               <w:start w:val="none" w:color="auto" w:sz="4"/>
             </w:tcBorders>
+            <w:gridSpan w:val="3"/>
             <w:tcMar>
               <w:bottom w:w="40"/>
             </w:tcMar>
@@ -367,7 +354,7 @@
               <w:rPr>
                 <w:b/>
               </w:rPr>
-              <w:t>z</w:t>
+              <w:t>group2</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -378,7 +365,7 @@
               <w:end w:val="none" w:color="auto" w:sz="4"/>
               <w:start w:val="none" w:color="auto" w:sz="4"/>
             </w:tcBorders>
-            <w:gridSpan w:val="2"/>
+            <w:gridSpan w:val="3"/>
             <w:tcMar>
               <w:bottom w:w="40"/>
             </w:tcMar>
@@ -392,31 +379,7 @@
               <w:rPr>
                 <w:b/>
               </w:rPr>
-              <w:t>z</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-        <w:tc>
-          <w:tcPr>
-            <w:tcBorders>
-              <w:bottom w:val="single" w:color="auto" w:sz="4"/>
-              <w:end w:val="none" w:color="auto" w:sz="4"/>
-              <w:start w:val="none" w:color="auto" w:sz="4"/>
-            </w:tcBorders>
-            <w:tcMar>
-              <w:bottom w:w="40"/>
-            </w:tcMar>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:b/>
-              </w:rPr>
-              <w:t>z</w:t>
+              <w:t>group2</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -464,7 +427,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>C</w:t>
+              <w:t>e</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -479,7 +442,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>C</w:t>
+              <w:t>f</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -494,7 +457,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>D</w:t>
+              <w:t>Total</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -509,7 +472,37 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>D</w:t>
+              <w:t>e</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>f</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>Total</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -525,7 +518,7 @@
               <w:end w:val="none" w:color="auto" w:sz="4"/>
               <w:start w:val="none" w:color="auto" w:sz="4"/>
             </w:tcBorders>
-            <w:gridSpan w:val="6"/>
+            <w:gridSpan w:val="8"/>
             <w:hideMark/>
           </w:tcPr>
           <w:p>
@@ -548,8 +541,30 @@
               <w:rPr>
                 <w:b/>
               </w:rPr>
-              <w:t>x</w:t>
+              <w:t>value1</w:t>
             </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
           </w:p>
         </w:tc>
         <w:tc>
@@ -638,7 +653,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>3.5</w:t>
+              <w:t>4.5</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -646,7 +661,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>1.87</w:t>
+              <w:t>2.45</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -665,7 +680,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>1.5</w:t>
+              <w:t>2</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -673,7 +688,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.707</w:t>
+              <w:t>1.41</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -700,7 +715,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>NaN</w:t>
+              <w:t>1.41</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -719,7 +734,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>4.5</w:t>
+              <w:t>2.5</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -727,7 +742,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.707</w:t>
+              <w:t>1.29</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -754,7 +769,61 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>NaN</w:t>
+              <w:t>1.41</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>7</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>1.41</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>6.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>1.29</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -793,111 +862,6 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>3.5</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve"> [</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>1</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">, </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>6</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>]</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-        <w:tc>
-          <w:tcPr>
-            <w:tcMar/>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr/>
-              <w:t>1.5</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve"> [</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>1</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">, </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>2</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>]</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-        <w:tc>
-          <w:tcPr>
-            <w:tcMar/>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr/>
-              <w:t>3</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve"> [</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>3</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">, </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>3</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>]</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-        <w:tc>
-          <w:tcPr>
-            <w:tcMar/>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr/>
               <w:t>4.5</w:t>
             </w:r>
             <w:r>
@@ -906,7 +870,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>4</w:t>
+              <w:t>1</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -914,7 +878,112 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>5</w:t>
+              <w:t>8</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> [</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">, </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> [</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">, </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>4</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> [</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">, </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>4</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -941,6 +1010,41 @@
             </w:r>
             <w:r>
               <w:rPr/>
+              <w:t>5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">, </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>7</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>7</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> [</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
               <w:t>6</w:t>
             </w:r>
             <w:r>
@@ -949,11 +1053,770 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>6</w:t>
+              <w:t>8</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
               <w:t>]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>6.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> [</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">, </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>8</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>value2</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:start w:w="240"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>a</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>37.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>25</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:start w:w="240"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>b</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>37.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>25</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:start w:w="240"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>c</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>25</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>25</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>25</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -967,7 +1830,7 @@
               <w:end w:val="none" w:color="auto" w:sz="8"/>
               <w:start w:val="none" w:color="auto" w:sz="8"/>
             </w:tcBorders>
-            <w:gridSpan w:val="6"/>
+            <w:gridSpan w:val="8"/>
             <w:hideMark/>
           </w:tcPr>
           <w:p>
