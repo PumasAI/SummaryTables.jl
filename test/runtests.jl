@@ -167,6 +167,12 @@ end
             t = table_one(df, [:value1, :value2], groupby = [:group1])
             reftest(t, "references/table_one/two_rows_one_group")
 
+            t = table_one(df, [:value1, :value2], groupby = [:group1], show_overall = false) # deprecated
+            reftest(t, "references/table_one/two_rows_one_group_show_overall_false")
+
+            t = table_one(df, [:value1, :value2], groupby = [:group1], show_total = false)
+            reftest(t, "references/table_one/two_rows_one_group_show_total_false")
+
             t = table_one(df, [:value1, :value2], groupby = [:group1, :group2])
             reftest(t, "references/table_one/two_rows_two_groups")
 
