@@ -14,7 +14,7 @@
  &  & \multicolumn{3}{c}{a} & \multicolumn{3}{c}{b} \\
  &  & \multicolumn{3}{c}{\textbf{group2}} & \multicolumn{3}{c}{\textbf{group2}} \\
 \cmidrule{3-5}\cmidrule{6-8}
- & \textbf{Overall} & e & f & Overall & e & f & Overall \\
+ & \textbf{Total} & e & f & Total & e & f & Total \\
 \midrule
 \textbf{value1} &  &  &  &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2 (1.41) & 3 (1.41) & 2.5 (1.29) & 6 (1.41) & 7 (1.41) & 6.5 (1.29) \\

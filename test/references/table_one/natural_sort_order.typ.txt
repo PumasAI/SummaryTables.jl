@@ -11,7 +11,7 @@
     table.cell(colspan: 4)[*dose*],
     table.hline(y: 1, start: 2, end: 6, stroke: 0.75pt),
     [],
-    [*Overall*],
+    [*Total*],
     [1 mg],
     [5 mg],
     [10 mg],

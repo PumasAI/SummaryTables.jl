@@ -24,7 +24,7 @@
     [*z*],
     table.hline(y: 3, start: 5, end: 6, stroke: 0.75pt),
     [],
-    [*Overall*],
+    [*Total*],
     [C],
     [C],
     [D],

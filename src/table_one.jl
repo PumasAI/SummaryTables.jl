@@ -223,14 +223,20 @@ can be stratified by one, or more, variables using the `groupby` keyword.
   - `groupby`: Which columns to stratify the dataset with, as a `Vector{Symbol}`.
   - `nonnormal`: A vector of column names where hypothesis tests for the `:nonnormal` type are chosen.
   - `minmax`: A vector of column names where hypothesis tests for the `:minmax` type are chosen.
-  - `tests`: a `NamedTuple` of hypothesis test types to use for `categorical`, `nonnormal`, `minmax`, and `normal` variables.
-  - `combine`: an object from `MultipleTesting` to use when combining p-values.
-  - `show_overall`: display the "Overall" column summary. Default is `true`.
+  - `tests`: A `NamedTuple` of hypothesis test types to use for `categorical`, `nonnormal`, `minmax`, and `normal` variables.
+  - `combine`: An object from `MultipleTesting` to use when combining p-values.
+  - `show_total`: Display the total column summary. Default is `true`.
+  - `group_totals`: A group `Symbol` or vector of symbols specifying for which group levels totals should be added. Any group levels but the topmost can be chosen (the topmost being already handled by the `show_total` option). Default is `Symbol[]`.
+  - `total_name`: The name for all total columns. Default is `"Total"`.
   - `show_n`: Display the number of rows for each group key next to its label.
-  - `show_pvalues`: display the `P-Value` column. Default is `false`.
-  - `show_testnames`: display the `Test` column. Default is `false`.
-  - `show_confints`: display the `CI` column. Default is `false`.
+  - `show_pvalues`: Display the `P-Value` column. Default is `false`.
+  - `show_testnames`: Display the `Test` column. Default is `false`.
+  - `show_confints`: Display the `CI` column. Default is `false`.
   - `sort`: Sort the input table before grouping. Default is `true`. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
+
+## Deprecated keywords
+
+  - `show_overall`: Use `show_total` instead
 
 All other keywords are forwarded to the `Table` constructor, refer to its docstring for details.
 
@@ -239,8 +245,10 @@ function table_one(
     table,
     analyses;
     groupby = [],
-    show_overall = true,
-    group_overalls = Symbol[],
+    show_total = true,
+    show_overall = nothing, # deprecated in version 3
+    group_totals = Symbol[],
+    total_name = "Total",
     show_pvalues = false,
     show_tests = true,
     show_confints = false,
@@ -259,7 +267,11 @@ function table_one(
     groups = make_groups(groupby)
     n_groups = length(groups)
 
-    show_overall || n_groups > 0 || error("Overall can't be false if there are no groups.")
+    if show_overall !== nothing
+        @warn """`show_overall` has been deprecated, use `show_total` instead. You can change the identifier back from "Total" to "Overall" using the `total_name` keyword argument"""
+        show_total = show_overall
+    end
+    show_total || n_groups > 0 || error("`show_total` can't be false if there are no groups.")
 
     _analyses = make_analyses(analyses, df)
 
@@ -280,16 +292,16 @@ function table_one(
 
     groupsymbols = [g.symbol for g in groups]
 
-    _group_overalls(a::AbstractVector{Symbol}) = collect(a)
-    _group_overalls(s::Symbol) = [s]
-    group_overalls = _group_overalls(group_overalls) 
-    if !isempty(groupsymbols) && first(groupsymbols) in group_overalls
-        throw(ArgumentError("Cannot show overall values for topmost group $(repr(first(groupsymbols))) as it would be equivalent to the `show_overall` option. Grouping is $groupsymbols"))
+    _group_totals(a::AbstractVector{Symbol}) = collect(a)
+    _group_totals(s::Symbol) = [s]
+    group_totals = _group_totals(group_totals) 
+    if !isempty(groupsymbols) && first(groupsymbols) in group_totals
+        throw(ArgumentError("Cannot show totals for topmost group $(repr(first(groupsymbols))) as it would be equivalent to the `show_total` option. Grouping is $groupsymbols"))
     end
 
-    other_syms = setdiff(group_overalls, groupsymbols)
+    other_syms = setdiff(group_totals, groupsymbols)
     if !isempty(other_syms)
-        throw(ArgumentError("Invalid group symbols in `group_overalls`: $other_syms. Grouping is $groupsymbols"))
+        throw(ArgumentError("Invalid group symbols in `group_totals`: $other_syms. Grouping is $groupsymbols"))
     end
     
     if sort && !isempty(groupsymbols)
@@ -313,16 +325,16 @@ function table_one(
 
     funcvector = [a.variable => a.func for a in _analyses]
     df_analyses = DataFrames.combine(gdf, funcvector; ungroup = false)
-    if show_overall
-        df_overall = DataFrames.combine(df, funcvector)
+    if show_total
+        df_total = DataFrames.combine(df, funcvector)
     end
-    group_overall_indices = Base.sort(map(sym -> findfirst(==(sym), groupsymbols), group_overalls))
+    group_total_indices = Base.sort(map(sym -> findfirst(==(sym), groupsymbols), group_totals))
 
-    dfs_group_overall = map(group_overall_indices) do i
+    dfs_group_total = map(group_total_indices) do i
         DataFrames.groupby(df, groupsymbols[1:i-1], sort = false)
     end
 
-    gdfs_group_overall = map(dfs_group_overall) do _gdf
+    gdfs_group_total = map(dfs_group_total) do _gdf
         return DataFrames.combine(_gdf, funcvector, ungroup = false)
     end
 
@@ -352,26 +364,26 @@ function table_one(
     end
     push!(columns, ana_title_col)
 
-    if show_overall
-        overall_col = Cell[]
+    if show_total
+        total_col = Cell[]
         for _ in 1:max(0, 2 * n_groups - 1)
-            push!(overall_col, Cell(nothing))
+            push!(total_col, Cell(nothing))
         end
         title = if show_n
-            Multiline("Overall", "(n=$(nrow(df)))")
+            Multiline(total_name, "(n=$(nrow(df)))")
         else
-            "Overall"
+            total_name
         end
-        push!(overall_col, Cell(title, tableone_column_header()))
+        push!(total_col, Cell(title, tableone_column_header()))
 
-        for col in eachcol(df_overall)
-            push!(overall_col, Cell(nothing))
+        for col in eachcol(df_total)
+            push!(total_col, Cell(nothing))
             for result in only(col)
-                push!(overall_col, Cell(result[1]))
+                push!(total_col, Cell(result[1]))
             end
         end
 
-        push!(columns, overall_col)
+        push!(columns, total_col)
     end
 
     # value => index dictionaries for each grouping level
@@ -415,43 +427,43 @@ function table_one(
             push!(columns, data_col)
 
             # go from smallest to largest group if there are multiple at this border
-            for ii in length(group_overall_indices):-1:1
-                i_overall_group = group_overall_indices[ii]
-                i_parent_group = i_overall_group - 1
+            for ii in length(group_total_indices):-1:1
+                i_total_group = group_total_indices[ii]
+                i_parent_group = i_total_group - 1
                 next_key = length(df_analyses) == ikey ? nothing : keys(df_analyses)[ikey+1]
                 if next_key === nothing || key[i_parent_group] != next_key[i_parent_group] || ikey == length(df_analyses)
-                    group_overall_col = Cell[]
+                    group_total_col = Cell[]
 
-                    for i in 1:i_overall_group
+                    for i in 1:i_total_group
                         # we assign merge groups according to the value in the parent group,
                         # this way cells can never merge across their parent groups
                         mergegroup = i == 1 ? 0 : mergegroups[i-1][key[i-1]]
-                        push!(group_overall_col, Cell(groups[i].name, tableone_column_header_spanned(); merge = true, mergegroup))
-                        i < i_overall_group && push!(group_overall_col, Cell(group_key_title(i), tableone_column_header_key(); merge = true, mergegroup))
+                        push!(group_total_col, Cell(groups[i].name, tableone_column_header_spanned(); merge = true, mergegroup))
+                        i < i_total_group && push!(group_total_col, Cell(group_key_title(i), tableone_column_header_key(); merge = true, mergegroup))
                     end
 
-                    agg_key = Tuple(key)[1:i_overall_group-1]
+                    agg_key = Tuple(key)[1:i_total_group-1]
                     title = if show_n
-                        Multiline("Overall", "(n=$(nrow(dfs_group_overall[ii][agg_key])))")
+                        Multiline(total_name, "(n=$(nrow(dfs_group_total[ii][agg_key])))")
                     else
-                        "Overall"
+                        total_name
                     end
-                    push!(group_overall_col, Cell(title))
+                    push!(group_total_col, Cell(title))
 
-                    for _ in 1:(2 * (n_groups-i_overall_group))
-                        push!(group_overall_col, Cell(nothing))
+                    for _ in 1:(2 * (n_groups-i_total_group))
+                        push!(group_total_col, Cell(nothing))
                     end
 
-                    gdf_group_overall = gdfs_group_overall[ii]
-                    _gdf = gdf_group_overall[agg_key]
-                    for icol in i_overall_group:ncol(_gdf)
-                        push!(group_overall_col, Cell(nothing))
+                    gdf_group_total = gdfs_group_total[ii]
+                    _gdf = gdf_group_total[agg_key]
+                    for icol in i_total_group:ncol(_gdf)
+                        push!(group_total_col, Cell(nothing))
                         for result in _gdf[1, icol]
-                            push!(group_overall_col, Cell(result[1]))
+                            push!(group_total_col, Cell(result[1]))
                         end
                     end
 
-                    push!(columns, group_overall_col)
+                    push!(columns, group_total_col)
                 end
             end
         end

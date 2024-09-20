@@ -11,7 +11,7 @@
     table.cell(colspan: 3)[*parameters*],
     table.hline(y: 1, start: 2, end: 5, stroke: 0.75pt),
     [],
-    [*Overall*],
+    [*Total*],
     [T#sub[max]],
     [C#super[max]],
     [One Line #linebreak() Another Line],

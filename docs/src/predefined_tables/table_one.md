@@ -199,9 +199,9 @@ data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
 table_one(data, :x, groupby = :y, show_n = true)
 ```
 
-## Keyword: `show_overall`
+## Keyword: `show_total`
 
-When `show_overall` is set to `false`, the column summarizing all groups together is hidden.
+When `show_total` is set to `false`, the column summarizing all groups together is hidden.
 Use this only when `groupby` is set, otherwise the resulting table will be empty.
 
 ```@example
@@ -209,7 +209,41 @@ using SummaryTables
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
 
-table_one(data, :x, groupby = :y, show_overall = false)
+table_one(data, :x, groupby = :y, show_total = false)
+```
+
+## Keyword: `total_name`
+
+The object that will be used to identify total columns. Can be of any value that SummaryTables knows how to display.
+
+```@example
+using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = ["a", "a", "a", "a", "b", "b"])
+
+table_one(data, :x, groupby = :y, total_name = "Overall")
+```
+
+## Keyword: `group_totals`
+
+A `Symbol` or `Vector{Symbol}` specifying one or multiple groups for which to add subtotals. All but the topmost group can be chosen here as the topmost group is handled by `show_total` already.
+
+```@example
+using SummaryTables
+
+data = (; x = 1:12, y = repeat(["a", "b"], 6), z = repeat(["c", "d"], inner = 6))
+
+table_one(data, :x, groupby = [:y, :z], group_totals = :z)
+```
+
+This example shows multiple-level group totals. In order not to make the resulting table too wide, the topmost factor `q` just has one level which would otherwise be redundant.
+
+```@example
+using SummaryTables
+
+data = (; x = 1:12, y = repeat(["a", "b"], 6), z = repeat(["c", "d"], inner = 6), q = repeat(["e"], 12))
+
+table_one(data, :x, groupby = [:q, :y, :z], group_totals = [:y, :z])
 ```
 
 ## Keyword: `sort`

@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-- Added ability to show "Overall" statistics for subgroups in `table_one` [#30](https://github.com/PumasAI/SummaryTables.jl/pull/30).
+- **Breaking** Changed `show_overall` keyword of `table_one` to `show_total`. The name of all total columns was changed from `"Overall"` to `"Total"` as well but this can be changed using the new `total_name` keyword.
+- Added ability to show "Total" statistics for subgroups in `table_one` [#30](https://github.com/PumasAI/SummaryTables.jl/pull/30).
 - Fixed tagging of header rows in docx output, such that the header section is now repeated across pages as expected [#32](https://github.com/PumasAI/SummaryTables.jl/pull/32).
 
 ## [2.0.2] - 2024-09-16

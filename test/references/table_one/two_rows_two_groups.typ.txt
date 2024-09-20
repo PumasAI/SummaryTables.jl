@@ -21,7 +21,7 @@
     table.cell(colspan: 2)[*group2*],
     table.hline(y: 3, start: 4, end: 6, stroke: 0.75pt),
     [],
-    [*Overall*],
+    [*Total*],
     [e],
     [f],
     [e],

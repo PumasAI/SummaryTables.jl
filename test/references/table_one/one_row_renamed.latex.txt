@@ -9,7 +9,7 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{2}{lc}}
 \toprule
- & \textbf{Overall} \\
+ & \textbf{Total} \\
 \midrule
 \textbf{Value 1} &  \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) \\

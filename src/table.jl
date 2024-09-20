@@ -267,7 +267,7 @@ listingtable(
     :Apples => "Number of apples",
     rows = [:Batch, :Checked => "Checked for spots"],
     cols = [:Delivery],
-    summarize_cols = [sum => "overall"],
+    summarize_cols = [sum => "total"],
     summarize_rows = :Batch => [mean => "average", sum]
 )
 ```

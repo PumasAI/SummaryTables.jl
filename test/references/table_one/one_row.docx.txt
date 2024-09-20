@@ -224,7 +224,7 @@
               <w:rPr>
                 <w:b/>
               </w:rPr>
-              <w:t>Overall</w:t>
+              <w:t>Total</w:t>
             </w:r>
           </w:p>
         </w:tc>

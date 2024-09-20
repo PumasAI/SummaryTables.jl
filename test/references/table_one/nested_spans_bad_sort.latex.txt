@@ -14,7 +14,7 @@
  &  & A & \multicolumn{2}{c}{B} & A \\
  &  & \textbf{z} & \multicolumn{2}{c}{\textbf{z}} & \textbf{z} \\
 \cmidrule{3-3}\cmidrule{4-5}\cmidrule{6-6}
- & \textbf{Overall} & C & C & D & D \\
+ & \textbf{Total} & C & C & D & D \\
 \midrule
 \textbf{x} &  &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 3.5 (1.87) & 1.5 (0.707) & 3 (NaN) & 4.5 (0.707) & 6 (NaN) \\

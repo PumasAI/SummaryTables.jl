@@ -7,7 +7,7 @@
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
     [],
-    [*Overall*],
+    [*Total*],
     table.hline(y: 1, stroke: 0.75pt),
     [*value1*],
     [],

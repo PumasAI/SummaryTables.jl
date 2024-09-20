@@ -176,14 +176,14 @@ end
             t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true)
             reftest(t, "references/table_one/one_row_one_group_pvalues_tests_confints")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2], group_overalls = [:group2])
-            reftest(t, "references/table_one/group_overalls_two_groups_one_overall")
+            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2], group_totals = [:group2])
+            reftest(t, "references/table_one/group_totals_two_groups_one_total")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_overalls = [:group3], show_n = true)
-            reftest(t, "references/table_one/group_overalls_three_groups_one_overall_level_three")
+            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = [:group3], show_n = true)
+            reftest(t, "references/table_one/group_totals_three_groups_one_total_level_three")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_overalls = :group2, show_n = true)
-            reftest(t, "references/table_one/group_overalls_three_groups_one_overall_level_two")
+            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = :group2, show_n = true)
+            reftest(t, "references/table_one/group_totals_three_groups_one_total_level_two")
 
             function summarizer(col)
                 m = mean(col)

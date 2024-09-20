@@ -11,7 +11,7 @@
 \toprule
  &  & \multicolumn{3}{c}{\textbf{parameters}} \\
 \cmidrule{3-5}
- & \textbf{Overall} & T\textsubscript{max} & C\textsuperscript{max} & \begin{tabular}{@{}c@{}}One Line \\ Another Line\end{tabular} \\
+ & \textbf{Total} & T\textsubscript{max} & C\textsuperscript{max} & \begin{tabular}{@{}c@{}}One Line \\ Another Line\end{tabular} \\
 \midrule
 \textbf{value} &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 6.5 (3.61) & 2.5 (1.29) & 6.5 (1.29) & 10.5 (1.29) \\
