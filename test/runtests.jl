@@ -10,6 +10,7 @@ using Statistics
 using ReferenceTests
 using tectonic_jll
 using Typst_jll
+using ZipFile
 
 # Wrapper type to dispatch to the right `show` implementations.
 struct AsMIME{M}
@@ -36,7 +37,6 @@ as_typst(object) = AsMIME{MIME"text/typst"}(object)
 function run_reftest(table, path, func)
     path_full = joinpath(@__DIR__, path * extension(func))
     if func === as_docx
-        # TODO: Real reference tests once WriteDocx has stabilized more
         @test_nowarn mktempdir() do dir
             tablenode = to_docx(table)
             doc = W.Document(
@@ -45,7 +45,16 @@ function run_reftest(table, path, func)
                 ]),
                 W.Styles([])
             )
-            W.save(joinpath(dir, "test.docx"), doc)
+            docfile = joinpath(dir, "test.docx")
+            W.save(docfile, doc)
+            buf = IOBuffer()
+            r = ZipFile.Reader(docfile)
+            for f in r.files
+                println(buf, "#"^30, " ", f.name, " ", "#"^30)
+                write(buf, read(f, String))
+            end
+            s = String(take!(buf))
+            @test_reference path_full s
         end
     else
         @test_reference path_full func(table)
@@ -84,7 +93,7 @@ end
 
 extension(f::typeof(as_html)) = ".txt"
 extension(f::typeof(as_latex)) = ".latex.txt"
-extension(f::typeof(as_docx)) = ".docx"
+extension(f::typeof(as_docx)) = ".docx.txt"
 extension(f::typeof(as_typst)) = ".typ.txt"
 
 # This can be removed for `@test_throws` once CI only uses Julia 1.8 and up
