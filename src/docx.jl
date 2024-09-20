@@ -71,7 +71,7 @@ function to_docx(ct::Table)
             
             end
         end
-        push!(tablerows, WriteDocx.TableRow(rowcells, WriteDocx.TableRowProperties(; header = row <= ct.header)))
+        push!(tablerows, WriteDocx.TableRow(rowcells, WriteDocx.TableRowProperties(; header = ct.header !== nothing && row <= ct.header)))
 
         if row == ct.header
             push!(tablerows, full_width_border_row(DOCX_INNER_RULE_SIZE; header = true))
