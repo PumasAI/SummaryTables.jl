@@ -111,6 +111,7 @@ struct Table
     round_digits::Int
     round_mode::Union{Nothing,Symbol}
     trailing_zeros::Bool
+    linebreak_footnotes::Bool
 end
 
 function Table(cells, header, footer;
@@ -121,8 +122,9 @@ function Table(cells, header, footer;
         postprocess = [],
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
+        linebreak_footnotes::Bool = true,
     )
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, round_digits, round_mode, trailing_zeros)
+    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, round_digits, round_mode, trailing_zeros, linebreak_footnotes)
 end
 
 """
@@ -136,6 +138,7 @@ end
         postprocess = [],
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
+        linebreak_footnotes = true,
     )
 
 Create a `Table` which can be rendered in multiple formats, such as HTML or LaTeX.
@@ -160,6 +163,7 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
     the size of `gap_pt` is added between the rows `index` and `index+1`.
 - `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
     the size of `gap_pt` is added between the columns `index` and `index+1`.
+- `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
 
 ## Round mode
 
@@ -465,7 +469,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.round_digits, ct.round_mode, ct.trailing_zeros)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.round_digits, ct.round_mode, ct.trailing_zeros, ct.linebreak_footnotes)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)
