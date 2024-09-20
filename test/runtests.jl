@@ -53,6 +53,7 @@ function run_reftest(table, path, func)
                 println(buf, "#"^30, " ", f.name, " ", "#"^30)
                 write(buf, read(f, String))
             end
+            close(r)
             s = String(take!(buf))
             @test_reference path_full s
         end
