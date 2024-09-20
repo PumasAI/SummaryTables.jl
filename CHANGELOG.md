@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 - Added ability to show "Overall" statistics for subgroups in `table_one` [#30](https://github.com/PumasAI/SummaryTables.jl/pull/30).
+- Fixed tagging of header rows in docx output, such that the header section is now repeated across pages as expected [#32](https://github.com/PumasAI/SummaryTables.jl/pull/32).
 
 ## [2.0.2] - 2024-09-16
 
