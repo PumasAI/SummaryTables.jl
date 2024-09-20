@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>table_one · SummaryTables.jl</title><meta name="title" content="table_one · SummaryTables.jl"/><meta property="og:title" content="table_one · SummaryTables.jl"/><meta property="twitter:title" content="table_one · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../summarytable/"><code>summarytable</code></a></li><li class="is-active"><a class="tocitem" href><code>table_one</code></a><ul class="internal"><li><a class="tocitem" href="#Synopsis"><span>Synopsis</span></a></li><li><a class="tocitem" href="#Argument-1:-table"><span>Argument 1: <code>table</code></span></a></li><li><a class="tocitem" href="#Argument-2:-analyses"><span>Argument 2: <code>analyses</code></span></a></li><li><a class="tocitem" href="#Keyword:-groupby"><span>Keyword: <code>groupby</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_n"><span>Keyword: <code>show_n</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_overall"><span>Keyword: <code>show_overall</code></span></a></li><li><a class="tocitem" href="#Keyword:-sort"><span>Keyword: <code>sort</code></span></a></li></ul></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Predefined Tables</a></li><li class="is-active"><a href><code>table_one</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>table_one</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/predefined_tables/table_one.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="table_one"><a class="docs-heading-anchor" href="#table_one"><code>table_one</code></a><a id="table_one-1"></a><a class="docs-heading-anchor-permalink" href="#table_one" title="Permalink"></a></h1><h2 id="Synopsis"><a class="docs-heading-anchor" href="#Synopsis">Synopsis</a><a id="Synopsis-1"></a><a class="docs-heading-anchor-permalink" href="#Synopsis" title="Permalink"></a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><pre><code class="language-julia hljs">using SummaryTables
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>table_one · SummaryTables.jl</title><meta name="title" content="table_one · SummaryTables.jl"/><meta property="og:title" content="table_one · SummaryTables.jl"/><meta property="twitter:title" content="table_one · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../summarytable/"><code>summarytable</code></a></li><li class="is-active"><a class="tocitem" href><code>table_one</code></a><ul class="internal"><li><a class="tocitem" href="#Synopsis"><span>Synopsis</span></a></li><li><a class="tocitem" href="#Argument-1:-table"><span>Argument 1: <code>table</code></span></a></li><li><a class="tocitem" href="#Argument-2:-analyses"><span>Argument 2: <code>analyses</code></span></a></li><li><a class="tocitem" href="#Keyword:-groupby"><span>Keyword: <code>groupby</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_n"><span>Keyword: <code>show_n</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_total"><span>Keyword: <code>show_total</code></span></a></li><li><a class="tocitem" href="#Keyword:-total_name"><span>Keyword: <code>total_name</code></span></a></li><li><a class="tocitem" href="#Keyword:-group_totals"><span>Keyword: <code>group_totals</code></span></a></li><li><a class="tocitem" href="#Keyword:-sort"><span>Keyword: <code>sort</code></span></a></li></ul></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Predefined Tables</a></li><li class="is-active"><a href><code>table_one</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>table_one</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/predefined_tables/table_one.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="table_one"><a class="docs-heading-anchor" href="#table_one"><code>table_one</code></a><a id="table_one-1"></a><a class="docs-heading-anchor-permalink" href="#table_one" title="Permalink"></a></h1><h2 id="Synopsis"><a class="docs-heading-anchor" href="#Synopsis">Synopsis</a><a id="Synopsis-1"></a><a class="docs-heading-anchor-permalink" href="#Synopsis" title="Permalink"></a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><pre><code class="language-julia hljs">using SummaryTables
 using DataFrames
 
 data = DataFrame(
@@ -14,9 +14,9 @@ table_one(
     [:age =&gt; &quot;Age (years)&quot;, :blood_type =&gt; &quot;Blood type&quot;, :smoker =&gt; &quot;Smoker&quot;],
     groupby = :sex =&gt; &quot;Sex&quot;,
     show_n = true
-)</code></pre><table class="st-9c3f5118">
+)</code></pre><table class="st-52e6ef29">
     <style>
-        .st-9c3f5118 {
+        .st-52e6ef29 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -25,22 +25,22 @@ table_one(
             line-height: 1.2em;
         }
 
-        .st-9c3f5118 tr td {
+        .st-52e6ef29 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-9c3f5118 br {
+        .st-52e6ef29 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-9c3f5118 sub {
+        .st-52e6ef29 sub {
             line-height: 0;
         }
 
-        .st-9c3f5118 sup {
+        .st-52e6ef29 sup {
             line-height: 0;
         }
     </style>
@@ -52,7 +52,7 @@ table_one(
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall<br>(n=10)</td>
+        <td style="font-weight:bold;text-align:center;">Total<br>(n=10)</td>
         <td style="text-align:center;">f<br>(n=6)</td>
         <td style="text-align:center;">m<br>(n=4)</td>
     </tr>
@@ -122,9 +122,9 @@ using SummaryTables
 
 data = DataFrame(x = [1, 2, 3], y = [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;])
 
-table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
+table_one(data, [:x, :y])</code></pre><table class="st-428db522">
     <style>
-        .st-05b75e98 {
+        .st-428db522 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -133,29 +133,29 @@ table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
             line-height: 1.2em;
         }
 
-        .st-05b75e98 tr td {
+        .st-428db522 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-05b75e98 br {
+        .st-428db522 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-05b75e98 sub {
+        .st-428db522 sub {
             line-height: 0;
         }
 
-        .st-05b75e98 sup {
+        .st-428db522 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">x</td>
@@ -190,9 +190,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
 
 data = (; x = [1, 2, 3], y = [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;])
 
-table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
+table_one(data, [:x, :y])</code></pre><table class="st-428db522">
     <style>
-        .st-05b75e98 {
+        .st-428db522 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -201,29 +201,29 @@ table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
             line-height: 1.2em;
         }
 
-        .st-05b75e98 tr td {
+        .st-428db522 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-05b75e98 br {
+        .st-428db522 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-05b75e98 sub {
+        .st-428db522 sub {
             line-height: 0;
         }
 
-        .st-05b75e98 sup {
+        .st-428db522 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">x</td>
@@ -258,9 +258,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
 
 data = [(; x = 1, y = &quot;4&quot;), (; x = 2, y = &quot;5&quot;), (; x = 3, y = &quot;6&quot;)]
 
-table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
+table_one(data, [:x, :y])</code></pre><table class="st-428db522">
     <style>
-        .st-05b75e98 {
+        .st-428db522 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -269,29 +269,29 @@ table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
             line-height: 1.2em;
         }
 
-        .st-05b75e98 tr td {
+        .st-428db522 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-05b75e98 br {
+        .st-428db522 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-05b75e98 sub {
+        .st-428db522 sub {
             line-height: 0;
         }
 
-        .st-05b75e98 sup {
+        .st-428db522 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">x</td>
@@ -326,9 +326,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
-table_one(data, [:x, :y])</code></pre><table class="st-7982b259">
+table_one(data, [:x, :y])</code></pre><table class="st-06b64343">
     <style>
-        .st-7982b259 {
+        .st-06b64343 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -337,29 +337,29 @@ table_one(data, [:x, :y])</code></pre><table class="st-7982b259">
             line-height: 1.2em;
         }
 
-        .st-7982b259 tr td {
+        .st-06b64343 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-7982b259 br {
+        .st-06b64343 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-7982b259 sub {
+        .st-06b64343 sub {
             line-height: 0;
         }
 
-        .st-7982b259 sup {
+        .st-06b64343 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">x</td>
@@ -390,9 +390,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-7982b259">
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
-table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class="st-6ba76fdd">
+table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class="st-76729159">
     <style>
-        .st-6ba76fdd {
+        .st-76729159 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -401,29 +401,29 @@ table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class=
             line-height: 1.2em;
         }
 
-        .st-6ba76fdd tr td {
+        .st-76729159 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-6ba76fdd br {
+        .st-76729159 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-6ba76fdd sub {
+        .st-76729159 sub {
             line-height: 0;
         }
 
-        .st-6ba76fdd sup {
+        .st-76729159 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">Variable X</td>
@@ -454,9 +454,9 @@ table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class=
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
-table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscript&quot;)), :y])</code></pre><table class="st-3a46b632">
+table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscript&quot;)), :y])</code></pre><table class="st-f6a49401">
     <style>
-        .st-3a46b632 {
+        .st-f6a49401 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -465,29 +465,29 @@ table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscri
             line-height: 1.2em;
         }
 
-        .st-3a46b632 tr td {
+        .st-f6a49401 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-3a46b632 br {
+        .st-f6a49401 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-3a46b632 sub {
+        .st-f6a49401 sub {
             line-height: 0;
         }
 
-        .st-3a46b632 sup {
+        .st-f6a49401 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">X<sup>with superscript</sup></td>
@@ -527,9 +527,9 @@ function custom_analysis(column)
     )
 end
 
-table_one(data, :x =&gt; custom_analysis)</code></pre><table class="st-d00b0b7d">
+table_one(data, :x =&gt; custom_analysis)</code></pre><table class="st-364e8b2c">
     <style>
-        .st-d00b0b7d {
+        .st-364e8b2c {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -538,29 +538,29 @@ table_one(data, :x =&gt; custom_analysis)</code></pre><table class="st-d00b0b7d"
             line-height: 1.2em;
         }
 
-        .st-d00b0b7d tr td {
+        .st-364e8b2c tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-d00b0b7d br {
+        .st-364e8b2c br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-d00b0b7d sub {
+        .st-364e8b2c sub {
             line-height: 0;
         }
 
-        .st-d00b0b7d sup {
+        .st-364e8b2c sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">x</td>
@@ -592,9 +592,9 @@ function custom_analysis(column)
     )
 end
 
-table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></pre><table class="st-037578c0">
+table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></pre><table class="st-8eb4f46b">
     <style>
-        .st-037578c0 {
+        .st-8eb4f46b {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -603,29 +603,29 @@ table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></p
             line-height: 1.2em;
         }
 
-        .st-037578c0 tr td {
+        .st-8eb4f46b tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-037578c0 br {
+        .st-8eb4f46b br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-037578c0 sub {
+        .st-8eb4f46b sub {
             line-height: 0;
         }
 
-        .st-037578c0 sup {
+        .st-8eb4f46b sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
         <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">Variable X</td>
@@ -648,9 +648,9 @@ table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></p
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y)</code></pre><table class="st-4be71cf9">
+table_one(data, :x, groupby = :y)</code></pre><table class="st-d7f7d4d5">
     <style>
-        .st-4be71cf9 {
+        .st-d7f7d4d5 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -659,22 +659,22 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4be71cf9">
             line-height: 1.2em;
         }
 
-        .st-4be71cf9 tr td {
+        .st-d7f7d4d5 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-4be71cf9 br {
+        .st-d7f7d4d5 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-4be71cf9 sub {
+        .st-d7f7d4d5 sub {
             line-height: 0;
         }
 
-        .st-4be71cf9 sup {
+        .st-d7f7d4d5 sup {
             line-height: 0;
         }
     </style>
@@ -686,7 +686,7 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4be71cf9">
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">a</td>
         <td style="text-align:center;">b</td>
     </tr>
@@ -713,9 +713,9 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4be71cf9">
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table class="st-b049e96c">
+table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table class="st-44413919">
     <style>
-        .st-b049e96c {
+        .st-44413919 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -724,22 +724,22 @@ table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table 
             line-height: 1.2em;
         }
 
-        .st-b049e96c tr td {
+        .st-44413919 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-b049e96c br {
+        .st-44413919 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-b049e96c sub {
+        .st-44413919 sub {
             line-height: 0;
         }
 
-        .st-b049e96c sup {
+        .st-44413919 sup {
             line-height: 0;
         }
     </style>
@@ -751,7 +751,7 @@ table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table 
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">a</td>
         <td style="text-align:center;">b</td>
     </tr>
@@ -782,9 +782,9 @@ data = (;
     z = [&quot;d&quot;, &quot;e&quot;, &quot;d&quot;, &quot;e&quot;, &quot;d&quot;, &quot;e&quot;],
 )
 
-table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><table class="st-a39c901b">
+table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><table class="st-fe93e7f5">
     <style>
-        .st-a39c901b {
+        .st-fe93e7f5 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -793,22 +793,22 @@ table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><
             line-height: 1.2em;
         }
 
-        .st-a39c901b tr td {
+        .st-fe93e7f5 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-a39c901b br {
+        .st-fe93e7f5 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-a39c901b sub {
+        .st-fe93e7f5 sub {
             line-height: 0;
         }
 
-        .st-a39c901b sup {
+        .st-fe93e7f5 sup {
             line-height: 0;
         }
     </style>
@@ -834,7 +834,7 @@ table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">d</td>
         <td style="text-align:center;">e</td>
         <td style="text-align:center;">d</td>
@@ -877,9 +877,9 @@ table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-1f0fd321">
+table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-c19d3a18">
     <style>
-        .st-1f0fd321 {
+        .st-c19d3a18 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -888,22 +888,22 @@ table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-1f
             line-height: 1.2em;
         }
 
-        .st-1f0fd321 tr td {
+        .st-c19d3a18 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-1f0fd321 br {
+        .st-c19d3a18 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-1f0fd321 sub {
+        .st-c19d3a18 sub {
             line-height: 0;
         }
 
-        .st-1f0fd321 sup {
+        .st-c19d3a18 sup {
             line-height: 0;
         }
     </style>
@@ -915,7 +915,7 @@ table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-1f
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall<br>(n=6)</td>
+        <td style="font-weight:bold;text-align:center;">Total<br>(n=6)</td>
         <td style="text-align:center;">a<br>(n=4)</td>
         <td style="text-align:center;">b<br>(n=2)</td>
     </tr>
@@ -938,11 +938,11 @@ table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-1f
         <td style="text-align:center;">5.5 [5, 6]</td>
     </tr>
     <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table><h2 id="Keyword:-show_overall"><a class="docs-heading-anchor" href="#Keyword:-show_overall">Keyword: <code>show_overall</code></a><a id="Keyword:-show_overall-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-show_overall" title="Permalink"></a></h2><p>When <code>show_overall</code> is set to <code>false</code>, the column summarizing all groups together is hidden. Use this only when <code>groupby</code> is set, otherwise the resulting table will be empty.</p><pre><code class="language-julia hljs">using SummaryTables
+</table><h2 id="Keyword:-show_total"><a class="docs-heading-anchor" href="#Keyword:-show_total">Keyword: <code>show_total</code></a><a id="Keyword:-show_total-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-show_total" title="Permalink"></a></h2><p>When <code>show_total</code> is set to <code>false</code>, the column summarizing all groups together is hidden. Use this only when <code>groupby</code> is set, otherwise the resulting table will be empty.</p><pre><code class="language-julia hljs">using SummaryTables
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y, show_overall = false)</code></pre><table class="st-44c7fbec">
+table_one(data, :x, groupby = :y, show_total = false)</code></pre><table class="st-44c7fbec">
     <style>
         .st-44c7fbec {
             border: none;
@@ -998,13 +998,13 @@ table_one(data, :x, groupby = :y, show_overall = false)</code></pre><table class
         <td style="text-align:center;">5.5 [5, 6]</td>
     </tr>
     <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table><h2 id="Keyword:-sort"><a class="docs-heading-anchor" href="#Keyword:-sort">Keyword: <code>sort</code></a><a id="Keyword:-sort-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-sort" title="Permalink"></a></h2><p>By default, group entries are sorted. If you need to maintain the order of entries from your dataset, set <code>sort = false</code>.</p><p>Notice how in the following two examples, the group indices are <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code>, <code>&quot;uno&quot;</code> when sorted, but <code>&quot;uno&quot;</code>, <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code> when not sorted. If we want to preserve the natural order of these groups (&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot; meaning &quot;one&quot;, &quot;two&quot;, &quot;three&quot; in Spanish but having a different alphabetical order) we need to set <code>sort = false</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+</table><h2 id="Keyword:-total_name"><a class="docs-heading-anchor" href="#Keyword:-total_name">Keyword: <code>total_name</code></a><a id="Keyword:-total_name-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-total_name" title="Permalink"></a></h2><p>The object that will be used to identify total columns. Can be of any value that SummaryTables knows how to display.</p><pre><code class="language-julia hljs">using SummaryTables
 
-data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;uno&quot;, &quot;uno&quot;, &quot;dos&quot;, &quot;dos&quot;, &quot;tres&quot;, &quot;tres&quot;])
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
+table_one(data, :x, groupby = :y, total_name = &quot;Overall&quot;)</code></pre><table class="st-270fff73">
     <style>
-        .st-4b320b62 {
+        .st-270fff73 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1013,22 +1013,289 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
             line-height: 1.2em;
         }
 
-        .st-4b320b62 tr td {
+        .st-270fff73 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-4b320b62 br {
+        .st-270fff73 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-4b320b62 sub {
+        .st-270fff73 sub {
             line-height: 0;
         }
 
-        .st-4b320b62 sup {
+        .st-270fff73 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">a</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">2.5 (1.29)</td>
+        <td style="text-align:center;">5.5 (0.707)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">2.5 [1, 4]</td>
+        <td style="text-align:center;">5.5 [5, 6]</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-group_totals"><a class="docs-heading-anchor" href="#Keyword:-group_totals">Keyword: <code>group_totals</code></a><a id="Keyword:-group_totals-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-group_totals" title="Permalink"></a></h2><p>A <code>Symbol</code> or <code>Vector{Symbol}</code> specifying one or multiple groups for which to add subtotals. All but the topmost group can be chosen here as the topmost group is handled by <code>show_total</code> already.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = 1:12, y = repeat([&quot;a&quot;, &quot;b&quot;], 6), z = repeat([&quot;c&quot;, &quot;d&quot;], inner = 6))
+
+table_one(data, :x, groupby = [:y, :z], group_totals = :z)</code></pre><table class="st-e7760992">
+    <style>
+        .st-e7760992 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-e7760992 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-e7760992 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-e7760992 sub {
+            line-height: 0;
+        }
+
+        .st-e7760992 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="text-align:center;">a</td>
+        <td colspan="3" style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">Total</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">Total</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">6.5 (3.61)</td>
+        <td style="text-align:center;">3 (2)</td>
+        <td style="text-align:center;">9 (2)</td>
+        <td style="text-align:center;">6 (3.74)</td>
+        <td style="text-align:center;">4 (2)</td>
+        <td style="text-align:center;">10 (2)</td>
+        <td style="text-align:center;">7 (3.74)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">6.5 [1, 12]</td>
+        <td style="text-align:center;">3 [1, 5]</td>
+        <td style="text-align:center;">9 [7, 11]</td>
+        <td style="text-align:center;">6 [1, 11]</td>
+        <td style="text-align:center;">4 [2, 6]</td>
+        <td style="text-align:center;">10 [8, 12]</td>
+        <td style="text-align:center;">7 [2, 12]</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>This example shows multiple-level group totals. In order not to make the resulting table too wide, the topmost factor <code>q</code> just has one level which would otherwise be redundant.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = 1:12, y = repeat([&quot;a&quot;, &quot;b&quot;], 6), z = repeat([&quot;c&quot;, &quot;d&quot;], inner = 6), q = repeat([&quot;e&quot;], 12))
+
+table_one(data, :x, groupby = [:q, :y, :z], group_totals = [:y, :z])</code></pre><table class="st-e5fbc7e9">
+    <style>
+        .st-e5fbc7e9 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-e5fbc7e9 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-e5fbc7e9 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-e5fbc7e9 sub {
+            line-height: 0;
+        }
+
+        .st-e5fbc7e9 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="7" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">q</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="7" style="text-align:center;">e</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="7" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="text-align:center;">a</td>
+        <td colspan="3" style="text-align:center;">b</td>
+        <td style="text-align:center;">Total</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">Total</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">Total</td>
+        <td style="text-align:center;"></td>
+    </tr>
+        <tr><td colspan="9" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">6.5 (3.61)</td>
+        <td style="text-align:center;">3 (2)</td>
+        <td style="text-align:center;">9 (2)</td>
+        <td style="text-align:center;">6 (3.74)</td>
+        <td style="text-align:center;">4 (2)</td>
+        <td style="text-align:center;">10 (2)</td>
+        <td style="text-align:center;">7 (3.74)</td>
+        <td style="text-align:center;">6.5 (3.61)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">6.5 [1, 12]</td>
+        <td style="text-align:center;">3 [1, 5]</td>
+        <td style="text-align:center;">9 [7, 11]</td>
+        <td style="text-align:center;">6 [1, 11]</td>
+        <td style="text-align:center;">4 [2, 6]</td>
+        <td style="text-align:center;">10 [8, 12]</td>
+        <td style="text-align:center;">7 [2, 12]</td>
+        <td style="text-align:center;">6.5 [1, 12]</td>
+    </tr>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-sort"><a class="docs-heading-anchor" href="#Keyword:-sort">Keyword: <code>sort</code></a><a id="Keyword:-sort-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-sort" title="Permalink"></a></h2><p>By default, group entries are sorted. If you need to maintain the order of entries from your dataset, set <code>sort = false</code>.</p><p>Notice how in the following two examples, the group indices are <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code>, <code>&quot;uno&quot;</code> when sorted, but <code>&quot;uno&quot;</code>, <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code> when not sorted. If we want to preserve the natural order of these groups (&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot; meaning &quot;one&quot;, &quot;two&quot;, &quot;three&quot; in Spanish but having a different alphabetical order) we need to set <code>sort = false</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;uno&quot;, &quot;uno&quot;, &quot;dos&quot;, &quot;dos&quot;, &quot;tres&quot;, &quot;tres&quot;])
+
+table_one(data, :x, groupby = :y)</code></pre><table class="st-20e1a773">
+    <style>
+        .st-20e1a773 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-20e1a773 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-20e1a773 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-20e1a773 sub {
+            line-height: 0;
+        }
+
+        .st-20e1a773 sup {
             line-height: 0;
         }
     </style>
@@ -1040,7 +1307,7 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">dos</td>
         <td style="text-align:center;">tres</td>
         <td style="text-align:center;">uno</td>
@@ -1067,9 +1334,9 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
         <td style="text-align:center;">1.5 [1, 2]</td>
     </tr>
     <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = :y, sort = false)</code></pre><table class="st-52683df9">
+</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = :y, sort = false)</code></pre><table class="st-003b77c1">
     <style>
-        .st-52683df9 {
+        .st-003b77c1 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1078,22 +1345,22 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
             line-height: 1.2em;
         }
 
-        .st-52683df9 tr td {
+        .st-003b77c1 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-52683df9 br {
+        .st-003b77c1 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-52683df9 sub {
+        .st-003b77c1 sub {
             line-height: 0;
         }
 
-        .st-52683df9 sup {
+        .st-003b77c1 sup {
             line-height: 0;
         }
     </style>
@@ -1105,7 +1372,7 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">uno</td>
         <td style="text-align:center;">dos</td>
         <td style="text-align:center;">tres</td>
@@ -1136,9 +1403,9 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;], z = [&quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;D&quot;, &quot;D&quot;, &quot;D&quot;])
 
-table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
+table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-3fac10fd">
     <style>
-        .st-e82fbaa8 {
+        .st-3fac10fd {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1147,22 +1414,22 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
             line-height: 1.2em;
         }
 
-        .st-e82fbaa8 tr td {
+        .st-3fac10fd tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-e82fbaa8 br {
+        .st-3fac10fd br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-e82fbaa8 sub {
+        .st-3fac10fd sub {
             line-height: 0;
         }
 
-        .st-e82fbaa8 sup {
+        .st-3fac10fd sup {
             line-height: 0;
         }
     </style>
@@ -1186,7 +1453,7 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">C</td>
         <td style="text-align:center;">D</td>
         <td style="text-align:center;">C</td>
@@ -1217,9 +1484,9 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
         <td style="text-align:center;">4.5 [4, 5]</td>
     </tr>
     <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = [:y, :z], sort = false)</code></pre><table class="st-d304e3e1">
+</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = [:y, :z], sort = false)</code></pre><table class="st-afdfb013">
     <style>
-        .st-d304e3e1 {
+        .st-afdfb013 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1228,22 +1495,22 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
             line-height: 1.2em;
         }
 
-        .st-d304e3e1 tr td {
+        .st-afdfb013 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-d304e3e1 br {
+        .st-afdfb013 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-d304e3e1 sub {
+        .st-afdfb013 sub {
             line-height: 0;
         }
 
-        .st-d304e3e1 sup {
+        .st-afdfb013 sup {
             line-height: 0;
         }
     </style>
@@ -1269,7 +1536,7 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">C</td>
         <td style="text-align:center;">C</td>
         <td style="text-align:center;">D</td>
@@ -1300,4 +1567,4 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
         <td style="text-align:center;">6 [6, 6]</td>
     </tr>
     <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Friday 20 September 2024 09:20">Friday 20 September 2024</span>. Using Julia version 1.10.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Friday 20 September 2024 09:48">Friday 20 September 2024</span>. Using Julia version 1.10.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
