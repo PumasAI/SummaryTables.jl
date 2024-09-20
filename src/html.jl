@@ -90,7 +90,13 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
     if !isempty(annotations) || !isempty(ct.footnotes)
         print(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"font-size: 0.8em;\">")
         for (i, (annotation, label)) in enumerate(annotations)
-            i > 1 && print(_io, "&nbsp;&nbsp;&nbsp;&nbsp;")
+            if i > 1
+                if ct.linebreak_footnotes
+                    print(_io, "<br/>")
+                else
+                    print(_io, "&nbsp;&nbsp;&nbsp;&nbsp;")
+                end
+            end
             if label !== NoLabel()
                 print(_io, "<sup>")
                 _showas(_io, MIME"text/html"(), label)
@@ -99,7 +105,13 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
             _showas(_io, MIME"text/html"(), annotation)
         end
         for (i, footnote) in enumerate(ct.footnotes)
-            (!isempty(annotations) || i > 1) && print(_io, "&nbsp;&nbsp;&nbsp;&nbsp;")
+            if !isempty(annotations) || i > 1
+                if ct.linebreak_footnotes
+                    print(_io, "<br/>")
+                else
+                    print(_io, "&nbsp;&nbsp;&nbsp;&nbsp;")
+                end
+            end
             _showas(_io, MIME"text/html"(), footnote)
         end
         println(_io, "</td></tr>")
