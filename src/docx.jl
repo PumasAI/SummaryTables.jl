@@ -20,7 +20,7 @@ function to_docx(ct::Table)
     running_index = 0
     tablerows = WriteDocx.TableRow[]
 
-    function full_width_border_row(sz)
+    function full_width_border_row(sz; header = false)
         WriteDocx.TableRow(
             [WriteDocx.TableCell([WriteDocx.Paragraph([])],
             WriteDocx.TableCellProperties(
@@ -35,11 +35,12 @@ function to_docx(ct::Table)
                     stop = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = sz, style = WriteDocx.BorderStyle.none),
                 ),
                 hide_mark = true,
-            ))]
+            ))],
+            WriteDocx.TableRowProperties(; header)
         )
     end
 
-    push!(tablerows, full_width_border_row(DOCX_OUTER_RULE_SIZE))
+    push!(tablerows, full_width_border_row(DOCX_OUTER_RULE_SIZE; header = true))
 
     validate_rowgaps(ct.rowgaps, size(matrix, 1))
     validate_colgaps(ct.colgaps, size(matrix, 2))
@@ -70,10 +71,10 @@ function to_docx(ct::Table)
             
             end
         end
-        push!(tablerows, WriteDocx.TableRow(rowcells))
+        push!(tablerows, WriteDocx.TableRow(rowcells, WriteDocx.TableRowProperties(; header = row <= ct.header)))
 
         if row == ct.header
-            push!(tablerows, full_width_border_row(DOCX_INNER_RULE_SIZE))
+            push!(tablerows, full_width_border_row(DOCX_INNER_RULE_SIZE; header = true))
         end
     end
 
