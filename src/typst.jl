@@ -93,8 +93,12 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         options = join(filter(!isempty, [align, colspan]), ", ")
         print(io, "    table.cell($options)[")
 
+        if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
+            print(io, "\n        ")
+        end
+
         for (i, (annotation, label)) in enumerate(annotations)
-            i > 1 && print(io, "#h(1.5em, weak: true)")
+            i > 1 && print(io, ct.linebreak_footnotes ? "\\\n        " : "#h(1.5em, weak: true)")
             if label !== NoLabel()
                 print(io, "#super[")
                 _showas(io, MIME"text/typst"(), label)
@@ -106,8 +110,12 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         end
 
         for (i, footnote) in enumerate(ct.footnotes)
-            (!isempty(annotations) || i > 1) && print(io, "#h(1.5em, weak: true)")
+            (!isempty(annotations) || i > 1) && print(io, ct.linebreak_footnotes ? "\\\n        " : "#h(1.5em, weak: true)")
             _showas(io, MIME"text/typst"(), footnote)
+        end
+
+        if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
+            print(io, "\n    ")
         end
 
         println(io, "],") # table.cell()[
