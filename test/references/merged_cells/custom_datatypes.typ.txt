@@ -12,5 +12,7 @@
     table.cell(colspan: 2)[AB],
     table.cell(colspan: 2)[Label#super[1]],
     table.hline(y: 5, stroke: 1pt),
-    table.cell(align: left, colspan: 2)[#super[1]#text(size: 0.8em)[Annotation]],
+    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
+        #super[1]Annotation
+    ]],
 )

@@ -13,7 +13,7 @@ A\tnote{1} & B\tnote{2} \\
 C\tnote{3} & D\tnote{1} \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}[flushleft,para]
+\begin{tablenotes}[flushleft]
 \footnotesize
 \item[1]Note 1
 \item[2]Note 2

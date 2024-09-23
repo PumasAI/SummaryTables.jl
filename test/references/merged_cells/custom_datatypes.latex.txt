@@ -16,7 +16,7 @@
 \multicolumn{2}{c}{Label\tnote{1}} \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}[flushleft,para]
+\begin{tablenotes}[flushleft]
 \footnotesize
 \item[1]Annotation
 \end{tablenotes}

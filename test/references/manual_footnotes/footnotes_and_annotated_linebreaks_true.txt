@@ -1,6 +1,6 @@
-<table class="st-11d3bcb5">
+<table class="st-143ccd72">
     <style>
-        .st-11d3bcb5 {
+        .st-143ccd72 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,34 +9,30 @@
             line-height: 1.2em;
         }
 
-        .st-11d3bcb5 tr td {
+        .st-143ccd72 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-11d3bcb5 br {
+        .st-143ccd72 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-11d3bcb5 sub {
+        .st-143ccd72 sub {
             line-height: 0;
         }
 
-        .st-11d3bcb5 sup {
+        .st-143ccd72 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
     <tr>
-        <td style="text-align:center;">A<sup>1</sup></td>
-        <td style="text-align:center;">B<sup>2</sup></td>
-    </tr>
-    <tr>
-        <td style="text-align:center;">C<sup>3</sup></td>
-        <td style="text-align:center;">D<sup>1</sup></td>
+        <td style="text-align:center;">Cell 1<sup>1</sup></td>
+        <td style="text-align:center;">Cell 2</td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 1<br/><sup>2</sup> Note 2<br/><sup>3</sup> Note 3</td></tr>
+    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 1<br/>First footnote.<br/>Second footnote.</td></tr>
 </table>
