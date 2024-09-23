@@ -149,517 +149,519 @@ end
         B = [4, 2, 8, 2, 4, 4]
     )
 
-    @testset for func in [as_html, as_latex, as_docx, as_typst]
-        reftest(t, path) = @testset "$path" run_reftest(t, path, func)
+    Threads.@threads for func in [as_html, as_latex, as_docx, as_typst]
+        @testset "$func" begin
+            reftest(t, path) = @testset "$path" run_reftest(t, path, func)
 
-        @testset "table_one" begin
-            @test_throws MethodError table_one(df)
+            @testset "table_one" begin
+                @test_throws MethodError table_one(df)
 
-            t = table_one(df, [:value1])
-            reftest(t, "references/table_one/one_row")
+                t = table_one(df, [:value1])
+                reftest(t, "references/table_one/one_row")
 
-            t = table_one(df, [:value1 => "Value 1"])
-            reftest(t, "references/table_one/one_row_renamed")
+                t = table_one(df, [:value1 => "Value 1"])
+                reftest(t, "references/table_one/one_row_renamed")
 
-            t = table_one(df, [:value1, :value2])
-            reftest(t, "references/table_one/two_rows")
+                t = table_one(df, [:value1, :value2])
+                reftest(t, "references/table_one/two_rows")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1])
-            reftest(t, "references/table_one/two_rows_one_group")
+                t = table_one(df, [:value1, :value2], groupby = [:group1])
+                reftest(t, "references/table_one/two_rows_one_group")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1], show_overall = false) # deprecated
-            reftest(t, "references/table_one/two_rows_one_group_show_overall_false")
+                t = table_one(df, [:value1, :value2], groupby = [:group1], show_overall = false) # deprecated
+                reftest(t, "references/table_one/two_rows_one_group_show_overall_false")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1], show_total = false)
-            reftest(t, "references/table_one/two_rows_one_group_show_total_false")
+                t = table_one(df, [:value1, :value2], groupby = [:group1], show_total = false)
+                reftest(t, "references/table_one/two_rows_one_group_show_total_false")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2])
-            reftest(t, "references/table_one/two_rows_two_groups")
+                t = table_one(df, [:value1, :value2], groupby = [:group1, :group2])
+                reftest(t, "references/table_one/two_rows_two_groups")
 
-            t = table_one(df, [:value1], groupby = [:group1, :group2], show_pvalues = true)
-            reftest(t, "references/table_one/one_row_two_groups_pvalues")
+                t = table_one(df, [:value1], groupby = [:group1, :group2], show_pvalues = true)
+                reftest(t, "references/table_one/one_row_two_groups_pvalues")
 
-            t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true)
-            reftest(t, "references/table_one/one_row_one_group_pvalues_tests_confints")
+                t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true)
+                reftest(t, "references/table_one/one_row_one_group_pvalues_tests_confints")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2], group_totals = [:group2])
-            reftest(t, "references/table_one/group_totals_two_groups_one_total")
+                t = table_one(df, [:value1, :value2], groupby = [:group1, :group2], group_totals = [:group2])
+                reftest(t, "references/table_one/group_totals_two_groups_one_total")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = [:group3], show_n = true)
-            reftest(t, "references/table_one/group_totals_three_groups_one_total_level_three")
+                t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = [:group3], show_n = true)
+                reftest(t, "references/table_one/group_totals_three_groups_one_total_level_three")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = :group2, show_n = true)
-            reftest(t, "references/table_one/group_totals_three_groups_one_total_level_two")
+                t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = :group2, show_n = true)
+                reftest(t, "references/table_one/group_totals_three_groups_one_total_level_two")
 
-            function summarizer(col)
-                m = mean(col)
-                s = std(col)
-                (m => "Mean", s => "SD")
+                function summarizer(col)
+                    m = mean(col)
+                    s = std(col)
+                    (m => "Mean", s => "SD")
+                end
+
+                t = table_one(df, [:value1 => [mean, std => "SD"], :value1 => summarizer])
+                reftest(t, "references/table_one/vector_and_function_arguments")
+
+                t = table_one(df2, :value, groupby = :dose)
+                reftest(t, "references/table_one/natural_sort_order")
+
+                @test_throws SortingError t = table_one(unsortable_df, [:value], groupby = :parameters)
+                t = table_one(unsortable_df, [:value], groupby = :parameters, sort = false)
+                reftest(t, "references/table_one/sort_false")
+
+                t = table_one(
+                    (;
+                        empty = Union{Float64,Missing}[missing, missing, missing, 1, 2, 3],
+                        group = [1, 1, 1, 2, 2, 2]
+                    ),
+                    [:empty],
+                    groupby = :group
+                )
+                reftest(t, "references/table_one/all_missing_group")
+
+                data = (; x = [1, 2, 3, 4, 5, 6], y = ["A", "A", "B", "B", "B", "A"], z = ["C", "C", "C", "D", "D", "D"])
+                t = table_one(data, :x, groupby = [:y, :z], sort = false)
+                reftest(t, "references/table_one/nested_spans_bad_sort")
+
+                data = (;
+                    category = ["a", "b", "c", "b", missing, "b", "c", "c"],
+                    group = [1, 1, 1, 1, 2, 2, 2, 2]
+                )
+                t = table_one(data, [:category], groupby = :group)
+                reftest(t, "references/table_one/category_with_missing")
             end
 
-            t = table_one(df, [:value1 => [mean, std => "SD"], :value1 => summarizer])
-            reftest(t, "references/table_one/vector_and_function_arguments")
 
-            t = table_one(df2, :value, groupby = :dose)
-            reftest(t, "references/table_one/natural_sort_order")
+            @testset "listingtable" begin
+                @test_throws MethodError listingtable(df)
 
-            @test_throws SortingError t = table_one(unsortable_df, [:value], groupby = :parameters)
-            t = table_one(unsortable_df, [:value], groupby = :parameters, sort = false)
-            reftest(t, "references/table_one/sort_false")
+                @test_throws SummaryTables.TooManyRowsError listingtable(df, :value1)
+                @test_throws SummaryTables.TooManyRowsError listingtable(df, :value2)
+                @test_throws SummaryTables.TooManyRowsError listingtable(df, :value1, rows = [:group1])
 
-            t = table_one(
-                (;
-                    empty = Union{Float64,Missing}[missing, missing, missing, 1, 2, 3],
-                    group = [1, 1, 1, 2, 2, 2]
-                ),
-                [:empty],
-                groupby = :group
-            )
-            reftest(t, "references/table_one/all_missing_group")
+                t = listingtable(df, :value1, rows = [:group1, :group2, :group3])
+                reftest(t, "references/listingtable/rows_only")
 
-            data = (; x = [1, 2, 3, 4, 5, 6], y = ["A", "A", "B", "B", "B", "A"], z = ["C", "C", "C", "D", "D", "D"])
-            t = table_one(data, :x, groupby = [:y, :z], sort = false)
-            reftest(t, "references/table_one/nested_spans_bad_sort")
+                t = listingtable(df, :value1, cols = [:group1, :group2, :group3])
+                reftest(t, "references/listingtable/cols_only")
 
-            data = (;
-                category = ["a", "b", "c", "b", missing, "b", "c", "c"],
-                group = [1, 1, 1, 1, 2, 2, 2, 2]
-            )
-            t = table_one(data, [:category], groupby = :group)
-            reftest(t, "references/table_one/category_with_missing")
-        end
+                t = listingtable(df, :value1, rows = [:group1, :group2], cols = [:group3])
+                reftest(t, "references/listingtable/two_rows_one_col")
 
+                t = listingtable(df, :value1, rows = [:group1], cols = [:group2, :group3])
+                reftest(t, "references/listingtable/one_row_two_cols")
 
-        @testset "listingtable" begin
-            @test_throws MethodError listingtable(df)
+                t = listingtable(df, :value1,
+                    rows = [:group1, :group2],
+                    cols = [:group3],
+                    summarize_rows = [mean]
+                )
+                reftest(t, "references/listingtable/summarize_end_rows")
 
-            @test_throws SummaryTables.TooManyRowsError listingtable(df, :value1)
-            @test_throws SummaryTables.TooManyRowsError listingtable(df, :value2)
-            @test_throws SummaryTables.TooManyRowsError listingtable(df, :value1, rows = [:group1])
+                t = listingtable(df, :value1,
+                    rows = [:group1, :group2],
+                    cols = [:group3],
+                    summarize_rows = [mean, std]
+                )
+                reftest(t, "references/listingtable/summarize_end_rows_two_funcs")
 
-            t = listingtable(df, :value1, rows = [:group1, :group2, :group3])
-            reftest(t, "references/listingtable/rows_only")
+                t = listingtable(df, :value1,
+                    rows = [:group1, :group2],
+                    cols = [:group3],
+                    summarize_rows = :group2 => [mean]
+                )
+                reftest(t, "references/listingtable/summarize_last_group_rows")
 
-            t = listingtable(df, :value1, cols = [:group1, :group2, :group3])
-            reftest(t, "references/listingtable/cols_only")
+                t = listingtable(df, :value1,
+                    rows = [:group1, :group2],
+                    cols = [:group3],
+                    summarize_rows = :group1 => [mean]
+                )
+                reftest(t, "references/listingtable/summarize_first_group_rows")
 
-            t = listingtable(df, :value1, rows = [:group1, :group2], cols = [:group3])
-            reftest(t, "references/listingtable/two_rows_one_col")
+                t = listingtable(df, :value1,
+                    cols = [:group1, :group2],
+                    rows = [:group3],
+                    summarize_cols = [mean, std]
+                )
+                reftest(t, "references/listingtable/summarize_end_cols_two_funcs")
 
-            t = listingtable(df, :value1, rows = [:group1], cols = [:group2, :group3])
-            reftest(t, "references/listingtable/one_row_two_cols")
+                t = listingtable(df, :value1,
+                    cols = [:group1, :group2],
+                    rows = [:group3],
+                    summarize_cols = :group2 => [mean]
+                )
+                reftest(t, "references/listingtable/summarize_last_group_cols")
 
-            t = listingtable(df, :value1,
-                rows = [:group1, :group2],
-                cols = [:group3],
-                summarize_rows = [mean]
-            )
-            reftest(t, "references/listingtable/summarize_end_rows")
+                t = listingtable(df, :value1,
+                    cols = [:group1, :group2],
+                    rows = [:group3],
+                    summarize_cols = :group1 => [mean]
+                )
+                reftest(t, "references/listingtable/summarize_first_group_cols")
 
-            t = listingtable(df, :value1,
-                rows = [:group1, :group2],
-                cols = [:group3],
-                summarize_rows = [mean, std]
-            )
-            reftest(t, "references/listingtable/summarize_end_rows_two_funcs")
+                t = listingtable(df, :value1 => "Value 1",
+                    rows = [:group1 => "Group 1", :group2 => "Group 2"],
+                    cols = [:group3 => "Group 3"],
+                    summarize_rows = [mean => "Mean", minimum => "Minimum"]
+                )
+                reftest(t, "references/listingtable/renaming")
 
-            t = listingtable(df, :value1,
-                rows = [:group1, :group2],
-                cols = [:group3],
-                summarize_rows = :group2 => [mean]
-            )
-            reftest(t, "references/listingtable/summarize_last_group_rows")
+                t = listingtable(df, :value1 => "Value 1",
+                    rows = [:group1],
+                    cols = [:group2, :group3],
+                    variable_header = false,
+                )
+                reftest(t, "references/listingtable/no_variable_header")
 
-            t = listingtable(df, :value1,
-                rows = [:group1, :group2],
-                cols = [:group3],
-                summarize_rows = :group1 => [mean]
-            )
-            reftest(t, "references/listingtable/summarize_first_group_rows")
+                t = listingtable(df2, :value, rows = [:id, :dose])
+                reftest(t, "references/listingtable/natural_sort_order")
 
-            t = listingtable(df, :value1,
-                cols = [:group1, :group2],
-                rows = [:group3],
-                summarize_cols = [mean, std]
-            )
-            reftest(t, "references/listingtable/summarize_end_cols_two_funcs")
+                t = listingtable(df2, :value, rows = [:id, :dose], summarize_rows = [mean, mean], summarize_cols = [mean, mean])
+                reftest(t, "references/listingtable/two_same_summarizers")
 
-            t = listingtable(df, :value1,
-                cols = [:group1, :group2],
-                rows = [:group3],
-                summarize_cols = :group2 => [mean]
-            )
-            reftest(t, "references/listingtable/summarize_last_group_cols")
+                @test_throws SortingError t = listingtable(unsortable_df, :value, rows = :parameters, cols = [:group2, :group])
+                t = listingtable(unsortable_df, :value, cols = :parameters, rows = [:group2, :group], sort = false)
+                reftest(t, "references/listingtable/sort_false")
 
-            t = listingtable(df, :value1,
-                cols = [:group1, :group2],
-                rows = [:group3],
-                summarize_cols = :group1 => [mean]
-            )
-            reftest(t, "references/listingtable/summarize_first_group_cols")
+                pt = listingtable(df, :value1, Pagination(rows = 1);
+                    rows = [:group1, :group2], cols = :group3)
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_rows=1_$i")
+                end
 
-            t = listingtable(df, :value1 => "Value 1",
-                rows = [:group1 => "Group 1", :group2 => "Group 2"],
-                cols = [:group3 => "Group 3"],
-                summarize_rows = [mean => "Mean", minimum => "Minimum"]
-            )
-            reftest(t, "references/listingtable/renaming")
+                pt = listingtable(df, :value1, Pagination(rows = 2);
+                    rows = [:group1, :group2], cols = :group3)
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_rows=2_$i")
+                end
 
-            t = listingtable(df, :value1 => "Value 1",
-                rows = [:group1],
-                cols = [:group2, :group3],
-                variable_header = false,
-            )
-            reftest(t, "references/listingtable/no_variable_header")
+                pt = listingtable(df, :value1, Pagination(cols = 1);
+                    cols = [:group1, :group2], rows = :group3)
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_cols=1_$i")
+                end
 
-            t = listingtable(df2, :value, rows = [:id, :dose])
-            reftest(t, "references/listingtable/natural_sort_order")
+                pt = listingtable(df, :value1, Pagination(cols = 2);
+                    cols = [:group1, :group2], rows = :group3)
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_cols=2_$i")
+                end
 
-            t = listingtable(df2, :value, rows = [:id, :dose], summarize_rows = [mean, mean], summarize_cols = [mean, mean])
-            reftest(t, "references/listingtable/two_same_summarizers")
+                pt = listingtable(df, :value1, Pagination(rows = 1, cols = 2);
+                    cols = [:group1, :group2], rows = :group3)
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_rows=1_cols=2_$i")
+                end
 
-            @test_throws SortingError t = listingtable(unsortable_df, :value, rows = :parameters, cols = [:group2, :group])
-            t = listingtable(unsortable_df, :value, cols = :parameters, rows = [:group2, :group], sort = false)
-            reftest(t, "references/listingtable/sort_false")
+                if func === as_html
+                    reftest(pt, "references/paginated_table_interactive")
+                end
 
-            pt = listingtable(df, :value1, Pagination(rows = 1);
-                rows = [:group1, :group2], cols = :group3)
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_rows=1_$i")
+                pt = listingtable(df, :value1, Pagination(rows = 1);
+                    rows = [:group1, :group2], cols = :group3, summarize_rows = [mean, std])
+                @test length(pt.pages) == 1
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_rows=2_summarized_$i")
+                end
+
+                pt = listingtable(df, :value1, Pagination(rows = 1);
+                    rows = [:group1, :group2], cols = :group3, summarize_rows = :group2 => [mean, std])
+                @test length(pt.pages) == 4
+                for (i, page) in enumerate(pt.pages)
+                    reftest(page.table, "references/listingtable/pagination_rows=2_summarized_grouplevel_2_$i")
+                end
+
+                pt = listingtable(df, :value1, Pagination(rows = 1);
+                    rows = [:group1, :group2], cols = :group3, summarize_rows = :group1 => [mean, std])
+                @test length(pt.pages) == 2
+                for (i, page) in enumerate(pt.pages)
+                    reftest(t, "references/listingtable/pagination_rows=2_summarized_grouplevel_1_$i")
+                end
+
+                t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
+                reftest(t, "references/listingtable/missing_groups")
             end
 
-            pt = listingtable(df, :value1, Pagination(rows = 2);
-                rows = [:group1, :group2], cols = :group3)
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_rows=2_$i")
+            @testset "summarytable" begin
+                @test_throws ArgumentError("No summary analyses defined.") t = summarytable(df, :value1)
+
+                t = summarytable(df, :value1, summary = [mean])
+                reftest(t, "references/summarytable/no_group_one_summary")
+
+                t = summarytable(df, :value1, summary = [mean, std => "SD"])
+                reftest(t, "references/summarytable/no_group_two_summaries")
+
+                t = summarytable(df, :value1, rows = [:group1 => "Group 1"], summary = [mean])
+                reftest(t, "references/summarytable/one_rowgroup_one_summary")
+
+                t = summarytable(df, :value1, rows = [:group1 => "Group 1"], summary = [mean, std])
+                reftest(t, "references/summarytable/one_rowgroup_two_summaries")
+
+                t = summarytable(df, :value1, rows = [:group1 => "Group 1"], cols = [:group2 => "Group 2"], summary = [mean])
+                reftest(t, "references/summarytable/one_rowgroup_one_colgroup_one_summary")
+                
+                t = summarytable(df, :value1, rows = [:group1 => "Group 1"], cols = [:group2 => "Group 2"], summary = [mean, std])
+                reftest(t, "references/summarytable/one_rowgroup_one_colgroup_two_summaries")
+
+                t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std])
+                reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries")
+
+                t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std], variable_header = false)
+                reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries_no_header")  
+                
+                t = summarytable(df, :value1, summary = [mean, mean])
+                reftest(t, "references/summarytable/two_same_summaries")  
+
+                t = summarytable(df2, :value, rows = [:id, :dose], summary = [mean])
+                reftest(t, "references/summarytable/natural_sort_order")
+
+                @test_throws SortingError t = summarytable(unsortable_df, :value, rows = :parameters, cols = [:group2, :group], summary = [mean])
+                t = summarytable(unsortable_df, :value, cols = :parameters, rows = [:group2, :group], summary = [mean], sort = false)
+                reftest(t, "references/summarytable/sort_false")
+
+                t = summarytable(df_missing_groups, :value, rows = :A, cols = :B, summary = [sum])
+                reftest(t, "references/summarytable/missing_groups")
             end
 
-            pt = listingtable(df, :value1, Pagination(cols = 1);
-                cols = [:group1, :group2], rows = :group3)
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_cols=1_$i")
-            end
-
-            pt = listingtable(df, :value1, Pagination(cols = 2);
-                cols = [:group1, :group2], rows = :group3)
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_cols=2_$i")
-            end
-
-            pt = listingtable(df, :value1, Pagination(rows = 1, cols = 2);
-                cols = [:group1, :group2], rows = :group3)
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_rows=1_cols=2_$i")
-            end
-
-            if func === as_html
-                reftest(pt, "references/paginated_table_interactive")
-            end
-
-            pt = listingtable(df, :value1, Pagination(rows = 1);
-                rows = [:group1, :group2], cols = :group3, summarize_rows = [mean, std])
-            @test length(pt.pages) == 1
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_rows=2_summarized_$i")
-            end
-
-            pt = listingtable(df, :value1, Pagination(rows = 1);
-                rows = [:group1, :group2], cols = :group3, summarize_rows = :group2 => [mean, std])
-            @test length(pt.pages) == 4
-            for (i, page) in enumerate(pt.pages)
-                reftest(page.table, "references/listingtable/pagination_rows=2_summarized_grouplevel_2_$i")
-            end
-
-            pt = listingtable(df, :value1, Pagination(rows = 1);
-                rows = [:group1, :group2], cols = :group3, summarize_rows = :group1 => [mean, std])
-            @test length(pt.pages) == 2
-            for (i, page) in enumerate(pt.pages)
-                reftest(t, "references/listingtable/pagination_rows=2_summarized_grouplevel_1_$i")
-            end
-
-            t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
-            reftest(t, "references/listingtable/missing_groups")
-        end
-
-        @testset "summarytable" begin
-            @test_throws ArgumentError("No summary analyses defined.") t = summarytable(df, :value1)
-
-            t = summarytable(df, :value1, summary = [mean])
-            reftest(t, "references/summarytable/no_group_one_summary")
-
-            t = summarytable(df, :value1, summary = [mean, std => "SD"])
-            reftest(t, "references/summarytable/no_group_two_summaries")
-
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1"], summary = [mean])
-            reftest(t, "references/summarytable/one_rowgroup_one_summary")
-
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1"], summary = [mean, std])
-            reftest(t, "references/summarytable/one_rowgroup_two_summaries")
-
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1"], cols = [:group2 => "Group 2"], summary = [mean])
-            reftest(t, "references/summarytable/one_rowgroup_one_colgroup_one_summary")
-            
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1"], cols = [:group2 => "Group 2"], summary = [mean, std])
-            reftest(t, "references/summarytable/one_rowgroup_one_colgroup_two_summaries")
-
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std])
-            reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries")
-
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std], variable_header = false)
-            reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries_no_header")  
-            
-            t = summarytable(df, :value1, summary = [mean, mean])
-            reftest(t, "references/summarytable/two_same_summaries")  
-
-            t = summarytable(df2, :value, rows = [:id, :dose], summary = [mean])
-            reftest(t, "references/summarytable/natural_sort_order")
-
-            @test_throws SortingError t = summarytable(unsortable_df, :value, rows = :parameters, cols = [:group2, :group], summary = [mean])
-            t = summarytable(unsortable_df, :value, cols = :parameters, rows = [:group2, :group], summary = [mean], sort = false)
-            reftest(t, "references/summarytable/sort_false")
-
-            t = summarytable(df_missing_groups, :value, rows = :A, cols = :B, summary = [sum])
-            reftest(t, "references/summarytable/missing_groups")
-        end
-
-        @testset "annotations" begin
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated("A", "Note 1")),
-                    SpannedCell(1, 2, Annotated("B", "Note 2")),
-                    SpannedCell(2, 1, Annotated("C", "Note 3")),
-                    SpannedCell(2, 2, Annotated("D", "Note 1")),
-                ],
-                nothing,
-                nothing,
-            )
-            reftest(t, "references/annotations/automatic_annotations")
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated("A", "Note 1", label = "X")),
-                    SpannedCell(1, 2, Annotated("B", "Note 2", label = "Y")),
-                    SpannedCell(2, 1, Annotated("C", "Note 3")),
-                    SpannedCell(2, 2, Annotated("D", "Note 4")),
-                ],
-                nothing,
-                nothing,
-            )
-            reftest(t, "references/annotations/manual_annotations")
-
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated("A", "Note 1", label = "A")),
-                    SpannedCell(1, 2, Annotated("A", "Note 1", label = "B")),
-                ],
-                nothing,
-                nothing,
-            )
-            if func !== as_docx # TODO needs logic rework for this backend
-                @test_throws_message "Found the same annotation" show(devnull, func(t))
-            end
-
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated("A", "Note 1", label = "A")),
-                    SpannedCell(1, 2, Annotated("A", "Note 2", label = "A")),
-                ],
-                nothing,
-                nothing,
-            )
-            if func !== as_docx # TODO needs logic rework for this backend
-                @test_throws_message "Found the same label" show(devnull, func(t))
-            end
-
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated(0.1235513245, "Note 1", label = "A")),
-                ],
-                nothing,
-                nothing,
-            )
-            reftest(t, "references/annotations/annotated_float")
-        end
-
-        @testset "manual footnotes" begin
-            for linebreak_footnotes in [true, false]
+            @testset "annotations" begin
                 t = Table(
                     [
-                        SpannedCell(1, 1, "Cell 1"),
-                        SpannedCell(1, 2, "Cell 2"),
-                    ];
-                    footnotes = ["First footnote.", "Second footnote."],
-                    linebreak_footnotes,
+                        SpannedCell(1, 1, Annotated("A", "Note 1")),
+                        SpannedCell(1, 2, Annotated("B", "Note 2")),
+                        SpannedCell(2, 1, Annotated("C", "Note 3")),
+                        SpannedCell(2, 2, Annotated("D", "Note 1")),
+                    ],
+                    nothing,
+                    nothing,
                 )
-                reftest(t, "references/manual_footnotes/footnotes_linebreaks_$linebreak_footnotes")
+                reftest(t, "references/annotations/automatic_annotations")
+                t = Table(
+                    [
+                        SpannedCell(1, 1, Annotated("A", "Note 1", label = "X")),
+                        SpannedCell(1, 2, Annotated("B", "Note 2", label = "Y")),
+                        SpannedCell(2, 1, Annotated("C", "Note 3")),
+                        SpannedCell(2, 2, Annotated("D", "Note 4")),
+                    ],
+                    nothing,
+                    nothing,
+                )
+                reftest(t, "references/annotations/manual_annotations")
 
                 t = Table(
                     [
-                        SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
-                        SpannedCell(1, 2, "Cell 2"),
-                    ];
-                    footnotes = ["First footnote.", "Second footnote."],
-                    linebreak_footnotes,
+                        SpannedCell(1, 1, Annotated("A", "Note 1", label = "A")),
+                        SpannedCell(1, 2, Annotated("A", "Note 1", label = "B")),
+                    ],
+                    nothing,
+                    nothing,
                 )
-                reftest(t, "references/manual_footnotes/footnotes_and_annotated_linebreaks_$linebreak_footnotes")
+                if func !== as_docx # TODO needs logic rework for this backend
+                    @test_throws_message "Found the same annotation" show(devnull, func(t))
+                end
+
+                t = Table(
+                    [
+                        SpannedCell(1, 1, Annotated("A", "Note 1", label = "A")),
+                        SpannedCell(1, 2, Annotated("A", "Note 2", label = "A")),
+                    ],
+                    nothing,
+                    nothing,
+                )
+                if func !== as_docx # TODO needs logic rework for this backend
+                    @test_throws_message "Found the same label" show(devnull, func(t))
+                end
+
+                t = Table(
+                    [
+                        SpannedCell(1, 1, Annotated(0.1235513245, "Note 1", label = "A")),
+                    ],
+                    nothing,
+                    nothing,
+                )
+                reftest(t, "references/annotations/annotated_float")
             end
-        end
 
-        @testset "Replace" begin
-            t = Table(
-                [
-                    SpannedCell(1, 1, missing),
-                    SpannedCell(1, 2, missing),
-                    SpannedCell(2, 1, 1),
-                    SpannedCell(2, 2, 2),
-                ],
-                nothing,
-                nothing,
-                postprocess = [ReplaceMissing()]
-            )
-            reftest(t, "references/replace/replacemissing_default")
+            @testset "manual footnotes" begin
+                for linebreak_footnotes in [true, false]
+                    t = Table(
+                        [
+                            SpannedCell(1, 1, "Cell 1"),
+                            SpannedCell(1, 2, "Cell 2"),
+                        ];
+                        footnotes = ["First footnote.", "Second footnote."],
+                        linebreak_footnotes,
+                    )
+                    reftest(t, "references/manual_footnotes/footnotes_linebreaks_$linebreak_footnotes")
 
-            t = Table(
-                [
-                    SpannedCell(1, 1, missing),
-                    SpannedCell(1, 2, nothing),
-                    SpannedCell(2, 1, 1),
-                    SpannedCell(2, 2, 2),
-                ],
-                nothing,
-                nothing,
-                postprocess = [ReplaceMissing(with = "???")]
-            )
-            reftest(t, "references/replace/replacemissing_custom")
+                    t = Table(
+                        [
+                            SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
+                            SpannedCell(1, 2, "Cell 2"),
+                        ];
+                        footnotes = ["First footnote.", "Second footnote."],
+                        linebreak_footnotes,
+                    )
+                    reftest(t, "references/manual_footnotes/footnotes_and_annotated_linebreaks_$linebreak_footnotes")
+                end
+            end
 
-            t = Table(
-                [
-                    SpannedCell(1, 1, missing),
-                    SpannedCell(1, 2, nothing),
-                    SpannedCell(2, 1, 1),
-                    SpannedCell(2, 2, 2),
-                ],
-                nothing,
-                nothing,
-                postprocess = [Replace(x -> x isa Int, "an Int was here")]
-            )
-            reftest(t, "references/replace/replace_predicate_value")
+            @testset "Replace" begin
+                t = Table(
+                    [
+                        SpannedCell(1, 1, missing),
+                        SpannedCell(1, 2, missing),
+                        SpannedCell(2, 1, 1),
+                        SpannedCell(2, 2, 2),
+                    ],
+                    nothing,
+                    nothing,
+                    postprocess = [ReplaceMissing()]
+                )
+                reftest(t, "references/replace/replacemissing_default")
 
-            t = Table(
-                [
-                    SpannedCell(1, 1, missing),
-                    SpannedCell(1, 2, nothing),
-                    SpannedCell(2, 1, 1),
-                    SpannedCell(2, 2, 2),
-                ],
-                nothing,
-                nothing,
-                postprocess = [Replace(x -> x isa Int, x -> x + 10)]
-            )
-            reftest(t, "references/replace/replace_predicate_function")
-        end
+                t = Table(
+                    [
+                        SpannedCell(1, 1, missing),
+                        SpannedCell(1, 2, nothing),
+                        SpannedCell(2, 1, 1),
+                        SpannedCell(2, 2, 2),
+                    ],
+                    nothing,
+                    nothing,
+                    postprocess = [ReplaceMissing(with = "???")]
+                )
+                reftest(t, "references/replace/replacemissing_custom")
 
-        @testset "Global rounding" begin
-            cells = [
-                SpannedCell(1, 1, sqrt(2)),
-                SpannedCell(1, 2, 12352131.000001),
-                SpannedCell(2, 1, sqrt(11251231251243123)),
-                SpannedCell(2, 2, sqrt(0.00000123124)),
-                SpannedCell(3, 1, Concat(1.23456, " & ", 0.0012345)),
-                SpannedCell(3, 2, Multiline(1.23456, 0.0012345)),
-            ]
-            t = Table(
-                cells,
-                nothing,
-                nothing,
-            )
-            reftest(t, "references/global_rounding/default")
+                t = Table(
+                    [
+                        SpannedCell(1, 1, missing),
+                        SpannedCell(1, 2, nothing),
+                        SpannedCell(2, 1, 1),
+                        SpannedCell(2, 2, 2),
+                    ],
+                    nothing,
+                    nothing,
+                    postprocess = [Replace(x -> x isa Int, "an Int was here")]
+                )
+                reftest(t, "references/replace/replace_predicate_value")
 
-            t = Table(
-                cells,
-                nothing,
-                nothing,
-                round_mode = nothing,
-            )
-            reftest(t, "references/global_rounding/no_rounding")
-            
-            for round_mode in [:auto, :sigdigits, :digits]
-                for trailing_zeros in [true, false]
-                    for round_digits in [1, 3]
-                        t = Table(
-                            cells,
-                            nothing,
-                            nothing;
-                            round_mode,
-                            trailing_zeros,
-                            round_digits
-                        )
-                        reftest(t, "references/global_rounding/$(round_mode)_$(trailing_zeros)_$(round_digits)")
+                t = Table(
+                    [
+                        SpannedCell(1, 1, missing),
+                        SpannedCell(1, 2, nothing),
+                        SpannedCell(2, 1, 1),
+                        SpannedCell(2, 2, 2),
+                    ],
+                    nothing,
+                    nothing,
+                    postprocess = [Replace(x -> x isa Int, x -> x + 10)]
+                )
+                reftest(t, "references/replace/replace_predicate_function")
+            end
+
+            @testset "Global rounding" begin
+                cells = [
+                    SpannedCell(1, 1, sqrt(2)),
+                    SpannedCell(1, 2, 12352131.000001),
+                    SpannedCell(2, 1, sqrt(11251231251243123)),
+                    SpannedCell(2, 2, sqrt(0.00000123124)),
+                    SpannedCell(3, 1, Concat(1.23456, " & ", 0.0012345)),
+                    SpannedCell(3, 2, Multiline(1.23456, 0.0012345)),
+                ]
+                t = Table(
+                    cells,
+                    nothing,
+                    nothing,
+                )
+                reftest(t, "references/global_rounding/default")
+
+                t = Table(
+                    cells,
+                    nothing,
+                    nothing,
+                    round_mode = nothing,
+                )
+                reftest(t, "references/global_rounding/no_rounding")
+                
+                for round_mode in [:auto, :sigdigits, :digits]
+                    for trailing_zeros in [true, false]
+                        for round_digits in [1, 3]
+                            t = Table(
+                                cells,
+                                nothing,
+                                nothing;
+                                round_mode,
+                                trailing_zeros,
+                                round_digits
+                            )
+                            reftest(t, "references/global_rounding/$(round_mode)_$(trailing_zeros)_$(round_digits)")
+                        end
                     end
                 end
             end
-        end
 
-        @testset "Character escaping" begin
-            cells = [
-                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' ")
-            ]
-            t = Table(
-                cells,
-                nothing,
-                nothing,
-            )
-            reftest(t, "references/character_escaping/problematic_characters")
-        end
-
-        @testset "Merged cells with special values" begin
-            contents = [
-                Multiline("A", "B"),
-                Superscript("Sup"),
-                Subscript("Sub"),
-                Concat("A", "B"),
-                Annotated("Label", "Annotation"),
-            ]
-            cells = Cell.(contents, merge = true)
-            t = Table(hcat(cells, cells))
-            reftest(t, "references/merged_cells/custom_datatypes")
-        end
-
-        @testset "Styles" begin
-            cells = [
-                SpannedCell(1, 1, "Row 1"),
-                SpannedCell(2, 1, "Row 2"),
-                SpannedCell(3, 1, "Row 3"),
-                SpannedCell(1:3, 2, "top", CellStyle(valign = :top)),
-                SpannedCell(1:3, 3, "center", CellStyle(valign = :center)),
-                SpannedCell(1:3, 4, "bottom", CellStyle(valign = :bottom)),
-            ]
-            t = Table(
-                cells,
-                nothing,
-                nothing,
-            )
-            reftest(t, "references/styles/valign")
-        end
-
-        @testset "Row and column gaps" begin
-            if func !== as_docx # TODO needs logic rework for this backend
-                t = Table([SpannedCell(1, 1, "Row 1")], rowgaps = [1 => 5.0])
-                @test_throws_message "No row gaps allowed for a table with one row" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Column 1")], colgaps = [1 => 5.0])
-                @test_throws_message "No column gaps allowed for a table with one column" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [1 => 5.0, 2 => 5.0])
-                @test_throws_message "A row gap index of 2 is invalid for a table with 2 rows" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [1 => 5.0, 2 => 5.0])
-                @test_throws_message "A column gap index of 2 is invalid for a table with 2 columns" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [0 => 5.0])
-                @test_throws_message "A row gap index of 0 is invalid, must be at least 1" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [0 => 5.0])
-                @test_throws_message "A column gap index of 0 is invalid, must be at least 1" show(devnull, func(t))
+            @testset "Character escaping" begin
+                cells = [
+                    SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' ")
+                ]
+                t = Table(
+                    cells,
+                    nothing,
+                    nothing,
+                )
+                reftest(t, "references/character_escaping/problematic_characters")
             end
-            t = Table([SpannedCell(i, j, "$i, $j") for i in 1:4 for j in 1:4], rowgaps = [1 => 4.0, 2 => 8.0], colgaps = [2 => 4.0, 3 => 8.0])
-            reftest(t, "references/row_and_column_gaps/singlecell")
-            t = Table([SpannedCell(2:4, 1, "Spanned rows"), SpannedCell(1, 2:4, "Spanned columns")], rowgaps = [1 => 4.0], colgaps = [2 => 4.0])
-            reftest(t, "references/row_and_column_gaps/spanned_cells")
+
+            @testset "Merged cells with special values" begin
+                contents = [
+                    Multiline("A", "B"),
+                    Superscript("Sup"),
+                    Subscript("Sub"),
+                    Concat("A", "B"),
+                    Annotated("Label", "Annotation"),
+                ]
+                cells = Cell.(contents, merge = true)
+                t = Table(hcat(cells, cells))
+                reftest(t, "references/merged_cells/custom_datatypes")
+            end
+
+            @testset "Styles" begin
+                cells = [
+                    SpannedCell(1, 1, "Row 1"),
+                    SpannedCell(2, 1, "Row 2"),
+                    SpannedCell(3, 1, "Row 3"),
+                    SpannedCell(1:3, 2, "top", CellStyle(valign = :top)),
+                    SpannedCell(1:3, 3, "center", CellStyle(valign = :center)),
+                    SpannedCell(1:3, 4, "bottom", CellStyle(valign = :bottom)),
+                ]
+                t = Table(
+                    cells,
+                    nothing,
+                    nothing,
+                )
+                reftest(t, "references/styles/valign")
+            end
+
+            @testset "Row and column gaps" begin
+                if func !== as_docx # TODO needs logic rework for this backend
+                    t = Table([SpannedCell(1, 1, "Row 1")], rowgaps = [1 => 5.0])
+                    @test_throws_message "No row gaps allowed for a table with one row" show(devnull, func(t))
+                    t = Table([SpannedCell(1, 1, "Column 1")], colgaps = [1 => 5.0])
+                    @test_throws_message "No column gaps allowed for a table with one column" show(devnull, func(t))
+                    t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [1 => 5.0, 2 => 5.0])
+                    @test_throws_message "A row gap index of 2 is invalid for a table with 2 rows" show(devnull, func(t))
+                    t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [1 => 5.0, 2 => 5.0])
+                    @test_throws_message "A column gap index of 2 is invalid for a table with 2 columns" show(devnull, func(t))
+                    t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [0 => 5.0])
+                    @test_throws_message "A row gap index of 0 is invalid, must be at least 1" show(devnull, func(t))
+                    t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [0 => 5.0])
+                    @test_throws_message "A column gap index of 0 is invalid, must be at least 1" show(devnull, func(t))
+                end
+                t = Table([SpannedCell(i, j, "$i, $j") for i in 1:4 for j in 1:4], rowgaps = [1 => 4.0, 2 => 8.0], colgaps = [2 => 4.0, 3 => 8.0])
+                reftest(t, "references/row_and_column_gaps/singlecell")
+                t = Table([SpannedCell(2:4, 1, "Spanned rows"), SpannedCell(1, 2:4, "Spanned columns")], rowgaps = [1 => 4.0], colgaps = [2 => 4.0])
+                reftest(t, "references/row_and_column_gaps/spanned_cells")
+            end
         end
     end
 end
