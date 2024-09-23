@@ -125,6 +125,8 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
                 print(io, raw"\item[")
                 _showas(io, MIME"text/latex"(), label)
                 print(io, "]")
+            else
+                print(io, raw"\item[]")
             end
             _showas(io, MIME"text/latex"(), annotation)
             println(io)
