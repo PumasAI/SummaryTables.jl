@@ -21,7 +21,7 @@
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-NC - Not computable
+\item[]NC - Not computable
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

@@ -15,7 +15,7 @@
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-- No value
+\item[]- No value
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
