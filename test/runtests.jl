@@ -475,27 +475,27 @@ end
         end
 
         @testset "manual footnotes" begin
-            t = Table(
-                [
-                    SpannedCell(1, 1, "Cell 1"),
-                    SpannedCell(1, 2, "Cell 2"),
-                ],
-                nothing,
-                nothing,
-                footnotes = ["First footnote.", "Second footnote."]
-            )
-            reftest(t, "references/manual_footnotes/footnotes")
+            for linebreak_footnotes in [true, false]
+                t = Table(
+                    [
+                        SpannedCell(1, 1, "Cell 1"),
+                        SpannedCell(1, 2, "Cell 2"),
+                    ];
+                    footnotes = ["First footnote.", "Second footnote."],
+                    linebreak_footnotes,
+                )
+                reftest(t, "references/manual_footnotes/footnotes_linebreaks_$linebreak_footnotes")
 
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
-                    SpannedCell(1, 2, "Cell 2"),
-                ],
-                nothing,
-                nothing,
-                footnotes = ["First footnote.", "Second footnote."]
-            )
-            reftest(t, "references/manual_footnotes/footnotes_and_annotated")
+                t = Table(
+                    [
+                        SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
+                        SpannedCell(1, 2, "Cell 2"),
+                    ];
+                    footnotes = ["First footnote.", "Second footnote."],
+                    linebreak_footnotes,
+                )
+                reftest(t, "references/manual_footnotes/footnotes_and_annotated_linebreaks_$linebreak_footnotes")
+            end
         end
 
         @testset "Replace" begin
