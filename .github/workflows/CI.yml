@@ -35,5 +35,6 @@ jobs:
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
+      - uses: julia-actions/cache@8608484607cba0bdb5437a7bad85d6502499d029 # v2.0.4
       - uses: julia-actions/julia-buildpkg@90dd6f23eb49626e4e6612cb9d64d456f86e6a1c
       - uses: julia-actions/julia-runtest@d0c4f093badade621cd041bba567d1e832480ac2
