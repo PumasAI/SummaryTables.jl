@@ -118,7 +118,7 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
     \end{tabular}
     """)
     if !isempty(annotations) || !isempty(ct.footnotes)
-        println(io, raw"\begin{tablenotes}[flushleft,para]")
+        println(io, "\\begin{tablenotes}[flushleft$(ct.linebreak_footnotes ? "" : ",para")]")
         println(io, raw"\footnotesize")
         for (annotation, label) in annotations
             if label !== NoLabel()
