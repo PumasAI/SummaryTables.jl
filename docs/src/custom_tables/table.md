@@ -72,6 +72,22 @@ cells = [Cell("$col$row") for row in 1:5, col in 'A':'I']
 Table(cells; colgaps = [3 => 8.0, 6 => 8.0])
 ```
 
+## Keyword: `linebreak_footnotes`
+
+By default, footnotes are printed on a separate line each.
+They can be printed in a single paragraph by setting `linebreak_footnotes = false`.
+
+```@example linebreak_footnotes
+using SummaryTables
+
+cells = [Cell("$col$row") for row in 1:5, col in 'A':'I']
+Table(cells; footnotes = ["Footnote 1.", "Footnote 2."])
+```
+
+```@example linebreak_footnotes
+Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], linebreak_footnotes = false)
+```
+
 ## Types of cell values
 
 TODO: List the different options here
