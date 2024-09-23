@@ -80,10 +80,12 @@ function to_docx(ct::Table)
 
     push!(tablerows, full_width_border_row(DOCX_OUTER_RULE_SIZE))
 
+    separator_element = ct.linebreak_footnotes ? WriteDocx.Break() : WriteDocx.Text("    ")
+
     if !isempty(annotations) || !isempty(ct.footnotes)
         elements = []
         for (i, (annotation, label)) in enumerate(annotations)
-            i > 1 && push!(elements, WriteDocx.Run([WriteDocx.Text("    ")]))
+            i > 1 && push!(elements, WriteDocx.Run([separator_element]))
             if label !== NoLabel()
                 push!(elements, WriteDocx.Run([WriteDocx.Text(docx_sprint(label)), WriteDocx.Text(" ")],
                     WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
@@ -92,7 +94,7 @@ function to_docx(ct::Table)
                 WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
         end
         for (i, footnote) in enumerate(ct.footnotes)
-            (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([WriteDocx.Text("    ")]))
+            (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element]))
             push!(elements, WriteDocx.Run([WriteDocx.Text(docx_sprint(footnote))],
                 WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
         end
