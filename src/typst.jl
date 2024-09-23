@@ -91,7 +91,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         align = _align(CellStyle(halign = :left), 1)
         colspan = "colspan: $(size(matrix, 2))"
         options = join(filter(!isempty, [align, colspan]), ", ")
-        print(io, "    table.cell($options)[")
+        print(io, "    table.cell($options)[#text(size: 0.8em)[")
 
         if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
             print(io, "\n        ")
@@ -104,9 +104,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
                 _showas(io, MIME"text/typst"(), label)
                 print(io, "]")
             end
-            print(io, "#text(size: 0.8em)[")
             _showas(io, MIME"text/typst"(), annotation)
-            print(io, "]")
         end
 
         for (i, footnote) in enumerate(ct.footnotes)
@@ -118,7 +116,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
             print(io, "\n    ")
         end
 
-        println(io, "],") # table.cell()[
+        println(io, "]],") # table.cell()[#text(..)[
     end
 
     println(io, ")") # table()
