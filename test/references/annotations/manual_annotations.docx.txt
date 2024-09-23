@@ -326,7 +326,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
@@ -343,7 +343,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
@@ -360,7 +360,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>

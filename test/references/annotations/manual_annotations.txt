@@ -1,6 +1,6 @@
-<table class="st-cbf911c0">
+<table class="st-926b343b">
     <style>
-        .st-cbf911c0 {
+        .st-926b343b {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,22 +9,22 @@
             line-height: 1.2em;
         }
 
-        .st-cbf911c0 tr td {
+        .st-926b343b tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-cbf911c0 br {
+        .st-926b343b br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-cbf911c0 sub {
+        .st-926b343b sub {
             line-height: 0;
         }
 
-        .st-cbf911c0 sup {
+        .st-926b343b sup {
             line-height: 0;
         }
     </style>
@@ -38,5 +38,5 @@
         <td style="text-align:center;">D<sup>2</sup></td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 3&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup> Note 4&nbsp;&nbsp;&nbsp;&nbsp;<sup>X</sup> Note 1&nbsp;&nbsp;&nbsp;&nbsp;<sup>Y</sup> Note 2</td></tr>
+    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 3<br/><sup>2</sup> Note 4<br/><sup>X</sup> Note 1<br/><sup>Y</sup> Note 2</td></tr>
 </table>

@@ -12,7 +12,7 @@
 0.124\tnote{A} \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}[flushleft,para]
+\begin{tablenotes}[flushleft]
 \footnotesize
 \item[A]Note 1
 \end{tablenotes}

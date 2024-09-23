@@ -209,13 +209,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>A</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>1</w:t>
+              <w:t>Cell 1</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -230,58 +224,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>B</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>2</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-      </w:tr>
-      <w:tr>
-        <w:trPr/>
-        <w:tc>
-          <w:tcPr>
-            <w:tcMar/>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr/>
-              <w:t>C</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>3</w:t>
-            </w:r>
-          </w:p>
-        </w:tc>
-        <w:tc>
-          <w:tcPr>
-            <w:tcMar/>
-            <w:vAlign w:val="top"/>
-          </w:tcPr>
-          <w:p>
-            <w:pPr>
-              <w:jc w:val="center"/>
-            </w:pPr>
-            <w:r>
-              <w:rPr/>
-              <w:t>D</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>1</w:t>
+              <w:t>Cell 2</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -313,16 +256,9 @@
             <w:pPr/>
             <w:r>
               <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>1</w:t>
-              <w:t xml:space="preserve"> </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
                 <w:sz w:val="16"/>
               </w:rPr>
-              <w:t>Note 1</w:t>
+              <w:t>First footnote.</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -330,33 +266,9 @@
             </w:r>
             <w:r>
               <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>2</w:t>
-              <w:t xml:space="preserve"> </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
                 <w:sz w:val="16"/>
               </w:rPr>
-              <w:t>Note 2</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:br w:type="textWrapping"/>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:vertAlign w:val="superscript"/>
-              </w:rPr>
-              <w:t>3</w:t>
-              <w:t xml:space="preserve"> </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:sz w:val="16"/>
-              </w:rPr>
-              <w:t>Note 3</w:t>
+              <w:t>Second footnote.</w:t>
             </w:r>
           </w:p>
         </w:tc>

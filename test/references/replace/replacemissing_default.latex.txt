@@ -13,9 +13,9 @@
 1 & 2 \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}[flushleft,para]
+\begin{tablenotes}[flushleft]
 \footnotesize
-- No value
+\item[]- No value
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

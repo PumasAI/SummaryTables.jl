@@ -19,9 +19,9 @@
 \hspace{12.0pt}Missing & 3 (50\%) & 3 (100\%) & 0 (0\%) \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}[flushleft,para]
+\begin{tablenotes}[flushleft]
 \footnotesize
-NC - Not computable
+\item[]NC - Not computable
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
