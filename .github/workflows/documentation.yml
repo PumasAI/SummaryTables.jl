@@ -28,7 +28,7 @@ jobs:
       - uses: julia-actions/setup-julia@512e2ab44f5848ea62bddd21d1ee906e989b0360
         with:
           version: '1'
-      - uses: julia-actions/cache@8608484607cba0bdb5437a7bad85d6502499d029 # v2.0.4
+      - uses: julia-actions/cache@824243901fb567ccb490b0d0e2483ccecde46834 # v2.0.5
       - name: Install dependencies
         run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
       - name: Build and deploy
