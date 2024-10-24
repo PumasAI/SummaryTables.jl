@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{lc}}
+\toprule
+ & \textbf{Total} \\
+\midrule
+\textbf{value1} &  \\
+\hspace{12.0pt}Mean (SD) & 4.5 (2.45) \\
+\hspace{12.0pt}Median [Min, Max] & 4.5 [1, 8] \\
+\textbf{value2} &  \\
+\hspace{12.0pt}a & 3 (37.5\%) \\
+\hspace{12.0pt}b & 3 (37.5\%) \\
+\hspace{12.0pt}c & 2 (25\%) \\
+\textbf{group1} &  \\
+\hspace{12.0pt}a & 4 (50\%) \\
+\hspace{12.0pt}b & 4 (50\%) \\
+\textbf{group3} &  \\
+\hspace{12.0pt}c & 4 (50\%) \\
+\hspace{12.0pt}d & 4 (50\%) \\
+\textbf{group2} &  \\
+\hspace{12.0pt}e & 4 (50\%) \\
+\hspace{12.0pt}f & 4 (50\%) \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
