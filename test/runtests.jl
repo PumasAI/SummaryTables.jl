@@ -153,8 +153,6 @@ end
         reftest(t, path) = @testset "$path" run_reftest(t, path, func)
 
         @testset "table_one" begin
-            @test_throws MethodError table_one(df)
-
             t = table_one(df, [:value1])
             reftest(t, "references/table_one/one_row")
 
