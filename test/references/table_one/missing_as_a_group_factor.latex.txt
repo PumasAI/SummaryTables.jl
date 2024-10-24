@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{7}{lcccccc}}
+\toprule
+ &  & \multicolumn{5}{c}{\textbf{group1}} \\
+\cmidrule{3-7}
+ &  & A & \multicolumn{3}{c}{B} & missing \\
+ &  & \textbf{group2} & \multicolumn{3}{c}{\textbf{group2}} & \textbf{group2} \\
+\cmidrule{3-3}\cmidrule{4-6}\cmidrule{7-7}
+ & \textbf{Total} & D & D & missing & Total & missing \\
+\midrule
+\textbf{value} &  &  &  &  &  &  \\
+\hspace{12.0pt}Mean (SD) & 3.5 (1.87) & 2 (1.41) & 4 (NaN) & 5 (NaN) & 4.5 (0.707) & 4 (2.83) \\
+\hspace{12.0pt}Median [Min, Max] & 3.5 [1, 6] & 2 [1, 3] & 4 [4, 4] & 5 [5, 5] & 4.5 [4, 5] & 4 [2, 6] \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
