@@ -518,6 +518,19 @@ function table_one(
     Table(cells, header_offset-1, nothing; celltable_kws...)
 end
 
+"""
+    table_one(table; kwargs...)
+
+Create a `table_one` with with all columns from `table` except those used in the `groupby` keyword.
+"""
+function table_one(table; groupby = [], kwargs...)
+    groups = make_groups(groupby)
+    groupsyms = [g.symbol for g in groups]
+    all_names = Tables.columnnames(table)
+    all_names_but_groups = setdiff(all_names, groupsyms)
+    return table_one(table, all_names_but_groups; groupby, kwargs...)
+end
+
 tableone_column_header() = CellStyle(halign = :center, bold = true)
 tableone_column_header_spanned() = CellStyle(halign = :center, bold = true, border_bottom = true)
 tableone_column_header_key() = CellStyle(; halign = :center)

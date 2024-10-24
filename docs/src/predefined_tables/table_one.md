@@ -9,7 +9,7 @@ Optionally, there can be grouping applied along the columns as well.
 
 In this example, several variables of a hypothetical population are analyzed split by sex.
 
-```@example
+```@example table_one_intro
 using SummaryTables
 using DataFrames
 
@@ -25,6 +25,15 @@ table_one(
     [:age => "Age (years)", :blood_type => "Blood type", :smoker => "Smoker"],
     groupby = :sex => "Sex",
     show_n = true
+)
+```
+
+You can also omit the second argument as a shortcut when you quickly want to summarize all columns of your dataset. The columns in `groupby` are excluded automatically:
+
+```@example table_one_intro
+table_one(
+    data,
+    groupby = :blood_type,
 )
 ```
 
@@ -64,11 +73,13 @@ data = [(; x = 1, y = "4"), (; x = 2, y = "5"), (; x = 3, y = "6")]
 table_one(data, [:x, :y])
 ```
 
-## Argument 2: `analyses`
+## Optional argument 2: `analyses`
 
 The second argument takes a vector specifying analyses, with one entry for each "row section" of the resulting table.
 If only one analysis is passed, the vector can be omitted.
 Each analysis can have up to three parts: the variable, the analysis function and the label.
+
+For convenience, if the `analyses` argument is omitted, it is equivalent to passing `Tables.columnnames(table)` except that all columns referenced in `groupby` are filtered out.
 
 The variable is passed as a `Symbol`, corresponding to a column in the input data, and must always be specified.
 The other two parts are optional.

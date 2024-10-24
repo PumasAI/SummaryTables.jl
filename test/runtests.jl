@@ -153,8 +153,6 @@ end
         reftest(t, path) = @testset "$path" run_reftest(t, path, func)
 
         @testset "table_one" begin
-            @test_throws MethodError table_one(df)
-
             t = table_one(df, [:value1])
             reftest(t, "references/table_one/one_row")
 
@@ -235,6 +233,12 @@ end
             )
             t = table_one(data, [:value], groupby = [:group1, :group2], group_totals = :group2)
             reftest(t, "references/table_one/missing_as_a_group_factor")
+
+            t = table_one(df)
+            reftest(t, "references/table_one/single_arg")
+
+            t = table_one(df, groupby = :group1)
+            reftest(t, "references/table_one/single_arg_with_groupby")
         end
 
 
