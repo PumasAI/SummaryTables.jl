@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>table_one · SummaryTables.jl</title><meta name="title" content="table_one · SummaryTables.jl"/><meta property="og:title" content="table_one · SummaryTables.jl"/><meta property="twitter:title" content="table_one · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../summarytable/"><code>summarytable</code></a></li><li class="is-active"><a class="tocitem" href><code>table_one</code></a><ul class="internal"><li><a class="tocitem" href="#Synopsis"><span>Synopsis</span></a></li><li><a class="tocitem" href="#Argument-1:-table"><span>Argument 1: <code>table</code></span></a></li><li><a class="tocitem" href="#Argument-2:-analyses"><span>Argument 2: <code>analyses</code></span></a></li><li><a class="tocitem" href="#Keyword:-groupby"><span>Keyword: <code>groupby</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_n"><span>Keyword: <code>show_n</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_total"><span>Keyword: <code>show_total</code></span></a></li><li><a class="tocitem" href="#Keyword:-total_name"><span>Keyword: <code>total_name</code></span></a></li><li><a class="tocitem" href="#Keyword:-group_totals"><span>Keyword: <code>group_totals</code></span></a></li><li><a class="tocitem" href="#Keyword:-sort"><span>Keyword: <code>sort</code></span></a></li></ul></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Predefined Tables</a></li><li class="is-active"><a href><code>table_one</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>table_one</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/predefined_tables/table_one.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="table_one"><a class="docs-heading-anchor" href="#table_one"><code>table_one</code></a><a id="table_one-1"></a><a class="docs-heading-anchor-permalink" href="#table_one" title="Permalink"></a></h1><h2 id="Synopsis"><a class="docs-heading-anchor" href="#Synopsis">Synopsis</a><a id="Synopsis-1"></a><a class="docs-heading-anchor-permalink" href="#Synopsis" title="Permalink"></a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><pre><code class="language-julia hljs">using SummaryTables
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>table_one · SummaryTables.jl</title><meta name="title" content="table_one · SummaryTables.jl"/><meta property="og:title" content="table_one · SummaryTables.jl"/><meta property="twitter:title" content="table_one · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../summarytable/"><code>summarytable</code></a></li><li class="is-active"><a class="tocitem" href><code>table_one</code></a><ul class="internal"><li><a class="tocitem" href="#Synopsis"><span>Synopsis</span></a></li><li><a class="tocitem" href="#Argument-1:-table"><span>Argument 1: <code>table</code></span></a></li><li><a class="tocitem" href="#Optional-argument-2:-analyses"><span>Optional argument 2: <code>analyses</code></span></a></li><li><a class="tocitem" href="#Keyword:-groupby"><span>Keyword: <code>groupby</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_n"><span>Keyword: <code>show_n</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_total"><span>Keyword: <code>show_total</code></span></a></li><li><a class="tocitem" href="#Keyword:-total_name"><span>Keyword: <code>total_name</code></span></a></li><li><a class="tocitem" href="#Keyword:-group_totals"><span>Keyword: <code>group_totals</code></span></a></li><li><a class="tocitem" href="#Keyword:-sort"><span>Keyword: <code>sort</code></span></a></li></ul></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Predefined Tables</a></li><li class="is-active"><a href><code>table_one</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>table_one</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/predefined_tables/table_one.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="table_one"><a class="docs-heading-anchor" href="#table_one"><code>table_one</code></a><a id="table_one-1"></a><a class="docs-heading-anchor-permalink" href="#table_one" title="Permalink"></a></h1><h2 id="Synopsis"><a class="docs-heading-anchor" href="#Synopsis">Synopsis</a><a id="Synopsis-1"></a><a class="docs-heading-anchor-permalink" href="#Synopsis" title="Permalink"></a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><pre><code class="language-julia hljs">using SummaryTables
 using DataFrames
 
 data = DataFrame(
@@ -117,6 +117,116 @@ table_one(
         <td style="text-align:center;">1 (25%)</td>
     </tr>
     <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>You can also omit the second argument as a shortcut when you quickly want to summarize all columns of your dataset. The columns in <code>groupby</code> are excluded automatically:</p><pre><code class="language-julia hljs">table_one(
+    data,
+    groupby = :blood_type,
+)</code></pre><table class="st-8d9cecbc">
+    <style>
+        .st-8d9cecbc {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-8d9cecbc tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-8d9cecbc br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-8d9cecbc sub {
+            line-height: 0;
+        }
+
+        .st-8d9cecbc sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">blood_type</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
+        <td style="text-align:center;">0</td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">sex</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">f</td>
+        <td style="text-align:center;">6 (60%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">3 (75%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">m</td>
+        <td style="text-align:center;">4 (40%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">age</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">45.6 (20.7)</td>
+        <td style="text-align:center;">34.5 (14.8)</td>
+        <td style="text-align:center;">34.2 (7.8)</td>
+        <td style="text-align:center;">62.5 (22.8)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">40.5 [24, 85]</td>
+        <td style="text-align:center;">34.5 [24, 45]</td>
+        <td style="text-align:center;">33 [27, 44]</td>
+        <td style="text-align:center;">65.5 [34, 85]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">smoker</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">false</td>
+        <td style="text-align:center;">6 (60%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+        <td style="text-align:center;">3 (75%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">true</td>
+        <td style="text-align:center;">4 (40%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
 </table><h2 id="Argument-1:-table"><a class="docs-heading-anchor" href="#Argument-1:-table">Argument 1: <code>table</code></a><a id="Argument-1:-table-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-1:-table" title="Permalink"></a></h2><p>The first argument can be any object that is a table compatible with the <code>Tables.jl</code> API. Here are some common examples:</p><h3 id="DataFrame"><a class="docs-heading-anchor" href="#DataFrame"><code>DataFrame</code></a><a id="DataFrame-1"></a><a class="docs-heading-anchor-permalink" href="#DataFrame" title="Permalink"></a></h3><pre><code class="language-julia hljs">using DataFrames
 using SummaryTables
 
@@ -322,7 +432,7 @@ table_one(data, [:x, :y])</code></pre><table class="st-428db522">
         <td style="text-align:center;">1 (33.3%)</td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table><h2 id="Argument-2:-analyses"><a class="docs-heading-anchor" href="#Argument-2:-analyses">Argument 2: <code>analyses</code></a><a id="Argument-2:-analyses-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-2:-analyses" title="Permalink"></a></h2><p>The second argument takes a vector specifying analyses, with one entry for each &quot;row section&quot; of the resulting table. If only one analysis is passed, the vector can be omitted. Each analysis can have up to three parts: the variable, the analysis function and the label.</p><p>The variable is passed as a <code>Symbol</code>, corresponding to a column in the input data, and must always be specified. The other two parts are optional.</p><p>If you specify only variables, the analysis functions are chosen automatically based on the columns, and the labels are equal to the variable names. Number variables show the mean, standard deviation, median, minimum and maximum. String variables or other non-numeric variables show counts and percentages of each element type. </p><pre><code class="language-julia hljs">using SummaryTables
+</table><h2 id="Optional-argument-2:-analyses"><a class="docs-heading-anchor" href="#Optional-argument-2:-analyses">Optional argument 2: <code>analyses</code></a><a id="Optional-argument-2:-analyses-1"></a><a class="docs-heading-anchor-permalink" href="#Optional-argument-2:-analyses" title="Permalink"></a></h2><p>The second argument takes a vector specifying analyses, with one entry for each &quot;row section&quot; of the resulting table. If only one analysis is passed, the vector can be omitted. Each analysis can have up to three parts: the variable, the analysis function and the label.</p><p>For convenience, if the <code>analyses</code> argument is omitted, it is equivalent to passing <code>Tables.columnnames(table)</code> except that all columns referenced in <code>groupby</code> are filtered out.</p><p>The variable is passed as a <code>Symbol</code>, corresponding to a column in the input data, and must always be specified. The other two parts are optional.</p><p>If you specify only variables, the analysis functions are chosen automatically based on the columns, and the labels are equal to the variable names. Number variables show the mean, standard deviation, median, minimum and maximum. String variables or other non-numeric variables show counts and percentages of each element type. </p><pre><code class="language-julia hljs">using SummaryTables
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
@@ -1567,4 +1677,4 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-3fac10fd">
         <td style="text-align:center;">6 [6, 6]</td>
     </tr>
     <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Thursday 24 October 2024 11:31">Thursday 24 October 2024</span>. Using Julia version 1.11.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Thursday 24 October 2024 14:01">Thursday 24 October 2024</span>. Using Julia version 1.11.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
