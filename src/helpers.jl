@@ -79,7 +79,7 @@ function auto_round(number; target_digits::Int)
 end
 
 natural_lt(x::AbstractString, y::AbstractString) = NaturalSort.natural(x, y)
-natural_lt(x, y) = x < y
+natural_lt(x, y) = isless(x, y)
 
 function validate_rowgaps(rowgaps, nrows)
     nrows == 1 && !isempty(rowgaps) && error("No row gaps allowed for a table with one row.")

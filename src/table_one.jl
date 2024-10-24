@@ -431,7 +431,14 @@ function table_one(
                 i_total_group = group_total_indices[ii]
                 i_parent_group = i_total_group - 1
                 next_key = length(df_analyses) == ikey ? nothing : keys(df_analyses)[ikey+1]
-                if next_key === nothing || key[i_parent_group] != next_key[i_parent_group] || ikey == length(df_analyses)
+
+                n_subgroups = count(keys(df_analyses)) do _key
+                    Tuple(_key)[1:i_parent_group] === Tuple(key)[1:i_parent_group]
+                end
+                # if a group has only 1 subgroup, the total would be the same as that one so we skip it
+                n_subgroups == 1 && continue
+
+                if next_key === nothing || key[i_parent_group] !== next_key[i_parent_group] || ikey == length(df_analyses)
                     group_total_col = Cell[]
 
                     for i in 1:i_total_group

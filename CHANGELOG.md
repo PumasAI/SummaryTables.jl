@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fixed issue with using `missing` as a group in `table_one`. This PR also removes redundant group totals if there's just one subgroup to do a total over [#47](https://github.com/PumasAI/SummaryTables.jl/pull/47).
+
 ## 3.0.0 - 2024-09-23
 
 - **Breaking** Footnotes are by default separated with linebreaks now. This can be changed by setting the new `Table` option `linebreak_footnotes = false` [#34](https://github.com/PumasAI/SummaryTables.jl/pull/34).

@@ -227,6 +227,14 @@ end
             )
             t = table_one(data, [:category], groupby = :group)
             reftest(t, "references/table_one/category_with_missing")
+
+            data = (;
+                value = 1:6,
+                group1 = ["A", missing, "A", "B", "B", missing],
+                group2 = ["D", missing, "D", "D", missing, missing],
+            )
+            t = table_one(data, [:value], groupby = [:group1, :group2], group_totals = :group2)
+            reftest(t, "references/table_one/missing_as_a_group_factor")
         end
 
 
