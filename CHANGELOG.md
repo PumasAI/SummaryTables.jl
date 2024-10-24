@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added single-argument method to `table_one` which summarizes all columns in the passed table except those used for grouping [#48](https://github.com/PumasAI/SummaryTables.jl/pull/48).
 - Fixed issue with using `missing` as a group in `table_one`. This PR also removes redundant group totals if there's just one subgroup to do a total over [#47](https://github.com/PumasAI/SummaryTables.jl/pull/47).
 
 ## 3.0.0 - 2024-09-23
