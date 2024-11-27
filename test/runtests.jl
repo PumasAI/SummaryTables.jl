@@ -615,7 +615,7 @@ end
 
         @testset "Character escaping" begin
             cells = [
-                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' ")
+                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' @ `")
             ]
             t = Table(
                 cells,

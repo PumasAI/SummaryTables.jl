@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add extra escape characters to Typst [#54](https://github.com/PumasAI/SummaryTables.jl/pull/54).
+
 ## 3.0.1 - 2024-10-24
 
 - Added single-argument method to `table_one` which summarizes all columns in the passed table except those used for grouping [#48](https://github.com/PumasAI/SummaryTables.jl/pull/48).
