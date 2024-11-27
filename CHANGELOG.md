@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.0.2 - 2024-11-27
+
 - Add extra escape characters to Typst [#54](https://github.com/PumasAI/SummaryTables.jl/pull/54).
 
 ## 3.0.1 - 2024-10-24
