@@ -159,7 +159,7 @@ function _showas(io::IO, ::MIME"text/typst", s::Subscript)
 end
 
 function _str_typst_escaped(io::IO, s::AbstractString)
-    escapable_special_chars = raw"\$#*_"
+    escapable_special_chars = raw"\$#*_<@`"
     a = Iterators.Stateful(s)
     for c in a
         if c in escapable_special_chars
