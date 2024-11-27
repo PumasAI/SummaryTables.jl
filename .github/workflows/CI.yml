@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         version:
-          - '1.7'
+          - 'min'
           - '1'
         os:
           - ubuntu-latest
