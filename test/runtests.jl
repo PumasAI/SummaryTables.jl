@@ -150,7 +150,9 @@ end
     )
 
     @testset for func in [as_html, as_latex, as_docx, as_typst]
-        reftest(t, path) = @testset "$path" run_reftest(t, path, func)
+        reftest(t, path) = @testset "$path" begin
+            run_reftest(t, path, func)
+        end
 
         @testset "table_one" begin
             t = table_one(df, [:value1])
