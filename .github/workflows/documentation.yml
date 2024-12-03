@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-      - uses: julia-actions/setup-julia@9b79636afcfb07ab02c256cede01fe2db6ba808c # v2.6.0
+      - uses: julia-actions/setup-julia@5c9647d97b78a5debe5164e9eec09d653d29bd71 # v2.6.1
         with:
           version: '1'
       - uses: julia-actions/cache@824243901fb567ccb490b0d0e2483ccecde46834 # v2.0.5
