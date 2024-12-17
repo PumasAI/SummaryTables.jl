@@ -36,8 +36,8 @@ struct Summary
     analyses::Vector{SummaryAnalysis}
 end
 
-function Summary(p::Pair{Symbol, <:Vector}, symbols)
-    sym = p[1]
+function Summary(p::Pair{<:Union{Symbol,String}, <:Vector}, symbols)
+    sym = Symbol(p[1])
     summary_index = findfirst(==(sym), symbols)
     if summary_index === nothing
         error("Summary variable :$(sym) is not a grouping variable.")
