@@ -8,6 +8,8 @@ end
 
 Group(s::Symbol) = Group(s, string(s))
 Group(p::Pair{Symbol, <:Any}) = Group(p[1], p[2])
+Group(s::String) = Group(Symbol(s), s)
+Group(p::Pair{String, <:Any}) = Group(Symbol(p[1]), p[2])
 make_groups(v::AbstractVector) = map(Group, v)
 make_groups(x) = [Group(x)]
 
@@ -34,8 +36,8 @@ struct Summary
     analyses::Vector{SummaryAnalysis}
 end
 
-function Summary(p::Pair{Symbol, <:Vector}, symbols)
-    sym = p[1]
+function Summary(p::Pair{<:Union{Symbol,String}, <:Vector}, symbols)
+    sym = Symbol(p[1])
     summary_index = findfirst(==(sym), symbols)
     if summary_index === nothing
         error("Summary variable :$(sym) is not a grouping variable.")
@@ -55,7 +57,9 @@ struct Variable
 end
 
 Variable(s::Symbol) = Variable(s, string(s))
+Variable(s::String) = Variable(Symbol(s), s)
 Variable(p::Pair{Symbol, <:Any}) = Variable(p[1], p[2])
+Variable(p::Pair{String, <:Any}) = Variable(Symbol(p[1]), p[2])
 
 struct ListingTable
     gdf::DataFrames.GroupedDataFrame
@@ -222,7 +226,7 @@ Create a listing table `Table` from `table` which displays raw values from colum
 
 ## Arguments
 - `table`: Data source which must be convertible to a `DataFrames.DataFrame`.
-- `variable`: Determines which variable's raw values are shown. Can either be a `Symbol` such as `:ColumnA`, or alternatively a `Pair` where the second element is the display name, such as `:ColumnA => "Column A"`.
+- `variable`: Determines which variable's raw values are shown. Can either be a `Symbol` or `String` such as `:ColumnA`, or alternatively a `Pair` where the second element is the display name, such as `:ColumnA => "Column A"`.
 - `pagination::Pagination`: If a pagination object is passed, the return type changes to `PaginatedTable`.
   The `Pagination` object may be created with keywords `rows` and/or `cols`.
   These must be set to `Int`s that determine how many group sections along each side are included in one page.
@@ -236,14 +240,14 @@ Create a listing table `Table` from `table` which displays raw values from colum
 
 
 ## Keyword arguments
-- `rows = []`: Grouping structure along the rows. Should be a `Vector` where each element is a grouping variable, specified as a `Symbol` such as `:Column1`, or a `Pair`, where the first element is the symbol and the second a display name, such as `:Column1 => "Column 1"`. Specifying multiple grouping variables creates nested groups, with the last variable changing the fastest.
+- `rows = []`: Grouping structure along the rows. Should be a `Vector` where each element is a grouping variable, specified as a `Symbol` or `String` such as `:Column1`, or a `Pair`, where the first element is the symbol and the second a display name, such as `:Column1 => "Column 1"`. Specifying multiple grouping variables creates nested groups, with the last variable changing the fastest.
 - `cols = []`: Grouping structure along the columns. Follows the same structure as `rows`.
 - `summarize_rows = []`: Specifies functions to summarize `variable` with along the rows.
   Should be a `Vector`, where each entry is one separate summary.
   Each summary can be given as a `Function` such as `mean` or `maximum`, in which case the display name is the function's name.
   Alternatively, a display name can be given using the pair syntax, such as `mean => "Average"`.
   By default, one summary is computed over all groups.
-  You can also pass `Symbol => [...]` where `Symbol` is a grouping column, to compute one summary for each level of that group.
+  You can also pass `name => [...]` where name, either a `Symbol` or `String`, is a grouping column, to compute one summary for each level of that group.
 - `summarize_cols = []`: Specifies functions to summarize `variable` with along the columns. Follows the same structure as `summarize_rows`.
 - `variable_header = true`: Controls if the cell with the name of the summarized `variable` is shown. 
 - `sort = true`: Sort the input table before grouping. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
@@ -725,17 +729,17 @@ Create a summary table `Table` from `table`, which summarizes values from column
 
 ## Arguments
 - `table`: Data source which must be convertible to a `DataFrames.DataFrame`.
-- `variable`: Determines which variable from `table` is summarized. Can either be a `Symbol` such as `:ColumnA`, or alternatively a `Pair` where the second element is the display name, such as `:ColumnA => "Column A"`.
+- `variable`: Determines which variable from `table` is summarized. Can either be a `Symbol` or `String` such as `:ColumnA`, or alternatively a `Pair` where the second element is the display name, such as `:ColumnA => "Column A"`.
 
 ## Keyword arguments
-- `rows = []`: Grouping structure along the rows. Should be a `Vector` where each element is a grouping variable, specified as a `Symbol` such as `:Column1`, or a `Pair`, where the first element is the symbol and the second a display name, such as `:Column1 => "Column 1"`. Specifying multiple grouping variables creates nested groups, with the last variable changing the fastest.
+- `rows = []`: Grouping structure along the rows. Should be a `Vector` where each element is a grouping variable, specified as a `Symbol` or `String` such as `:Column1`, or a `Pair`, where the first element is the symbol and the second a display name, such as `:Column1 => "Column 1"`. Specifying multiple grouping variables creates nested groups, with the last variable changing the fastest.
 - `cols = []`: Grouping structure along the columns. Follows the same structure as `rows`.
 - `summary = []`: Specifies functions to summarize `variable` with.
   Should be a `Vector`, where each entry is one separate summary.
   Each summary can be given as a `Function` such as `mean` or `maximum`, in which case the display name is the function's name.
   Alternatively, a display name can be given using the pair syntax, such as `mean => "Average"`.
   By default, one summary is computed over all groups.
-  You can also pass `Symbol => [...]` where `Symbol` is a grouping column, to compute one summary for each level of that group.
+  You can also pass `name => [...]` where name, either a `Symbol` or `String`, is a grouping column, to compute one summary for each level of that group.
 - `variable_header = true`: Controls if the cell with the name of the summarized `variable` is shown.
 - `sort = true`: Sort the input table before grouping. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
 

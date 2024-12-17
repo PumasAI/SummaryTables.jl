@@ -81,7 +81,7 @@ Each analysis can have up to three parts: the variable, the analysis function an
 
 For convenience, if the `analyses` argument is omitted, it is equivalent to passing `Tables.columnnames(table)` except that all columns referenced in `groupby` are filtered out.
 
-The variable is passed as a `Symbol`, corresponding to a column in the input data, and must always be specified.
+The variable is passed as a `Symbol` or `String`, corresponding to a column in the input data, and must always be specified.
 The other two parts are optional.
 
 If you specify only variables, the analysis functions are chosen automatically based on the columns, and the labels are equal to the variable names.
@@ -237,7 +237,7 @@ table_one(data, :x, groupby = :y, total_name = "Overall")
 
 ## Keyword: `group_totals`
 
-A `Symbol` or `Vector{Symbol}` specifying one or multiple groups for which to add subtotals. All but the topmost group can be chosen here as the topmost group is handled by `show_total` already.
+A `Symbol` or `String`, or a `Vector{Symbol}` or `Vector{String}` specifying one or multiple groups for which to add subtotals. All but the topmost group can be chosen here as the topmost group is handled by `show_total` already.
 
 ```@example
 using SummaryTables

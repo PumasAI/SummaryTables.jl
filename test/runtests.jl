@@ -188,7 +188,7 @@ end
             t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = [:group3], show_n = true)
             reftest(t, "references/table_one/group_totals_three_groups_one_total_level_three")
 
-            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = :group2, show_n = true)
+            t = table_one(df, ["value1", "value2"], groupby = ["group1", "group2", "group3"], group_totals = "group2", show_n = true)
             reftest(t, "references/table_one/group_totals_three_groups_one_total_level_two")
 
             function summarizer(col)
@@ -284,10 +284,10 @@ end
             )
             reftest(t, "references/listingtable/summarize_last_group_rows")
 
-            t = listingtable(df, :value1,
-                rows = [:group1, :group2],
-                cols = [:group3],
-                summarize_rows = :group1 => [mean]
+            t = listingtable(df, "value1",
+                rows = ["group1", "group2"],
+                cols = ["group3"],
+                summarize_rows = "group1" => [mean]
             )
             reftest(t, "references/listingtable/summarize_first_group_rows")
 
@@ -419,7 +419,7 @@ end
             t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std])
             reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries")
 
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std], variable_header = false)
+            t = summarytable(df, "value1", rows = ["group1" => "Group 1", "group2"], cols = ["group3" => "Group 3"], summary = [mean, std], variable_header = false)
             reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries_no_header")  
             
             t = summarytable(df, :value1, summary = [mean, mean])
