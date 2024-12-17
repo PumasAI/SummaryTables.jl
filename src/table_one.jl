@@ -88,7 +88,7 @@ function Analysis(s::Symbol, df::DataFrames.DataFrame)
     Analysis(s, default_analysis(df[!, s]), string(s))
 end
 
-function Analysis(p::Pair{Symbol, <:Any}, df::DataFrames.DataFrame)
+function Analysis(p::Pair{<:Union{Symbol,String}, <:Any}, df::DataFrames.DataFrame)
     sym, rest = p
     Analysis(sym, rest, df)
 end
@@ -112,6 +112,10 @@ end
 function Analysis(sym::Symbol, p::Pair, df::DataFrames.DataFrame)
     funcs, name = p
     Analysis(sym, funcs, name, df)
+end
+
+function Analysis(sym::String, args...)
+    Analysis(Symbol(sym), args...)
 end
 
 make_analyses(v::AbstractVector, df::DataFrame) = map(x -> Analysis(x, df), v)

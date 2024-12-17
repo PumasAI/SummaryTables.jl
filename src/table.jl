@@ -8,6 +8,8 @@ end
 
 Group(s::Symbol) = Group(s, string(s))
 Group(p::Pair{Symbol, <:Any}) = Group(p[1], p[2])
+Group(s::String) = Group(Symbol(s), s)
+Group(p::Pair{String, <:Any}) = Group(Symbol(p[1]), p[2])
 make_groups(v::AbstractVector) = map(Group, v)
 make_groups(x) = [Group(x)]
 
@@ -55,7 +57,9 @@ struct Variable
 end
 
 Variable(s::Symbol) = Variable(s, string(s))
+Variable(s::String) = Variable(Symbol(s), s)
 Variable(p::Pair{Symbol, <:Any}) = Variable(p[1], p[2])
+Variable(p::Pair{String, <:Any}) = Variable(Symbol(p[1]), p[2])
 
 struct ListingTable
     gdf::DataFrames.GroupedDataFrame
