@@ -1,6 +1,6 @@
-<table class="st-1d7f929f">
+<table class="st-34cfc499">
     <style>
-        .st-1d7f929f {
+        .st-34cfc499 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,30 +9,30 @@
             line-height: 1.2em;
         }
 
-        .st-1d7f929f tr td {
+        .st-34cfc499 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-1d7f929f br {
+        .st-34cfc499 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-1d7f929f sub {
+        .st-34cfc499 sub {
             line-height: 0;
         }
 
-        .st-1d7f929f sup {
+        .st-34cfc499 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group3</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -45,11 +45,11 @@
         <td style="font-weight:bold;text-align:left;">group2</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">a</td>
         <td style="text-align:left;">e</td>
         <td style="text-align:center;">1</td>
         <td style="text-align:center;">3</td>
     </tr>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

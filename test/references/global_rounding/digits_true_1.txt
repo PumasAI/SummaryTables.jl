@@ -1,6 +1,6 @@
-<table class="st-de9b531d">
+<table class="st-ff55dbb2">
     <style>
-        .st-de9b531d {
+        .st-ff55dbb2 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,26 +9,26 @@
             line-height: 1.2em;
         }
 
-        .st-de9b531d tr td {
+        .st-ff55dbb2 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-de9b531d br {
+        .st-ff55dbb2 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-de9b531d sub {
+        .st-ff55dbb2 sub {
             line-height: 0;
         }
 
-        .st-de9b531d sup {
+        .st-ff55dbb2 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;">1.4</td>
         <td style="text-align:center;">12352131.0</td>
@@ -41,5 +41,5 @@
         <td style="text-align:center;">1.2 &amp; 0.0</td>
         <td style="text-align:center;">1.2<br>0.0</td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>
