@@ -82,7 +82,7 @@ summarytable(data, :value, cols = :group, summary = [mean, std])
 ## Argument 2: `variable`
 
 The second argument primarily selects the table column whose data should populate the cells of the summary table.
-The column name is specified with a `Symbol`:
+The column name is specified with a `Symbol` or `String`:
 
 ```@example
 using DataFrames
@@ -135,7 +135,7 @@ summarytable(data, :value1 => "Value", cols = :group, summary = [mean, std])
 ## Keyword: `rows`
 
 The `rows` keyword determines the grouping structure along the rows.
-It can either be a `Symbol` specifying a grouping column, a `Pair{Symbol,Any}` where the second element overrides the group's label, or a `Vector` with multiple groups of the aforementioned format.
+It can either be a `Symbol` or `String` specifying a grouping column, a `Pair{Symbol,Any}` or `Pair{String,Any}` where the second element overrides the group's label, or a `Vector` with multiple groups of the aforementioned format.
 
 This example uses a single group with default label.
 
@@ -186,7 +186,7 @@ summarytable(data, :value, rows = [:group1, :group2 => "Group 2"], summary = [me
 ## Keyword: `cols`
 
 The `cols` keyword determines the grouping structure along the columns.
-It can either be a `Symbol` specifying a grouping column, a `Pair{Symbol,Any}` where the second element overrides the group's label, or a `Vector` with multiple groups of the aforementioned format.
+It can either be a `Symbol` or `String` specifying a grouping column, a `Pair{Symbol,Any}` or `Pair{String,Any}` where the second element overrides the group's label, or a `Vector` with multiple groups of the aforementioned format.
 
 This example uses a single group with default label.
 

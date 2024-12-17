@@ -230,7 +230,7 @@ can be stratified by one, or more, variables using the `groupby` keyword.
   - `tests`: A `NamedTuple` of hypothesis test types to use for `categorical`, `nonnormal`, `minmax`, and `normal` variables.
   - `combine`: An object from `MultipleTesting` to use when combining p-values.
   - `show_total`: Display the total column summary. Default is `true`.
-  - `group_totals`: A group `Symbol` or vector of symbols specifying for which group levels totals should be added. Any group levels but the topmost can be chosen (the topmost being already handled by the `show_total` option). Default is `Symbol[]`.
+  - `group_totals`: A group `Symbol` or `String` or vector of symbols/strings specifying for which group levels totals should be added. Any group levels but the topmost can be chosen (the topmost being already handled by the `show_total` option). Default is `Symbol[]`.
   - `total_name`: The name for all total columns. Default is `"Total"`.
   - `show_n`: Display the number of rows for each group key next to its label.
   - `show_pvalues`: Display the `P-Value` column. Default is `false`.
@@ -296,8 +296,9 @@ function table_one(
 
     groupsymbols = [g.symbol for g in groups]
 
-    _group_totals(a::AbstractVector{Symbol}) = collect(a)
+    _group_totals(a::AbstractVector{<:Union{String,Symbol}}) = Symbol.(a)
     _group_totals(s::Symbol) = [s]
+    _group_totals(s::String) = [Symbol(s)]
     group_totals = _group_totals(group_totals) 
     if !isempty(groupsymbols) && first(groupsymbols) in group_totals
         throw(ArgumentError("Cannot show totals for topmost group $(repr(first(groupsymbols))) as it would be equivalent to the `show_total` option. Grouping is $groupsymbols"))
