@@ -1,6 +1,6 @@
-<table class="st-6fcca3db">
+<table class="st-cc2ef13d">
     <style>
-        .st-6fcca3db {
+        .st-cc2ef13d {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,26 +9,26 @@
             line-height: 1.2em;
         }
 
-        .st-6fcca3db tr td {
+        .st-cc2ef13d tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-6fcca3db br {
+        .st-cc2ef13d br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-6fcca3db sub {
+        .st-cc2ef13d sub {
             line-height: 0;
         }
 
-        .st-6fcca3db sup {
+        .st-cc2ef13d sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
         <td style="font-weight:bold;text-align:center;">group1</td>
@@ -49,7 +49,7 @@
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="2" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">c</td>
         <td style="text-align:center;">2</td>
     </tr>
@@ -57,5 +57,5 @@
         <td style="text-align:left;">d</td>
         <td style="text-align:center;">4</td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

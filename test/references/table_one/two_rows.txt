@@ -1,6 +1,6 @@
-<table class="st-5c6a7387">
+<table class="st-c7d545d7">
     <style>
-        .st-5c6a7387 {
+        .st-c7d545d7 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,31 +9,31 @@
             line-height: 1.2em;
         }
 
-        .st-5c6a7387 tr td {
+        .st-c7d545d7 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-5c6a7387 br {
+        .st-c7d545d7 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-5c6a7387 sub {
+        .st-c7d545d7 sub {
             line-height: 0;
         }
 
-        .st-5c6a7387 sup {
+        .st-c7d545d7 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
         <td style="font-weight:bold;text-align:center;">Total</td>
     </tr>
-        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="2" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">value1</td>
         <td style="text-align:center;"></td>
     </tr>
@@ -61,5 +61,5 @@
         <td style="padding-left:12.0pt;text-align:left;">c</td>
         <td style="text-align:center;">2 (25%)</td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

@@ -1,6 +1,6 @@
-<table class="st-fd5d5fac">
+<table class="st-4b106b12">
     <style>
-        .st-fd5d5fac {
+        .st-4b106b12 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,26 +9,26 @@
             line-height: 1.2em;
         }
 
-        .st-fd5d5fac tr td {
+        .st-4b106b12 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-fd5d5fac br {
+        .st-4b106b12 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-fd5d5fac sub {
+        .st-4b106b12 sub {
             line-height: 0;
         }
 
-        .st-fd5d5fac sup {
+        .st-4b106b12 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="padding-bottom: 2.0pt;text-align:center;">1, 1</td>
         <td style="padding-right:2.0pt;padding-bottom: 2.0pt;text-align:center;">1, 2</td>
@@ -53,5 +53,5 @@
         <td style="padding-left:2.0pt;padding-right:4.0pt;text-align:center;">4, 3</td>
         <td style="padding-left:4.0pt;text-align:center;">4, 4</td>
     </tr>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

@@ -1,6 +1,6 @@
-<table class="st-0d1e8685">
+<table class="st-6a23e29c">
     <style>
-        .st-0d1e8685 {
+        .st-6a23e29c {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,26 +9,26 @@
             line-height: 1.2em;
         }
 
-        .st-0d1e8685 tr td {
+        .st-6a23e29c tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-0d1e8685 br {
+        .st-6a23e29c br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-0d1e8685 sub {
+        .st-6a23e29c sub {
             line-height: 0;
         }
 
-        .st-0d1e8685 sup {
+        .st-6a23e29c sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td colspan="2" style="text-align:center;">A<br>B</td>
     </tr>
@@ -44,6 +44,6 @@
     <tr>
         <td colspan="2" style="text-align:center;">Label<sup>1</sup></td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Annotation</td></tr>
 </table>

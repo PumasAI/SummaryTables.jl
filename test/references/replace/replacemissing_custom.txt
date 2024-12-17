@@ -1,6 +1,6 @@
-<table class="st-0bfeea06">
+<table class="st-04498283">
     <style>
-        .st-0bfeea06 {
+        .st-04498283 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -9,26 +9,26 @@
             line-height: 1.2em;
         }
 
-        .st-0bfeea06 tr td {
+        .st-04498283 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
         }
 
-        .st-0bfeea06 br {
+        .st-04498283 br {
             line-height: 0em;
             margin: 0;
         }
 
-        .st-0bfeea06 sub {
+        .st-04498283 sub {
             line-height: 0;
         }
 
-        .st-0bfeea06 sup {
+        .st-04498283 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;">???</td>
         <td style="text-align:center;"></td>
@@ -37,5 +37,5 @@
         <td style="text-align:center;">1</td>
         <td style="text-align:center;">2</td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>
