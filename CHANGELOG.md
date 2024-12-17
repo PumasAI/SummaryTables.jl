@@ -2,9 +2,11 @@
 
 ## Unreleased
 
+- Made HTML tables dark mode compatible by reusing foreground color for the lines [#62](https://github.com/PumasAI/SummaryTables.jl/pull/62).
+
 ## 3.0.2 - 2024-11-27
 
-- Add extra escape characters to Typst [#54](https://github.com/PumasAI/SummaryTables.jl/pull/54).
+- Added extra escape characters to Typst [#54](https://github.com/PumasAI/SummaryTables.jl/pull/54).
 
 ## 3.0.1 - 2024-10-24
 
