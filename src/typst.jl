@@ -1,4 +1,4 @@
-Base.show(io::IO, M::MIME"QuartoNotebookRunner/typst", t::Table) = show(io, MIME"text/typst"(), t)
+Base.show(io::IO, ::MIME"QuartoNotebookRunner/typst", t::Table) = show(io, MIME"text/typst"(), t)
 
 function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     ct = postprocess(ct)

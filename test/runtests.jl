@@ -747,5 +747,6 @@ end
 
 @testset "QuartoNotebookRunner/typst" begin
     t = table_one((; a = 1:3, b = ["A", "B", "C"]))
-    @test repr("QuartoNotebookRunner/typst", t) == repr("text/typst", t)
+    qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
+    @test qnr == repr("text/typst", t)
 end
