@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added `show` method for `MIME"QuartoNotebookRunner/typst"` to support typst directly in the native quarto julia engine [#69](https://github.com/PumasAI/SummaryTables.jl/pull/69).
 - Allowed `String`s as column identifiers in addition to `Symbol`s [#63](https://github.com/PumasAI/SummaryTables.jl/pull/63).
 - Made HTML tables dark mode compatible by reusing foreground color for the lines [#62](https://github.com/PumasAI/SummaryTables.jl/pull/62).
 
