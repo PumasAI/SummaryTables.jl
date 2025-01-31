@@ -744,3 +744,8 @@ end
     @test str(RF(x, 3, :sigdigits, false)) == "1.23e7"
     @test str(RF(x, 3, :digits, false)) == "12345678.91"
 end
+
+@testset "QuartoNotebookRunner/typst" begin
+    t = table_one((; a = 1:3, b = ["A", "B", "C"]))
+    @test repr("QuartoNotebookRunner/typst", t) == repr("text/typst", t)
+end
