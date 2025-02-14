@@ -36,16 +36,16 @@ export Subscript
 
 const DEFAULT_ROWGAP = 6.0
 
-include("cells.jl")
-include("special_cell_values.jl")
-include("tables.jl")
+include("infrastructure/cells.jl")
+include("infrastructure/special_cell_values.jl")
+include("infrastructure/tables.jl")
 include("table_functions/table_one.jl")
 include("table_functions/listingtable.jl")
 include("table_functions/summarytable.jl")
-include("helpers.jl")
-include("latex.jl")
-include("html.jl")
-include("docx.jl")
-include("typst.jl")
+include("renderers/utils.jl")
+include("renderers/latex.jl")
+include("renderers/html.jl")
+include("renderers/docx.jl")
+include("renderers/typst.jl")
 
 end # module
