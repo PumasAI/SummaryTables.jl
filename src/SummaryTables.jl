@@ -37,6 +37,7 @@ export Subscript
 const DEFAULT_ROWGAP = 6.0
 
 include("cells.jl")
+include("tables.jl")
 include("table_one.jl")
 include("listingtable.jl")
 include("summarytable.jl")
