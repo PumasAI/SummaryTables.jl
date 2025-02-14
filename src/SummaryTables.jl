@@ -38,7 +38,8 @@ const DEFAULT_ROWGAP = 6.0
 
 include("cells.jl")
 include("table_one.jl")
-include("table.jl")
+include("listingtable.jl")
+include("summarytable.jl")
 include("helpers.jl")
 include("latex.jl")
 include("html.jl")
