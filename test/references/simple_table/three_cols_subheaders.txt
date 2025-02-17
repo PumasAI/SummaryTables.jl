@@ -1,0 +1,83 @@
+<table class="st-055730bf">
+    <style>
+        .st-055730bf {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-055730bf tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-055730bf br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-055730bf sub {
+            line-height: 0;
+        }
+
+        .st-055730bf sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:center;">value1</td>
+        <td style="font-weight:bold;text-align:center;">group3</td>
+        <td style="font-weight:bold;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="font-style:italic;text-align:center;">Sub1</td>
+        <td style="font-style:italic;text-align:center;">Sub2</td>
+        <td style="font-style:italic;text-align:center;">Sub3</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">a</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">a</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">a</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">a</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">c</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table>
