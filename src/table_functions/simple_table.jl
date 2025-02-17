@@ -1,0 +1,45 @@
+function simple_table(table, columnnames = nothing; halign = :center, subheaders = nothing, kwargs...)
+    coltable = Tables.columntable(table)
+
+    _colsymbol(s::Symbol) = s
+    _colsymbol(s::AbstractString) = Symbol(s)
+    _colsymbol(p::Pair) = Symbol(p[1])
+
+    _colname(p::Pair) = p[2]
+    _colname(s::Union{Symbol,AbstractString}) = string(s)
+
+    _colsymbols(::Nothing)::Vector{Symbol} = collect(keys(coltable))
+    _colsymbols(v::AbstractVector)::Vector{Symbol} = map(_colsymbol, v)
+
+    _colnames(::Nothing) = _colnames(_colsymbols(nothing))
+    _colnames(v::AbstractVector) = map(_colname, v)
+
+    colsymbols = _colsymbols(columnnames)
+    colnames = _colnames(columnnames)
+
+    coltable = coltable[colsymbols]
+    ncols = length(coltable)
+
+    _assert_length(vec, kind) = length(vec) == ncols || error("Mismatched length of $kind: Table has $ncols columns and $kind has $(length(vec)) entries")
+
+    _haligns(s::Symbol)::Vector{Symbol} = fill(s, length(coltable))
+    _haligns(ss::AbstractVector{Symbol})::Vector{Symbol} = ss
+    haligns = _haligns(halign)
+    _assert_length(haligns, "halign")
+
+    header = [Cell(colname, bold = true, halign = haligns[i]) for (i, colname) in enumerate(colnames)]
+    body = reduce(hcat, [Cell.(col; halign = haligns[i]) for (i, col) in enumerate(values(coltable))])
+
+    _subheader(::Nothing) = nothing
+    _subheader(v::AbstractVector) = [Cell(x; italic = true, halign = haligns[i]) for (i, x) in enumerate(v)]
+    subheader = _subheader(subheaders)
+    subheader !== nothing && _assert_length(subheader, "subheaders")
+
+    cells = if subheader !== nothing
+        [header'; subheader'; body]
+    else
+        [header'; body]
+    end
+
+    table = Table(cells; header = subheader === nothing ? 1 : 2, kwargs...)
+end

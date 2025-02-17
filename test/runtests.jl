@@ -436,6 +436,29 @@ end
             reftest(t, "references/summarytable/missing_groups")
         end
 
+        @testset "simple table" begin
+            t = simple_table(df)
+            reftest(t, "references/simple_table/no_args")
+
+            t = simple_table(df, [:value1, :group3, :group1])
+            reftest(t, "references/simple_table/three_cols")
+
+            t = simple_table(df, [:value1, :group3, :group1]; halign = :left)
+            reftest(t, "references/simple_table/three_cols_halign_left")
+
+            t = simple_table(df, [:value1, :group3, :group1]; halign = [:left, :center, :right])
+            reftest(t, "references/simple_table/three_cols_halign_left_center_right")
+
+            t = simple_table(df, [:value1, :group3, :group1]; subheaders = ["Sub1", "Sub2", "Sub3"])
+            reftest(t, "references/simple_table/three_cols_subheaders")
+            
+            t = simple_table(df, [:value1, :group3, :group1]; halign = [:left, :center, :right], subheaders = ["Sub1", "Sub2", "Sub3"])
+            reftest(t, "references/simple_table/three_cols_subheaders_and_haligns")
+
+            t = simple_table(df, ["value1", :group3 => "Group 3", :group1 => Annotated("Group 1", "is annotated")])
+            reftest(t, "references/simple_table/three_cols_with_names")
+        end
+
         @testset "annotations" begin
             t = Table(
                 [
