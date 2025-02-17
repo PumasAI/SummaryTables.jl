@@ -22,7 +22,12 @@ Create a simple `Table` displaying (a subset of) the raw columns from a `table`.
   knows how to render, with as many entries as there are columns to display.
 """
 function simple_table(table, columns = nothing; halign = :center, subheaders = nothing, kwargs...)
-    coltable = Tables.columntable(table)
+    df = DataFrames.DataFrame(table)
+    return _simple_table(df, columns; halign, subheaders, kwargs...)
+end
+
+function _simple_table(table::DataFrames.DataFrame, columns; halign, subheaders, kwargs...)
+    df = DataFrames.DataFrame(table)
 
     _colsymbol(s::Symbol) = s
     _colsymbol(s::AbstractString) = Symbol(s)
@@ -31,7 +36,7 @@ function simple_table(table, columns = nothing; halign = :center, subheaders = n
     _colname(p::Pair) = p[2]
     _colname(s::Union{Symbol,AbstractString}) = string(s)
 
-    _colsymbols(::Nothing)::Vector{Symbol} = collect(keys(coltable))
+    _colsymbols(::Nothing)::Vector{Symbol} = propertynames(df)
     _colsymbols(v::AbstractVector)::Vector{Symbol} = map(_colsymbol, v)
 
     _colnames(::Nothing) = _colnames(_colsymbols(nothing))
@@ -40,18 +45,18 @@ function simple_table(table, columns = nothing; halign = :center, subheaders = n
     colsymbols = _colsymbols(columns)
     colnames = _colnames(columns)
 
-    coltable = coltable[colsymbols]
-    ncols = length(coltable)
+    df = select(df, colsymbols)
+    ncols = DataFrames.ncol(df)
 
     _assert_length(vec, kind) = length(vec) == ncols || error("Mismatched length of $kind: Table has $ncols columns and $kind has $(length(vec)) entries")
 
-    _haligns(s::Symbol)::Vector{Symbol} = fill(s, length(coltable))
+    _haligns(s::Symbol)::Vector{Symbol} = fill(s, ncols)
     _haligns(ss::AbstractVector{Symbol})::Vector{Symbol} = ss
     haligns = _haligns(halign)
     _assert_length(haligns, "halign")
 
     header = [Cell(colname, bold = true, halign = haligns[i]) for (i, colname) in enumerate(colnames)]
-    body = reduce(hcat, [Cell.(col; halign = haligns[i]) for (i, col) in enumerate(values(coltable))])
+    body = reduce(hcat, [Cell.(col; halign = haligns[i]) for (i, col) in enumerate(eachcol(df))])
 
     _subheader(::Nothing) = nothing
     _subheader(v::AbstractVector) = [Cell(x; italic = true, halign = haligns[i]) for (i, x) in enumerate(v)]
