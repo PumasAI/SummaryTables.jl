@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{ccc}}
+\toprule
+\textbf{value1} & \textbf{Group 3} & \textbf{Group 1\tnote{1}} \\
+\midrule
+1 & c & a \\
+2 & c & a \\
+3 & d & a \\
+4 & d & a \\
+5 & c & b \\
+6 & c & b \\
+7 & d & b \\
+8 & d & b \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[1]is annotated
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

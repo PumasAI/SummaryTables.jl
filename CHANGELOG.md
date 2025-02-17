@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `simple_table` function for the display of raw tabular data [#76](https://github.com/PumasAI/SummaryTables.jl/pull/76).
+
 ## 3.0.3 - 2025-01-31
 
 - Added `show` method for `MIME"QuartoNotebookRunner/typst"` to support typst directly in the native quarto julia engine [#69](https://github.com/PumasAI/SummaryTables.jl/pull/69).
