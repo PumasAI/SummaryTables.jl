@@ -8,6 +8,7 @@ on:
       - master
     tags:
       - '*'
+  workflow_dispatch:
 concurrency:
   # Skip intermediate builds: all builds except for builds on the `master` branch
   # Cancel intermediate builds: only pull request builds
