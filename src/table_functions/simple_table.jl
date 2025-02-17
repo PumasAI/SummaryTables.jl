@@ -1,4 +1,27 @@
-function simple_table(table, columnnames = nothing; halign = :center, subheaders = nothing, kwargs...)
+"""
+    simple_table(table, [columns];
+        halign = :center,
+        subheaders = nothing,
+        table_kwargs...
+    )
+
+Create a simple `Table` displaying (a subset of) the raw columns from a `table`.
+
+## Arguments
+- `table`: A Tables.jl compatible data source
+- `columns`: A vector of column names to select from the table, with optional display names attached.
+  A column name can be either a `Symbol` or a `String`. A different display name can be passed in using
+  the `Pair` syntax where the display name can be any object SummaryTables
+  knows how to render, for example `[:a, :b => "B", "c"]`.
+
+## Keyword arguments
+
+- `halign = :center`: Either `:left`, `:right`, `:center` or a vector of these values with as many entries as
+  there are columns to display.
+- `subheaders = nothing`: To show subheaders, pass a vector of objects SummaryTables
+  knows how to render, with as many entries as there are columns to display.
+"""
+function simple_table(table, columns = nothing; halign = :center, subheaders = nothing, kwargs...)
     coltable = Tables.columntable(table)
 
     _colsymbol(s::Symbol) = s
@@ -14,8 +37,8 @@ function simple_table(table, columnnames = nothing; halign = :center, subheaders
     _colnames(::Nothing) = _colnames(_colsymbols(nothing))
     _colnames(v::AbstractVector) = map(_colname, v)
 
-    colsymbols = _colsymbols(columnnames)
-    colnames = _colnames(columnnames)
+    colsymbols = _colsymbols(columns)
+    colnames = _colnames(columns)
 
     coltable = coltable[colsymbols]
     ncols = length(coltable)
