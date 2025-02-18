@@ -14,9 +14,9 @@ table_one(
     [:age =&gt; &quot;Age (years)&quot;, :blood_type =&gt; &quot;Blood type&quot;, :smoker =&gt; &quot;Smoker&quot;],
     groupby = :sex =&gt; &quot;Sex&quot;,
     show_n = true
-)</code></pre><table class="st-3cff6f03">
+)</code></pre><table id="st-a474b6d8">
     <style>
-        .st-3cff6f03 {
+        #st-a474b6d8 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -24,23 +24,24 @@ table_one(
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-3cff6f03 tr td {
+        #st-a474b6d8 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-a474b6d8 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-3cff6f03 br {
+        #st-a474b6d8 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-3cff6f03 sub {
+        #st-a474b6d8 sub {
             line-height: 0;
         }
-
-        .st-3cff6f03 sup {
+        #st-a474b6d8 sup {
             line-height: 0;
         }
     </style>
@@ -120,9 +121,9 @@ table_one(
 </table><p>You can also omit the second argument as a shortcut when you quickly want to summarize all columns of your dataset. The columns in <code>groupby</code> are excluded automatically:</p><pre><code class="language-julia hljs">table_one(
     data,
     groupby = :blood_type,
-)</code></pre><table class="st-362db17e">
+)</code></pre><table id="st-75b8bef6">
     <style>
-        .st-362db17e {
+        #st-75b8bef6 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -130,23 +131,24 @@ table_one(
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-362db17e tr td {
+        #st-75b8bef6 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-75b8bef6 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-362db17e br {
+        #st-75b8bef6 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-362db17e sub {
+        #st-75b8bef6 sub {
             line-height: 0;
         }
-
-        .st-362db17e sup {
+        #st-75b8bef6 sup {
             line-height: 0;
         }
     </style>
@@ -232,9 +234,9 @@ using SummaryTables
 
 data = DataFrame(x = [1, 2, 3], y = [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;])
 
-table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
+table_one(data, [:x, :y])</code></pre><table id="st-9a105d33">
     <style>
-        .st-6f877722 {
+        #st-9a105d33 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -242,23 +244,24 @@ table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-6f877722 tr td {
+        #st-9a105d33 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-9a105d33 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-6f877722 br {
+        #st-9a105d33 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-6f877722 sub {
+        #st-9a105d33 sub {
             line-height: 0;
         }
-
-        .st-6f877722 sup {
+        #st-9a105d33 sup {
             line-height: 0;
         }
     </style>
@@ -300,9 +303,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
 
 data = (; x = [1, 2, 3], y = [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;])
 
-table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
+table_one(data, [:x, :y])</code></pre><table id="st-9a105d33">
     <style>
-        .st-6f877722 {
+        #st-9a105d33 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -310,23 +313,24 @@ table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-6f877722 tr td {
+        #st-9a105d33 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-9a105d33 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-6f877722 br {
+        #st-9a105d33 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-6f877722 sub {
+        #st-9a105d33 sub {
             line-height: 0;
         }
-
-        .st-6f877722 sup {
+        #st-9a105d33 sup {
             line-height: 0;
         }
     </style>
@@ -368,9 +372,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
 
 data = [(; x = 1, y = &quot;4&quot;), (; x = 2, y = &quot;5&quot;), (; x = 3, y = &quot;6&quot;)]
 
-table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
+table_one(data, [:x, :y])</code></pre><table id="st-9a105d33">
     <style>
-        .st-6f877722 {
+        #st-9a105d33 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -378,23 +382,24 @@ table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-6f877722 tr td {
+        #st-9a105d33 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-9a105d33 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-6f877722 br {
+        #st-9a105d33 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-6f877722 sub {
+        #st-9a105d33 sub {
             line-height: 0;
         }
-
-        .st-6f877722 sup {
+        #st-9a105d33 sup {
             line-height: 0;
         }
     </style>
@@ -436,9 +441,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-6f877722">
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
-table_one(data, [:x, :y])</code></pre><table class="st-4f4f7967">
+table_one(data, [:x, :y])</code></pre><table id="st-9347fe93">
     <style>
-        .st-4f4f7967 {
+        #st-9347fe93 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -446,23 +451,24 @@ table_one(data, [:x, :y])</code></pre><table class="st-4f4f7967">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-4f4f7967 tr td {
+        #st-9347fe93 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-9347fe93 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-4f4f7967 br {
+        #st-9347fe93 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-4f4f7967 sub {
+        #st-9347fe93 sub {
             line-height: 0;
         }
-
-        .st-4f4f7967 sup {
+        #st-9347fe93 sup {
             line-height: 0;
         }
     </style>
@@ -500,9 +506,9 @@ table_one(data, [:x, :y])</code></pre><table class="st-4f4f7967">
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
-table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class="st-4a9dc4b8">
+table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table id="st-1526b196">
     <style>
-        .st-4a9dc4b8 {
+        #st-1526b196 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -510,23 +516,24 @@ table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class=
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-4a9dc4b8 tr td {
+        #st-1526b196 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-1526b196 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-4a9dc4b8 br {
+        #st-1526b196 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-4a9dc4b8 sub {
+        #st-1526b196 sub {
             line-height: 0;
         }
-
-        .st-4a9dc4b8 sup {
+        #st-1526b196 sup {
             line-height: 0;
         }
     </style>
@@ -564,9 +571,9 @@ table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class=
 
 data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
 
-table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscript&quot;)), :y])</code></pre><table class="st-a019a4e6">
+table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscript&quot;)), :y])</code></pre><table id="st-59b11075">
     <style>
-        .st-a019a4e6 {
+        #st-59b11075 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -574,23 +581,24 @@ table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscri
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-a019a4e6 tr td {
+        #st-59b11075 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-59b11075 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-a019a4e6 br {
+        #st-59b11075 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-a019a4e6 sub {
+        #st-59b11075 sub {
             line-height: 0;
         }
-
-        .st-a019a4e6 sup {
+        #st-59b11075 sup {
             line-height: 0;
         }
     </style>
@@ -637,9 +645,9 @@ function custom_analysis(column)
     )
 end
 
-table_one(data, :x =&gt; custom_analysis)</code></pre><table class="st-74773776">
+table_one(data, :x =&gt; custom_analysis)</code></pre><table id="st-ab9be0c2">
     <style>
-        .st-74773776 {
+        #st-ab9be0c2 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -647,23 +655,24 @@ table_one(data, :x =&gt; custom_analysis)</code></pre><table class="st-74773776"
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-74773776 tr td {
+        #st-ab9be0c2 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-ab9be0c2 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-74773776 br {
+        #st-ab9be0c2 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-74773776 sub {
+        #st-ab9be0c2 sub {
             line-height: 0;
         }
-
-        .st-74773776 sup {
+        #st-ab9be0c2 sup {
             line-height: 0;
         }
     </style>
@@ -702,9 +711,9 @@ function custom_analysis(column)
     )
 end
 
-table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></pre><table class="st-b71ed51d">
+table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></pre><table id="st-b5c54e75">
     <style>
-        .st-b71ed51d {
+        #st-b5c54e75 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -712,23 +721,24 @@ table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></p
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-b71ed51d tr td {
+        #st-b5c54e75 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-b5c54e75 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-b71ed51d br {
+        #st-b5c54e75 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-b71ed51d sub {
+        #st-b5c54e75 sub {
             line-height: 0;
         }
-
-        .st-b71ed51d sup {
+        #st-b5c54e75 sup {
             line-height: 0;
         }
     </style>
@@ -758,9 +768,9 @@ table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></p
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y)</code></pre><table class="st-c2b80a50">
+table_one(data, :x, groupby = :y)</code></pre><table id="st-c7102845">
     <style>
-        .st-c2b80a50 {
+        #st-c7102845 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -768,23 +778,24 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-c2b80a50">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-c2b80a50 tr td {
+        #st-c7102845 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-c7102845 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-c2b80a50 br {
+        #st-c7102845 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-c2b80a50 sub {
+        #st-c7102845 sub {
             line-height: 0;
         }
-
-        .st-c2b80a50 sup {
+        #st-c7102845 sup {
             line-height: 0;
         }
     </style>
@@ -823,9 +834,9 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-c2b80a50">
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table class="st-e6de58f0">
+table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table id="st-a61be9d1">
     <style>
-        .st-e6de58f0 {
+        #st-a61be9d1 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -833,23 +844,24 @@ table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table 
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-e6de58f0 tr td {
+        #st-a61be9d1 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-a61be9d1 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-e6de58f0 br {
+        #st-a61be9d1 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-e6de58f0 sub {
+        #st-a61be9d1 sub {
             line-height: 0;
         }
-
-        .st-e6de58f0 sup {
+        #st-a61be9d1 sup {
             line-height: 0;
         }
     </style>
@@ -892,9 +904,9 @@ data = (;
     z = [&quot;d&quot;, &quot;e&quot;, &quot;d&quot;, &quot;e&quot;, &quot;d&quot;, &quot;e&quot;],
 )
 
-table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><table class="st-75a13e46">
+table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><table id="st-03f4650c">
     <style>
-        .st-75a13e46 {
+        #st-03f4650c {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -902,23 +914,24 @@ table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-75a13e46 tr td {
+        #st-03f4650c tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-03f4650c tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-75a13e46 br {
+        #st-03f4650c br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-75a13e46 sub {
+        #st-03f4650c sub {
             line-height: 0;
         }
-
-        .st-75a13e46 sup {
+        #st-03f4650c sup {
             line-height: 0;
         }
     </style>
@@ -987,9 +1000,9 @@ table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-f5196cec">
+table_one(data, :x, groupby = :y, show_n = true)</code></pre><table id="st-24c474d6">
     <style>
-        .st-f5196cec {
+        #st-24c474d6 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -997,23 +1010,24 @@ table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-f5
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-f5196cec tr td {
+        #st-24c474d6 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-24c474d6 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-f5196cec br {
+        #st-24c474d6 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-f5196cec sub {
+        #st-24c474d6 sub {
             line-height: 0;
         }
-
-        .st-f5196cec sup {
+        #st-24c474d6 sup {
             line-height: 0;
         }
     </style>
@@ -1052,9 +1066,9 @@ table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-f5
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y, show_total = false)</code></pre><table class="st-f2b67efe">
+table_one(data, :x, groupby = :y, show_total = false)</code></pre><table id="st-eb546866">
     <style>
-        .st-f2b67efe {
+        #st-eb546866 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1062,23 +1076,24 @@ table_one(data, :x, groupby = :y, show_total = false)</code></pre><table class="
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-f2b67efe tr td {
+        #st-eb546866 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-eb546866 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-f2b67efe br {
+        #st-eb546866 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-f2b67efe sub {
+        #st-eb546866 sub {
             line-height: 0;
         }
-
-        .st-f2b67efe sup {
+        #st-eb546866 sup {
             line-height: 0;
         }
     </style>
@@ -1112,9 +1127,9 @@ table_one(data, :x, groupby = :y, show_total = false)</code></pre><table class="
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
 
-table_one(data, :x, groupby = :y, total_name = &quot;Overall&quot;)</code></pre><table class="st-d9f62eaf">
+table_one(data, :x, groupby = :y, total_name = &quot;Overall&quot;)</code></pre><table id="st-baf5bc83">
     <style>
-        .st-d9f62eaf {
+        #st-baf5bc83 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1122,23 +1137,24 @@ table_one(data, :x, groupby = :y, total_name = &quot;Overall&quot;)</code></pre>
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d9f62eaf tr td {
+        #st-baf5bc83 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-baf5bc83 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d9f62eaf br {
+        #st-baf5bc83 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d9f62eaf sub {
+        #st-baf5bc83 sub {
             line-height: 0;
         }
-
-        .st-d9f62eaf sup {
+        #st-baf5bc83 sup {
             line-height: 0;
         }
     </style>
@@ -1177,9 +1193,9 @@ table_one(data, :x, groupby = :y, total_name = &quot;Overall&quot;)</code></pre>
 
 data = (; x = 1:12, y = repeat([&quot;a&quot;, &quot;b&quot;], 6), z = repeat([&quot;c&quot;, &quot;d&quot;], inner = 6))
 
-table_one(data, :x, groupby = [:y, :z], group_totals = :z)</code></pre><table class="st-023cc0ba">
+table_one(data, :x, groupby = [:y, :z], group_totals = :z)</code></pre><table id="st-ba62f105">
     <style>
-        .st-023cc0ba {
+        #st-ba62f105 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1187,23 +1203,24 @@ table_one(data, :x, groupby = [:y, :z], group_totals = :z)</code></pre><table cl
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-023cc0ba tr td {
+        #st-ba62f105 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-ba62f105 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-023cc0ba br {
+        #st-ba62f105 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-023cc0ba sub {
+        #st-ba62f105 sub {
             line-height: 0;
         }
-
-        .st-023cc0ba sup {
+        #st-ba62f105 sup {
             line-height: 0;
         }
     </style>
@@ -1270,9 +1287,9 @@ table_one(data, :x, groupby = [:y, :z], group_totals = :z)</code></pre><table cl
 
 data = (; x = 1:12, y = repeat([&quot;a&quot;, &quot;b&quot;], 6), z = repeat([&quot;c&quot;, &quot;d&quot;], inner = 6), q = repeat([&quot;e&quot;], 12))
 
-table_one(data, :x, groupby = [:q, :y, :z], group_totals = [:y, :z])</code></pre><table class="st-d57163ac">
+table_one(data, :x, groupby = [:q, :y, :z], group_totals = [:y, :z])</code></pre><table id="st-08daff40">
     <style>
-        .st-d57163ac {
+        #st-08daff40 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1280,23 +1297,24 @@ table_one(data, :x, groupby = [:q, :y, :z], group_totals = [:y, :z])</code></pre
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d57163ac tr td {
+        #st-08daff40 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-08daff40 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d57163ac br {
+        #st-08daff40 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d57163ac sub {
+        #st-08daff40 sub {
             line-height: 0;
         }
-
-        .st-d57163ac sup {
+        #st-08daff40 sup {
             line-height: 0;
         }
     </style>
@@ -1379,9 +1397,9 @@ table_one(data, :x, groupby = [:q, :y, :z], group_totals = [:y, :z])</code></pre
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;uno&quot;, &quot;uno&quot;, &quot;dos&quot;, &quot;dos&quot;, &quot;tres&quot;, &quot;tres&quot;])
 
-table_one(data, :x, groupby = :y)</code></pre><table class="st-9e6f5ce1">
+table_one(data, :x, groupby = :y)</code></pre><table id="st-98a0445a">
     <style>
-        .st-9e6f5ce1 {
+        #st-98a0445a {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1389,23 +1407,24 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-9e6f5ce1">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-9e6f5ce1 tr td {
+        #st-98a0445a tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-98a0445a tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-9e6f5ce1 br {
+        #st-98a0445a br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-9e6f5ce1 sub {
+        #st-98a0445a sub {
             line-height: 0;
         }
-
-        .st-9e6f5ce1 sup {
+        #st-98a0445a sup {
             line-height: 0;
         }
     </style>
@@ -1444,9 +1463,9 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-9e6f5ce1">
         <td style="text-align:center;">1.5 [1, 2]</td>
     </tr>
     <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = :y, sort = false)</code></pre><table class="st-9be6416c">
+</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = :y, sort = false)</code></pre><table id="st-c146bb29">
     <style>
-        .st-9be6416c {
+        #st-c146bb29 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1454,23 +1473,24 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-9e6f5ce1">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-9be6416c tr td {
+        #st-c146bb29 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-c146bb29 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-9be6416c br {
+        #st-c146bb29 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-9be6416c sub {
+        #st-c146bb29 sub {
             line-height: 0;
         }
-
-        .st-9be6416c sup {
+        #st-c146bb29 sup {
             line-height: 0;
         }
     </style>
@@ -1513,9 +1533,9 @@ table_one(data, :x, groupby = :y)</code></pre><table class="st-9e6f5ce1">
 
 data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;], z = [&quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;D&quot;, &quot;D&quot;, &quot;D&quot;])
 
-table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-49751ea9">
+table_one(data, :x, groupby = [:y, :z])</code></pre><table id="st-62563c26">
     <style>
-        .st-49751ea9 {
+        #st-62563c26 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1523,23 +1543,24 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-49751ea9">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-49751ea9 tr td {
+        #st-62563c26 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-62563c26 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-49751ea9 br {
+        #st-62563c26 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-49751ea9 sub {
+        #st-62563c26 sub {
             line-height: 0;
         }
-
-        .st-49751ea9 sup {
+        #st-62563c26 sup {
             line-height: 0;
         }
     </style>
@@ -1594,9 +1615,9 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-49751ea9">
         <td style="text-align:center;">4.5 [4, 5]</td>
     </tr>
     <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = [:y, :z], sort = false)</code></pre><table class="st-7325533f">
+</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = [:y, :z], sort = false)</code></pre><table id="st-2de123e6">
     <style>
-        .st-7325533f {
+        #st-2de123e6 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -1604,23 +1625,24 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-49751ea9">
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-7325533f tr td {
+        #st-2de123e6 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-2de123e6 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-7325533f br {
+        #st-2de123e6 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-7325533f sub {
+        #st-2de123e6 sub {
             line-height: 0;
         }
-
-        .st-7325533f sup {
+        #st-2de123e6 sup {
             line-height: 0;
         }
     </style>
@@ -1677,4 +1699,4 @@ table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-49751ea9">
         <td style="text-align:center;">6 [6, 6]</td>
     </tr>
     <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.1 on <span class="colophon-date" title="Monday 17 February 2025 15:15">Monday 17 February 2025</span>. Using Julia version 1.11.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.1 on <span class="colophon-date" title="Tuesday 18 February 2025 15:27">Tuesday 18 February 2025</span>. Using Julia version 1.11.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
