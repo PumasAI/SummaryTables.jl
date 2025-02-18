@@ -11,15 +11,16 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
 
     _io = IOBuffer()
     
-    # The final table has a hash-based class name so that several different renderings (maybe even across
-    # SummaryTables.jl versions) don't conflict and influence each other.
+    # The final table has a hash-based id so that several different renderings (maybe even across
+    # SummaryTables.jl versions) don't conflict and influence each other. An id has higher CSS specificity
+    # than a class, so that makes interference from host CSS styles less likely.
     hash_placeholder = "<<HASH>>" # should not collide because it's not valid HTML and <> are not allowed otherwise
 
-    println(_io, "<table class=\"st-$(hash_placeholder)\">")
+    println(_io, "<table id=\"st-$(hash_placeholder)\">")
 
     print(_io, """
         <style>
-            .st-$(hash_placeholder) {
+            #st-$(hash_placeholder) {
                 border: none;
                 margin: 0 auto;
                 padding: 0.25rem;
@@ -27,23 +28,24 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
                 border-spacing: 0.85em 0.2em;
                 line-height: 1.2em;
             }
-
-            .st-$(hash_placeholder) tr td {
+            #st-$(hash_placeholder) tr {
+                background-color: transparent;
+                border: none;
+            }
+            #st-$(hash_placeholder) tr td {
                 vertical-align: top;
                 padding: 0;
                 border: none;
+                background-color: transparent;
             }
-
-            .st-$(hash_placeholder) br {
+            #st-$(hash_placeholder) br {
                 line-height: 0em;
                 margin: 0;
             }
-
-            .st-$(hash_placeholder) sub {
+            #st-$(hash_placeholder) sub {
                 line-height: 0;
             }
-
-            .st-$(hash_placeholder) sup {
+            #st-$(hash_placeholder) sup {
                 line-height: 0;
             }
         </style>
@@ -115,6 +117,10 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
             _showas(_io, MIME"text/html"(), footnote)
         end
         println(_io, "</td></tr>")
+    end
+
+    if ct.footer !== nothing
+        println(_io, "    </tfoot>")
     end
 
     print(_io, "</table>")
