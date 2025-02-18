@@ -67,7 +67,7 @@ nothing # hide
 Download `example.pdf`:
 
 ```@raw html
-<a href="./../outputs/example.pdf"><img src="./../assets/icon_pdf.png" width="60">
+<a href="./../outputs/example.pdf"><img src="/assets/icon_pdf.png" width="60" /></a>
 ```
 
 ## docx
@@ -114,7 +114,7 @@ nothing # hide
 Download `example.docx`:
 
 ```@raw html
-<a href="./../outputs/example.docx"><img src="./../assets/icon_docx.png" width="60">
+<a href="./../outputs/example.docx"><img src="/assets/icon_docx.png" width="60" /></a>
 ```
 
 ## Typst
@@ -168,5 +168,5 @@ nothing # hide
 Download `example_typst.pdf`:
 
 ```@raw html
-<a href="./../outputs/example_typst.pdf"><img src="./../assets/icon_pdf.png" width="60">
+<a href="./../outputs/example_typst.pdf"><img src="/assets/icon_pdf.png" width="60" /></a>
 ```

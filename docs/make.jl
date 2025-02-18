@@ -1,7 +1,12 @@
 using Documenter, SummaryTables
+using DocumenterVitepress
 
 makedocs(
     sitename = "SummaryTables.jl",
+    format = DocumenterVitepress.MarkdownVitepress(;
+        repo = "https://github.com/PumasAI/SummaryTables.jl",
+        deploy_url = "https://pumasai.github.io",
+    ),
     pages = [
         "index.md",
         "output.md",
@@ -15,7 +20,9 @@ makedocs(
             "custom_tables/cell.md",
             "custom_tables/cellstyle.md",
         ],
-    ]
+    ],
+    warnonly = get(ENV, "CI", "false") != "true",
+    pagesonly = true,
 )
 
 deploydocs(
