@@ -183,21 +183,11 @@ end
 # nicer than just having the textual overview that you get printed out in the REPL
 function Base.show(io::IO, M::Union{MIME"text/html",MIME"juliavscode/html"}, p::PaginatedTable)
     println(io, "<div>")
-    println(io, """
-    <script>
-    function showPaginatedPage(el, index){
-        const container = el.parentElement.querySelector('div');
-        for (var i = 0; i<container.children.length; i++){
-            container.children[i].style.display = i == index ? 'block' : 'none';
-        }
-    }
-    </script>
-    """)
     for i in 1:length(p.pages)
         println(io, """
-        <button onclick="showPaginatedPage(this, $(i-1))">
-        Page $i
-        </button>
+        <button onclick="
+            [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==$(i-1) ? 'block' : 'none');
+        ">Page $i</button>
         """)
     end
     println(io, "<div>")
