@@ -26,8 +26,6 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         stroke: none,
     """)
 
-    println(io, "    table.hline(y: 0, stroke: 1pt),")
-
     _colspan(n) = n == 1 ? "" : "colspan: $n"
     _rowspan(n) = n == 1 ? "" : "rowspan: $n"
     function _align(style, icol)
@@ -45,16 +43,27 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     end
 
     running_index = 0
+
+    indentprint(level, args...) = print(io, "    " ^ level, args...)
+    indentprintln(level, args...) = indentprint(level, args..., "\n")
+    
+    if ct.header !== nothing
+        print(io, "    table.header(\n    ")
+    end
+
+    println(io, "    table.hline(y: 0, stroke: 1pt),")
+
     for row in 1:size(matrix, 1)
+        level = (ct.header !== nothing && row <= ct.header) ? 2 : 1
         if row == ct.footer
-            println(io, "    table.hline(y: $(row-1), stroke: 0.75pt),")
+            indentprintln(level, "table.hline(y: $(row-1), stroke: 0.75pt),")
         end
         for col in 1:size(matrix, 2)
             index = matrix[row, col]
             if index > running_index
                 cell = cells[index]
                 if cell.value === nothing
-                    println(io, "    [],")
+                    indentprintln(level, "[],")
                 else
                     options = join(filter(!isempty, [
                         _rowspan(length(cell.span[1])),
@@ -62,9 +71,9 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
                         _align(cell.style, col)
                     ]), ", ")
                     if isempty(options)
-                        print(io, "    [")
+                        indentprint(level, "[")
                     else
-                        print(io, "    table.cell(", options, ")[")
+                        indentprint(level, "table.cell(", options, ")[")
                     end
                     cell.style.bold && print(io, "*")
                     cell.style.italic && print(io, "_")
@@ -77,13 +86,14 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
                     print(io, "],\n")
                 end
                 if cell.style.border_bottom
-                    println(io, "    table.hline(y: $(row), start: $(cell.span[2].start-1), end: $(cell.span[2].stop), stroke: 0.75pt),")
+                    indentprintln(level, "table.hline(y: $(row), start: $(cell.span[2].start-1), end: $(cell.span[2].stop), stroke: 0.75pt),")
                 end
                 running_index = index
             end
         end
         if row == ct.header
-            println(io, "    table.hline(y: $(row), stroke: 0.75pt),")
+            indentprintln(level, "table.hline(y: $(row), stroke: 0.75pt),")
+            indentprintln(level-1, "),")
         end
     end
 

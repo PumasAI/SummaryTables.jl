@@ -1,6 +1,6 @@
-<table class="st-d3319677">
+<table id="st-6e380c18">
     <style>
-        .st-d3319677 {
+        #st-6e380c18 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,23 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d3319677 tr td {
+        #st-6e380c18 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-6e380c18 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d3319677 br {
+        #st-6e380c18 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d3319677 sub {
+        #st-6e380c18 sub {
             line-height: 0;
         }
-
-        .st-d3319677 sup {
+        #st-6e380c18 sup {
             line-height: 0;
         }
     </style>
