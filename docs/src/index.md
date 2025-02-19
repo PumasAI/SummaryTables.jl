@@ -1,3 +1,22 @@
+````@raw html
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
+
+hero:
+  name: SummaryTables
+  text:
+  tagline: Publication-ready tables for Julia - in HTML, docx, LaTeX and Typst
+  image:
+    src: logo.png
+    alt: SummaryTables
+  actions:
+    - theme: alt
+      text: View on Github
+      link: https://github.com/PumasAI/SummaryTables.jl
+---
+````
+
 # SummaryTables
 
 SummaryTables is focused on creating tables for publications in LaTeX, docx and HTML formats.
