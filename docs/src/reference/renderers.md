@@ -1,4 +1,4 @@
-# Output
+# Renderers
 
 ## HTML
 
@@ -17,7 +17,7 @@ using DataFrames
 using tectonic_jll
 
 
-mkpath(joinpath(@__DIR__, "outputs"))
+mkpath(joinpath(@__DIR__, "..", "public"))
 
 data = DataFrame(
     sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
@@ -58,7 +58,7 @@ mktempdir() do dir
         run(`$bin $texfile`)
     end
 
-    cp(joinpath(dir, "main.pdf"), joinpath(@__DIR__, "outputs", "example.pdf"))
+    cp(joinpath(dir, "main.pdf"), joinpath(@__DIR__, "..", "public", "example.pdf"))
 end
 
 nothing # hide
@@ -67,7 +67,7 @@ nothing # hide
 Download `example.pdf`:
 
 ```@raw html
-<a href="./../outputs/example.pdf"><img src="./../assets/icon_pdf.png" width="60">
+<a href="example.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
 ```
 
 ## docx
@@ -82,7 +82,7 @@ using DataFrames
 import WriteDocx as W
 
 
-mkpath(joinpath(@__DIR__, "outputs"))
+mkpath(joinpath(@__DIR__, "..", "public"))
 
 data = DataFrame(
     sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
@@ -106,7 +106,7 @@ doc = W.Document(
             ])
         )
 
-W.save(joinpath(@__DIR__, "outputs", "example.docx"), doc)
+W.save(joinpath(@__DIR__, "..", "public", "example.docx"), doc)
 
 nothing # hide
 ```
@@ -114,7 +114,7 @@ nothing # hide
 Download `example.docx`:
 
 ```@raw html
-<a href="./../outputs/example.docx"><img src="./../assets/icon_docx.png" width="60">
+<a href="example.docx" download><img src="/assets/icon_docx.png" width="60" /></a>
 ```
 
 ## Typst
@@ -129,7 +129,7 @@ using DataFrames
 using Typst_jll
 
 
-mkpath(joinpath(@__DIR__, "outputs"))
+mkpath(joinpath(@__DIR__, "..", "public"))
 
 data = DataFrame(
     sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
@@ -159,7 +159,7 @@ mktempdir() do dir
         run(`$bin compile $typfile`)
     end
 
-    cp(joinpath(dir, "example.pdf"), joinpath(@__DIR__, "outputs", "example_typst.pdf"))
+    cp(joinpath(dir, "example.pdf"), joinpath(@__DIR__, "..", "public", "example_typst.pdf"))
 end
 
 nothing # hide
@@ -168,5 +168,5 @@ nothing # hide
 Download `example_typst.pdf`:
 
 ```@raw html
-<a href="./../outputs/example_typst.pdf"><img src="./../assets/icon_pdf.png" width="60">
+<a href="example_typst.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
 ```

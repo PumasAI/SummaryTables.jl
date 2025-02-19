@@ -5,3 +5,4 @@ Manifest.toml
 /docs/build
 .DS_Store
 .quarto
+/docs/node_modules
