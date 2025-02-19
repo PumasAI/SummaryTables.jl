@@ -1,4 +1,4 @@
-import{_ as i,c as t,o as a,az as n}from"./chunks/framework.Bsd9CH4I.js";const g=JSON.parse('{"title":"SummaryTables","description":"","frontmatter":{"layout":"home","hero":{"name":"SummaryTables","text":null,"tagline":"Publication-ready tables for Julia - in HTML, docx, LaTeX and Typst","image":{"src":"logo.png","alt":"SummaryTables"},"actions":[{"theme":"alt","text":"View on Github","link":"https://github.com/PumasAI/SummaryTables.jl"}]}},"headers":[],"relativePath":"index.md","filePath":"index.md","lastUpdated":null}'),l={name:"index.md"};function e(h,s,k,p,d,r){return a(),t("div",null,s[0]||(s[0]=[n(`<h1 id="summarytables" tabindex="-1">SummaryTables <a class="header-anchor" href="#summarytables" aria-label="Permalink to &quot;SummaryTables&quot;">​</a></h1><p>SummaryTables is focused on creating tables for publications in HTML, docx, LaTeX and Typst formats. It offers both convenient predefined table functions that are inspired by common table formats in the pharma space, as well as an API to create completely custom tables.</p><p>It deliberately uses an opinionated, limited styling API so that styling can be as consistent as possible across the different backends.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+import{_ as i,c as t,o as a,az as n}from"./chunks/framework.Bsd9CH4I.js";const g=JSON.parse('{"title":"SummaryTables","description":"","frontmatter":{"layout":"home","hero":{"name":"SummaryTables","text":null,"tagline":"Publication-ready tables for Julia - in HTML, docx, LaTeX and Typst","image":{"src":"logo.png","alt":"SummaryTables"},"actions":[{"theme":"alt","text":"View on Github","link":"https://github.com/PumasAI/SummaryTables.jl"}]}},"headers":[],"relativePath":"index.md","filePath":"index.md","lastUpdated":null}'),l={name:"index.md"};function e(h,s,k,p,d,r){return a(),t("div",null,s[0]||(s[0]=[n(`<h1 id="summarytables" tabindex="-1">SummaryTables <a class="header-anchor" href="#summarytables" aria-label="Permalink to &quot;SummaryTables&quot;">​</a></h1><p>SummaryTables is focused on creating tables for publications in HTML, docx, LaTeX and Typst formats. It offers both convenient predefined table functions that are inspired by common table formats in the pharma space, as well as an API to create completely custom tables.</p><p>It deliberately uses an opinionated, limited styling API so that styling can be as consistent as possible across the different backends.</p><h2 id="examples" tabindex="-1">Examples <a class="header-anchor" href="#examples" aria-label="Permalink to &quot;Examples&quot;">​</a></h2><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
@@ -431,4 +431,104 @@ import{_ as i,c as t,o as a,az as n}from"./chunks/framework.Bsd9CH4I.js";const g
         <td style="text-align:center;">0.0707</td>
     </tr>
     <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-</table></div>`,11)]))}const y=i(l,[["render",e]]);export{g as __pageData,y as default};
+</table></div><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">categories </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Deciduous&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Deciduous&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Evergreen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Evergreen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Evergreen&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">species </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Beech&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Oak&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Fir&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Spruce&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Pine&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">fake_data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">    &quot;35m&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;40m&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;38m&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;27m&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;29m&quot;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">    &quot;10k&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;12k&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;18k&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;9k&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;7k&quot;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">    &quot;500yr&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;800yr&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;600yr&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;700yr&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;400yr&quot;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">    &quot;80</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">\\$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;150</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">\\$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;40</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">\\$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;70</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">\\$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;50</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">\\$</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">labels </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Size&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Annotated</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Water consumption&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Liters per year&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Age&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Value&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">body </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.(categories, bold </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, merge </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, border_bottom </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.(species)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.(fake_data)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">hcat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.(labels, italic </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, halign </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :right</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    body</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), header </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-5ee6cd77">
+    <style>
+        #st-5ee6cd77 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-5ee6cd77 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-5ee6cd77 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-5ee6cd77 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-5ee6cd77 sub {
+            line-height: 0;
+        }
+        #st-5ee6cd77 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-style:italic;text-align:right;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Deciduous</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Evergreen</td>
+    </tr>
+    <tr>
+        <td style="font-style:italic;text-align:right;"></td>
+        <td style="text-align:center;">Beech</td>
+        <td style="text-align:center;">Oak</td>
+        <td style="text-align:center;">Fir</td>
+        <td style="text-align:center;">Spruce</td>
+        <td style="text-align:center;">Pine</td>
+    </tr>
+        <tr><td colspan="6" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-style:italic;text-align:right;">Size</td>
+        <td style="text-align:center;">35m</td>
+        <td style="text-align:center;">40m</td>
+        <td style="text-align:center;">38m</td>
+        <td style="text-align:center;">27m</td>
+        <td style="text-align:center;">29m</td>
+    </tr>
+    <tr>
+        <td style="font-style:italic;text-align:right;">Water consumption<sup>1</sup></td>
+        <td style="text-align:center;">10k</td>
+        <td style="text-align:center;">12k</td>
+        <td style="text-align:center;">18k</td>
+        <td style="text-align:center;">9k</td>
+        <td style="text-align:center;">7k</td>
+    </tr>
+    <tr>
+        <td style="font-style:italic;text-align:right;">Age</td>
+        <td style="text-align:center;">500yr</td>
+        <td style="text-align:center;">800yr</td>
+        <td style="text-align:center;">600yr</td>
+        <td style="text-align:center;">700yr</td>
+        <td style="text-align:center;">400yr</td>
+    </tr>
+    <tr>
+        <td style="font-style:italic;text-align:right;">Value</td>
+        <td style="text-align:center;">80$</td>
+        <td style="text-align:center;">150$</td>
+        <td style="text-align:center;">40$</td>
+        <td style="text-align:center;">70$</td>
+        <td style="text-align:center;">50$</td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="6" style="font-size: 0.8em;"><sup>1</sup> Liters per year</td></tr>
+</table></div>`,14)]))}const y=i(l,[["render",e]]);export{g as __pageData,y as default};
