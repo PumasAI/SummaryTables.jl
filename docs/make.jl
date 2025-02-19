@@ -5,7 +5,6 @@ makedocs(
     sitename = "SummaryTables.jl",
     format = DocumenterVitepress.MarkdownVitepress(;
         repo = "https://github.com/PumasAI/SummaryTables.jl",
-        deploy_url = "https://pumasai.github.io/SummaryTables.jl",
     ),
     pages = [
         "index.md",
