@@ -297,11 +297,15 @@ import{_ as a,c as i,o as p,az as l}from"./chunks/framework.Bsd9CH4I.js";const n
 <span class="line"><span>note: Running xdvipdfmx ...</span></span>
 <span class="line"><span>note: downloading pdftex.map</span></span>
 <span class="line"><span>note: downloading kanjix.map</span></span>
+<span class="line"><span>warning: failure requesting &quot;kanjix.map&quot; from network</span></span>
+<span class="line"><span>caused by: error sending request for url (https://data1.fullyjustified.net/tlextras-2022.0r0.tar): operation timed out</span></span>
+<span class="line"><span>caused by: operation timed out</span></span>
+<span class="line"><span>note: download succeeded after retry</span></span>
 <span class="line"><span>note: downloading ckx.map</span></span>
 <span class="line"><span>note: downloading texglyphlist.txt</span></span>
 <span class="line"><span>note: downloading pdfglyphlist.txt</span></span>
 <span class="line"><span>note: downloading glyphlist.txt</span></span>
-<span class="line"><span>note: Writing \`/tmp/jl_RRtcvg/main.pdf\` (10.0048828125 KiB)</span></span>
+<span class="line"><span>note: Writing \`/tmp/jl_vyJc9J/main.pdf\` (10.0048828125 KiB)</span></span>
 <span class="line"><span>note: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)</span></span></code></pre></div><p>Download <code>example.pdf</code>: <a href="example.pdf" download><img src="`+n+`" width="60"></a></p><h2 id="docx" tabindex="-1">docx <a class="header-anchor" href="#docx" aria-label="Permalink to &quot;docx&quot;">​</a></h2><p>To get docx output, you need to use the WriteDocx.jl package because this format is not plain-text like LaTeX or HTML. The table node you get out of the <code>to_docx</code> function can be placed into sections on the same level as paragraphs.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> WriteDocx </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">as</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> W</span></span>
