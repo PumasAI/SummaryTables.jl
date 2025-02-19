@@ -22,6 +22,9 @@ makedocs(
             ],
             "reference/renderers.md",
         ],
+        "Resources" => [
+            "resources/api.md",
+        ]
     ],
     warnonly = get(ENV, "CI", "false") != "true",
     pagesonly = true,
