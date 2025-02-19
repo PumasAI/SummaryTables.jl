@@ -7,17 +7,20 @@ makedocs(
         repo = "https://github.com/PumasAI/SummaryTables.jl",
     ),
     pages = [
-        "index.md",
-        "output.md",
-        "Predefined Tables" => [
-            "predefined_tables/listingtable.md",
-            "predefined_tables/summarytable.md",
-            "predefined_tables/table_one.md",
-        ],
-        "Custom Tables" => [
-            "custom_tables/table.md",
-            "custom_tables/cell.md",
-            "custom_tables/cellstyle.md",
+        "index.md" => "Home",
+        "Reference" => [
+            "output.md",
+            "Table Functions" => [
+                "table_functions/simple_table.md",
+                "table_functions/listingtable.md",
+                "table_functions/summarytable.md",
+                "table_functions/table_one.md",
+            ],
+            "Infrastructure" => [
+                "infrastructure/table.md",
+                "infrastructure/cell.md",
+                "infrastructure/cellstyle.md",
+            ],
         ],
     ],
     warnonly = get(ENV, "CI", "false") != "true",
