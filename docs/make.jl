@@ -7,7 +7,7 @@ makedocs(
         repo = "https://github.com/PumasAI/SummaryTables.jl",
     ),
     pages = [
-        "index.md" => "Home",
+        "Home" => "index.md",
         "Reference" => [
             "output.md",
             "Table Functions" => [
