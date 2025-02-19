@@ -17,7 +17,7 @@ using DataFrames
 using tectonic_jll
 
 
-mkpath(joinpath(@__DIR__, "public"))
+mkpath(joinpath(@__DIR__, "..", "public"))
 
 data = DataFrame(
     sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
@@ -58,7 +58,7 @@ mktempdir() do dir
         run(`$bin $texfile`)
     end
 
-    cp(joinpath(dir, "main.pdf"), joinpath(@__DIR__, "public", "example.pdf"))
+    cp(joinpath(dir, "main.pdf"), joinpath(@__DIR__, "..", "public", "example.pdf"))
 end
 
 nothing # hide
@@ -82,7 +82,7 @@ using DataFrames
 import WriteDocx as W
 
 
-mkpath(joinpath(@__DIR__, "public"))
+mkpath(joinpath(@__DIR__, "..", "public"))
 
 data = DataFrame(
     sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
@@ -106,7 +106,7 @@ doc = W.Document(
             ])
         )
 
-W.save(joinpath(@__DIR__, "public", "example.docx"), doc)
+W.save(joinpath(@__DIR__, "..", "public", "example.docx"), doc)
 
 nothing # hide
 ```
@@ -129,7 +129,7 @@ using DataFrames
 using Typst_jll
 
 
-mkpath(joinpath(@__DIR__, "public"))
+mkpath(joinpath(@__DIR__, "..", "public"))
 
 data = DataFrame(
     sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
@@ -159,7 +159,7 @@ mktempdir() do dir
         run(`$bin compile $typfile`)
     end
 
-    cp(joinpath(dir, "example.pdf"), joinpath(@__DIR__, "public", "example_typst.pdf"))
+    cp(joinpath(dir, "example.pdf"), joinpath(@__DIR__, "..", "public", "example_typst.pdf"))
 end
 
 nothing # hide
