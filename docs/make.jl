@@ -9,7 +9,7 @@ makedocs(
     pages = [
         "Home" => "index.md",
         "Reference" => [
-            "output.md",
+            "renderers.md",
             "Table Functions" => [
                 "table_functions/simple_table.md",
                 "table_functions/listingtable.md",
