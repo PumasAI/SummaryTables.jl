@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added `header` function to typst output such that the header section can repeat after page breaks [#79](https://github.com/PumasAI/SummaryTables.jl/pull/79).
 - Added `simple_table` function for the display of raw tabular data [#76](https://github.com/PumasAI/SummaryTables.jl/pull/76).
 - Changed html output to use a unique id instead of a class for the table so that SummaryTables' CSS takes priority over class-based settings from Documenter and others. This fixes the look of SummaryTables within Documenter dark mode, for example [#77](https://github.com/PumasAI/SummaryTables.jl/pull/77).
 
