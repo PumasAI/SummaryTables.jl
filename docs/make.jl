@@ -9,7 +9,6 @@ makedocs(
     pages = [
         "Home" => "index.md",
         "Reference" => [
-            "renderers.md",
             "Table Functions" => [
                 "table_functions/simple_table.md",
                 "table_functions/listingtable.md",
@@ -21,6 +20,7 @@ makedocs(
                 "infrastructure/cell.md",
                 "infrastructure/cellstyle.md",
             ],
+            "renderers.md",
         ],
     ],
     warnonly = get(ENV, "CI", "false") != "true",
