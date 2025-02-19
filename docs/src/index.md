@@ -19,10 +19,28 @@ hero:
 
 # SummaryTables
 
-SummaryTables is focused on creating tables for publications in LaTeX, docx and HTML formats.
+SummaryTables is focused on creating tables for publications in HTML, docx, LaTeX and Typst formats.
 It offers both convenient predefined table functions that are inspired by common table formats in the pharma space, as well as an API to create completely custom tables.
 
 It deliberately uses an opinionated, limited styling API so that styling can be as consistent as possible across the different backends.
+
+```@example
+using SummaryTables
+using DataFrames
+
+data = DataFrame(
+    sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = ["A", "0", "B", "B", "B", "A", "0", "A", "A", "B"],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+simple_table(
+    data,
+    [:age => "Age (years)", :sex => "Sex", :smoker => "Smoker", :blood_type => "Blood Type"],
+    halign = [:left, :right, :right, :right],
+)
+```
 
 ```@example
 using SummaryTables
