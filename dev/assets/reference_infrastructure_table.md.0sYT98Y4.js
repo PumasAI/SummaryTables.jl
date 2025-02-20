@@ -656,4 +656,4 @@ import{_ as e,c as n,o as s,az as i}from"./chunks/framework.CAkcY2eT.js";const o
     </tr>
     <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr><td colspan="9" style="font-size: 0.8em;">Footnote 1.&nbsp;&nbsp;&nbsp;&nbsp;Footnote 2.</td></tr>
-</table></div><h2 id="Types-of-cell-values" tabindex="-1">Types of cell values <a class="header-anchor" href="#Types-of-cell-values" aria-label="Permalink to &quot;Types of cell values {#Types-of-cell-values}&quot;">​</a></h2><p>TODO: List the different options here</p>`,34)]))}const c=e(a,[["render",l]]);export{o as __pageData,c as default};
+</table></div>`,32)]))}const c=e(a,[["render",l]]);export{o as __pageData,c as default};
