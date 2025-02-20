@@ -55,7 +55,7 @@ mktempdir() do dir
 
     # render the tex file to pdf
     tectonic_jll.tectonic() do bin
-        run(`$bin $texfile`)
+        run(`$bin --chatter=minimal $texfile`)
     end
 
     cp(joinpath(dir, "main.pdf"), joinpath(@__DIR__, "..", "public", "example.pdf"))
