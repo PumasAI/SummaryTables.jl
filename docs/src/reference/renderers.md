@@ -55,7 +55,7 @@ mktempdir() do dir
 
     # render the tex file to pdf
     tectonic_jll.tectonic() do bin
-        run(`$bin $texfile`)
+        run(`$bin --chatter=minimal $texfile`)
     end
 
     cp(joinpath(dir, "main.pdf"), joinpath(@__DIR__, "..", "public", "example.pdf"))
@@ -67,7 +67,7 @@ nothing # hide
 Download `example.pdf`:
 
 ```@raw html
-<a href="example.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
+<a href="../example.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
 ```
 
 ## docx
@@ -114,7 +114,7 @@ nothing # hide
 Download `example.docx`:
 
 ```@raw html
-<a href="example.docx" download><img src="/assets/icon_docx.png" width="60" /></a>
+<a href="../example.docx" download><img src="/assets/icon_docx.png" width="60" /></a>
 ```
 
 ## Typst
@@ -168,5 +168,5 @@ nothing # hide
 Download `example_typst.pdf`:
 
 ```@raw html
-<a href="example_typst.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
+<a href="../example_typst.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
 ```

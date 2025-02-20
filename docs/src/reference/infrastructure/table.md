@@ -87,8 +87,3 @@ Table(cells; footnotes = ["Footnote 1.", "Footnote 2."])
 ```@example linebreak_footnotes
 Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], linebreak_footnotes = false)
 ```
-
-## Types of cell values
-
-TODO: List the different options here
-

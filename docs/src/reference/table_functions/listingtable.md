@@ -112,7 +112,7 @@ listingtable(data, :value2, rows = :group1, cols = :group2)
 
 By default, the variable name is used as the label as well.
 You can pass a different label as the second element of a `Pair` using the `=>` operators.
-The label can be of any type (refer to [Types of cell values](@ref) for a list).
+The label can be of any type (refer to [Special `Cell` value types](@ref) for a list).
 
 ```@example
 using DataFrames
@@ -302,7 +302,7 @@ listingtable(data, :value, cols = [:group1, :group2 => "Group 2"])
 
 This keyword takes a list of aggregation functions which are used to summarize the listed variable along the rows.
 A summary function should take a vector of values (usually that will be numbers) and output one summary value.
-This value can be of any type that SummaryTables can show in a cell (refer to [Types of cell values](@ref) for a list).
+This value can be of any type that SummaryTables can show in a cell (refer to [Special `Cell` value types](@ref) for a list).
 
 ```@example
 using DataFrames
@@ -364,7 +364,7 @@ listingtable(data,
 
 This keyword takes a list of aggregation functions which are used to summarize the listed variable along the columns.
 A summary function should take a vector of values (usually that will be numbers) and output one summary value.
-This value can be of any type that SummaryTables can show in a cell (refer to [Types of cell values](@ref) for a list).
+This value can be of any type that SummaryTables can show in a cell (refer to [Special `Cell` value types](@ref) for a list).
 
 ```@example
 using DataFrames
