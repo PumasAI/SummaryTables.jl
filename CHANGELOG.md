@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.1.0 - 2025-02-20
 
 - Added `header` function to typst output such that the header section can repeat after page breaks [#79](https://github.com/PumasAI/SummaryTables.jl/pull/79).
 - Added `simple_table` function for the display of raw tabular data [#76](https://github.com/PumasAI/SummaryTables.jl/pull/76).
