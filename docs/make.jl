@@ -1,6 +1,12 @@
 using Documenter, SummaryTables
 using DocumenterVitepress
 
+cp(
+    joinpath(@__DIR__, "..", "CHANGELOG.md"),
+    joinpath(@__DIR__, "src", "resources", "changelog.md"),
+    force = true,
+)
+
 makedocs(
     sitename = "SummaryTables.jl",
     format = DocumenterVitepress.MarkdownVitepress(;
@@ -24,6 +30,7 @@ makedocs(
         ],
         "Resources" => [
             "resources/api.md",
+            "resources/changelog.md",
         ]
     ],
     warnonly = get(ENV, "CI", "false") != "true",
