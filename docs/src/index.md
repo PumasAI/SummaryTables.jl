@@ -24,7 +24,20 @@ It offers both convenient predefined table functions that are inspired by common
 
 It deliberately uses an opinionated, limited styling API so that styling can be as consistent as possible across the different backends.
 
+## Installation
+
+SummaryTables is registered in the General Registry and can be installed as usual:
+
+```julia
+using Pkg
+Pkg.install("SummaryTables")
+```
+
 ## Examples
+
+:::tabs
+
+== simple_table
 
 ```@example
 using SummaryTables
@@ -44,6 +57,8 @@ simple_table(
 )
 ```
 
+== table_one
+
 ```@example
 using SummaryTables
 using DataFrames
@@ -62,6 +77,8 @@ table_one(
     show_n = true
 )
 ```
+
+== listingtable
 
 ```@example
 using DataFrames
@@ -87,6 +104,8 @@ listingtable(
 )
 ```
 
+== summarytable
+
 ```@example
 using DataFrames
 using SummaryTables
@@ -109,6 +128,8 @@ summarytable(
     ]
 )
 ```
+
+== Custom table
 
 ```@example
 using SummaryTables
@@ -134,3 +155,5 @@ Table(hcat(
     body
 ), header = 2)
 ```
+
+:::
