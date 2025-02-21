@@ -37,99 +37,9 @@ Pkg.install("SummaryTables")
 
 :::tabs
 
-== simple_table
-
-```@example
-using SummaryTables
-using DataFrames
-
-data = DataFrame(
-    sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
-    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
-    blood_type = ["A", "0", "B", "B", "B", "A", "0", "A", "A", "B"],
-    smoker = [true, false, false, false, true, true, true, false, false, false],
-)
-
-simple_table(
-    data,
-    [:age => "Age (years)", :sex => "Sex", :smoker => "Smoker", :blood_type => "Blood Type"],
-    halign = [:left, :right, :right, :right],
-)
-```
-
-== table_one
-
-```@example
-using SummaryTables
-using DataFrames
-
-data = DataFrame(
-    sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
-    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
-    blood_type = ["A", "0", "B", "B", "B", "A", "0", "A", "A", "B"],
-    smoker = [true, false, false, false, true, true, true, false, false, false],
-)
-
-table_one(
-    data,
-    [:age => "Age (years)", :blood_type => "Blood type", :smoker => "Smoker"],
-    groupby = :sex => "Sex",
-    show_n = true
-)
-```
-
-== listingtable
-
-```@example
-using DataFrames
-using SummaryTables
-using Statistics
-
-data = DataFrame(
-    concentration = [1.2, 4.5, 2.0, 1.5, 0.1, 1.8, 3.2, 1.8, 1.2, 0.2],
-    id = repeat([1, 2], inner = 5),
-    time = repeat([0, 0.5, 1, 2, 3], 2)
-)
-
-listingtable(
-    data,
-    :concentration => "Concentration (ng/mL)",
-    rows = :id => "ID",
-    cols = :time => "Time (hr)",
-    summarize_rows = [
-        length => "N",
-        mean => "Mean",
-        std => "SD",
-    ]
-)
-```
-
-== summarytable
-
-```@example
-using DataFrames
-using SummaryTables
-using Statistics
-
-data = DataFrame(
-    concentration = [1.2, 4.5, 2.0, 1.5, 0.1, 1.8, 3.2, 1.8, 1.2, 0.2],
-    id = repeat([1, 2], inner = 5),
-    time = repeat([0, 0.5, 1, 2, 3], 2)
-)
-
-summarytable(
-    data,
-    :concentration => "Concentration (ng/mL)",
-    cols = :time => "Time (hr)",
-    summary = [
-        length => "N",
-        mean => "Mean",
-        std => "SD",
-    ]
-)
-```
-
 == Custom table
+
+Completely customizable [Table](@ref)s can be built from scratch as a matrix of [Cell](@ref)s with a little styling metadata.
 
 ```@example
 using SummaryTables
@@ -154,6 +64,113 @@ Table(hcat(
     Cell.(labels, italic = true, halign = :right),
     body
 ), header = 2)
+```
+
+== simple_table
+
+The [simple_table](@ref) is a quick way to render standard tabular data sources.
+
+```@example
+using SummaryTables
+using DataFrames
+
+data = DataFrame(
+    sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = ["A", "0", "B", "B", "B", "A", "0", "A", "A", "B"],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+simple_table(
+    data,
+    [:age => "Age (years)", :sex => "Sex", :smoker => "Smoker", :blood_type => "Blood Type"],
+    halign = [:left, :right, :right, :right],
+)
+```
+
+== table_one
+
+The [table_one](@ref) function is often used to describe properties of groups in a population.
+
+```@example
+using SummaryTables
+using DataFrames
+
+data = DataFrame(
+    sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = ["A", "0", "B", "B", "B", "A", "0", "A", "A", "B"],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+table_one(
+    data,
+    [:age => "Age (years)", :blood_type => "Blood type", :smoker => "Smoker"],
+    groupby = :sex => "Sex",
+    show_n = true
+)
+```
+
+== listingtable
+
+The [listingtable](@ref) lists all raw values from a table column in a matrix-like arrangement, with possibly nested groups and groupwise summaries.
+
+```@example
+using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    concentration = sin.(1:24) .+ 2,
+    compound = repeat(["Ibuprofen", "Paracetamol"], 12),
+    dosage = repeat(["High", "Medium", "Low"], 8),
+    time = repeat([0, 0.25, 0.5, 1], inner = 6),
+)
+
+mean_sd(values) = Concat(mean(values), " (", std(values), ")")
+
+listingtable(
+    data,
+    :concentration => "Concentration (ng/mL)",
+    rows = [:compound => "Compound", :dosage => "Dosage"],
+    cols = :time => "Time (hr)",
+    summarize_rows = :compound => [
+        length => "N",
+        median => "Median",
+        mean_sd => "Mean (SD)",
+    ]
+)
+```
+
+== summarytable
+
+The [summarytable](@ref) is the little brother of `listingtable` and omits the raw values but has similar grouping functionality.
+
+```@example
+using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    concentration = sin.(1:24) .+ 2,
+    compound = repeat(["Ibuprofen", "Paracetamol"], 12),
+    dosage = repeat(["High", "Medium", "Low"], 8),
+    time = repeat([0, 0.25, 0.5, 1], inner = 6),
+)
+
+mean_sd(values) = Concat(mean(values), " (", std(values), ")")
+
+summarytable(
+    data,
+    :concentration => "Concentration (ng/mL)",
+    rows = [:compound => "Compound"],
+    cols = :time => "Time (hr)",
+    summary = [
+        length => "N",
+        median => "Median",
+        mean_sd => "Mean (SD)",
+    ]
+)
 ```
 
 :::
