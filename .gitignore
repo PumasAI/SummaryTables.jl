@@ -6,3 +6,4 @@ Manifest.toml
 .DS_Store
 .quarto
 /docs/node_modules
+docs/src/resources/changelog.md
