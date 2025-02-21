@@ -7,10 +7,13 @@ cp(
     force = true,
 )
 
+is_ci() = get(ENV, "CI", "false") == "true"
+
 makedocs(
     sitename = "SummaryTables.jl",
     format = DocumenterVitepress.MarkdownVitepress(;
         repo = "https://github.com/PumasAI/SummaryTables.jl",
+        (is_ci() ? (;) : (; deploy_url = ""))..., # without deploy_url="" locally the build is broken due to a SummaryTables.jl prefix
     ),
     pages = [
         "Home" => "index.md",
@@ -33,7 +36,7 @@ makedocs(
             "resources/changelog.md",
         ]
     ],
-    warnonly = get(ENV, "CI", "false") != "true",
+    warnonly = !is_ci(),
     pagesonly = true,
 )
 
