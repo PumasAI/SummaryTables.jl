@@ -1,0 +1,42 @@
+<table id="st-bd398dd5">
+    <style>
+        #st-bd398dd5 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-bd398dd5 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-bd398dd5 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-bd398dd5 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-bd398dd5 sub {
+            line-height: 0;
+        }
+        #st-bd398dd5 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"><span style="color:rgb(255,0,0);">Red</span> and <span style="color:rgb(0,0,255);">Blue</span></td>
+        <td style="text-align:center;"><span style="font-weight:bold;font-style:italic;text-decoration:underline;color:rgb(0,204,0);">Green, bold, italic, underlined</span></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"><span style="color:rgb(0,0,255);"><span style="color:rgb(255,0,0);">Nested red </span>and blue</span></td>
+        <td style="text-align:center;"><span style="color:rgb(171,205,239);">0.985</span></td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table>

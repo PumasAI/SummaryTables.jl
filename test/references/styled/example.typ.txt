@@ -1,0 +1,14 @@
+
+#table(
+    rows: 2,
+    columns: 2,
+    column-gutter: 0.25em,
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [#text(fill: rgb(255,0,0))[Red] and #text(fill: rgb(0,0,255))[Blue]],
+    [*_#underline[#text(fill: rgb(0,204,0))[Green, bold, italic, underlined]]_*],
+    [#text(fill: rgb(0,0,255))[#text(fill: rgb(255,0,0))[Nested red ]and blue]],
+    [#text(fill: rgb(171,205,239))[0.985]],
+    table.hline(y: 2, stroke: 1pt),
+)

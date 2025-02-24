@@ -151,3 +151,43 @@ struct RoundedFloat
     trailing_zeros::Bool
 end
 
+struct Color
+    rgb::NTuple{3,Float64}
+end
+
+function Color(hex::String)
+    @assert length(hex) == 7 && hex[1] == '#' "Hex string must be in the format \"#RRGGBB\""
+
+    r = parse(Int, hex[2:3], base=16) / 255
+    g = parse(Int, hex[4:5], base=16) / 255
+    b = parse(Int, hex[6:7], base=16) / 255
+
+    Color((r, g, b))
+end
+
+"""
+    Styled(value; color, bold, italic, underline)
+
+Create a `Styled` object wrapping `value` which renders `value` formatted according to these optional properties:
+- `bold::Union{Nothing,Bool}`
+- `italic::Union{Nothing,Bool}`
+- `underline::Union{Nothing,Bool}`
+- `color::Union{Nothing,String}` The text color as a hex RGB string like #FA03C7.  Note that you need to add `\\usepackage{xcolor}` to use colored text in LaTeX.
+"""
+struct Styled
+    value
+    color::Union{Nothing,Color}
+    bold::Union{Nothing,Bool}
+    italic::Union{Nothing,Bool}
+    underline::Union{Nothing,Bool}
+end
+
+function Styled(
+    value;
+    color = nothing,
+    bold = nothing,
+    italic = nothing,
+    underline = nothing,
+)
+    Styled(value, color === nothing ? nothing : Color(color), bold, italic, underline)
+end

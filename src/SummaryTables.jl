@@ -34,6 +34,7 @@ export ReplaceMissing
 export Replace
 export Superscript
 export Subscript
+export Styled
 
 const DEFAULT_ROWGAP = 6.0
 

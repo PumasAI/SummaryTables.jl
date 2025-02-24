@@ -23,6 +23,7 @@ function Base.show(io::IO, m::AsMIME{M}) where M <: MIME"text/latex"
         \usepackage{threeparttable}
         \usepackage{multirow}
         \usepackage{booktabs}
+        \usepackage{xcolor}
         \begin{document}
         """
     )
@@ -697,6 +698,18 @@ end
             reftest(t, "references/row_and_column_gaps/singlecell")
             t = Table([SpannedCell(2:4, 1, "Spanned rows"), SpannedCell(1, 2:4, "Spanned columns")], rowgaps = [1 => 4.0], colgaps = [2 => 4.0])
             reftest(t, "references/row_and_column_gaps/spanned_cells")
+        end
+
+        @testset "Styled" begin
+            conc = Concat(Styled("Red", color = "#FF0000"), " and ", Styled("Blue", color = "#0000FF")) 
+            all = Styled("Green, bold, italic, underlined", color = "#00CC00", bold = true, italic = true, underline = true)
+            nested = Styled(SummaryTables.Concat(Styled("Nested red ", color = "#FF0000"), "and blue"), color = "#0000FF")
+            number = Styled(sin(1.4), color = "#ABCDEF")
+            t = Table(Cell.([
+                conc all;
+                nested number;
+            ]))
+            reftest(t, "references/styled/example")
         end
     end
 end

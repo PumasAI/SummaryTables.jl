@@ -293,6 +293,7 @@ apply_rounder(x::AbstractFloat, r::Rounder) = RoundedFloat(x, r.round_digits, r.
 apply_rounder(x::Concat, r::Rounder) = Concat(map(arg -> apply_rounder(arg, r), x.args)...)
 apply_rounder(x::Multiline, r::Rounder) = Multiline(map(arg -> apply_rounder(arg, r), x.values)...)
 apply_rounder(x::Annotated, r::Rounder) = Annotated(apply_rounder(x.value, r), x.annotation, x.label)
+apply_rounder(x::Styled, r::Rounder) = Styled(apply_rounder(x.value, r), x.color, x.bold, x.italic, x.underline)
 
 function postprocess_cell(cell::Cell, r::Rounder)
     Cell(apply_rounder(cell.value, r), cell.style)

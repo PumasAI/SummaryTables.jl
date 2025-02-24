@@ -215,6 +215,20 @@ function _showas(io::IO, ::MIME"text/latex", r::ResolvedAnnotation)
     end
 end
 
+function _showas(io::IO, ::MIME"text/latex", s::Styled)
+    s.bold === true && print(io, "\\textbf{")
+    s.italic === true && print(io, "\\textit{")
+    s.underline === true && print(io, "\\underline{")
+    if s.color !== nothing
+        print(io, "\\textcolor[RGB]{$(join(round.(Int, s.color.rgb .* 255), ","))}{")
+    end
+    _showas(io, MIME"text/latex"(), s.value)
+    s.color !== nothing && print(io, "}")
+    s.underline === true && print(io, "}")
+    s.italic === true && print(io, "}")
+    s.bold === true && print(io, "}")
+end
+
 function _str_latex_escaped(io::IO, s::AbstractString)
     escapable_special_chars = raw"&%$#_{}"
     a = Iterators.Stateful(s)

@@ -297,6 +297,15 @@ function to_runs(r::ResolvedAnnotation, props)
     end
     return runs
 end
+
+_rgb_to_hex(rgb) = join(string.(round.(Int, rgb .* 255); base = 16, pad = 2))
+
+function to_runs(s::Styled, props::WriteDocx.RunProperties)
+    # TODO: add underline once WriteDocx fixes support for it
+    props = merge_props(props, WriteDocx.RunProperties(; s.bold, s.italic, color = s.color === nothing ? nothing : WriteDocx.HexColor(_rgb_to_hex(s.color.rgb))))
+    return to_runs(s.value, props)
+end
+
 docx_sprint(x) = sprint(x) do io, x
     _showas(io, MIME"text"(), x)
 end
