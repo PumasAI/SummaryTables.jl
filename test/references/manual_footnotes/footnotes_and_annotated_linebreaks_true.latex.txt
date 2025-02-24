@@ -2,6 +2,7 @@
 \usepackage{threeparttable}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{xcolor}
 \begin{document}
 \begin{table}[!ht]
 \setlength\tabcolsep{0pt}
