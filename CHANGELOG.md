@@ -2,7 +2,7 @@
 
 ## 3.2.0 - 2025-02-24
 
-- Added `Styled` struct for partial styling of text within a cell, including bold, italic, underline and text color [#84](https://github.com/PumasAI/SummaryTables.jl/pull/84).
+- Added `Styled` struct for partial styling of text within a cell, including bold, italic, underline and text color. Note that you need to add `\usepackage{xcolor}` to use colored text in LaTeX. [#84](https://github.com/PumasAI/SummaryTables.jl/pull/84).
 
 ## 3.1.0 - 2025-02-20
 

@@ -131,7 +131,7 @@ To apply font styles only to a rendered value and not the whole cell, use the `S
 - `bold::Bool`
 - `italic::Bool`
 - `underline::Bool`
-- `color::String` a hex color string like #FF0000
+- `color::String` a hex color string like #FF0000. Note that you need to add `\usepackage{xcolor}` to use colored text in LaTeX.
 
 ```@example
 using SummaryTables
