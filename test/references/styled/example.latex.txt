@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+\textcolor[RGB]{255,0,0}{Red} and \textcolor[RGB]{0,0,255}{Blue} & \textbf{\textit{\underline{\textcolor[RGB]{0,204,0}{Green, bold, italic, underlined}}}} \\
+\textcolor[RGB]{0,0,255}{\textcolor[RGB]{255,0,0}{Nested red }and blue} & \textcolor[RGB]{171,205,239}{0.985} \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
