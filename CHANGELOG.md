@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.0 - 2025-02-24
+
+- Added `Styled` struct for partial styling of text within a cell, including bold, italic, underline and text color [#84](https://github.com/PumasAI/SummaryTables.jl/pull/84).
+
 ## 3.1.0 - 2025-02-20
 
 - Added `header` function to typst output such that the header section can repeat after page breaks [#79](https://github.com/PumasAI/SummaryTables.jl/pull/79).
