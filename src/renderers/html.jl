@@ -172,7 +172,7 @@ function _showas(io::IO, M::MIME"text/html", s::Styled)
         print(io, "text-decoration:underline;")
     end
     if s.color !== nothing
-        print(io, "color:rgb($(join(s.color.rgb .* 255, ",")));")
+        print(io, "color:rgb($(join(round.(Int, s.color.rgb .* 255), ",")));")
     end
     print(io, "\">")
     _showas(io, M, s.value)
