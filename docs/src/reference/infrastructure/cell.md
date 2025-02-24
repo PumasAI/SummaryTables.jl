@@ -123,6 +123,26 @@ cells = [
 Table(cells)
 ```
 
+#### `Styled`
+
+To apply font styles only to a rendered value and not the whole cell, use the `Styled` wrapper object. Together with `Concat` you can partially style a cell's content.
+
+`Styled` takes the following optional keyword arguments:
+- `bold::Bool`
+- `italic::Bool`
+- `underline::Bool`
+- `color::String` a hex color string like #FF0000
+
+```@example
+using SummaryTables
+
+text = Styled("Italic text and a bold red number: ", italic = true)
+number = Styled(sin(1.3), bold = true, color = "#FF0000")
+together = Concat(text, number)
+annotated = Annotated("Annotated", Styled("Styled footnote", color = "#00CC00"))
+Table(Cell.([together annotated]))
+```
+
 ## Optional argument 2: `cellstyle`
 
 You may pass the style settings of a `Cell` as a positional argument of type [`CellStyle`](@ref).
