@@ -160,6 +160,25 @@ function _showas(io::IO, ::MIME"text/html", s::Subscript)
     print(io, "</sub>")
 end
 
+function _showas(io::IO, M::MIME"text/html", s::Styled)
+    print(io, "<span style=\"")
+    if s.bold !== nothing
+        print(io, "font-weight:$(s.bold ? "bold" : "normal");")
+    end
+    if s.italic !== nothing
+        print(io, "font-style:$(s.italic ? "italic" : "normal");")
+    end
+    if s.underline === true
+        print(io, "text-decoration:underline;")
+    end
+    if s.color !== nothing
+        print(io, "color:rgb($(join(s.color.rgb .* 255, ",")));")
+    end
+    print(io, "\">")
+    _showas(io, M, s.value)
+    print(io, "</span>")
+end
+
 function print_html_cell(io, cell::SpannedCell, rowgaps, colgaps)
     print(io, "<td")
     nrows, ncols = map(length, cell.span)
