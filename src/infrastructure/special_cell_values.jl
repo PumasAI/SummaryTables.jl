@@ -151,3 +151,34 @@ struct RoundedFloat
     trailing_zeros::Bool
 end
 
+struct Color
+    rgb::NTuple{3,Float64}
+end
+
+function Color(hex::String)
+    @assert length(hex) == 7 && hex[1] == '#' "Hex string must be in the format \"#RRGGBB\""
+
+    r = parse(Int, hex[2:3], base=16) / 255
+    g = parse(Int, hex[4:5], base=16) / 255
+    b = parse(Int, hex[6:7], base=16) / 255
+
+    Color((r, g, b))
+end
+
+struct Styled
+    value
+    color::Union{Nothing,Color}
+    bold::Union{Nothing,Bool}
+    italic::Union{Nothing,Bool}
+    underline::Union{Nothing,Bool}
+end
+
+function Styled(
+    value;
+    color = nothing,
+    bold = nothing,
+    italic = nothing,
+    underline = nothing,
+)
+    Styled(value, Color(color), bold, italic, underline)
+end
