@@ -6,13 +6,14 @@ function _dfsummary(df::DataFrames.DataFrame)
     columns = propertynames(df)
 
 
-    function row(colname)
+    function row(i, colname)
         col = df[!, colname]
         n = length(col)
         n_valid = count(!ismissing, col)
         stats_vals, freqs, graph = _stats_values_freqs_graph(col, n_valid)
         n_missing = count(ismissing, col)
         [
+            "No" => i,
             "Variable" => string(colname),
             "Stats / Values" => stats_vals,
             "Freqs (% of Valid)" => freqs,
@@ -22,7 +23,7 @@ function _dfsummary(df::DataFrames.DataFrame)
         ]
     end
 
-    rows = row.(columns)
+    rows = row.(eachindex(columns), columns)
 
     headers = Cell.(only.(unique.(eachcol(stack([first.(r) for r in rows], dims = 1)))), bold = true, halign = :left)
     body = Cell.(stack((last.(x) for x in rows), dims = 1), valign = :center, halign = :left)
