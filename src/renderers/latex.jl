@@ -267,3 +267,18 @@ end
 function _str_latex_escaped(s::AbstractString)
     return sprint(_str_latex_escaped, s, sizehint=lastindex(s))
 end
+
+
+
+function _showas(io::IO, ::MIME"text/latex", r::RectPlot)
+    print(io, "\\raisebox{-.5\\height}{\\begin{tikzpicture}")
+
+    cm(px) = px / 96 * 2.54
+    
+    for rect in r.rects
+        print(io, "\\draw[fill=lightgray, draw=gray] (", cm(rect.x[1]), ",", cm(rect.y[1]), ") rectangle (", cm(rect.x[2]), ",", cm(rect.y[2]), ");")
+    end
+    
+    print(io, "\\end{tikzpicture}}")
+    return
+end

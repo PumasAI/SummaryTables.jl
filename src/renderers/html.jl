@@ -313,3 +313,7 @@ function _str_html_escaped(
         sizehint = lastindex(s)
     )
 end
+
+function _showas(io::IO, ::MIME"text/html", r::RectPlot)
+    show(io, MIME"image/svg+xml"(), r)
+end

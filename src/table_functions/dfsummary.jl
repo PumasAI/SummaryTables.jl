@@ -119,80 +119,13 @@ function cont_freq_plot(column)
     )
 end
 
-function _showas(io::IO, M::MIME"text/html", r::RectPlot)
-    print(io, """<svg width='$(r.size[1])' height='$(r.size[2])' xmlns='http://www.w3.org/2000/svg'>""")
+function Base.show(io::IO, ::MIME"image/svg+xml", r::RectPlot)
+    viewBox = "0 0 $(r.size[1]) $(r.size[2])"
+    print(io, """<svg width='$(r.size[1])' height='$(r.size[2])' xmlns='http://www.w3.org/2000/svg' viewBox='$(viewBox)'>""")
     
     for rect in r.rects
         print(io, """<rect x='$(rect.x[1])' y='$(r.size[2] - rect.y[2])' width='$(rect.x[2] - rect.x[1])' height='$(rect.y[2] - rect.y[1])' fill='lightgray' stroke='gray'/>""")
     end
 
     print(io, "</svg>")
-end
-
-function _showas(io::IO, ::MIME"text/latex", r::RectPlot)
-    print(io, "\\raisebox{-.5\\height}{\\begin{tikzpicture}")
-
-    cm(px) = px / 96 * 2.54
-    
-    for rect in r.rects
-        # Adjust the y-coordinates to not flip them
-        print(io, "\\draw[fill=lightgray, draw=gray] (", cm(rect.x[1]), ",", cm(rect.y[1]), ") rectangle (", cm(rect.x[2]), ",", cm(rect.y[2]), ");")
-    end
-    
-    print(io, "\\end{tikzpicture}}")
-    return
-end
-
-function _showas(io::IO, M::MIME"text/typst", r::RectPlot)
-    print(io, "#image.decode(\"")
-    _showas(io, MIME"text/html"(), r)
-    print(io, """\")""")
-end
-
-WriteDocx.is_inline_element(::Type{RectPlot}) = true
-
-function to_runs(r::RectPlot, props::WriteDocx.RunProperties)
-    return [WriteDocx.Run([r], props)]
-end
-
-function WriteDocx.to_xml(r::RectPlot, rels)
-    xml = WriteDocx.xml
-    drawing = xml("w:drawing", [
-        xml("wp:inline", [
-            xml("a:graphic", [
-                xml("a:graphicData", [
-                    xml("pic:pic", [
-                        xml("pic:nvPicPr", [
-                            xml("pic:cNvPr", [], "id" => "0", "name" => "BarChart"),
-                            xml("pic:cNvPicPr", [])
-                        ]),
-                        xml("pic:blipFill", [
-                            xml("a:blip", [])
-                        ]),
-                        xml("pic:spPr", [
-                            xml("a:xfrm", [
-                                # Generate rectangles for each bar
-                                xml("a:rect", [
-                                    xml("a:solidFill", [
-                                        xml("a:srgbClr", [], "val" => "ADD8E6")  # Light blue fill
-                                    ]),
-                                    xml("a:ln", [
-                                        xml("a:solidFill", [
-                                            xml("a:srgbClr", [], "val" => "000000")  # Black stroke
-                                        ])
-                                    ])
-                                ], 
-                                "l" => string(rect.x[1]),
-                                "t" => string(r.size[2] - rect.y[2]),  # Flip y-coordinates for correct placement
-                                "r" => string(rect.x[2]),
-                                "b" => string(r.size[2] - rect.y[1])
-                                ) for rect in r.rects  # Generate all rects as a vector
-                            ])
-                        ])
-                    ])
-                ], "uri" => "http://schemas.openxmlformats.org/drawingml/2006/picture")
-            ])
-        ] , "xmlns:wp" => "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing")
-    ])
-    return drawing
 end
