@@ -123,15 +123,16 @@ function _showas(io::IO, M::MIME"text/html", r::RectPlot)
 end
 
 function _showas(io::IO, ::MIME"text/latex", r::RectPlot)
-    print(io, "\\begin{tikzpicture}")
+    print(io, "\\raisebox{-.5\\height}{\\begin{tikzpicture}")
 
     cm(px) = px / 96 * 2.54
     
     for rect in r.rects
-        print(io, "\\fill[cyan!30] (", cm(rect.x[1]), ",", cm(r.size[2] - rect.y[2]), ") rectangle (", cm(rect.x[2]), ",", cm(r.size[2] - rect.y[1]), ");")
+        # Adjust the y-coordinates to not flip them
+        print(io, "\\draw[fill=lightgray, draw=gray] (", cm(rect.x[1]), ",", cm(rect.y[1]), ") rectangle (", cm(rect.x[2]), ",", cm(rect.y[2]), ");")
     end
     
-    print(io, "\\end{tikzpicture}")
+    print(io, "\\end{tikzpicture}}")
     return
 end
 
