@@ -24,6 +24,7 @@ function Base.show(io::IO, m::AsMIME{M}) where M <: MIME"text/latex"
         \usepackage{multirow}
         \usepackage{booktabs}
         \usepackage{xcolor}
+        \usepackage{tikz}
         \begin{document}
         """
     )
