@@ -79,8 +79,8 @@ struct RectPlot
 end
 
 function cat_freq_plot(freqs, nvalid)
-    barheight = 18
-    bargap = 4
+    barheight = 12
+    bargap = 3
     width = 100
     padding = 2
     n = length(freqs)
@@ -89,7 +89,7 @@ function cat_freq_plot(freqs, nvalid)
         map(enumerate(freqs)) do (i, freq)
             Rect(
                 (0, freq / nvalid * width) .+ padding,
-                ((i-1) * barheight + 0.5 * bargap, (i*barheight) - 0.5 * bargap) .+ padding,
+                ((i-1) * barheight + (i-1) * bargap, (i*barheight) + (i-1) * bargap) .+ padding,
             )
         end
     )
