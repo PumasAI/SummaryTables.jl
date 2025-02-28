@@ -59,6 +59,7 @@ end
 
 function _stats_values_freqs_graph(column::AbstractVector, n_valid)
     cm = collect(pairs(StatsBase.countmap(filter(!ismissing, column))))
+    sort!(cm, by = last)
     stats_vals = Concat.(1:length(cm), ". ", first.(cm))
     freqs = last.(cm)
     percents = 100 .* freqs ./ n_valid
