@@ -390,7 +390,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.63</w:t>
+              <w:t>50</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -398,7 +398,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.314</w:t>
+              <w:t>28.7</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -418,23 +418,23 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve"> ≤ </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t>0.696</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve"> ≤ </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
               <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> ≤ </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>50</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> ≤ </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>99</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -446,7 +446,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.545</w:t>
+              <w:t>49</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -454,7 +454,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.499</w:t>
+              <w:t>0.574</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -476,7 +476,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>81 distinct values</w:t>
+              <w:t>99 distinct values</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -909,5 +909,5 @@
   </w:body>
 </w:document>
 ############################## word/media/image_2.svg ##############################
-<svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='44.85714285714286' width='9.09090909090909' height='17.142857142857142' fill='lightgray' stroke='gray'/><rect x='11.09090909090909' y='49.142857142857146' width='9.09090909090909' height='12.857142857142856' fill='lightgray' stroke='gray'/><rect x='20.18181818181818' y='49.142857142857146' width='9.09090909090909' height='12.857142857142856' fill='lightgray' stroke='gray'/><rect x='29.27272727272727' y='49.142857142857146' width='9.09090909090909' height='12.857142857142856' fill='lightgray' stroke='gray'/><rect x='38.36363636363636' y='44.85714285714286' width='9.090909090909093' height='17.142857142857142' fill='lightgray' stroke='gray'/><rect x='47.45454545454545' y='44.85714285714286' width='9.090909090909093' height='17.142857142857142' fill='lightgray' stroke='gray'/><rect x='56.54545454545454' y='44.85714285714286' width='9.090909090909086' height='17.142857142857142' fill='lightgray' stroke='gray'/><rect x='65.63636363636363' y='44.85714285714286' width='9.090909090909093' height='17.142857142857142' fill='lightgray' stroke='gray'/><rect x='74.72727272727272' y='36.28571428571429' width='9.090909090909093' height='25.71428571428571' fill='lightgray' stroke='gray'/><rect x='83.81818181818181' y='2.0' width='9.090909090909093' height='60.0' fill='lightgray' stroke='gray'/><rect x='92.9090909090909' y='59.85714285714286' width='9.090909090909093' height='2.1428571428571423' fill='lightgray' stroke='gray'/></svg>############################## word/media/image_3.svg ##############################
+<svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='8.0' width='10.0' height='54.0' fill='lightgray' stroke='gray'/><rect x='12.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='22.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='32.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='42.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='52.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='62.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='72.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='82.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='92.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/></svg>############################## word/media/image_3.svg ##############################
 <svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.252525252525253' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.35353535353536' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='39.39393939393939' height='12.0' fill='lightgray' stroke='gray'/></svg>

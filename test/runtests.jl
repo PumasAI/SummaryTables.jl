@@ -463,7 +463,7 @@ end
 
         @testset "dfsummary" begin
             _df = (;
-                continuous = [missing; sin.(range(0, pi, length = 99))],
+                continuous = [missing; 1:99],
                 categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 39)],
             )
 
