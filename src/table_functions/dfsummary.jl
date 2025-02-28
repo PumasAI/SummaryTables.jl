@@ -1,3 +1,9 @@
+"""
+    dfsummary(table)
+
+Creates a `Table` that gives a summarized overview of the columns of `table`,
+intended to give a quick intuition of the dataset.
+"""
 function dfsummary(table; kwargs...)
     _dfsummary(DataFrame(table); kwargs...)
 end
