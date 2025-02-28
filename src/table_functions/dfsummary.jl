@@ -59,7 +59,7 @@ end
 
 function _stats_values_freqs_graph(column::AbstractVector, n_valid)
     cm = collect(pairs(StatsBase.countmap(filter(!ismissing, column))))
-    sort!(cm, by = last)
+    sort!(cm, by = last, rev = true)
     stats_vals = Concat.(1:length(cm), ". ", first.(cm))
     freqs = last.(cm)
     percents = 100 .* freqs ./ n_valid
@@ -86,7 +86,7 @@ function cat_freq_plot(freqs, nvalid)
     n = length(freqs)
     RectPlot(
         (width + 2 * padding, barheight * n + (n - 1) * bargap + 2 * padding),
-        map(enumerate(freqs)) do (i, freq)
+        map(enumerate(reverse(freqs))) do (i, freq)
             Rect(
                 (0, freq / nvalid * width) .+ padding,
                 ((i-1) * barheight + (i-1) * bargap, (i*barheight) + (i-1) * bargap) .+ padding,
