@@ -460,6 +460,16 @@ end
             reftest(t, "references/simple_table/three_cols_with_names")
         end
 
+        @testset "dfsummary" begin
+            _df = (;
+                continuous = [missing; sin.(range(0, pi, length = 99))],
+                categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 39)],
+            )
+
+            t = dfsummary(_df)
+            reftest(t, "references/dfsummary/basic")
+        end
+
         @testset "annotations" begin
             t = Table(
                 [
