@@ -52,7 +52,7 @@ function run_reftest(table, path, func)
             buf = IOBuffer()
             r = ZipFile.Reader(docfile)
             for f in r.files
-                println(buf, "#"^30, " ", f.name, " ", "#"^30)
+                println(buf, "#"^30, " ", replace(f.name, "\\" => "/"), " ", "#"^30)
                 write(buf, read(f, String))
             end
             close(r)
