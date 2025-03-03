@@ -1,6 +1,6 @@
-<table id="st-5b0c0865">
+<table id="st-3e6b142b">
     <style>
-        #st-5b0c0865 {
+        #st-3e6b142b {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-5b0c0865 tr {
+        #st-3e6b142b tr {
             background-color: transparent;
             border: none;
         }
-        #st-5b0c0865 tr td {
+        #st-3e6b142b tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-5b0c0865 br {
+        #st-3e6b142b br {
             line-height: 0em;
             margin: 0;
         }
-        #st-5b0c0865 sub {
+        #st-3e6b142b sub {
             line-height: 0;
         }
-        #st-5b0c0865 sup {
+        #st-3e6b142b sup {
             line-height: 0;
         }
     </style>
@@ -39,7 +39,7 @@
         <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
         <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
     </tr>
-    <tr>
+        <tr><td colspan="7" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">categorical<br>[String]</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. Z<br>2. Y<br>3. X<br>4. W<br>5. V<br>6. U<br>7. T<br>8. S<br>9. R<br>10. Q<br>[16 others]</td>

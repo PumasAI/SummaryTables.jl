@@ -198,7 +198,9 @@
         </w:tc>
       </w:tr>
       <w:tr>
-        <w:trPr/>
+        <w:trPr>
+          <w:tblHeader/>
+        </w:trPr>
         <w:tc>
           <w:tcPr>
             <w:tcMar>
@@ -330,6 +332,25 @@
               </w:rPr>
               <w:t>Missing</w:t>
             </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr>
+          <w:tblHeader/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="4"/>
+              <w:end w:val="none" w:color="auto" w:sz="4"/>
+              <w:start w:val="none" w:color="auto" w:sz="4"/>
+            </w:tcBorders>
+            <w:gridSpan w:val="7"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
           </w:p>
         </w:tc>
       </w:tr>

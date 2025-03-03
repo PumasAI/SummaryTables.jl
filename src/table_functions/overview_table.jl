@@ -41,7 +41,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
     body = Cell.(stack((last.(x) for x in rows), dims = 1), valign = :center, halign = :left)
 
 
-    Table([headers'; body], rowgaps = (1:length(columns)) .=> 6)
+    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP)
 end
 
 function _stats_values_freqs_graph(column::AbstractVector{<:Union{Missing,Number}}, _n_valid; max_categories)
