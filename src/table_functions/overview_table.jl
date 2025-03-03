@@ -22,7 +22,11 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
         col = df[!, colname]
         n = length(col)
         n_valid = count(!ismissing, col)
-        stats_vals, freqs, graph = _stats_values_freqs_graph(col, n_valid; max_categories)
+        stats_vals, freqs, graph = if has_categorical_eltype(col)
+            _stats_values_freqs_graph_categorical(col, n_valid; max_categories)
+        else
+            _stats_values_freqs_graph_continuous(col)
+        end
         n_missing = count(ismissing, col)
         [
             "No" => i,
@@ -44,7 +48,10 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
     Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP)
 end
 
-function _stats_values_freqs_graph(column::AbstractVector{<:Union{Missing,Number}}, _n_valid; max_categories)
+has_categorical_eltype(::AbstractVector{<:Union{Missing,Number}}) = false
+has_categorical_eltype(::AbstractVector) = true
+
+function _stats_values_freqs_graph_continuous(column::AbstractVector)
     nonmissing = collect(skipmissing(column))
     mu = mean(nonmissing)
     sd = std(nonmissing)
@@ -63,7 +70,7 @@ function _stats_values_freqs_graph(column::AbstractVector{<:Union{Missing,Number
     return stats_vals, freqs, graph
 end
 
-function _stats_values_freqs_graph(column::AbstractVector, n_valid; max_categories)
+function _stats_values_freqs_graph_categorical(column::AbstractVector, n_valid; max_categories)
     cm = collect(pairs(StatsBase.countmap(filter(!ismissing, column))))
     sort!(cm, by = last, rev = true)
     cats_exceeded = length(cm) > max_categories
