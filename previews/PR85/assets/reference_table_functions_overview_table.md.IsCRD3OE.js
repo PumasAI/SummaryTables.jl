@@ -1,4 +1,4 @@
-import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y=JSON.parse('{"title":"overview_table","description":"","frontmatter":{},"headers":[],"relativePath":"reference/table_functions/overview_table.md","filePath":"reference/table_functions/overview_table.md","lastUpdated":null}'),d={name:"reference/table_functions/overview_table.md"};function g(r,t,n,s,h,o){return l(),e("div",null,t[0]||(t[0]=[a(`<h1 id="overview_table" tabindex="-1"><code>overview_table</code> <a class="header-anchor" href="#overview_table" aria-label="Permalink to &quot;\`overview_table\` {#overview_table}&quot;">​</a></h1><h2 id="synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#synopsis" aria-label="Permalink to &quot;Synopsis&quot;">​</a></h2><p>The <code>overview_table</code> table is intended to quickly give an overview of the columns that a dataset consists of. It displays different statistical summaries depending on the types of the columns, including bar graphs that give a quick intuition of the distribution of values. It is styled after R&#39;s <code>dfSummary</code> function from the <a href="https://cran.r-project.org/web/packages/summarytools/" target="_blank" rel="noreferrer"><code>summarytools</code></a> package.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y=JSON.parse('{"title":"overview_table","description":"","frontmatter":{},"headers":[],"relativePath":"reference/table_functions/overview_table.md","filePath":"reference/table_functions/overview_table.md","lastUpdated":null}'),d={name:"reference/table_functions/overview_table.md"};function n(r,t,s,g,h,p){return l(),e("div",null,t[0]||(t[0]=[a(`<h1 id="overview_table" tabindex="-1"><code>overview_table</code> <a class="header-anchor" href="#overview_table" aria-label="Permalink to &quot;\`overview_table\` {#overview_table}&quot;">​</a></h1><h2 id="synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#synopsis" aria-label="Permalink to &quot;Synopsis&quot;">​</a></h2><p>The <code>overview_table</code> table is intended to quickly give an overview of the columns that a dataset consists of. It displays different statistical summaries depending on the types of the columns, including bar graphs that give a quick intuition of the distribution of values. It is styled after R&#39;s <code>dfSummary</code> function from the <a href="https://cran.r-project.org/web/packages/summarytools/" target="_blank" rel="noreferrer"><code>summarytools</code></a> package.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> RDatasets</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">df </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> dataset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;ggplot2&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;diamonds&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
@@ -243,4 +243,119 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-</table></div>`,12)]))}const b=i(d,[["render",g]]);export{y as __pageData,b as default};
+</table></div><h2 id="Keyword:-label_metadata_key" tabindex="-1">Keyword: <code>label_metadata_key</code> <a class="header-anchor" href="#Keyword:-label_metadata_key" aria-label="Permalink to &quot;Keyword: \`label_metadata_key\` {#Keyword:-label_metadata_key}&quot;">​</a></h2><p>If column label metadata is found, a label column is added to the output. This keyword determines which key to use for the lookup, the default is <code>&quot;label&quot;</code>.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    letters </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> reduce</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(vcat, [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">fill</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(str, i) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (str, i) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> zip</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">string</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;Z&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">26</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.^</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)])</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">DataFrames</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">colmetadata!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:letters</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Letters of the alphabet&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">DataFrames</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">colmetadata!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:letters</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;spanish_label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Letras del alfabeto&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data)</span></span></code></pre></div><div><table id="st-32c64916">
+    <style>
+        #st-32c64916 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-32c64916 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-32c64916 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-32c64916 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-32c64916 sub {
+            line-height: 0;
+        }
+        #st-32c64916 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">No</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Variable</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Label</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Stats / Values</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Freqs (% of Valid)</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Graph</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">letters<br>[String]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">Letters of the alphabet</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. Z<br>2. Y<br>3. X<br>4. W<br>5. V<br>6. U<br>7. T<br>8. S<br>9. R<br>10. Q<br>[16 others]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">676 (10.9%)<br>625 (10.1%)<br>576 (9.3%)<br>529 (8.5%)<br>484 (7.8%)<br>441 (7.1%)<br>400 (6.5%)<br>361 (5.8%)<br>324 (5.2%)<br>289 (4.7%)<br>1496 (24.1%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='166.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 166.0'><rect x='2.0' y='152.0' width='24.125141106273183' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='137.0' width='4.660538622802774' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='122.0' width='5.2249637155297535' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='107.0' width='5.821641670698274' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='92.0' width='6.450572488308337' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='77.0' width='7.111756168359943' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='62.0' width='7.805192710853088' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='47.0' width='8.530882115787776' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='32.0' width='9.288824383164005' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='10.079019512981777' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='10.90146750524109' height='12.0' fill='lightgray' stroke='gray'/></svg></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">6201<br>(100%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>We can pick the alternative label by specifying <code>label_metadata_key = &quot;spanish_label&quot;</code>:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data; label_metadata_key </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;spanish_label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-2505f920">
+    <style>
+        #st-2505f920 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-2505f920 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-2505f920 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-2505f920 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-2505f920 sub {
+            line-height: 0;
+        }
+        #st-2505f920 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">No</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Variable</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Label</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Stats / Values</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Freqs (% of Valid)</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Graph</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">letters<br>[String]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">Letras del alfabeto</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. Z<br>2. Y<br>3. X<br>4. W<br>5. V<br>6. U<br>7. T<br>8. S<br>9. R<br>10. Q<br>[16 others]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">676 (10.9%)<br>625 (10.1%)<br>576 (9.3%)<br>529 (8.5%)<br>484 (7.8%)<br>441 (7.1%)<br>400 (6.5%)<br>361 (5.8%)<br>324 (5.2%)<br>289 (4.7%)<br>1496 (24.1%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='166.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 166.0'><rect x='2.0' y='152.0' width='24.125141106273183' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='137.0' width='4.660538622802774' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='122.0' width='5.2249637155297535' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='107.0' width='5.821641670698274' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='92.0' width='6.450572488308337' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='77.0' width='7.111756168359943' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='62.0' width='7.805192710853088' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='47.0' width='8.530882115787776' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='32.0' width='9.288824383164005' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='10.079019512981777' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='10.90146750524109' height='12.0' fill='lightgray' stroke='gray'/></svg></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">6201<br>(100%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div>`,19)]))}const k=i(d,[["render",n]]);export{y as __pageData,k as default};
