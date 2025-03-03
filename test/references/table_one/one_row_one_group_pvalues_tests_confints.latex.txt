@@ -17,7 +17,7 @@
 \midrule
 \textbf{value1} &  &  &  & 0.005 & UnequalVarianceTTest & (-6.234, -1.766) \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\
-\hspace{12.0pt}Median [Min, Max] & 4.5 [1, 8] & 2.5 [1, 4] & 6.5 [5, 8] &  &  &  \\
+\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] &  &  &  \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

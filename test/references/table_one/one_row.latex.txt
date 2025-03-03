@@ -15,7 +15,7 @@
 \midrule
 \textbf{value1} &  \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) \\
-\hspace{12.0pt}Median [Min, Max] & 4.5 [1, 8] \\
+\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

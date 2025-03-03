@@ -241,6 +241,8 @@ function _str_latex_escaped(io::IO, s::AbstractString)
             print(io, "\\textasciitilde{}")
         elseif c === '^'
             print(io, "\\textasciicircum{}")
+        elseif c === '['
+            print(io, "\\char`[")
         elseif isascii(c)
             c == '\0'          ? print(io, Base.escape_nul(peek(a))) :
             c == '\e'          ? print(io, "\\e") :

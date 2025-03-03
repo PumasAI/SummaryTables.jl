@@ -469,6 +469,15 @@ end
 
             t = overview_table(_df)
             reftest(t, "references/overview_table/basic")
+
+            _df = (;
+                categorical = reduce(vcat, [fill(str, i) for (str, i) in zip(string.('A':'Z'), (1:26) .^ 2)])
+            )
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/categories_exceeded")
+
+            t = overview_table(_df; max_categories = 5)
+            reftest(t, "references/overview_table/max_categories_5")
         end
 
         @testset "annotations" begin

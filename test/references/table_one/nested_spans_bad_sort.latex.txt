@@ -20,7 +20,7 @@
 \midrule
 \textbf{x} &  &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 3.5 (1.87) & 1.5 (0.707) & 3 (NaN) & 4.5 (0.707) & 6 (NaN) \\
-\hspace{12.0pt}Median [Min, Max] & 3.5 [1, 6] & 1.5 [1, 2] & 3 [3, 3] & 4.5 [4, 5] & 6 [6, 6] \\
+\hspace{12.0pt}Median \char`[Min, Max] & 3.5 \char`[1, 6] & 1.5 \char`[1, 2] & 3 \char`[3, 3] & 4.5 \char`[4, 5] & 6 \char`[6, 6] \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

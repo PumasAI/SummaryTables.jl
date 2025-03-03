@@ -17,7 +17,7 @@
 \midrule
 \textbf{value1} &  &  \\
 \hspace{12.0pt}Mean (SD) & 2.5 (1.29) & 6.5 (1.29) \\
-\hspace{12.0pt}Median [Min, Max] & 2.5 [1, 4] & 6.5 [5, 8] \\
+\hspace{12.0pt}Median \char`[Min, Max] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] \\
 \textbf{value2} &  &  \\
 \hspace{12.0pt}a & 2 (50\%) & 1 (25\%) \\
 \hspace{12.0pt}b & 1 (25\%) & 2 (50\%) \\

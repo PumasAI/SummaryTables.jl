@@ -12,3 +12,23 @@ df = dataset("ggplot2", "diamonds")
 
 overview_table(df)
 ```
+
+## Keyword: `max_categories`
+
+Only `n <= max_categories` categories per column will be listed individually, the rest will be lumped together. By default, only the 10 most frequent categories will be displayed.
+
+```@example max_categories
+using SummaryTables
+
+data = (;
+    letters = reduce(vcat, [fill(str, i) for (str, i) in zip(string.('A':'Z'), (1:26) .^ 2)])
+)
+
+t = overview_table(data)
+```
+
+We can reduce the number of categories by setting `max_categories = 5`:
+
+```@example max_categories
+t = overview_table(data; max_categories = 5)
+```

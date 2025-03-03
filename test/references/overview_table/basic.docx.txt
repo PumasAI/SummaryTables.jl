@@ -653,11 +653,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>1</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">. </w:t>
+              <w:t xml:space="preserve">1. </w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -669,11 +665,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>2</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">. </w:t>
+              <w:t xml:space="preserve">2. </w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -685,11 +677,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>3</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">. </w:t>
+              <w:t xml:space="preserve">3. </w:t>
             </w:r>
             <w:r>
               <w:rPr/>

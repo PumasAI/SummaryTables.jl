@@ -1,0 +1,885 @@
+############################## [Content_Types].xml ##############################
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types
+    xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+    <Default Extension="png" ContentType="image/png" />
+    <Default Extension="svg" ContentType="image/svg+xml" />
+    <Default Extension="xml" ContentType="application/xml" />
+    <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" />
+    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml" />
+    <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml" />
+</Types>
+############################## _rels/.rels ##############################
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships
+    xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>
+############################## word/_rels/document.xml.rels ##############################
+<?xml version="1.0" encoding="UTF-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image_2.svg"/>
+</Relationships>
+############################## word/styles.xml ##############################
+<?xml version="1.0" encoding="UTF-8"?>
+<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:docDefaults>
+    <w:rPrDefault/>
+    <w:pPrDefault/>
+  </w:docDefaults>
+  <w:style w:type="paragraph" w:styleId="Normal">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="20"/>
+      </w:rPr>
+    </w:pPr>
+    <w:name w:val="Normal"/>
+    <w:link w:val="NormalChar"/>
+    <w:qFormat/>
+  </w:style>
+  <w:style w:type="character" w:styleId="NormalChar">
+    <w:rPr>
+      <w:sz w:val="20"/>
+    </w:rPr>
+    <w:name w:val="Normal"/>
+    <w:link w:val="Normal"/>
+    <w:qFormat/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading1">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="40"/>
+      </w:rPr>
+      <w:spacing w:before="240" w:after="200"/>
+    </w:pPr>
+    <w:name w:val="Heading 1"/>
+    <w:link w:val="Heading1Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading1Char">
+    <w:rPr/>
+    <w:name w:val="Heading 1"/>
+    <w:link w:val="Heading1"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading2">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="32"/>
+      </w:rPr>
+      <w:spacing w:before="200" w:after="160"/>
+    </w:pPr>
+    <w:name w:val="Heading 2"/>
+    <w:link w:val="Heading2Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading2Char">
+    <w:rPr/>
+    <w:name w:val="Heading 2"/>
+    <w:link w:val="Heading2"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading3">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="28"/>
+      </w:rPr>
+      <w:spacing w:before="160" w:after="120"/>
+    </w:pPr>
+    <w:name w:val="Heading 3"/>
+    <w:link w:val="Heading3Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading3Char">
+    <w:rPr/>
+    <w:name w:val="Heading 3"/>
+    <w:link w:val="Heading3"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading4">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="24"/>
+      </w:rPr>
+      <w:spacing w:before="120" w:after="80"/>
+    </w:pPr>
+    <w:name w:val="Heading 4"/>
+    <w:link w:val="Heading4Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading4Char">
+    <w:rPr/>
+    <w:name w:val="Heading 4"/>
+    <w:link w:val="Heading4"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading5">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="22"/>
+        <w:i/>
+      </w:rPr>
+      <w:spacing w:before="120" w:after="80"/>
+    </w:pPr>
+    <w:name w:val="Heading 5"/>
+    <w:link w:val="Heading5Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading5Char">
+    <w:rPr/>
+    <w:name w:val="Heading 5"/>
+    <w:link w:val="Heading5"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading6">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="20"/>
+        <w:i/>
+      </w:rPr>
+      <w:spacing w:before="120" w:after="80"/>
+    </w:pPr>
+    <w:name w:val="Heading 6"/>
+    <w:link w:val="Heading6Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading6Char">
+    <w:rPr/>
+    <w:name w:val="Heading 6"/>
+    <w:link w:val="Heading6"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:latentStyles/>
+</w:styles>
+############################## word/document.xml ##############################
+<?xml version="1.0" encoding="UTF-8"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+  <w:body>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblCellMar>
+          <w:top w:w="0"/>
+          <w:bottom w:w="0"/>
+          <w:start w:w="30"/>
+          <w:end w:w="30"/>
+        </w:tblCellMar>
+        <w:tblCellSpacing w:w="20"/>
+      </w:tblPr>
+      <w:tr>
+        <w:trPr>
+          <w:tblHeader/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="8"/>
+              <w:end w:val="none" w:color="auto" w:sz="8"/>
+              <w:start w:val="none" w:color="auto" w:sz="8"/>
+            </w:tcBorders>
+            <w:gridSpan w:val="7"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>No</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>Variable</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>Stats / Values</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>Freqs (% of Valid)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>Graph</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>Valid</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:bottom w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+              </w:rPr>
+              <w:t>Missing</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>categorical</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">1. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>Z</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">2. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>Y</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">3. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>X</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">4. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>W</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">5. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>V</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">6. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>U</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">7. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>T</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">8. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>S</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">9. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>R</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve">10. </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>Q</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t></w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>[16 others]</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>676</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>10.9</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>625</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>10.1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>576</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>9.3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>529</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>8.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>484</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>7.8</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>441</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>7.1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>400</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>6.5</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>361</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>5.8</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>324</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>5.2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>289</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>4.7</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>1496</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t xml:space="preserve"> (</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>24.1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:drawing>
+                <wp:inline>
+                  <wp:extent cx="1320800" cy="2108200"/>
+                  <wp:docPr id="2" name="Picture 2"/>
+                  <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+                    <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                      <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                        <pic:nvPicPr>
+                          <pic:cNvPr id="2" name="Picture 2"/>
+                          <pic:cNvPicPr/>
+                        </pic:nvPicPr>
+                        <pic:blipFill>
+                          <a:blip>
+                            <a:extLst>
+                              <a:ext uri="{28A0092B-C50C-407E-A947-70E740481C1C}"/>
+                              <a:ext uri="{96DAC541-7B7A-43D3-8B79-37D633B846F1}">
+                                <asvg:svgBlip xmlns:asvg="http://schemas.microsoft.com/office/drawing/2016/SVG/main" r:embed="rId2"/>
+                              </a:ext>
+                            </a:extLst>
+                          </a:blip>
+                          <a:stretch>
+                            <a:fillRect/>
+                          </a:stretch>
+                        </pic:blipFill>
+                        <pic:spPr>
+                          <a:xfrm>
+                            <a:off x="0" y="0"/>
+                            <a:ext cx="1320800" cy="2108200"/>
+                          </a:xfrm>
+                          <a:prstGeom prst="rect">
+                            <a:avLst/>
+                          </a:prstGeom>
+                        </pic:spPr>
+                      </pic:pic>
+                    </a:graphicData>
+                  </a:graphic>
+                </wp:inline>
+              </w:drawing>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>6201</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>(</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>100</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:top w:w="60"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="start"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>(</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>%)</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="8"/>
+              <w:end w:val="none" w:color="auto" w:sz="8"/>
+              <w:start w:val="none" w:color="auto" w:sz="8"/>
+            </w:tcBorders>
+            <w:gridSpan w:val="7"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:sectPr/>
+  </w:body>
+</w:document>
+############################## word/media/image_2.svg ##############################
+<svg width='104.0' height='166.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 166.0'><rect x='2.0' y='152.0' width='24.125141106273183' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='137.0' width='4.660538622802774' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='122.0' width='5.2249637155297535' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='107.0' width='5.821641670698274' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='92.0' width='6.450572488308337' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='77.0' width='7.111756168359943' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='62.0' width='7.805192710853088' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='47.0' width='8.530882115787776' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='32.0' width='9.288824383164005' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='10.079019512981777' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='10.90146750524109' height='12.0' fill='lightgray' stroke='gray'/></svg>

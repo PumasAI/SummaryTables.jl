@@ -5,12 +5,16 @@ Creates a `Table` that gives a summarized overview of the columns of `table`,
 intended to give a quick intuition of the dataset.
 
 To render the graphs with LaTeX, you need to include `\\usepackage{tikz}` in your preamble.
+
+## Keyword arguments
+
+- `max_categories = 10`: Limit the number of categories listed individually for categorical columns, the rest will be lumped together.
 """
 function overview_table(table; kwargs...)
-    _dfsummary(DataFrame(table); kwargs...)
+    _overview_table(DataFrame(table); kwargs...)
 end
 
-function _dfsummary(df::DataFrames.DataFrame)
+function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
     columns = propertynames(df)
 
 
@@ -18,7 +22,7 @@ function _dfsummary(df::DataFrames.DataFrame)
         col = df[!, colname]
         n = length(col)
         n_valid = count(!ismissing, col)
-        stats_vals, freqs, graph = _stats_values_freqs_graph(col, n_valid)
+        stats_vals, freqs, graph = _stats_values_freqs_graph(col, n_valid; max_categories)
         n_missing = count(ismissing, col)
         [
             "No" => i,
@@ -40,7 +44,7 @@ function _dfsummary(df::DataFrames.DataFrame)
     Table([headers'; body], rowgaps = (1:length(columns)) .=> 6)
 end
 
-function _stats_values_freqs_graph(column::AbstractVector{<:Union{Missing,Number}}, _)
+function _stats_values_freqs_graph(column::AbstractVector{<:Union{Missing,Number}}, _n_valid; max_categories)
     nonmissing = collect(skipmissing(column))
     mu = mean(nonmissing)
     sd = std(nonmissing)
@@ -59,10 +63,21 @@ function _stats_values_freqs_graph(column::AbstractVector{<:Union{Missing,Number
     return stats_vals, freqs, graph
 end
 
-function _stats_values_freqs_graph(column::AbstractVector, n_valid)
+function _stats_values_freqs_graph(column::AbstractVector, n_valid; max_categories)
     cm = collect(pairs(StatsBase.countmap(filter(!ismissing, column))))
     sort!(cm, by = last, rev = true)
-    stats_vals = Concat.(1:length(cm), ". ", first.(cm))
+    cats_exceeded = length(cm) > max_categories
+    if cats_exceeded
+        cm = [
+            cm[1:max_categories];
+            "[$(length(cm) - max_categories) others]" => sum(last.(cm[max_categories+1:end]))
+        ]
+    end
+    prefixes = string.(1:length(cm), ". ")
+    if cats_exceeded
+        prefixes[end] = ""
+    end
+    stats_vals = Concat.(prefixes, first.(cm))
     freqs = last.(cm)
     percents = 100 .* freqs ./ n_valid
     freqs_percents = Concat.(freqs, " (", round.(percents; digits = 1), "%)")
