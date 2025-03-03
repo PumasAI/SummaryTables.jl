@@ -9,16 +9,20 @@ To render the graphs with LaTeX, you need to include `\\usepackage{tikz}` in you
 ## Keyword arguments
 
 - `max_categories = 10`: Limit the number of categories listed individually for categorical columns, the rest will be lumped together.
+- `label_metadata_key = "label"`: Key to look up column label metadata with.
 """
 function overview_table(table; kwargs...)
     _overview_table(DataFrame(table); kwargs...)
 end
 
-function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
+function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = "label")
     columns = propertynames(df)
 
+    has_labels = any(columns) do col
+        label_metadata_key in DataFrames.colmetadatakeys(df, col)
+    end
 
-    function row(i, colname)
+    function row(i, colname; has_labels::Bool)
         col = df[!, colname]
         n = length(col)
         n_valid = count(!ismissing, col)
@@ -28,9 +32,15 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
             _stats_values_freqs_graph_continuous(col)
         end
         n_missing = count(ismissing, col)
+
+        labels = [
+            "Label" => DataFrames.colmetadata(df, colname, label_metadata_key, "")
+        ]
+
         [
             "No" => i,
             "Variable" => Multiline(string(colname), "[$(pretty_column_eltype(col))]"),
+            (has_labels ? labels : [])...,
             "Stats / Values" => stats_vals,
             "Freqs (% of Valid)" => freqs,
             "Graph" => graph,
@@ -39,7 +49,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
         ]
     end
 
-    rows = row.(eachindex(columns), columns)
+    rows = row.(eachindex(columns), columns; has_labels)
 
     headers = Cell.(only.(unique.(eachcol(stack([first.(r) for r in rows], dims = 1)))), bold = true, halign = :left)
     body = Cell.(stack((last.(x) for x in rows), dims = 1), valign = :center, halign = :left)

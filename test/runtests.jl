@@ -478,6 +478,15 @@ end
 
             t = overview_table(_df; max_categories = 5)
             reftest(t, "references/overview_table/max_categories_5")
+
+            _df = DataFrame(a = [1, 2, 3], b = ["A", "B", "C"])
+            DataFrames.colmetadata!(_df, :a, "label", "Label for a")
+            DataFrames.colmetadata!(_df, :a, "other_label", "Other label for a")
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/default_label_metadata_key")
+
+            t = overview_table(_df; label_metadata_key = "other_label")
+            reftest(t, "references/overview_table/other_label_metadata_key")
         end
 
         @testset "annotations" begin
