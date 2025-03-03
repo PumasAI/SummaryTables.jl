@@ -619,9 +619,9 @@ import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./ch
 `),t("span",{class:"line"}),i(`
 `),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"df "),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"="),t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}}," dataset"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"("),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"ggplot2"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"diamonds"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},")["),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"!"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"1"),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},":"),t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"7"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"]")]),i(`
 `),t("span",{class:"line"}),i(`
-`),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"overview_table"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"(df)")])])])],-1),t("div",{innerHTML:`<table id="st-e6304749">
+`),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"overview_table"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"(df)")])])])],-1),t("div",{innerHTML:`<table id="st-bd2576ec">
     <style>
-        #st-e6304749 {
+        #st-bd2576ec {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -629,24 +629,24 @@ import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./ch
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-e6304749 tr {
+        #st-bd2576ec tr {
             background-color: transparent;
             border: none;
         }
-        #st-e6304749 tr td {
+        #st-bd2576ec tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-e6304749 br {
+        #st-bd2576ec br {
             line-height: 0em;
             margin: 0;
         }
-        #st-e6304749 sub {
+        #st-bd2576ec sub {
             line-height: 0;
         }
-        #st-e6304749 sup {
+        #st-bd2576ec sup {
             line-height: 0;
         }
     </style>
@@ -660,7 +660,7 @@ import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./ch
         <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
         <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
     </tr>
-    <tr>
+        <tr><td colspan="7" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">Carat<br>[Float64]</td>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">Mean (sd): 0.798 (0.474)<br>min ≤ med ≤ max:<br>0.2 ≤ 0.7 ≤ 5.01<br>IQR (CV): 0.64 (0.594)</td>
