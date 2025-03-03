@@ -461,14 +461,14 @@ end
             reftest(t, "references/simple_table/three_cols_with_names")
         end
 
-        @testset "dfsummary" begin
+        @testset "overview_table" begin
             _df = (;
                 continuous = [missing; 1:99],
                 categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 39)],
             )
 
-            t = dfsummary(_df)
-            reftest(t, "references/dfsummary/basic")
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/basic")
         end
 
         @testset "annotations" begin

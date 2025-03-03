@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Added the `dfsummary` function which creates a quick summary of all columns from a tabular data source, styled after the `dfSummary` function from R's `summarytools` package [#85](https://github.com/PumasAI/SummaryTables.jl/pull/85).
+- Added the `overview_table` function which creates a quick summary of all columns from a tabular data source, styled after the `dfSummary` function from R's `summarytools` package [#85](https://github.com/PumasAI/SummaryTables.jl/pull/85).
 
 ## 3.2.0 - 2025-02-24
 

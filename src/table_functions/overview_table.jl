@@ -1,12 +1,12 @@
 """
-    dfsummary(table)
+    overview_table(table)
 
 Creates a `Table` that gives a summarized overview of the columns of `table`,
 intended to give a quick intuition of the dataset.
 
 To render the graphs with LaTeX, you need to include `\\usepackage{tikz}` in your preamble.
 """
-function dfsummary(table; kwargs...)
+function overview_table(table; kwargs...)
     _dfsummary(DataFrame(table); kwargs...)
 end
 
