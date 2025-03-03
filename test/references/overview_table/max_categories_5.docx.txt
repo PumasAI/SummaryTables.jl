@@ -367,6 +367,14 @@
               <w:rPr/>
               <w:t>categorical</w:t>
             </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t>[String]</w:t>
+            </w:r>
           </w:p>
         </w:tc>
         <w:tc>

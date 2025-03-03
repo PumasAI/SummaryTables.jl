@@ -1,6 +1,6 @@
-<table id="st-dc2716ca">
+<table id="st-97e20261">
     <style>
-        #st-dc2716ca {
+        #st-97e20261 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-dc2716ca tr {
+        #st-97e20261 tr {
             background-color: transparent;
             border: none;
         }
-        #st-dc2716ca tr td {
+        #st-97e20261 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-dc2716ca br {
+        #st-97e20261 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-dc2716ca sub {
+        #st-97e20261 sub {
             line-height: 0;
         }
-        #st-dc2716ca sup {
+        #st-97e20261 sup {
             line-height: 0;
         }
     </style>
@@ -41,7 +41,7 @@
     </tr>
     <tr>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
-        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">continuous</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">continuous<br>[Int64?]</td>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">Mean (sd): 50 (28.7)<br>min ≤ med ≤ max:<br>1 ≤ 50 ≤ 99<br>IQR (CV): 49 (0.574)</td>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">99 distinct values</td>
         <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='8.0' width='10.0' height='54.0' fill='lightgray' stroke='gray'/><rect x='12.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='22.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='32.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='42.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='52.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='62.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='72.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='82.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='92.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/></svg></td>
@@ -50,7 +50,7 @@
     </tr>
     <tr>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">2</td>
-        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">categorical</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">categorical<br>[String?]</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. C<br>2. A<br>3. B</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">39 (39.4%)<br>35 (35.4%)<br>25 (25.3%)</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.252525252525253' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.35353535353536' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='39.39393939393939' height='12.0' fill='lightgray' stroke='gray'/></svg></td>

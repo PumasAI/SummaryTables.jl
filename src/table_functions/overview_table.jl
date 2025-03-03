@@ -26,7 +26,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10)
         n_missing = count(ismissing, col)
         [
             "No" => i,
-            "Variable" => string(colname),
+            "Variable" => Multiline(string(colname), "[$(pretty_column_eltype(col))]"),
             "Stats / Values" => stats_vals,
             "Freqs (% of Valid)" => freqs,
             "Graph" => graph,
@@ -145,4 +145,13 @@ function Base.show(io::IO, ::MIME"image/svg+xml", r::RectPlot)
     end
 
     print(io, "</svg>")
+end
+
+function pretty_column_eltype(::AbstractVector{T}) where T
+    nonmissing = nonmissingtype(T)
+    suffix = nonmissing == T ? "" : "?"
+    # we don't want long names like [CategoricalArrays.CategoricalValue{String, UInt8}] here,
+    # the plain type name should be sufficient in almost all realistic cases
+    str = repr(nonmissing; context = :module => parentmodule(nonmissing))
+    return str * suffix
 end
