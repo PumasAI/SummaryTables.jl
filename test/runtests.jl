@@ -24,6 +24,7 @@ function Base.show(io::IO, m::AsMIME{M}) where M <: MIME"text/latex"
         \usepackage{multirow}
         \usepackage{booktabs}
         \usepackage{xcolor}
+        \usepackage{tikz}
         \begin{document}
         """
     )
@@ -51,7 +52,7 @@ function run_reftest(table, path, func)
             buf = IOBuffer()
             r = ZipFile.Reader(docfile)
             for f in r.files
-                println(buf, "#"^30, " ", f.name, " ", "#"^30)
+                println(buf, "#"^30, " ", replace(f.name, "\\" => "/"), " ", "#"^30)
                 write(buf, read(f, String))
             end
             close(r)
@@ -458,6 +459,34 @@ end
 
             t = simple_table(df, ["value1", :group3 => "Group 3", :group1 => Annotated("Group 1", "is annotated")])
             reftest(t, "references/simple_table/three_cols_with_names")
+        end
+
+        @testset "overview_table" begin
+            _df = (;
+                continuous = [missing; 1:99; 99],
+                categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 40)],
+            )
+
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/basic")
+
+            _df = (;
+                categorical = reduce(vcat, [fill(str, i) for (str, i) in zip(string.('A':'Z'), (1:26) .^ 2)])
+            )
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/categories_exceeded")
+
+            t = overview_table(_df; max_categories = 5)
+            reftest(t, "references/overview_table/max_categories_5")
+
+            _df = DataFrame(a = [1, 2, 3], b = ["A", "B", "C"])
+            DataFrames.colmetadata!(_df, :a, "label", "Label for a")
+            DataFrames.colmetadata!(_df, :a, "other_label", "Other label for a")
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/default_label_metadata_key")
+
+            t = overview_table(_df; label_metadata_key = "other_label")
+            reftest(t, "references/overview_table/other_label_metadata_key")
         end
 
         @testset "annotations" begin

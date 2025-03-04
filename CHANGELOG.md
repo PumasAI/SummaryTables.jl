@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added the `overview_table` function which creates a quick summary of all columns from a tabular data source, styled after the `dfSummary` function from R's `summarytools` package [#85](https://github.com/PumasAI/SummaryTables.jl/pull/85).
+
 ## 3.2.0 - 2025-02-24
 
 - Added `Styled` struct for partial styling of text within a cell, including bold, italic, underline and text color. Note that you need to add `\usepackage{xcolor}` to use colored text in LaTeX. [#84](https://github.com/PumasAI/SummaryTables.jl/pull/84).

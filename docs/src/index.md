@@ -173,4 +173,17 @@ summarytable(
 )
 ```
 
+== overview_table
+
+The [overview_table](@ref) is intended for a quick glance over the different columns making up a dataset.
+
+```@example
+using SummaryTables
+using RDatasets
+
+df = dataset("ggplot2", "diamonds")[!, 1:7]
+
+overview_table(df)
+```
+
 :::

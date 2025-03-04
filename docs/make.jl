@@ -20,6 +20,7 @@ makedocs(
         "Reference" => [
             "Table Functions" => [
                 "reference/table_functions/simple_table.md",
+                "reference/table_functions/overview_table.md",
                 "reference/table_functions/listingtable.md",
                 "reference/table_functions/summarytable.md",
                 "reference/table_functions/table_one.md",

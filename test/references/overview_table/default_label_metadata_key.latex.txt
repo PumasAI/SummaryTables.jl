@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{8}{llllllll}}
+\toprule
+\textbf{No} & \textbf{Variable} & \textbf{Label} & \textbf{Stats / Values} & \textbf{Freqs (\% of Valid)} & \textbf{Graph} & \textbf{Valid} & \textbf{Missing} \\[6.0pt]
+\midrule
+1 & \begin{tabular}{@{}c@{}}a \\ \char`[Int64]\end{tabular} & Label for a & \begin{tabular}{@{}c@{}}Mean (sd): 2 (1) \\ min ≤ med ≤ max: \\ 1 ≤ 2 ≤ 3 \\ IQR (CV): 1 (0.5)\end{tabular} & 3 distinct values & \raisebox{-.5\height}{\begin{tikzpicture}\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.05291666666666667) rectangle (0.2934469696969697,1.6404166666666669);\draw[fill=lightgray, draw=gray] (0.2934469696969697,0.05291666666666667) rectangle (0.5339772727272727,0.05291666666666667);\draw[fill=lightgray, draw=gray] (0.5339772727272727,0.05291666666666667) rectangle (0.7745075757575757,0.05291666666666667);\draw[fill=lightgray, draw=gray] (0.7745075757575757,0.05291666666666667) rectangle (1.0150378787878787,0.05291666666666667);\draw[fill=lightgray, draw=gray] (1.0150378787878787,0.05291666666666667) rectangle (1.2555681818181819,0.05291666666666667);\draw[fill=lightgray, draw=gray] (1.2555681818181819,0.05291666666666667) rectangle (1.4960984848484848,1.6404166666666669);\draw[fill=lightgray, draw=gray] (1.4960984848484848,0.05291666666666667) rectangle (1.7366287878787876,0.05291666666666667);\draw[fill=lightgray, draw=gray] (1.7366287878787876,0.05291666666666667) rectangle (1.9771590909090908,0.05291666666666667);\draw[fill=lightgray, draw=gray] (1.9771590909090908,0.05291666666666667) rectangle (2.217689393939394,0.05291666666666667);\draw[fill=lightgray, draw=gray] (2.217689393939394,0.05291666666666667) rectangle (2.4582196969696968,0.05291666666666667);\draw[fill=lightgray, draw=gray] (2.4582196969696968,0.05291666666666667) rectangle (2.69875,1.6404166666666669);\end{tikzpicture}} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} \\[6.0pt]
+2 & \begin{tabular}{@{}c@{}}b \\ \char`[String]\end{tabular} &  & \begin{tabular}{@{}c@{}}1. B \\ 2. A \\ 3. C\end{tabular} & \begin{tabular}{@{}c@{}}1 (33.3\%) \\ 1 (33.3\%) \\ 1 (33.3\%)\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.05291666666666667) rectangle (0.934861111111111,0.37041666666666667);\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.4497916666666667) rectangle (0.934861111111111,0.7672916666666666);\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.8466666666666667) rectangle (0.934861111111111,1.1641666666666666);\end{tikzpicture}} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[]Dimensions: 3 x 2
+\item[]Duplicate rows: 0
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}
