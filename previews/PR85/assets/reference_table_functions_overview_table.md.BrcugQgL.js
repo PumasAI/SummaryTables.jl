@@ -3,9 +3,9 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">df </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> dataset</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;ggplot2&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;diamonds&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(df)</span></span></code></pre></div><div><table id="st-55b9e2ef">
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(df)</span></span></code></pre></div><div><table id="st-79dc912a">
     <style>
-        #st-55b9e2ef {
+        #st-79dc912a {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -13,24 +13,24 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-55b9e2ef tr {
+        #st-79dc912a tr {
             background-color: transparent;
             border: none;
         }
-        #st-55b9e2ef tr td {
+        #st-79dc912a tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-55b9e2ef br {
+        #st-79dc912a br {
             line-height: 0em;
             margin: 0;
         }
-        #st-55b9e2ef sub {
+        #st-79dc912a sub {
             line-height: 0;
         }
-        #st-55b9e2ef sup {
+        #st-79dc912a sup {
             line-height: 0;
         }
     </style>
@@ -135,16 +135,16 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 53940 x 10<br/>Duplicates: 146</td></tr>
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 53940 x 10<br/>Duplicate rows: 146</td></tr>
 </table></div><h2 id="Keyword:-max_categories" tabindex="-1">Keyword: <code>max_categories</code> <a class="header-anchor" href="#Keyword:-max_categories" aria-label="Permalink to &quot;Keyword: \`max_categories\` {#Keyword:-max_categories}&quot;">​</a></h2><p>Only <code>n &lt;= max_categories</code> categories per column will be listed individually, the rest will be lumped together. By default, only the 10 most frequent categories will be displayed.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (;</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    letters </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> reduce</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(vcat, [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">fill</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(str, i) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (str, i) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> zip</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">string</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;Z&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), (</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">26</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.^</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)])</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data)</span></span></code></pre></div><div><table id="st-4d8a4a2b">
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data)</span></span></code></pre></div><div><table id="st-fd7a958d">
     <style>
-        #st-4d8a4a2b {
+        #st-fd7a958d {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -152,24 +152,24 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-4d8a4a2b tr {
+        #st-fd7a958d tr {
             background-color: transparent;
             border: none;
         }
-        #st-4d8a4a2b tr td {
+        #st-fd7a958d tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-4d8a4a2b br {
+        #st-fd7a958d br {
             line-height: 0em;
             margin: 0;
         }
-        #st-4d8a4a2b sub {
+        #st-fd7a958d sub {
             line-height: 0;
         }
-        #st-4d8a4a2b sup {
+        #st-fd7a958d sup {
             line-height: 0;
         }
     </style>
@@ -193,10 +193,10 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicates: 6175</td></tr>
-</table></div><p>We can reduce the number of categories by setting <code>max_categories = 5</code>:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data; max_categories </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-621c6336">
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicate rows: 6175</td></tr>
+</table></div><p>We can reduce the number of categories by setting <code>max_categories = 5</code>:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data; max_categories </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-2f55d8e5">
     <style>
-        #st-621c6336 {
+        #st-2f55d8e5 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -204,24 +204,24 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-621c6336 tr {
+        #st-2f55d8e5 tr {
             background-color: transparent;
             border: none;
         }
-        #st-621c6336 tr td {
+        #st-2f55d8e5 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-621c6336 br {
+        #st-2f55d8e5 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-621c6336 sub {
+        #st-2f55d8e5 sub {
             line-height: 0;
         }
-        #st-621c6336 sup {
+        #st-2f55d8e5 sup {
             line-height: 0;
         }
     </style>
@@ -245,7 +245,7 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicates: 6175</td></tr>
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicate rows: 6175</td></tr>
 </table></div><h2 id="Keyword:-label_metadata_key" tabindex="-1">Keyword: <code>label_metadata_key</code> <a class="header-anchor" href="#Keyword:-label_metadata_key" aria-label="Permalink to &quot;Keyword: \`label_metadata_key\` {#Keyword:-label_metadata_key}&quot;">​</a></h2><p>If column label metadata is found, a label column is added to the output. This keyword determines which key to use for the lookup, the default is <code>&quot;label&quot;</code>.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
 <span class="line"></span>
@@ -255,9 +255,9 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">DataFrames</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">colmetadata!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:letters</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Letters of the alphabet&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">DataFrames</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">colmetadata!</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:letters</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;spanish_label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Letras del alfabeto&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data)</span></span></code></pre></div><div><table id="st-573d1384">
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data)</span></span></code></pre></div><div><table id="st-3fcca690">
     <style>
-        #st-573d1384 {
+        #st-3fcca690 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -265,24 +265,24 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-573d1384 tr {
+        #st-3fcca690 tr {
             background-color: transparent;
             border: none;
         }
-        #st-573d1384 tr td {
+        #st-3fcca690 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-573d1384 br {
+        #st-3fcca690 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-573d1384 sub {
+        #st-3fcca690 sub {
             line-height: 0;
         }
-        #st-573d1384 sup {
+        #st-3fcca690 sup {
             line-height: 0;
         }
     </style>
@@ -308,10 +308,10 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicates: 6175</td></tr>
-</table></div><p>We can pick the alternative label by specifying <code>label_metadata_key = &quot;spanish_label&quot;</code>:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data; label_metadata_key </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;spanish_label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-ed8c26fa">
+    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicate rows: 6175</td></tr>
+</table></div><p>We can pick the alternative label by specifying <code>label_metadata_key = &quot;spanish_label&quot;</code>:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> overview_table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data; label_metadata_key </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;spanish_label&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-bcc8a778">
     <style>
-        #st-ed8c26fa {
+        #st-bcc8a778 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -319,24 +319,24 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-ed8c26fa tr {
+        #st-bcc8a778 tr {
             background-color: transparent;
             border: none;
         }
-        #st-ed8c26fa tr td {
+        #st-bcc8a778 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-ed8c26fa br {
+        #st-bcc8a778 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-ed8c26fa sub {
+        #st-bcc8a778 sub {
             line-height: 0;
         }
-        #st-ed8c26fa sup {
+        #st-bcc8a778 sup {
             line-height: 0;
         }
     </style>
@@ -362,5 +362,5 @@ import{_ as i,c as e,o as l,az as a}from"./chunks/framework.C3YaANz0.js";const y
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicates: 6175</td></tr>
+    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicate rows: 6175</td></tr>
 </table></div>`,19)]))}const k=i(d,[["render",n]]);export{y as __pageData,k as default};
