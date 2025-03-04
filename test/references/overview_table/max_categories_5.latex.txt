@@ -19,7 +19,7 @@
 \begin{tablenotes}[flushleft]
 \footnotesize
 \item[]Dimensions: 6201 x 1
-\item[]Duplicates: 6175
+\item[]Duplicate rows: 6175
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

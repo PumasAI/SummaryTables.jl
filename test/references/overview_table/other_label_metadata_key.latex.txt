@@ -20,7 +20,7 @@
 \begin{tablenotes}[flushleft]
 \footnotesize
 \item[]Dimensions: 3 x 2
-\item[]Duplicates: 0
+\item[]Duplicate rows: 0
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

@@ -36,6 +36,6 @@
     table.hline(y: 3, stroke: 1pt),
     table.cell(colspan: 8)[#text(size: 0.8em)[
         Dimensions: 3 x 2\
-        Duplicates: 0
+        Duplicate rows: 0
     ]],
 )

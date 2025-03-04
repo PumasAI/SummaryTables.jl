@@ -928,7 +928,7 @@
               <w:rPr>
                 <w:sz w:val="16"/>
               </w:rPr>
-              <w:t>Duplicates: 6175</w:t>
+              <w:t>Duplicate rows: 6175</w:t>
             </w:r>
           </w:p>
         </w:tc>

@@ -1,6 +1,6 @@
-<table id="st-ee63117f">
+<table id="st-43c08222">
     <style>
-        #st-ee63117f {
+        #st-43c08222 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-ee63117f tr {
+        #st-43c08222 tr {
             background-color: transparent;
             border: none;
         }
-        #st-ee63117f tr td {
+        #st-43c08222 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-ee63117f br {
+        #st-43c08222 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-ee63117f sub {
+        #st-43c08222 sub {
             line-height: 0;
         }
-        #st-ee63117f sup {
+        #st-43c08222 sup {
             line-height: 0;
         }
     </style>
@@ -49,5 +49,5 @@
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicates: 6175</td></tr>
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicate rows: 6175</td></tr>
 </table>

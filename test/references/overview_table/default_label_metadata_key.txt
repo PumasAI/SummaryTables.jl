@@ -1,6 +1,6 @@
-<table id="st-da4c2f95">
+<table id="st-c3564cb8">
     <style>
-        #st-da4c2f95 {
+        #st-c3564cb8 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-da4c2f95 tr {
+        #st-c3564cb8 tr {
             background-color: transparent;
             border: none;
         }
-        #st-da4c2f95 tr td {
+        #st-c3564cb8 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-da4c2f95 br {
+        #st-c3564cb8 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-da4c2f95 sub {
+        #st-c3564cb8 sub {
             line-height: 0;
         }
-        #st-da4c2f95 sup {
+        #st-c3564cb8 sup {
             line-height: 0;
         }
     </style>
@@ -61,5 +61,5 @@
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 3 x 2<br/>Duplicates: 0</td></tr>
+    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 3 x 2<br/>Duplicate rows: 0</td></tr>
 </table>

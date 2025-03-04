@@ -1,6 +1,6 @@
-<table id="st-e8ccb7df">
+<table id="st-494446ea">
     <style>
-        #st-e8ccb7df {
+        #st-494446ea {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-e8ccb7df tr {
+        #st-494446ea tr {
             background-color: transparent;
             border: none;
         }
-        #st-e8ccb7df tr td {
+        #st-494446ea tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-e8ccb7df br {
+        #st-494446ea br {
             line-height: 0em;
             margin: 0;
         }
-        #st-e8ccb7df sub {
+        #st-494446ea sub {
             line-height: 0;
         }
-        #st-e8ccb7df sup {
+        #st-494446ea sup {
             line-height: 0;
         }
     </style>
@@ -58,5 +58,5 @@
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1<br>(1%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 101 x 2<br/>Duplicates: 1</td></tr>
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 101 x 2<br/>Duplicate rows: 1</td></tr>
 </table>

@@ -58,7 +58,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
         footnotes,
         [
             "Dimensions: $(size(df, 1)) x $(size(df, 2))",
-            "Duplicates: $(sum(DataFrames.nonunique(df)))",
+            "Duplicate rows: $(sum(DataFrames.nonunique(df)))",
         ]
     )
 
