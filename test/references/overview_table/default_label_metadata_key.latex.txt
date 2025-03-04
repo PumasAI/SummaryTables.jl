@@ -17,6 +17,11 @@
 2 & \begin{tabular}{@{}c@{}}b \\ \char`[String]\end{tabular} &  & \begin{tabular}{@{}c@{}}1. B \\ 2. A \\ 3. C\end{tabular} & \begin{tabular}{@{}c@{}}1 (33.3\%) \\ 1 (33.3\%) \\ 1 (33.3\%)\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.05291666666666667) rectangle (0.934861111111111,0.37041666666666667);\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.4497916666666667) rectangle (0.934861111111111,0.7672916666666666);\draw[fill=lightgray, draw=gray] (0.05291666666666667,0.8466666666666667) rectangle (0.934861111111111,1.1641666666666666);\end{tikzpicture}} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} \\
 \bottomrule
 \end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[]Dimensions: 3 x 2
+\item[]Duplicates: 0
+\end{tablenotes}
 \end{threeparttable}
 \end{table}
 \end{document}

@@ -463,8 +463,8 @@ end
 
         @testset "overview_table" begin
             _df = (;
-                continuous = [missing; 1:99],
-                categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 39)],
+                continuous = [missing; 1:99; 99],
+                categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 40)],
             )
 
             t = overview_table(_df)

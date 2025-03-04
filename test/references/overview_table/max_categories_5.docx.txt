@@ -746,6 +746,33 @@
           </w:p>
         </w:tc>
       </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:gridSpan w:val="7"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>Dimensions: 6201 x 1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>Duplicates: 6175</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
     </w:tbl>
     <w:sectPr/>
   </w:body>

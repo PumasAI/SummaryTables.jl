@@ -24,4 +24,8 @@
     table.cell(align: horizon)[6201 #linebreak() (100%)],
     table.cell(align: horizon)[0 #linebreak() (0%)],
     table.hline(y: 2, stroke: 1pt),
+    table.cell(colspan: 7)[#text(size: 0.8em)[
+        Dimensions: 6201 x 1\
+        Duplicates: 6175
+    ]],
 )

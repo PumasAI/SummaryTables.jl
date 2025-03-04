@@ -15,7 +15,7 @@ function overview_table(table; kwargs...)
     _overview_table(DataFrame(table); kwargs...)
 end
 
-function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = "label")
+function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = "label", footnotes = [])
     columns = propertynames(df)
 
     has_labels = any(columns) do col
@@ -54,8 +54,15 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
     headers = Cell.(only.(unique.(eachcol(stack([first.(r) for r in rows], dims = 1)))), bold = true, halign = :left)
     body = Cell.(stack((last.(x) for x in rows), dims = 1), valign = :center, halign = :left)
 
+    prepend!(
+        footnotes,
+        [
+            "Dimensions: $(size(df, 1)) x $(size(df, 2))",
+            "Duplicates: $(sum(DataFrames.nonunique(df)))",
+        ]
+    )
 
-    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP)
+    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP, footnotes)
 end
 
 has_categorical_eltype(::AbstractVector{<:Union{Missing,Number}}) = false

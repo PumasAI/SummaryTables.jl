@@ -34,4 +34,8 @@
     table.cell(align: horizon)[3 #linebreak() (100%)],
     table.cell(align: horizon)[0 #linebreak() (0%)],
     table.hline(y: 3, stroke: 1pt),
+    table.cell(colspan: 8)[#text(size: 0.8em)[
+        Dimensions: 3 x 2\
+        Duplicates: 0
+    ]],
 )

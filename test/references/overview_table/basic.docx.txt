@@ -419,7 +419,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>50</w:t>
+              <w:t>50.5</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -427,7 +427,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>28.7</w:t>
+              <w:t>29</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -455,7 +455,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>50</w:t>
+              <w:t>50.5</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -475,7 +475,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>49</w:t>
+              <w:t>49.5</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -578,7 +578,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>99</w:t>
+              <w:t>100</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -735,7 +735,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>39</w:t>
+              <w:t>40</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -743,7 +743,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>39.4</w:t>
+              <w:t>40</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -763,7 +763,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>35.4</w:t>
+              <w:t>35</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -783,7 +783,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>25.3</w:t>
+              <w:t>25</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -858,7 +858,7 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>99</w:t>
+              <w:t>100</w:t>
             </w:r>
             <w:r>
               <w:rPr/>
@@ -929,10 +929,37 @@
           </w:p>
         </w:tc>
       </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:gridSpan w:val="7"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>Dimensions: 101 x 2</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>Duplicates: 1</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
     </w:tbl>
     <w:sectPr/>
   </w:body>
 </w:document>
 ############################## word/media/image_2.svg ##############################
-<svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='8.0' width='10.0' height='54.0' fill='lightgray' stroke='gray'/><rect x='12.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='22.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='32.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='42.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='52.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='62.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='72.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='82.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='92.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/></svg>############################## word/media/image_3.svg ##############################
-<svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.252525252525253' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.35353535353536' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='39.39393939393939' height='12.0' fill='lightgray' stroke='gray'/></svg>
+<svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='12.909090909090907' width='10.0' height='49.09090909090909' fill='lightgray' stroke='gray'/><rect x='12.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='22.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='32.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='42.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='52.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='62.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='72.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='82.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='92.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/></svg>############################## word/media/image_3.svg ##############################
+<svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.0' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.0' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='40.0' height='12.0' fill='lightgray' stroke='gray'/></svg>

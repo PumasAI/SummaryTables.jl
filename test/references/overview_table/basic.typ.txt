@@ -18,17 +18,21 @@
     ),
     table.cell(align: horizon)[1],
     table.cell(align: horizon)[continuous #linebreak() [Int64?]],
-    table.cell(align: horizon)[Mean (sd): 50 (28.7) #linebreak() min ≤ med ≤ max: #linebreak() 1 ≤ 50 ≤ 99 #linebreak() IQR (CV): 49 (0.574)],
+    table.cell(align: horizon)[Mean (sd): 50.5 (29) #linebreak() min ≤ med ≤ max: #linebreak() 1 ≤ 50.5 ≤ 99 #linebreak() IQR (CV): 49.5 (0.574)],
     table.cell(align: horizon)[99 distinct values],
-    table.cell(align: horizon)[#image.decode("<svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='8.0' width='10.0' height='54.0' fill='lightgray' stroke='gray'/><rect x='12.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='22.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='32.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='42.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='52.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='62.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='72.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='82.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/><rect x='92.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/></svg>")],
-    table.cell(align: horizon)[99 #linebreak() (99%)],
+    table.cell(align: horizon)[#image.decode("<svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='12.909090909090907' width='10.0' height='49.09090909090909' fill='lightgray' stroke='gray'/><rect x='12.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='22.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='32.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='42.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='52.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='62.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='72.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='82.0' y='7.454545454545453' width='10.0' height='54.54545454545455' fill='lightgray' stroke='gray'/><rect x='92.0' y='2.0' width='10.0' height='60.0' fill='lightgray' stroke='gray'/></svg>")],
+    table.cell(align: horizon)[100 #linebreak() (99%)],
     table.cell(align: horizon)[1 #linebreak() (1%)],
     table.cell(align: horizon)[2],
     table.cell(align: horizon)[categorical #linebreak() [String?]],
     table.cell(align: horizon)[1. C #linebreak() 2. A #linebreak() 3. B],
-    table.cell(align: horizon)[39 (39.4%) #linebreak() 35 (35.4%) #linebreak() 25 (25.3%)],
-    table.cell(align: horizon)[#image.decode("<svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.252525252525253' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.35353535353536' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='39.39393939393939' height='12.0' fill='lightgray' stroke='gray'/></svg>")],
-    table.cell(align: horizon)[99 #linebreak() (99%)],
+    table.cell(align: horizon)[40 (40%) #linebreak() 35 (35%) #linebreak() 25 (25%)],
+    table.cell(align: horizon)[#image.decode("<svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.0' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.0' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='40.0' height='12.0' fill='lightgray' stroke='gray'/></svg>")],
+    table.cell(align: horizon)[100 #linebreak() (99%)],
     table.cell(align: horizon)[1 #linebreak() (1%)],
     table.hline(y: 3, stroke: 1pt),
+    table.cell(colspan: 7)[#text(size: 0.8em)[
+        Dimensions: 101 x 2\
+        Duplicates: 1
+    ]],
 )
