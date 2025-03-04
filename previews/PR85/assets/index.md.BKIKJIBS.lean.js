@@ -1,4 +1,4 @@
-import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./chunks/framework.C3YaANz0.js";const x=JSON.parse('{"title":"SummaryTables","description":"","frontmatter":{"layout":"home","hero":{"name":"SummaryTables","text":null,"tagline":"Publication-ready tables for Julia - in HTML, docx, LaTeX and Typst","image":{"src":"logo.png","alt":"SummaryTables"},"actions":[{"theme":"alt","text":"View on Github","link":"https://github.com/PumasAI/SummaryTables.jl"}]}},"headers":[],"relativePath":"index.md","filePath":"index.md","lastUpdated":null}'),p={name:"index.md"};function E(y,s,o,F,c,b){const a=h("PluginTabsTab"),n=h("PluginTabs");return r(),k("div",null,[s[6]||(s[6]=g("",7)),l(n,null,{default:e(()=>[l(a,{label:"Custom table"},{default:e(()=>s[0]||(s[0]=[t("p",null,[i("Completely customizable "),t("a",{href:"/SummaryTables.jl/previews/PR85/reference/infrastructure/table#Table"},"Table"),i("s can be built from scratch as a matrix of "),t("a",{href:"/SummaryTables.jl/previews/PR85/reference/infrastructure/cell#Cell"},"Cell"),i("s with a little styling metadata.")],-1),t("div",{class:"language-julia vp-adaptive-theme"},[t("button",{title:"Copy Code",class:"copy"}),t("span",{class:"lang"},"julia"),t("pre",{class:"shiki shiki-themes github-light github-dark vp-code",tabindex:"0"},[t("code",null,[t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"using"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}}," SummaryTables")]),i(`
+import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./chunks/framework.C3YaANz0.js";const C=JSON.parse('{"title":"SummaryTables","description":"","frontmatter":{"layout":"home","hero":{"name":"SummaryTables","text":null,"tagline":"Publication-ready tables for Julia - in HTML, docx, LaTeX and Typst","image":{"src":"logo.png","alt":"SummaryTables"},"actions":[{"theme":"alt","text":"View on Github","link":"https://github.com/PumasAI/SummaryTables.jl"}]}},"headers":[],"relativePath":"index.md","filePath":"index.md","lastUpdated":null}'),p={name:"index.md"};function E(y,s,o,F,c,b){const a=h("PluginTabsTab"),n=h("PluginTabs");return r(),k("div",null,[s[6]||(s[6]=g("",7)),l(n,null,{default:e(()=>[l(a,{label:"Custom table"},{default:e(()=>s[0]||(s[0]=[t("p",null,[i("Completely customizable "),t("a",{href:"/SummaryTables.jl/previews/PR85/reference/infrastructure/table#Table"},"Table"),i("s can be built from scratch as a matrix of "),t("a",{href:"/SummaryTables.jl/previews/PR85/reference/infrastructure/cell#Cell"},"Cell"),i("s with a little styling metadata.")],-1),t("div",{class:"language-julia vp-adaptive-theme"},[t("button",{title:"Copy Code",class:"copy"}),t("span",{class:"lang"},"julia"),t("pre",{class:"shiki shiki-themes github-light github-dark vp-code",tabindex:"0"},[t("code",null,[t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"using"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}}," SummaryTables")]),i(`
 `),t("span",{class:"line"}),i(`
 `),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"categories "),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"="),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}}," ["),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Deciduous"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Deciduous"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Evergreen"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Evergreen"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Evergreen"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"]")]),i(`
 `),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"species "),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"="),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}}," ["),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Beech"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Oak"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Fir"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Spruce"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"Pine"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"]")]),i(`
@@ -619,9 +619,9 @@ import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./ch
 `),t("span",{class:"line"}),i(`
 `),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"df "),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"="),t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}}," dataset"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"("),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"ggplot2"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#032F62","--shiki-dark":"#9ECBFF"}},'"diamonds"'),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},")["),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},"!"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},", "),t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"1"),t("span",{style:{"--shiki-light":"#D73A49","--shiki-dark":"#F97583"}},":"),t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"7"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"]")]),i(`
 `),t("span",{class:"line"}),i(`
-`),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"overview_table"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"(df)")])])])],-1),t("div",{innerHTML:`<table id="st-bd2576ec">
+`),t("span",{class:"line"},[t("span",{style:{"--shiki-light":"#005CC5","--shiki-dark":"#79B8FF"}},"overview_table"),t("span",{style:{"--shiki-light":"#24292E","--shiki-dark":"#E1E4E8"}},"(df)")])])])],-1),t("div",{innerHTML:`<table id="st-975c3270">
     <style>
-        #st-bd2576ec {
+        #st-975c3270 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -629,24 +629,24 @@ import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./ch
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-bd2576ec tr {
+        #st-975c3270 tr {
             background-color: transparent;
             border: none;
         }
-        #st-bd2576ec tr td {
+        #st-975c3270 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-bd2576ec br {
+        #st-975c3270 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-bd2576ec sub {
+        #st-975c3270 sub {
             line-height: 0;
         }
-        #st-bd2576ec sup {
+        #st-975c3270 sup {
             line-height: 0;
         }
     </style>
@@ -724,4 +724,5 @@ import{_ as d,C as h,c as k,o as r,az as g,G as l,w as e,j as t,a as i}from"./ch
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
     </tr>
     <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-</table>`},null,-1)])),_:1})]),_:1})])}const m=d(p,[["render",E]]);export{x as __pageData,m as default};
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 53940 x 7<br/>Duplicates: 803</td></tr>
+</table>`},null,-1)])),_:1})]),_:1})])}const m=d(p,[["render",E]]);export{C as __pageData,m as default};
