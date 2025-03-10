@@ -3,6 +3,7 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
 \setlength\tabcolsep{0pt}
@@ -16,7 +17,7 @@
 \midrule
 \textbf{value} &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 6.5 (3.61) & 2.5 (1.29) & 6.5 (1.29) & 10.5 (1.29) \\
-\hspace{12.0pt}Median [Min, Max] & 6.5 [1, 12] & 2.5 [1, 4] & 6.5 [5, 8] & 10.5 [9, 12] \\
+\hspace{12.0pt}Median \char`[Min, Max] & 6.5 \char`[1, 12] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] & 10.5 \char`[9, 12] \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

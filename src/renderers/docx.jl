@@ -309,3 +309,10 @@ end
 docx_sprint(x) = sprint(x) do io, x
     _showas(io, MIME"text"(), x)
 end
+
+
+function to_runs(r::RectPlot, props::WriteDocx.RunProperties)
+    W = WriteDocx
+    return [W.Run([W.InlineDrawing(W.Image(MIME"image/svg+xml"(), r), r.size[1] * W.pt, r.size[2] * W.pt)], props)]
+end
+

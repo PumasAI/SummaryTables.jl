@@ -199,3 +199,9 @@ end
 function _str_typst_escaped(s::AbstractString)
     return sprint(_str_typst_escaped, s, sizehint=lastindex(s))
 end
+
+function _showas(io::IO, ::MIME"text/typst", r::RectPlot)
+    print(io, "#image.decode(\"")
+    show(io, MIME"image/svg+xml"(), r)
+    print(io, """\")""")
+end
