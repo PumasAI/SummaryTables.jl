@@ -54,7 +54,6 @@ include("renderers/latex.jl")
 include("renderers/html.jl")
 include("renderers/docx.jl")
 include("renderers/typst.jl")
-
-include("makie.jl")
+include("renderers/makie.jl")
 
 end # module
