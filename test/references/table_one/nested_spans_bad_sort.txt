@@ -1,6 +1,6 @@
-<table class="st-d304e3e1">
+<table id="st-2de123e6">
     <style>
-        .st-d304e3e1 {
+        #st-2de123e6 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,31 +8,32 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d304e3e1 tr td {
+        #st-2de123e6 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-2de123e6 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d304e3e1 br {
+        #st-2de123e6 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d304e3e1 sub {
+        #st-2de123e6 sub {
             line-height: 0;
         }
-
-        .st-d304e3e1 sup {
+        #st-2de123e6 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
-        <td colspan="4" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+        <td colspan="4" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">y</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -44,19 +45,19 @@
     <tr>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
-        <td style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">z</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">C</td>
         <td style="text-align:center;">C</td>
         <td style="text-align:center;">D</td>
         <td style="text-align:center;">D</td>
     </tr>
-        <tr><td colspan="6" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="6" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">x</td>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
@@ -80,5 +81,5 @@
         <td style="text-align:center;">4.5 [4, 5]</td>
         <td style="text-align:center;">6 [6, 6]</td>
     </tr>
-    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

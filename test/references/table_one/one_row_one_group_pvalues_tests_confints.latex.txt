@@ -2,6 +2,8 @@
 \usepackage{threeparttable}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
 \setlength\tabcolsep{0pt}
@@ -11,11 +13,11 @@
 \toprule
  &  & \multicolumn{2}{c}{\textbf{group1}} &  &  &  \\
 \cmidrule{3-4}
- & \textbf{Overall} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\
+ & \textbf{Total} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\
 \midrule
 \textbf{value1} &  &  &  & 0.005 & UnequalVarianceTTest & (-6.234, -1.766) \\
 \hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\
-\hspace{12.0pt}Median [Min, Max] & 4.5 [1, 8] & 2.5 [1, 4] & 6.5 [5, 8] &  &  &  \\
+\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] &  &  &  \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

@@ -1,0 +1,65 @@
+<table id="st-c3564cb8">
+    <style>
+        #st-c3564cb8 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-c3564cb8 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-c3564cb8 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-c3564cb8 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-c3564cb8 sub {
+            line-height: 0;
+        }
+        #st-c3564cb8 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">No</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Variable</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Label</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Stats / Values</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Freqs (% of Valid)</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Graph</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">a<br>[Int64]</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">Label for a</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">Mean (sd): 2 (1)<br>min ≤ med ≤ max:<br>1 ≤ 2 ≤ 3<br>IQR (CV): 1 (0.5)</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">3 distinct values</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='64.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 64.0'><rect x='2.0' y='2.0' width='9.09090909090909' height='60.0' fill='lightgray' stroke='gray'/><rect x='11.09090909090909' y='62.0' width='9.09090909090909' height='0.0' fill='lightgray' stroke='gray'/><rect x='20.18181818181818' y='62.0' width='9.09090909090909' height='0.0' fill='lightgray' stroke='gray'/><rect x='29.27272727272727' y='62.0' width='9.09090909090909' height='0.0' fill='lightgray' stroke='gray'/><rect x='38.36363636363636' y='62.0' width='9.090909090909093' height='0.0' fill='lightgray' stroke='gray'/><rect x='47.45454545454545' y='2.0' width='9.090909090909093' height='60.0' fill='lightgray' stroke='gray'/><rect x='56.54545454545454' y='62.0' width='9.090909090909086' height='0.0' fill='lightgray' stroke='gray'/><rect x='65.63636363636363' y='62.0' width='9.090909090909093' height='0.0' fill='lightgray' stroke='gray'/><rect x='74.72727272727272' y='62.0' width='9.090909090909093' height='0.0' fill='lightgray' stroke='gray'/><rect x='83.81818181818181' y='62.0' width='9.090909090909093' height='0.0' fill='lightgray' stroke='gray'/><rect x='92.9090909090909' y='2.0' width='9.090909090909093' height='60.0' fill='lightgray' stroke='gray'/></svg></td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">3<br>(100%)</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">2</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">b<br>[String]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. B<br>2. A<br>3. C</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1 (33.3%)<br>1 (33.3%)<br>1 (33.3%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='33.33333333333333' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='33.33333333333333' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='33.33333333333333' height='12.0' fill='lightgray' stroke='gray'/></svg></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">3<br>(100%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="8" style="font-size: 0.8em;">Dimensions: 3 x 2<br/>Duplicate rows: 0</td></tr>
+</table>

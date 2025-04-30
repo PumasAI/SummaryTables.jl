@@ -1,6 +1,6 @@
-<table class="st-d11bcf7b">
+<table id="st-72a46570">
     <style>
-        .st-d11bcf7b {
+        #st-72a46570 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,39 +8,40 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d11bcf7b tr td {
+        #st-72a46570 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-72a46570 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d11bcf7b br {
+        #st-72a46570 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d11bcf7b sub {
+        #st-72a46570 sub {
             line-height: 0;
         }
-
-        .st-d11bcf7b sup {
+        #st-72a46570 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
         <td style="text-align:center;">1</td>
         <td style="text-align:center;">2</td>
     </tr>
-        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="font-weight:bold;text-align:left;">category</td>
         <td style="text-align:center;"></td>
         <td style="text-align:center;"></td>
@@ -70,5 +71,5 @@
         <td style="text-align:center;">0 (0%)</td>
         <td style="text-align:center;">1 (25%)</td>
     </tr>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

@@ -1,7 +1,7 @@
 name = "SummaryTables"
 uuid = "6ce4ecf0-73a7-4ce3-9fb4-80ebfe887b60"
 authors = ["Julius <juliusk@pumas.ai>", "Mike <michael@pumas.ai>"]
-version = "2.0.0"
+version = "3.3.0"
 
 [deps]
 CategoricalArrays = "324d7699-5711-5eae-9e2f-1d82baa6b597"
@@ -33,9 +33,9 @@ MultipleTesting = "0.5, 0.6"
 NaturalSort = "1.0"
 OrderedCollections = "1"
 Printf = "1"
-SHA = "0.7"
+SHA = "<0.0.1, 0.7, 1"
 Statistics = "1"
 StatsBase = "0.33, 0.34"
 Tables = "1"
-WriteDocx = "1"
+WriteDocx = "1.1"
 julia = "1.7"

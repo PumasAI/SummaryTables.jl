@@ -1,0 +1,39 @@
+<table id="st-ca0c77b5">
+    <style>
+        #st-ca0c77b5 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-ca0c77b5 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-ca0c77b5 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-ca0c77b5 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-ca0c77b5 sub {
+            line-height: 0;
+        }
+        #st-ca0c77b5 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">Cell 1<sup>1</sup></td>
+        <td style="text-align:center;">Cell 2</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 1<br/>First footnote.<br/>Second footnote.</td></tr>
+</table>

@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{5}{llccc}}
+\toprule
+ &  & \multicolumn{3}{c}{\textbf{B}} \\
+\cmidrule{3-5}
+ &  & 2 & 4 & 8 \\
+\textbf{A} &  & \multicolumn{3}{c}{\textbf{value}} \\
+\midrule
+'a' & \textbf{sum} &  & 6 &  \\
+'b' & \textbf{sum} & 4 & 5 &  \\
+'c' & \textbf{sum} & 2 & 1 & 3 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

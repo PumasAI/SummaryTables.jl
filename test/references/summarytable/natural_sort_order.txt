@@ -1,6 +1,6 @@
-<table class="st-a14a3200">
+<table id="st-f7d02343">
     <style>
-        .st-a14a3200 {
+        #st-f7d02343 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,34 +8,35 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-a14a3200 tr td {
+        #st-f7d02343 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-f7d02343 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-a14a3200 br {
+        #st-f7d02343 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-a14a3200 sub {
+        #st-f7d02343 sub {
             line-height: 0;
         }
-
-        .st-a14a3200 sup {
+        #st-f7d02343 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="font-weight:bold;text-align:left;">id</td>
         <td style="font-weight:bold;text-align:left;">dose</td>
         <td style="text-align:center;"></td>
         <td style="font-weight:bold;text-align:center;">value</td>
     </tr>
-        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td rowspan="2" style="text-align:left;">1</td>
         <td style="text-align:left;">1 mg</td>
         <td style="font-weight:bold;text-align:left;">mean</td>
@@ -101,5 +102,5 @@
         <td style="font-weight:bold;text-align:left;">mean</td>
         <td style="text-align:center;">4</td>
     </tr>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

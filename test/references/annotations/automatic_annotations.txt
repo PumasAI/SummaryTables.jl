@@ -1,6 +1,6 @@
-<table class="st-8670b714">
+<table id="st-d658b9cf">
     <style>
-        .st-8670b714 {
+        #st-d658b9cf {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,27 +8,28 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-8670b714 tr td {
+        #st-d658b9cf tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-d658b9cf tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-8670b714 br {
+        #st-d658b9cf br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-8670b714 sub {
+        #st-d658b9cf sub {
             line-height: 0;
         }
-
-        .st-8670b714 sup {
+        #st-d658b9cf sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;">A<sup>1</sup></td>
         <td style="text-align:center;">B<sup>2</sup></td>
@@ -37,6 +38,6 @@
         <td style="text-align:center;">C<sup>3</sup></td>
         <td style="text-align:center;">D<sup>1</sup></td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
-    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 1&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup> Note 2&nbsp;&nbsp;&nbsp;&nbsp;<sup>3</sup> Note 3</td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Note 1<br/><sup>2</sup> Note 2<br/><sup>3</sup> Note 3</td></tr>
 </table>

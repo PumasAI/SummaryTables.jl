@@ -11,5 +11,9 @@
     [C#super[3]],
     [D#super[1]],
     table.hline(y: 2, stroke: 1pt),
-    table.cell(align: left, colspan: 2)[#super[1]#text(size: 0.8em)[Note 1]#h(1.5em, weak: true)#super[2]#text(size: 0.8em)[Note 2]#h(1.5em, weak: true)#super[3]#text(size: 0.8em)[Note 3]],
+    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
+        #super[1]Note 1\
+        #super[2]Note 2\
+        #super[3]Note 3
+    ]],
 )

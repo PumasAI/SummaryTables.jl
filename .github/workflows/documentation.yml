@@ -8,6 +8,7 @@ on:
       - master
     tags:
       - '*'
+  workflow_dispatch:
 concurrency:
   # Skip intermediate builds: all builds except for builds on the `master` branch
   # Cancel intermediate builds: only pull request builds
@@ -25,13 +26,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-      - uses: julia-actions/setup-julia@780022b48dfc0c2c6b94cfee6a9284850107d037
+      - uses: julia-actions/setup-julia@5c9647d97b78a5debe5164e9eec09d653d29bd71 # v2.6.1
         with:
           version: '1'
+      - uses: julia-actions/cache@2b1bf4d8a138668ac719ea7ca149b53ed8d8401e # v2.0.7
       - name: Install dependencies
         run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
       - name: Build and deploy
         env:
-          JULIA_DEBUG: Documenter
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: julia --project=docs/ docs/make.jl
+        run: julia --project=docs/ --color=yes docs/make.jl

@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{ccc}}
+\toprule
+\textbf{value1} & \textbf{group3} & \textbf{group1} \\
+\midrule
+1 & c & a \\
+2 & c & a \\
+3 & d & a \\
+4 & d & a \\
+5 & c & b \\
+6 & c & b \\
+7 & d & b \\
+8 & d & b \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

@@ -21,6 +21,7 @@ jobs:
     strategy:
       matrix:
         version:
+          - 'min'
           - '1'
         os:
           - ubuntu-latest
@@ -31,9 +32,10 @@ jobs:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
         with:
           persist-credentials: false
-      - uses: julia-actions/setup-julia@780022b48dfc0c2c6b94cfee6a9284850107d037
+      - uses: julia-actions/setup-julia@5c9647d97b78a5debe5164e9eec09d653d29bd71 # v2.6.1
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
-      - uses: julia-actions/julia-buildpkg@90dd6f23eb49626e4e6612cb9d64d456f86e6a1c
-      - uses: julia-actions/julia-runtest@d0c4f093badade621cd041bba567d1e832480ac2
+      - uses: julia-actions/cache@2b1bf4d8a138668ac719ea7ca149b53ed8d8401e # v2.0.7
+      - uses: julia-actions/julia-buildpkg@e3eb439fad4f9aba7da2667e7510e4a46ebc46e1
+      - uses: julia-actions/julia-runtest@678da69444cd5f13d7e674a90cb4f534639a14f9 # v1.11.2

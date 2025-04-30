@@ -1,0 +1,53 @@
+<table id="st-43c08222">
+    <style>
+        #st-43c08222 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-43c08222 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-43c08222 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-43c08222 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-43c08222 sub {
+            line-height: 0;
+        }
+        #st-43c08222 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">No</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Variable</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Stats / Values</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Freqs (% of Valid)</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Graph</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
+    </tr>
+        <tr><td colspan="7" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">categorical<br>[String]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. Z<br>2. Y<br>3. X<br>4. W<br>5. V<br>6. U<br>7. T<br>8. S<br>9. R<br>10. Q<br>[16 others]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">676 (10.9%)<br>625 (10.1%)<br>576 (9.3%)<br>529 (8.5%)<br>484 (7.8%)<br>441 (7.1%)<br>400 (6.5%)<br>361 (5.8%)<br>324 (5.2%)<br>289 (4.7%)<br>1496 (24.1%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='166.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 166.0'><rect x='2.0' y='152.0' width='24.125141106273183' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='137.0' width='4.660538622802774' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='122.0' width='5.2249637155297535' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='107.0' width='5.821641670698274' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='92.0' width='6.450572488308337' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='77.0' width='7.111756168359943' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='62.0' width='7.805192710853088' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='47.0' width='8.530882115787776' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='32.0' width='9.288824383164005' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='10.079019512981777' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='10.90146750524109' height='12.0' fill='lightgray' stroke='gray'/></svg></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">6201<br>(100%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+    </tr>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 6201 x 1<br/>Duplicate rows: 6175</td></tr>
+</table>

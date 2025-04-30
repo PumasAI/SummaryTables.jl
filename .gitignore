@@ -5,3 +5,6 @@ Manifest.toml
 /docs/build
 .DS_Store
 .quarto
+/docs/node_modules
+docs/src/resources/changelog.md
+/scratch

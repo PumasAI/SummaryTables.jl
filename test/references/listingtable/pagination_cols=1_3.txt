@@ -1,6 +1,6 @@
-<table class="st-2fe4e7af">
+<table id="st-7186ca60">
     <style>
-        .st-2fe4e7af {
+        #st-7186ca60 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,27 +8,28 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-2fe4e7af tr td {
+        #st-7186ca60 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-7186ca60 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-2fe4e7af br {
+        #st-7186ca60 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-2fe4e7af sub {
+        #st-7186ca60 sub {
             line-height: 0;
         }
-
-        .st-2fe4e7af sup {
+        #st-7186ca60 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
         <td style="font-weight:bold;text-align:center;">group1</td>
@@ -49,7 +50,7 @@
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="2" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">c</td>
         <td style="text-align:center;">5</td>
     </tr>
@@ -57,5 +58,5 @@
         <td style="text-align:left;">d</td>
         <td style="text-align:center;">7</td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

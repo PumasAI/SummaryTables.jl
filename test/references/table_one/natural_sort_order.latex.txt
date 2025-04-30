@@ -2,6 +2,8 @@
 \usepackage{threeparttable}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
 \setlength\tabcolsep{0pt}
@@ -11,11 +13,11 @@
 \toprule
  &  & \multicolumn{4}{c}{\textbf{dose}} \\
 \cmidrule{3-6}
- & \textbf{Overall} & 1 mg & 5 mg & 10 mg & 50 mg \\
+ & \textbf{Total} & 1 mg & 5 mg & 10 mg & 50 mg \\
 \midrule
 \textbf{value} &  &  &  &  &  \\
 \hspace{12.0pt}Mean (SD) & 3 (1.41) & 2.67 (2.08) & 2.67 (1.53) & 4.33 (0.577) & 2.33 (0.577) \\
-\hspace{12.0pt}Median [Min, Max] & 3 [1, 5] & 2 [1, 5] & 3 [1, 4] & 4 [4, 5] & 2 [2, 3] \\
+\hspace{12.0pt}Median \char`[Min, Max] & 3 \char`[1, 5] & 2 \char`[1, 5] & 3 \char`[1, 4] & 4 \char`[4, 5] & 2 \char`[2, 3] \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

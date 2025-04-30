@@ -1,6 +1,6 @@
-<table class="st-a16d1ac2">
+<table id="st-826f3fd3">
     <style>
-        .st-a16d1ac2 {
+        #st-826f3fd3 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,30 +8,31 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-a16d1ac2 tr td {
+        #st-826f3fd3 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-826f3fd3 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-a16d1ac2 br {
+        #st-826f3fd3 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-a16d1ac2 sub {
+        #st-826f3fd3 sub {
             line-height: 0;
         }
-
-        .st-a16d1ac2 sup {
+        #st-826f3fd3 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -39,7 +40,7 @@
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -50,10 +51,10 @@
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">d</td>
         <td style="text-align:center;">7</td>
         <td style="text-align:center;">8</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

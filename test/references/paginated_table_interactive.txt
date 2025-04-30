@@ -1,35 +1,26 @@
 <div>
-<script>
-function showPaginatedPage(el, index){
-    const container = el.parentElement.querySelector('div');
-    for (var i = 0; i<container.children.length; i++){
-        container.children[i].style.display = i == index ? 'block' : 'none';
-    }
-}
-</script>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==0 ? 'block' : 'none');
+">Page 1</button>
 
-<button onclick="showPaginatedPage(this, 0)">
-Page 1
-</button>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==1 ? 'block' : 'none');
+">Page 2</button>
 
-<button onclick="showPaginatedPage(this, 1)">
-Page 2
-</button>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==2 ? 'block' : 'none');
+">Page 3</button>
 
-<button onclick="showPaginatedPage(this, 2)">
-Page 3
-</button>
-
-<button onclick="showPaginatedPage(this, 3)">
-Page 4
-</button>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==3 ? 'block' : 'none');
+">Page 4</button>
 
 <div>
 <div style="display:block">
 <h3>Page 1</h3>
-<table class="st-f5558740">
+<table id="st-c1e1818a">
     <style>
-        .st-f5558740 {
+        #st-c1e1818a {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -37,30 +28,31 @@ Page 4
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-f5558740 tr td {
+        #st-c1e1818a tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-c1e1818a tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-f5558740 br {
+        #st-c1e1818a br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-f5558740 sub {
+        #st-c1e1818a sub {
             line-height: 0;
         }
-
-        .st-f5558740 sup {
+        #st-c1e1818a sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -68,7 +60,7 @@ Page 4
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -79,19 +71,19 @@ Page 4
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">c</td>
         <td style="text-align:center;">1</td>
         <td style="text-align:center;">2</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>
 </div>
 <div style="display:none">
 <h3>Page 2</h3>
-<table class="st-49405443">
+<table id="st-42dc7aa5">
     <style>
-        .st-49405443 {
+        #st-42dc7aa5 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -99,30 +91,31 @@ Page 4
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-49405443 tr td {
+        #st-42dc7aa5 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-42dc7aa5 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-49405443 br {
+        #st-42dc7aa5 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-49405443 sub {
+        #st-42dc7aa5 sub {
             line-height: 0;
         }
-
-        .st-49405443 sup {
+        #st-42dc7aa5 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -130,7 +123,7 @@ Page 4
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -141,19 +134,19 @@ Page 4
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">c</td>
         <td style="text-align:center;">5</td>
         <td style="text-align:center;">6</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>
 </div>
 <div style="display:none">
 <h3>Page 3</h3>
-<table class="st-9209a8dc">
+<table id="st-0ee84d22">
     <style>
-        .st-9209a8dc {
+        #st-0ee84d22 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -161,30 +154,31 @@ Page 4
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-9209a8dc tr td {
+        #st-0ee84d22 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-0ee84d22 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-9209a8dc br {
+        #st-0ee84d22 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-9209a8dc sub {
+        #st-0ee84d22 sub {
             line-height: 0;
         }
-
-        .st-9209a8dc sup {
+        #st-0ee84d22 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -192,7 +186,7 @@ Page 4
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -203,19 +197,19 @@ Page 4
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">d</td>
         <td style="text-align:center;">3</td>
         <td style="text-align:center;">4</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>
 </div>
 <div style="display:none">
 <h3>Page 4</h3>
-<table class="st-a16d1ac2">
+<table id="st-826f3fd3">
     <style>
-        .st-a16d1ac2 {
+        #st-826f3fd3 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -223,30 +217,31 @@ Page 4
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-a16d1ac2 tr td {
+        #st-826f3fd3 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-826f3fd3 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-a16d1ac2 br {
+        #st-826f3fd3 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-a16d1ac2 sub {
+        #st-826f3fd3 sub {
             line-height: 0;
         }
-
-        .st-a16d1ac2 sup {
+        #st-826f3fd3 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -254,7 +249,7 @@ Page 4
     </tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -265,12 +260,12 @@ Page 4
         <td style="font-weight:bold;text-align:left;">group3</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">d</td>
         <td style="text-align:center;">7</td>
         <td style="text-align:center;">8</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>
 </div>
 </div>

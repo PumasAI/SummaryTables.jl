@@ -10,6 +10,7 @@ using Statistics
 using ReferenceTests
 using tectonic_jll
 using Typst_jll
+using ZipFile
 
 # Wrapper type to dispatch to the right `show` implementations.
 struct AsMIME{M}
@@ -22,6 +23,8 @@ function Base.show(io::IO, m::AsMIME{M}) where M <: MIME"text/latex"
         \usepackage{threeparttable}
         \usepackage{multirow}
         \usepackage{booktabs}
+        \usepackage{xcolor}
+        \usepackage{tikz}
         \begin{document}
         """
     )
@@ -36,7 +39,6 @@ as_typst(object) = AsMIME{MIME"text/typst"}(object)
 function run_reftest(table, path, func)
     path_full = joinpath(@__DIR__, path * extension(func))
     if func === as_docx
-        # TODO: Real reference tests once WriteDocx has stabilized more
         @test_nowarn mktempdir() do dir
             tablenode = to_docx(table)
             doc = W.Document(
@@ -45,7 +47,17 @@ function run_reftest(table, path, func)
                 ]),
                 W.Styles([])
             )
-            W.save(joinpath(dir, "test.docx"), doc)
+            docfile = joinpath(dir, "test.docx")
+            W.save(docfile, doc)
+            buf = IOBuffer()
+            r = ZipFile.Reader(docfile)
+            for f in r.files
+                println(buf, "#"^30, " ", replace(f.name, "\\" => "/"), " ", "#"^30)
+                write(buf, read(f, String))
+            end
+            close(r)
+            s = String(take!(buf))
+            @test_reference path_full s
         end
     else
         @test_reference path_full func(table)
@@ -84,7 +96,7 @@ end
 
 extension(f::typeof(as_html)) = ".txt"
 extension(f::typeof(as_latex)) = ".latex.txt"
-extension(f::typeof(as_docx)) = ".docx"
+extension(f::typeof(as_docx)) = ".docx.txt"
 extension(f::typeof(as_typst)) = ".typ.txt"
 
 # This can be removed for `@test_throws` once CI only uses Julia 1.8 and up
@@ -133,12 +145,18 @@ end
         sort!(_df, [:group2, :group])
     end
 
+    df_missing_groups = DataFrame(
+        value = 1:6,
+        A = ['c', 'c', 'c', 'b', 'b', 'a'],
+        B = [4, 2, 8, 2, 4, 4]
+    )
+
     @testset for func in [as_html, as_latex, as_docx, as_typst]
-        reftest(t, path) = @testset "$path" run_reftest(t, path, func)
+        reftest(t, path) = @testset "$path" begin
+            run_reftest(t, path, func)
+        end
 
         @testset "table_one" begin
-            @test_throws MethodError table_one(df)
-
             t = table_one(df, [:value1])
             reftest(t, "references/table_one/one_row")
 
@@ -151,6 +169,12 @@ end
             t = table_one(df, [:value1, :value2], groupby = [:group1])
             reftest(t, "references/table_one/two_rows_one_group")
 
+            t = table_one(df, [:value1, :value2], groupby = [:group1], show_overall = false) # deprecated
+            reftest(t, "references/table_one/two_rows_one_group_show_overall_false")
+
+            t = table_one(df, [:value1, :value2], groupby = [:group1], show_total = false)
+            reftest(t, "references/table_one/two_rows_one_group_show_total_false")
+
             t = table_one(df, [:value1, :value2], groupby = [:group1, :group2])
             reftest(t, "references/table_one/two_rows_two_groups")
 
@@ -159,6 +183,15 @@ end
 
             t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true)
             reftest(t, "references/table_one/one_row_one_group_pvalues_tests_confints")
+
+            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2], group_totals = [:group2])
+            reftest(t, "references/table_one/group_totals_two_groups_one_total")
+
+            t = table_one(df, [:value1, :value2], groupby = [:group1, :group2, :group3], group_totals = [:group3], show_n = true)
+            reftest(t, "references/table_one/group_totals_three_groups_one_total_level_three")
+
+            t = table_one(df, ["value1", "value2"], groupby = ["group1", "group2", "group3"], group_totals = "group2", show_n = true)
+            reftest(t, "references/table_one/group_totals_three_groups_one_total_level_two")
 
             function summarizer(col)
                 m = mean(col)
@@ -196,6 +229,20 @@ end
             )
             t = table_one(data, [:category], groupby = :group)
             reftest(t, "references/table_one/category_with_missing")
+
+            data = (;
+                value = 1:6,
+                group1 = ["A", missing, "A", "B", "B", missing],
+                group2 = ["D", missing, "D", "D", missing, missing],
+            )
+            t = table_one(data, [:value], groupby = [:group1, :group2], group_totals = :group2)
+            reftest(t, "references/table_one/missing_as_a_group_factor")
+
+            t = table_one(df)
+            reftest(t, "references/table_one/single_arg")
+
+            t = table_one(df, groupby = :group1)
+            reftest(t, "references/table_one/single_arg_with_groupby")
         end
 
 
@@ -239,10 +286,10 @@ end
             )
             reftest(t, "references/listingtable/summarize_last_group_rows")
 
-            t = listingtable(df, :value1,
-                rows = [:group1, :group2],
-                cols = [:group3],
-                summarize_rows = :group1 => [mean]
+            t = listingtable(df, "value1",
+                rows = ["group1", "group2"],
+                cols = ["group3"],
+                summarize_rows = "group1" => [mean]
             )
             reftest(t, "references/listingtable/summarize_first_group_rows")
 
@@ -345,6 +392,9 @@ end
             for (i, page) in enumerate(pt.pages)
                 reftest(t, "references/listingtable/pagination_rows=2_summarized_grouplevel_1_$i")
             end
+
+            t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
+            reftest(t, "references/listingtable/missing_groups")
         end
 
         @testset "summarytable" begin
@@ -371,7 +421,7 @@ end
             t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std])
             reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries")
 
-            t = summarytable(df, :value1, rows = [:group1 => "Group 1", :group2], cols = [:group3 => "Group 3"], summary = [mean, std], variable_header = false)
+            t = summarytable(df, "value1", rows = ["group1" => "Group 1", "group2"], cols = ["group3" => "Group 3"], summary = [mean, std], variable_header = false)
             reftest(t, "references/summarytable/two_rowgroups_one_colgroup_two_summaries_no_header")  
             
             t = summarytable(df, :value1, summary = [mean, mean])
@@ -383,6 +433,60 @@ end
             @test_throws SortingError t = summarytable(unsortable_df, :value, rows = :parameters, cols = [:group2, :group], summary = [mean])
             t = summarytable(unsortable_df, :value, cols = :parameters, rows = [:group2, :group], summary = [mean], sort = false)
             reftest(t, "references/summarytable/sort_false")
+
+            t = summarytable(df_missing_groups, :value, rows = :A, cols = :B, summary = [sum])
+            reftest(t, "references/summarytable/missing_groups")
+        end
+
+        @testset "simple table" begin
+            t = simple_table(df)
+            reftest(t, "references/simple_table/no_args")
+
+            t = simple_table(df, [:value1, :group3, :group1])
+            reftest(t, "references/simple_table/three_cols")
+
+            t = simple_table(df, [:value1, :group3, :group1]; halign = :left)
+            reftest(t, "references/simple_table/three_cols_halign_left")
+
+            t = simple_table(df, [:value1, :group3, :group1]; halign = [:left, :center, :right])
+            reftest(t, "references/simple_table/three_cols_halign_left_center_right")
+
+            t = simple_table(df, [:value1, :group3, :group1]; subheaders = ["Sub1", "Sub2", "Sub3"])
+            reftest(t, "references/simple_table/three_cols_subheaders")
+            
+            t = simple_table(df, [:value1, :group3, :group1]; halign = [:left, :center, :right], subheaders = ["Sub1", "Sub2", "Sub3"])
+            reftest(t, "references/simple_table/three_cols_subheaders_and_haligns")
+
+            t = simple_table(df, ["value1", :group3 => "Group 3", :group1 => Annotated("Group 1", "is annotated")])
+            reftest(t, "references/simple_table/three_cols_with_names")
+        end
+
+        @testset "overview_table" begin
+            _df = (;
+                continuous = [missing; 1:99; 99],
+                categorical = [missing; fill("A", 35); fill("B", 25); fill("C", 40)],
+            )
+
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/basic")
+
+            _df = (;
+                categorical = reduce(vcat, [fill(str, i) for (str, i) in zip(string.('A':'Z'), (1:26) .^ 2)])
+            )
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/categories_exceeded")
+
+            t = overview_table(_df; max_categories = 5)
+            reftest(t, "references/overview_table/max_categories_5")
+
+            _df = DataFrame(a = [1, 2, 3], b = ["A", "B", "C"])
+            DataFrames.colmetadata!(_df, :a, "label", "Label for a")
+            DataFrames.colmetadata!(_df, :a, "other_label", "Other label for a")
+            t = overview_table(_df)
+            reftest(t, "references/overview_table/default_label_metadata_key")
+
+            t = overview_table(_df; label_metadata_key = "other_label")
+            reftest(t, "references/overview_table/other_label_metadata_key")
         end
 
         @testset "annotations" begin
@@ -444,27 +548,27 @@ end
         end
 
         @testset "manual footnotes" begin
-            t = Table(
-                [
-                    SpannedCell(1, 1, "Cell 1"),
-                    SpannedCell(1, 2, "Cell 2"),
-                ],
-                nothing,
-                nothing,
-                footnotes = ["First footnote.", "Second footnote."]
-            )
-            reftest(t, "references/manual_footnotes/footnotes")
+            for linebreak_footnotes in [true, false]
+                t = Table(
+                    [
+                        SpannedCell(1, 1, "Cell 1"),
+                        SpannedCell(1, 2, "Cell 2"),
+                    ];
+                    footnotes = ["First footnote.", "Second footnote."],
+                    linebreak_footnotes,
+                )
+                reftest(t, "references/manual_footnotes/footnotes_linebreaks_$linebreak_footnotes")
 
-            t = Table(
-                [
-                    SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
-                    SpannedCell(1, 2, "Cell 2"),
-                ],
-                nothing,
-                nothing,
-                footnotes = ["First footnote.", "Second footnote."]
-            )
-            reftest(t, "references/manual_footnotes/footnotes_and_annotated")
+                t = Table(
+                    [
+                        SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
+                        SpannedCell(1, 2, "Cell 2"),
+                    ];
+                    footnotes = ["First footnote.", "Second footnote."],
+                    linebreak_footnotes,
+                )
+                reftest(t, "references/manual_footnotes/footnotes_and_annotated_linebreaks_$linebreak_footnotes")
+            end
         end
 
         @testset "Replace" begin
@@ -564,7 +668,7 @@ end
 
         @testset "Character escaping" begin
             cells = [
-                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' ")
+                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' @ `")
             ]
             t = Table(
                 cells,
@@ -572,6 +676,19 @@ end
                 nothing,
             )
             reftest(t, "references/character_escaping/problematic_characters")
+        end
+
+        @testset "Merged cells with special values" begin
+            contents = [
+                Multiline("A", "B"),
+                Superscript("Sup"),
+                Subscript("Sub"),
+                Concat("A", "B"),
+                Annotated("Label", "Annotation"),
+            ]
+            cells = Cell.(contents, merge = true)
+            t = Table(hcat(cells, cells))
+            reftest(t, "references/merged_cells/custom_datatypes")
         end
 
         @testset "Styles" begin
@@ -610,6 +727,18 @@ end
             reftest(t, "references/row_and_column_gaps/singlecell")
             t = Table([SpannedCell(2:4, 1, "Spanned rows"), SpannedCell(1, 2:4, "Spanned columns")], rowgaps = [1 => 4.0], colgaps = [2 => 4.0])
             reftest(t, "references/row_and_column_gaps/spanned_cells")
+        end
+
+        @testset "Styled" begin
+            conc = Concat(Styled("Red", color = "#FF0000"), " and ", Styled("Blue", color = "#0000FF")) 
+            all = Styled("Green, bold, italic, underlined", color = "#00CC00", bold = true, italic = true, underline = true)
+            nested = Styled(SummaryTables.Concat(Styled("Nested red ", color = "#FF0000"), "and blue"), color = "#0000FF")
+            number = Styled(sin(1.4), color = "#ABCDEF")
+            t = Table(Cell.([
+                conc all;
+                nested number;
+            ]))
+            reftest(t, "references/styled/example")
         end
     end
 end
@@ -679,4 +808,10 @@ end
     @test str(RF(x, 3, :auto, false)) == "1.23e7"
     @test str(RF(x, 3, :sigdigits, false)) == "1.23e7"
     @test str(RF(x, 3, :digits, false)) == "12345678.91"
+end
+
+@testset "QuartoNotebookRunner/typst" begin
+    t = table_one((; a = 1:3, b = ["A", "B", "C"]))
+    qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
+    @test qnr == repr("text/typst", t)
 end

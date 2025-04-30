@@ -19,6 +19,8 @@ import NaturalSort
 import WriteDocx
 import SHA
 
+export simple_table
+export overview_table
 export table_one
 export listingtable
 export summarytable
@@ -33,17 +35,26 @@ export ReplaceMissing
 export Replace
 export Superscript
 export Subscript
+export Styled
 
 const DEFAULT_ROWGAP = 6.0
 
-include("cells.jl")
-include("table_one.jl")
-include("table.jl")
-include("helpers.jl")
-include("latex.jl")
-include("html.jl")
-include("docx.jl")
-include("typst.jl")
+include("infrastructure/cells.jl")
+include("infrastructure/special_cell_values.jl")
+include("infrastructure/tables.jl")
+
+include("table_functions/simple_table.jl")
+include("table_functions/overview_table.jl")
+include("table_functions/table_one.jl")
+include("table_functions/listingtable.jl")
+include("table_functions/summarytable.jl")
+
+include("renderers/utils.jl")
+include("renderers/latex.jl")
+include("renderers/html.jl")
+include("renderers/docx.jl")
+include("renderers/typst.jl")
+
 include("makie.jl")
 
 function __init__()
@@ -61,6 +72,5 @@ function __init__()
         end
     end
 end
-
 
 end # module

@@ -6,6 +6,6 @@
     align: (center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [& % \$ \# \_ { } ~ ^ \\ < > " ' ],
+    [& % \$ \# \_ { } ~ ^ \\ \< > " ' \@ \`],
     table.hline(y: 1, stroke: 1pt),
 )

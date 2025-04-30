@@ -1,0 +1,50 @@
+<table id="st-f6e6ac2d">
+    <style>
+        #st-f6e6ac2d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-f6e6ac2d tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-f6e6ac2d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-f6e6ac2d br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-f6e6ac2d sub {
+            line-height: 0;
+        }
+        #st-f6e6ac2d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td colspan="2" style="text-align:center;">A<br>B</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;"><sup>Sup</sup></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;"><sub>Sub</sub></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;">AB</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;">Label<sup>1</sup></td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> Annotation</td></tr>
+</table>

@@ -1,6 +1,6 @@
-<table class="st-d45fe2ec">
+<table id="st-4dba9c48">
     <style>
-        .st-d45fe2ec {
+        #st-4dba9c48 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,33 +8,34 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d45fe2ec tr td {
+        #st-4dba9c48 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-4dba9c48 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d45fe2ec br {
+        #st-4dba9c48 br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d45fe2ec sub {
+        #st-4dba9c48 sub {
             line-height: 0;
         }
-
-        .st-d45fe2ec sup {
+        #st-4dba9c48 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="font-weight:bold;text-align:left;">id</td>
         <td style="font-weight:bold;text-align:left;">dose</td>
         <td style="font-weight:bold;text-align:center;">value</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
         <td rowspan="2" style="text-align:left;">1</td>
         <td style="text-align:left;">1 mg</td>
         <td style="text-align:center;">5</td>
@@ -88,5 +89,5 @@
         <td style="text-align:left;">10 mg</td>
         <td style="text-align:center;">4</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

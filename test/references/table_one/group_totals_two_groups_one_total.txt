@@ -1,0 +1,131 @@
+<table id="st-f7308c3f">
+    <style>
+        #st-f7308c3f {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-f7308c3f tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-f7308c3f tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-f7308c3f br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-f7308c3f sub {
+            line-height: 0;
+        }
+        #st-f7308c3f sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="text-align:center;">a</td>
+        <td colspan="3" style="text-align:center;">b</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">f</td>
+        <td style="text-align:center;">Total</td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">f</td>
+        <td style="text-align:center;">Total</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">value1</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">4.5 (2.45)</td>
+        <td style="text-align:center;">2 (1.41)</td>
+        <td style="text-align:center;">3 (1.41)</td>
+        <td style="text-align:center;">2.5 (1.29)</td>
+        <td style="text-align:center;">6 (1.41)</td>
+        <td style="text-align:center;">7 (1.41)</td>
+        <td style="text-align:center;">6.5 (1.29)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">4.5 [1, 8]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+        <td style="text-align:center;">3 [2, 4]</td>
+        <td style="text-align:center;">2.5 [1, 4]</td>
+        <td style="text-align:center;">6 [5, 7]</td>
+        <td style="text-align:center;">7 [6, 8]</td>
+        <td style="text-align:center;">6.5 [5, 8]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">value2</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">a</td>
+        <td style="text-align:center;">3 (37.5%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">0 (0%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">b</td>
+        <td style="text-align:center;">3 (37.5%)</td>
+        <td style="text-align:center;">0 (0%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">c</td>
+        <td style="text-align:center;">2 (25%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">0 (0%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+        <td style="text-align:center;">0 (0%)</td>
+        <td style="text-align:center;">1 (50%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table>

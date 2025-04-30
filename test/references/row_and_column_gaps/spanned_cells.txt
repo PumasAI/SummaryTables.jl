@@ -1,6 +1,6 @@
-<table class="st-d7f76253">
+<table id="st-73344fde">
     <style>
-        .st-d7f76253 {
+        #st-73344fde {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,27 +8,28 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-
-        .st-d7f76253 tr td {
+        #st-73344fde tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-73344fde tr td {
             vertical-align: top;
             padding: 0;
             border: none;
+            background-color: transparent;
         }
-
-        .st-d7f76253 br {
+        #st-73344fde br {
             line-height: 0em;
             margin: 0;
         }
-
-        .st-d7f76253 sub {
+        #st-73344fde sub {
             line-height: 0;
         }
-
-        .st-d7f76253 sup {
+        #st-73344fde sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="padding-bottom: 2.0pt;text-align:center;"></td>
         <td colspan="3" style="padding-bottom: 2.0pt;text-align:center;">Spanned columns</td>
@@ -49,5 +50,5 @@
         <td style="padding-left:2.0pt;text-align:center;"></td>
         <td style="text-align:center;"></td>
     </tr>
-    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

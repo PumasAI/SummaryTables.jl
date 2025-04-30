@@ -2,6 +2,8 @@
 \usepackage{threeparttable}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
 \setlength\tabcolsep{0pt}
@@ -9,7 +11,7 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{2}{lc}}
 \toprule
- & \textbf{Overall} \\
+ & \textbf{Total} \\
 \midrule
 \textbf{value1} &  \\
 \hspace{12.0pt}mean & 4.5 \\
