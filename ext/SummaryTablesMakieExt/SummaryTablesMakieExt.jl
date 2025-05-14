@@ -119,9 +119,11 @@ function SummaryTables.to_makie_spec(
     return S.GridLayout(specs; tellheight, tellwidth, rowgaps, colgaps, alignmode)
 end
 
+to_font_symbol(; bold, italic) = bold ? (italic ? :bold_italic : :bold) : italic ? :italic : :regular
+
 function to_blockspec(value, style::SummaryTables.CellStyle; fontsize)
     rt = value == "" ? "" : to_rich_text(value)
-    font = style.bold ? (style.italic ? :bold_italic : :bold) : style.italic ? :italic : :regular 
+    font = to_font_symbol(; style.bold, style.italic)
     Makie.SpecApi.Label(; text = rt, font, halign = style.halign, valign = style.valign, fontsize)
 end
 
@@ -133,6 +135,17 @@ _string(x) = sprint(SummaryTables._showas, MIME"text/plain"(), x)
 to_rich_text(x) = Makie.rich(_string(x))
 to_rich_text(s::String) = Makie.rich(s)
 to_rich_text(m::SummaryTables.ResolvedAnnotation) = Makie.rich(to_rich_text(m.value), Makie.superscript(_string(m.label)))
+function to_rich_text(s::SummaryTables.Styled)
+    Makie.rich(to_rich_text(s.value), color = Makie.RGBf(s.color.rgb...), font = to_font_symbol(; italic = something(s.italic, false), bold = something(s.bold, false)))
+end
 to_rich_text(::Nothing) = ""
+function to_rich_text(m::SummaryTables.Multiline)
+    args = []
+    for (i, v) in enumerate(m.values)
+        i > 1 && push!(args, "\n")
+        push!(args, to_rich_text(v))
+    end
+    Makie.rich(args...)
+end
 
 end

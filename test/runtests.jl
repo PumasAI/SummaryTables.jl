@@ -11,6 +11,7 @@ using ReferenceTests
 using tectonic_jll
 using Typst_jll
 using ZipFile
+import CairoMakie
 
 # Wrapper type to dispatch to the right `show` implementations.
 struct AsMIME{M}
@@ -814,4 +815,18 @@ end
     t = table_one((; a = 1:3, b = ["A", "B", "C"]))
     qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
     @test qnr == repr("text/typst", t)
+end
+
+@testset "Makie extension" begin
+    tbl = Table([
+        Cell(1.23) Cell(1.5232) Cell(0.0003424)
+        Cell("A") Cell("BBB") Cell("Some say C")
+        Cell("le", halign = :left) Cell("ce", halign = :center) Cell("ri", halign = :right)
+        Cell("unmerged") Cell("merged", merge = true, border_bottom = true) Cell("merged", merge = true, border_bottom = true)
+        Cell(Styled("red", color = "#FF0000")) Cell(Styled("green", color = "#00FF00")) Cell(Styled("blue", color = "#0000FF"))
+        Cell("bold", bold = true) Cell("italic", italic = true) Cell("bold italic", bold = true, italic = true)
+    ], header = 1, footer = 6)
+    f = CairoMakie.Figure()
+    CairoMakie.plot(f[1, 1], SummaryTables.to_makie_spec(tbl))
+    @test_reference "references/makie/basic.png" f
 end
