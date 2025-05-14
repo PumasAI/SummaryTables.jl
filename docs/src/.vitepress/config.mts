@@ -40,6 +40,9 @@ export default defineConfig({
   ],
   ignoreDeadLinks: true,
   vite: {
+    define: {
+      __DEPLOY_ABSPATH__: JSON.stringify('REPLACE_ME_DOCUMENTER_VITEPRESS_DEPLOY_ABSPATH'),
+    },
     optimizeDeps: {
       exclude: [ 
         '@nolebase/vitepress-plugin-enhanced-readabilities/client',
