@@ -13,7 +13,6 @@ makedocs(
     sitename = "SummaryTables.jl",
     format = DocumenterVitepress.MarkdownVitepress(;
         repo = "https://github.com/PumasAI/SummaryTables.jl",
-        (is_ci() ? (;) : (; deploy_url = ""))..., # without deploy_url="" locally the build is broken due to a SummaryTables.jl prefix
     ),
     pages = [
         "Home" => "index.md",
@@ -41,8 +40,10 @@ makedocs(
     pagesonly = true,
 )
 
-deploydocs(
+DocumenterVitepress.deploydocs(
     repo = "github.com/PumasAI/SummaryTables.jl",
-    target = "build",
+    target = joinpath(@__DIR__, "build"),
+    branch = "gh-pages",
+    devbranch = "master",
     push_preview = true,
 )
