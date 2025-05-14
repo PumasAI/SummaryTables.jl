@@ -10,3 +10,6 @@ tectonic_jll = "d7dd28d6-a5e6-559c-9131-7eb760cdacc5"
 
 [compat]
 DocumenterVitepress = "0.2"
+
+[sources]
+SummaryTables = {path = ".."}
