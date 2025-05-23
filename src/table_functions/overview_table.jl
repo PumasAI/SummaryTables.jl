@@ -65,7 +65,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
     Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP, footnotes)
 end
 
-has_categorical_eltype(::AbstractVector{<:Union{Missing,Number}}) = false
+has_categorical_eltype(v::AbstractVector{<:Union{Missing,Number}}) = all(ismissing, v)
 has_categorical_eltype(::AbstractVector) = true
 
 function _stats_values_freqs_graph_continuous(column::AbstractVector)
@@ -172,6 +172,7 @@ function Base.show(io::IO, ::MIME"image/svg+xml", r::RectPlot)
 end
 
 function pretty_column_eltype(::AbstractVector{T}) where T
+    T === Missing && return "Missing"
     nonmissing = nonmissingtype(T)
     suffix = nonmissing == T ? "" : "?"
     # we don't want long names like [CategoricalArrays.CategoricalValue{String, UInt8}] here,
