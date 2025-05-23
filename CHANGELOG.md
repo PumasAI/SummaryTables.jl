@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.3.1 - 2025-05-23
+
 - Fixed `overview_table` in the presence of all-missing columns [#91](https://github.com/PumasAI/SummaryTables.jl/pull/91).
 
 ## 3.3.0 - 2025-03-12
