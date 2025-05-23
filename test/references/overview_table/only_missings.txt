@@ -1,0 +1,62 @@
+<table id="st-4c6fe20d">
+    <style>
+        #st-4c6fe20d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-4c6fe20d tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-4c6fe20d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-4c6fe20d br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-4c6fe20d sub {
+            line-height: 0;
+        }
+        #st-4c6fe20d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">No</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Variable</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Stats / Values</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Freqs (% of Valid)</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Graph</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Valid</td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Missing</td>
+    </tr>
+        <tr><td colspan="7" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">1</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">floatmissing<br>[Float64?]</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;"></td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;"></td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='1.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 1.0'></svg></td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+        <td style="padding-bottom: 3.0pt;padding-top: 3.0pt;vertical-align:middle;text-align:left;">3<br>(100%)</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">2</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">justmissing<br>[Missing]</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><svg width='104.0' height='1.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 1.0'></svg></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">0<br>(0%)</td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">3<br>(100%)</td>
+    </tr>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="7" style="font-size: 0.8em;">Dimensions: 3 x 2<br/>Duplicate rows: 2</td></tr>
+</table>

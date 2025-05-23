@@ -487,6 +487,10 @@ end
 
             t = overview_table(_df; label_metadata_key = "other_label")
             reftest(t, "references/overview_table/other_label_metadata_key")
+
+            _df_mis = DataFrame(floatmissing = Union{Float64,Missing}[missing, missing, missing], justmissing = [missing, missing, missing])
+            t = overview_table(_df_mis)
+            reftest(t, "references/overview_table/only_missings")
         end
 
         @testset "annotations" begin

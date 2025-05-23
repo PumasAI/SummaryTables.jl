@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{7}{lllllll}}
+\toprule
+\textbf{No} & \textbf{Variable} & \textbf{Stats / Values} & \textbf{Freqs (\% of Valid)} & \textbf{Graph} & \textbf{Valid} & \textbf{Missing} \\[6.0pt]
+\midrule
+1 & \begin{tabular}{@{}c@{}}floatmissing \\ \char`[Float64?]\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\end{tikzpicture}} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} \\[6.0pt]
+2 & \begin{tabular}{@{}c@{}}justmissing \\ \char`[Missing]\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\end{tikzpicture}} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[]Dimensions: 3 x 2
+\item[]Duplicate rows: 2
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}
