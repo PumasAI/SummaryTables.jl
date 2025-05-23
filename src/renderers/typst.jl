@@ -17,11 +17,19 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     colgaps = Dict(ct.colgaps)
     
     print(io, """
-
-    #table(
+    #[
+    #let table-with-notes(notes: none, ..args) = layout(size => {
+        let tbl = table(..args)
+        let w = measure(tbl).width
+        stack(dir: ttb, spacing: 0.3em, tbl, block(width: w, notes))
+    })
+    #set par(justify: false)
+    #table-with-notes(
+        inset: (x: 5pt, y: 3pt),
         rows: $(size(matrix, 1)),
         columns: $(size(matrix, 2)),
         column-gutter: 0.25em,
+        row-gutter: 0em,
         align: ($(join(column_alignments, ", "))),
         stroke: none,
     """)
@@ -103,7 +111,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         align = _align(CellStyle(halign = :left), 1)
         colspan = "colspan: $(size(matrix, 2))"
         options = join(filter(!isempty, [align, colspan]), ", ")
-        print(io, "    table.cell($options)[#text(size: 0.8em)[")
+        print(io, "    notes: [#set align(left); #text(size: 0.8em)[")
 
         if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
             print(io, "\n        ")
@@ -131,7 +139,10 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         println(io, "]],") # table.cell()[#text(..)[
     end
 
-    println(io, ")") # table()
+    println(io, ")") # table-with-notes()
+    println(io, """
+    ]
+    """)
     return
 end
 
