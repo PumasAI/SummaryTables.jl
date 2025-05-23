@@ -1,5 +1,8 @@
 name: Doc Preview Cleanup
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   schedule:
