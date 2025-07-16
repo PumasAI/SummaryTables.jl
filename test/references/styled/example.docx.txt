@@ -223,6 +223,14 @@
               </w:rPr>
               <w:t>Blue</w:t>
             </w:r>
+            <w:r>
+              <w:rPr>
+                <w:color w:val="ffaa00"/>
+                <w:vertAlign w:val="superscript"/>
+                <w:b/>
+              </w:rPr>
+              <w:t>Orange</w:t>
+            </w:r>
           </w:p>
         </w:tc>
         <w:tc>
@@ -302,6 +310,61 @@
           </w:tcPr>
           <w:p>
             <w:pPr/>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:gridSpan w:val="2"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+            <w:r>
+              <w:rPr>
+                <w:color w:val="ffaa00"/>
+                <w:vertAlign w:val="superscript"/>
+                <w:b/>
+              </w:rPr>
+              <w:t>Orange</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t xml:space="preserve">This annotation should have </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+                <w:i/>
+              </w:rPr>
+              <w:t>italics</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t xml:space="preserve">This footnote should have </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+                <w:b/>
+              </w:rPr>
+              <w:t>bold</w:t>
+            </w:r>
           </w:p>
         </w:tc>
       </w:tr>
