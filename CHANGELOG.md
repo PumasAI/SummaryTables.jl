@@ -4,7 +4,7 @@
 
 ## 3.3.2 - 2025-07-16
 
-- Fixed rendering of compound annotations and footnotes in docx [#97](https://github.com/PumasAI/SummaryTables.jl/pull/97).
+- Fixed rendering of concat/styled annotations and footnotes in docx [#97](https://github.com/PumasAI/SummaryTables.jl/pull/97).
 
 ## 3.3.1 - 2025-05-23
 
