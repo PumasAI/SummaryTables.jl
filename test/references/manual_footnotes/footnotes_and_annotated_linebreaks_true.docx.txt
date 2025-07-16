@@ -265,6 +265,11 @@
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
               <w:t xml:space="preserve"> </w:t>
             </w:r>
             <w:r>

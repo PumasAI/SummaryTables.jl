@@ -6,9 +6,13 @@
     align: (center, center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [#text(fill: rgb(255,0,0))[Red] and #text(fill: rgb(0,0,255))[Blue]],
+    [#text(fill: rgb(255,0,0))[Red] and #text(fill: rgb(0,0,255))[Blue]#super[*#text(fill: rgb(0,0,255))[1]*]],
     [*_#underline[#text(fill: rgb(0,204,0))[Green, bold, italic, underlined]]_*],
     [#text(fill: rgb(0,0,255))[#text(fill: rgb(255,0,0))[Nested red ]and blue]],
     [#text(fill: rgb(171,205,239))[0.985]],
     table.hline(y: 2, stroke: 1pt),
+    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
+        #super[*#text(fill: rgb(0,0,255))[1]*]This annotation should have _italics_\
+        This footnote should have *bold*
+    ]],
 )
