@@ -87,16 +87,15 @@ function to_docx(ct::Table)
         for (i, (annotation, label)) in enumerate(annotations)
             i > 1 && push!(elements, WriteDocx.Run([separator_element]))
             if label !== NoLabel()
-                push!(elements, WriteDocx.Run([WriteDocx.Text(docx_sprint(label)), WriteDocx.Text(" ")],
+                append!(elements, to_runs(label, WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
+                push!(elements, WriteDocx.Run([WriteDocx.Text(" ")],
                     WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
             end
-            push!(elements, WriteDocx.Run([WriteDocx.Text(docx_sprint(annotation))],
-                WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            append!(elements, to_runs(annotation, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
         end
         for (i, footnote) in enumerate(ct.footnotes)
             (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element]))
-            push!(elements, WriteDocx.Run([WriteDocx.Text(docx_sprint(footnote))],
-                WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            append!(elements, to_runs(footnote, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
         end
         annotation_row = WriteDocx.TableRow([WriteDocx.TableCell(
             [WriteDocx.Paragraph(elements)],
@@ -293,7 +292,7 @@ function to_runs(r::ResolvedAnnotation, props)
     runs = to_runs(r.value, props)
     if r.label !== NoLabel()
         props = merge_props(props, WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript))
-        push!(runs, WriteDocx.Run([WriteDocx.Text(docx_sprint(r.label))], props))
+        append!(runs, to_runs(r.label, props))
     end
     return runs
 end
