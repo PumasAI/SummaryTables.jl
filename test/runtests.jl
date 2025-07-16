@@ -738,7 +738,7 @@ end
                 Annotated(
                     Concat(Styled("Red", color = "#FF0000"), " and ", Styled("Blue", color = "#0000FF")),
                     Concat("This annotation should have ", Styled("italics"; italic=true)),
-                    label = Styled("1", color = "#0000FF", bold = true)
+                    label = Styled("Orange", color = "#FFAA00", bold = true)
                 )
             )
             all = Cell(Styled("Green, bold, italic, underlined", color = "#00CC00", bold = true, italic = true, underline = true))
