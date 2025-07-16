@@ -225,11 +225,11 @@
             </w:r>
             <w:r>
               <w:rPr>
-                <w:color w:val="0000ff"/>
+                <w:color w:val="ffaa00"/>
                 <w:vertAlign w:val="superscript"/>
                 <w:b/>
               </w:rPr>
-              <w:t>1</w:t>
+              <w:t>Orange</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -323,11 +323,11 @@
             <w:pPr/>
             <w:r>
               <w:rPr>
-                <w:color w:val="0000ff"/>
+                <w:color w:val="ffaa00"/>
                 <w:vertAlign w:val="superscript"/>
                 <w:b/>
               </w:rPr>
-              <w:t>1</w:t>
+              <w:t>Orange</w:t>
             </w:r>
             <w:r>
               <w:rPr>

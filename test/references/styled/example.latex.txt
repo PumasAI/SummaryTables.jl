@@ -11,13 +11,13 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
 \toprule
-\textcolor[RGB]{255,0,0}{Red} and \textcolor[RGB]{0,0,255}{Blue}\tnote{\textbf{\textcolor[RGB]{0,0,255}{1}}} & \textbf{\textit{\underline{\textcolor[RGB]{0,204,0}{Green, bold, italic, underlined}}}} \\
+\textcolor[RGB]{255,0,0}{Red} and \textcolor[RGB]{0,0,255}{Blue}\tnote{\textbf{\textcolor[RGB]{255,170,0}{Orange}}} & \textbf{\textit{\underline{\textcolor[RGB]{0,204,0}{Green, bold, italic, underlined}}}} \\
 \textcolor[RGB]{0,0,255}{\textcolor[RGB]{255,0,0}{Nested red }and blue} & \textcolor[RGB]{171,205,239}{0.985} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item[\textbf{\textcolor[RGB]{0,0,255}{1}}]This annotation should have \textit{italics}
+\item[\textbf{\textcolor[RGB]{255,170,0}{Orange}}]This annotation should have \textit{italics}
 \item[]This footnote should have \textbf{bold}
 \end{tablenotes}
 \end{threeparttable}
