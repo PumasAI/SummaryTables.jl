@@ -734,15 +734,25 @@ end
         end
 
         @testset "Styled" begin
-            conc = Concat(Styled("Red", color = "#FF0000"), " and ", Styled("Blue", color = "#0000FF")) 
-            all = Styled("Green, bold, italic, underlined", color = "#00CC00", bold = true, italic = true, underline = true)
-            nested = Styled(SummaryTables.Concat(Styled("Nested red ", color = "#FF0000"), "and blue"), color = "#0000FF")
-            number = Styled(sin(1.4), color = "#ABCDEF")
-            t = Table(Cell.([
-                conc all;
-                nested number;
-            ]))
-            reftest(t, "references/styled/example")
+            conc = Cell(
+                Annotated(
+                    Concat(Styled("Red", color = "#FF0000"), " and ", Styled("Blue", color = "#0000FF")),
+                    Concat("This annotation should have ", Styled("italics"; italic=true)),
+                    label = Styled("1", color = "#0000FF", bold = true)
+                )
+            )
+            all = Cell(Styled("Green, bold, italic, underlined", color = "#00CC00", bold = true, italic = true, underline = true))
+            nested = Cell(Styled(SummaryTables.Concat(Styled("Nested red ", color = "#FF0000"), "and blue"), color = "#0000FF"))
+            number = Cell(Styled(sin(1.4), color = "#ABCDEF"))
+            tbl = Table([ 
+                conc all; 
+                nested number; 
+            ];
+                footnotes=[
+                    Concat("This footnote should have ", Styled("bold"; bold=true))
+                ]
+            )
+            reftest(tbl, "references/styled/example")
         end
     end
 end
