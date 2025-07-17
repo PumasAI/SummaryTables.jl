@@ -13,8 +13,8 @@
 \toprule
 \textbf{No} & \textbf{Variable} & \textbf{Stats / Values} & \textbf{Freqs (\% of Valid)} & \textbf{Graph} & \textbf{Valid} & \textbf{Missing} \\[6.0pt]
 \midrule
-1 & \begin{tabular}{@{}c@{}}floatmissing \\ \char`[Float64?]\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\end{tikzpicture}} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} \\[6.0pt]
-2 & \begin{tabular}{@{}c@{}}justmissing \\ \char`[Missing]\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \begin{tabular}{@{}c@{}}\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\end{tikzpicture}} & \begin{tabular}{@{}c@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}c@{}}3 \\ (100\%)\end{tabular} \\
+1 & \begin{tabular}{@{}l@{}}floatmissing \\ \char`[Float64?]\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\end{tikzpicture}} & \begin{tabular}{@{}l@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}l@{}}3 \\ (100\%)\end{tabular} \\[6.0pt]
+2 & \begin{tabular}{@{}l@{}}justmissing \\ \char`[Missing]\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \raisebox{-.5\height}{\begin{tikzpicture}\end{tikzpicture}} & \begin{tabular}{@{}l@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}l@{}}3 \\ (100\%)\end{tabular} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
