@@ -185,14 +185,27 @@ function _showas(io::IO, M::MIME"text/typst", s::Styled)
 end
 
 function _str_typst_escaped(io::IO, s::AbstractString)
+    # TODO: this could be implemented more cleanly with `replace(io, ...)` from Julia 1.10 on
     escapable_special_chars = raw"\$#*_<@`"
-    a = Iterators.Stateful(s)
-    for c in a
-        if c in escapable_special_chars
-            print(io, '\\', c)
-        else
-            print(io, c)
+    escapable_special_chars_with_dot = raw"\$#*_<@`."
+
+    function _print(io, s, escapable_chars)
+        for c in s
+            if c in escapable_chars
+                print(io, '\\', c)
+            else
+                print(io, c)
+            end
         end
+    end
+
+    # work around numbered lists markup
+    m = match(r"^\d+\.\s", s)
+    if m === nothing
+        _print(io, s, escapable_special_chars)
+    else
+        _print(io, m.match, escapable_special_chars_with_dot)
+        _print(io, @view(s[m.offset + length(m.match):end]), escapable_special_chars)
     end
 end
 

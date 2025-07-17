@@ -28,7 +28,7 @@
     table.cell(align: horizon)[2],
     table.cell(align: horizon)[b #linebreak() [String]],
     table.cell(align: horizon)[],
-    table.cell(align: horizon)[1. B #linebreak() 2. A #linebreak() 3. C],
+    table.cell(align: horizon)[1\. B #linebreak() 2\. A #linebreak() 3\. C],
     table.cell(align: horizon)[1 (33.3%) #linebreak() 1 (33.3%) #linebreak() 1 (33.3%)],
     table.cell(align: horizon)[#image.decode("<svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='33.33333333333333' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='33.33333333333333' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='33.33333333333333' height='12.0' fill='lightgray' stroke='gray'/></svg>")],
     table.cell(align: horizon)[3 #linebreak() (100%)],
