@@ -178,15 +178,20 @@ function print_latex_cell(io, cell::SpannedCell)
     st.bold && print(io, "\\textbf{")
     st.italic && print(io, "\\textit{")
     st.underline && print(io, "\\underline{")
-    _showas(io, MIME"text/latex"(), cell.value)
+    if cell.value isa Multiline
+        _showas(io, MIME"text/latex"(), cell.value, cell.style.halign)
+    else
+        _showas(io, MIME"text/latex"(), cell.value)
+    end
     st.underline && print(io, "}")
     st.italic && print(io, "}")
     st.bold && print(io, "}")
     return
 end
 
-function _showas(io::IO, ::MIME"text/latex", m::Multiline)
-    print(io, "\\begin{tabular}{@{}c@{}}")
+function _showas(io::IO, ::MIME"text/latex", m::Multiline, halign::Symbol)
+    char = halign === :left ? 'l' : halign === :right ? 'r' : halign === :center ? 'c' : error("Invalid halign $halign")
+    print(io, "\\begin{tabular}{@{}$char@{}}")
     for (i, value) in enumerate(m.values)
         i > 1 && print(io, " \\\\ ")
         _showas(io, MIME"text/latex"(), value)
@@ -241,6 +246,10 @@ function _str_latex_escaped(io::IO, s::AbstractString)
             print(io, "\\textasciitilde{}")
         elseif c === '^'
             print(io, "\\textasciicircum{}")
+        elseif c === '≤'
+            print(io, raw"$\leq$")
+        elseif c === '≥'
+            print(io, raw"$\geq$")
         elseif c === '['
             print(io, "\\char`[")
         elseif isascii(c)
