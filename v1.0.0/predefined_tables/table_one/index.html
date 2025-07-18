@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>table_one · SummaryTables.jl</title><meta name="title" content="table_one · SummaryTables.jl"/><meta property="og:title" content="table_one · SummaryTables.jl"/><meta property="twitter:title" content="table_one · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../summarytable/"><code>summarytable</code></a></li><li class="is-active"><a class="tocitem" href><code>table_one</code></a><ul class="internal"><li><a class="tocitem" href="#Synopsis"><span>Synopsis</span></a></li><li><a class="tocitem" href="#Argument-1:-table"><span>Argument 1: <code>table</code></span></a></li><li><a class="tocitem" href="#Argument-2:-analyses"><span>Argument 2: <code>analyses</code></span></a></li><li><a class="tocitem" href="#Keyword:-groupby"><span>Keyword: <code>groupby</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_n"><span>Keyword: <code>show_n</code></span></a></li><li><a class="tocitem" href="#Keyword:-show_overall"><span>Keyword: <code>show_overall</code></span></a></li><li><a class="tocitem" href="#Keyword:-sort"><span>Keyword: <code>sort</code></span></a></li></ul></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Predefined Tables</a></li><li class="is-active"><a href><code>table_one</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>table_one</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/predefined_tables/table_one.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="table_one"><a class="docs-heading-anchor" href="#table_one"><code>table_one</code></a><a id="table_one-1"></a><a class="docs-heading-anchor-permalink" href="#table_one" title="Permalink"></a></h1><h2 id="Synopsis"><a class="docs-heading-anchor" href="#Synopsis">Synopsis</a><a id="Synopsis-1"></a><a class="docs-heading-anchor-permalink" href="#Synopsis" title="Permalink"></a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><pre><code class="language-julia hljs">using SummaryTables
+using DataFrames
+
+data = DataFrame(
+    sex = [&quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = [&quot;A&quot;, &quot;0&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;, &quot;0&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+table_one(
+    data,
+    [:age =&gt; &quot;Age (years)&quot;, :blood_type =&gt; &quot;Blood type&quot;, :smoker =&gt; &quot;Smoker&quot;],
+    groupby = :sex =&gt; &quot;Sex&quot;,
+    show_n = true
+)</code></pre><table class="st-9c3f5118">
+    <style>
+        .st-9c3f5118 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-9c3f5118 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-9c3f5118 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-9c3f5118 sub {
+            line-height: 0;
+        }
+
+        .st-9c3f5118 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Sex</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall<br>(n=10)</td>
+        <td style="text-align:center;">f<br>(n=6)</td>
+        <td style="text-align:center;">m<br>(n=4)</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Age (years)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">45.6 (20.7)</td>
+        <td style="text-align:center;">44.2 (19.1)</td>
+        <td style="text-align:center;">47.8 (25.9)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">40.5 [24, 85]</td>
+        <td style="text-align:center;">40.5 [24, 76]</td>
+        <td style="text-align:center;">39.5 [27, 85]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Blood type</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">0</td>
+        <td style="text-align:center;">2 (20%)</td>
+        <td style="text-align:center;">1 (16.7%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">A</td>
+        <td style="text-align:center;">4 (40%)</td>
+        <td style="text-align:center;">3 (50%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">B</td>
+        <td style="text-align:center;">4 (40%)</td>
+        <td style="text-align:center;">2 (33.3%)</td>
+        <td style="text-align:center;">2 (50%)</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Smoker</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">false</td>
+        <td style="text-align:center;">6 (60%)</td>
+        <td style="text-align:center;">3 (50%)</td>
+        <td style="text-align:center;">3 (75%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">true</td>
+        <td style="text-align:center;">4 (40%)</td>
+        <td style="text-align:center;">3 (50%)</td>
+        <td style="text-align:center;">1 (25%)</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Argument-1:-table"><a class="docs-heading-anchor" href="#Argument-1:-table">Argument 1: <code>table</code></a><a id="Argument-1:-table-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-1:-table" title="Permalink"></a></h2><p>The first argument can be any object that is a table compatible with the <code>Tables.jl</code> API. Here are some common examples:</p><h3 id="DataFrame"><a class="docs-heading-anchor" href="#DataFrame"><code>DataFrame</code></a><a id="DataFrame-1"></a><a class="docs-heading-anchor-permalink" href="#DataFrame" title="Permalink"></a></h3><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(x = [1, 2, 3], y = [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;])
+
+table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
+    <style>
+        .st-05b75e98 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-05b75e98 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-05b75e98 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-05b75e98 sub {
+            line-height: 0;
+        }
+
+        .st-05b75e98 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">y</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">4</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">5</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">6</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h3 id="NamedTuple-of-Vectors"><a class="docs-heading-anchor" href="#NamedTuple-of-Vectors"><code>NamedTuple</code> of <code>Vector</code>s</a><a id="NamedTuple-of-Vectors-1"></a><a class="docs-heading-anchor-permalink" href="#NamedTuple-of-Vectors" title="Permalink"></a></h3><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3], y = [&quot;4&quot;, &quot;5&quot;, &quot;6&quot;])
+
+table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
+    <style>
+        .st-05b75e98 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-05b75e98 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-05b75e98 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-05b75e98 sub {
+            line-height: 0;
+        }
+
+        .st-05b75e98 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">y</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">4</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">5</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">6</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h3 id="Vector-of-NamedTuples"><a class="docs-heading-anchor" href="#Vector-of-NamedTuples"><code>Vector</code> of <code>NamedTuple</code>s</a><a id="Vector-of-NamedTuples-1"></a><a class="docs-heading-anchor-permalink" href="#Vector-of-NamedTuples" title="Permalink"></a></h3><pre><code class="language-julia hljs">using SummaryTables
+
+data = [(; x = 1, y = &quot;4&quot;), (; x = 2, y = &quot;5&quot;), (; x = 3, y = &quot;6&quot;)]
+
+table_one(data, [:x, :y])</code></pre><table class="st-05b75e98">
+    <style>
+        .st-05b75e98 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-05b75e98 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-05b75e98 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-05b75e98 sub {
+            line-height: 0;
+        }
+
+        .st-05b75e98 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">y</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">4</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">5</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">6</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Argument-2:-analyses"><a class="docs-heading-anchor" href="#Argument-2:-analyses">Argument 2: <code>analyses</code></a><a id="Argument-2:-analyses-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-2:-analyses" title="Permalink"></a></h2><p>The second argument takes a vector specifying analyses, with one entry for each &quot;row section&quot; of the resulting table. If only one analysis is passed, the vector can be omitted. Each analysis can have up to three parts: the variable, the analysis function and the label.</p><p>The variable is passed as a <code>Symbol</code>, corresponding to a column in the input data, and must always be specified. The other two parts are optional.</p><p>If you specify only variables, the analysis functions are chosen automatically based on the columns, and the labels are equal to the variable names. Number variables show the mean, standard deviation, median, minimum and maximum. String variables or other non-numeric variables show counts and percentages of each element type. </p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
+
+table_one(data, [:x, :y])</code></pre><table class="st-7982b259">
+    <style>
+        .st-7982b259 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-7982b259 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-7982b259 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-7982b259 sub {
+            line-height: 0;
+        }
+
+        .st-7982b259 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">y</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">a</td>
+        <td style="text-align:center;">2 (66.7%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">b</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>In the next example, we rename the <code>x</code> variable by passing a <code>String</code> in a <code>Pair</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
+
+table_one(data, [:x =&gt; &quot;Variable X&quot;, :y])</code></pre><table class="st-6ba76fdd">
+    <style>
+        .st-6ba76fdd {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-6ba76fdd tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-6ba76fdd br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-6ba76fdd sub {
+            line-height: 0;
+        }
+
+        .st-6ba76fdd sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Variable X</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">y</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">a</td>
+        <td style="text-align:center;">2 (66.7%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">b</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>Labels can be any type except <code>&lt;:Function</code> (that type signals that an analysis function has been passed). One example of a non-string label is <code>Concat</code> in conjunction with <code>Superscript</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3], y = [&quot;a&quot;, &quot;b&quot;, &quot;a&quot;])
+
+table_one(data, [:x =&gt; Concat(&quot;X&quot;, Superscript(&quot;with superscript&quot;)), :y])</code></pre><table class="st-3a46b632">
+    <style>
+        .st-3a46b632 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-3a46b632 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-3a46b632 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-3a46b632 sub {
+            line-height: 0;
+        }
+
+        .st-3a46b632 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">X<sup>with superscript</sup></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">y</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">a</td>
+        <td style="text-align:center;">2 (66.7%)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">b</td>
+        <td style="text-align:center;">1 (33.3%)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>Any object which is a subtype of <code>Function</code> is assumed to be an analysis function. An analysis function takes a data column as input and returns a <code>Tuple</code> where each entry corresponds to one analysis row. Each of these rows consists of a <code>Pair</code> where the left side is the analysis result and the right side the label. Here&#39;s an example of a custom number column analysis function. Note the use of <code>Concat</code> to build content out of multiple parts. This is preferred to interpolating into a string because interpolation destroys the original objects and takes away the possibility for automatic rounding or other special post-processing or display behavior.</p><pre><code class="language-julia hljs">using SummaryTables
+using Statistics
+
+data = (; x = [1, 2, 3])
+
+function custom_analysis(column)
+    (
+        minimum(column) =&gt; &quot;Minimum&quot;,
+        maximum(column) =&gt; &quot;Maximum&quot;,
+        Concat(mean(column), &quot; (&quot;, std(column), &quot;)&quot;) =&gt; &quot;Mean (SD)&quot;,
+    )
+end
+
+table_one(data, :x =&gt; custom_analysis)</code></pre><table class="st-d00b0b7d">
+    <style>
+        .st-d00b0b7d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-d00b0b7d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-d00b0b7d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-d00b0b7d sub {
+            line-height: 0;
+        }
+
+        .st-d00b0b7d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Minimum</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Maximum</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>Finally, all three parts, variable, analysis function and label can be combined as well:</p><pre><code class="language-julia hljs">using SummaryTables
+using Statistics
+
+data = (; x = [1, 2, 3])
+
+function custom_analysis(column)
+    (
+        minimum(column) =&gt; &quot;Minimum&quot;,
+        maximum(column) =&gt; &quot;Maximum&quot;,
+        Concat(mean(column), &quot; (&quot;, std(column), &quot;)&quot;) =&gt; &quot;Mean (SD)&quot;,
+    )
+end
+
+table_one(data, :x =&gt; custom_analysis =&gt; &quot;Variable X&quot;)</code></pre><table class="st-037578c0">
+    <style>
+        .st-037578c0 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-037578c0 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-037578c0 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-037578c0 sub {
+            line-height: 0;
+        }
+
+        .st-037578c0 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Variable X</td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Minimum</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Maximum</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2 (1)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-groupby"><a class="docs-heading-anchor" href="#Keyword:-groupby">Keyword: <code>groupby</code></a><a id="Keyword:-groupby-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-groupby" title="Permalink"></a></h2><p>The <code>groupby</code> keyword takes a vector of column name symbols with optional labels. If there is only one grouping column, the vector can be omitted. Each analysis is then computed separately for each group.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;b&quot;])
+
+table_one(data, :x, groupby = :y)</code></pre><table class="st-4be71cf9">
+    <style>
+        .st-4be71cf9 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-4be71cf9 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-4be71cf9 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-4be71cf9 sub {
+            line-height: 0;
+        }
+
+        .st-4be71cf9 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">a</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">2 (1)</td>
+        <td style="text-align:center;">5 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+        <td style="text-align:center;">5 [4, 6]</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>In this example, we rename the grouping column:</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;b&quot;])
+
+table_one(data, :x, groupby = :y =&gt; &quot;Column Y&quot;)</code></pre><table class="st-b049e96c">
+    <style>
+        .st-b049e96c {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-b049e96c tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-b049e96c br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-b049e96c sub {
+            line-height: 0;
+        }
+
+        .st-b049e96c sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Column Y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">a</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">2 (1)</td>
+        <td style="text-align:center;">5 (1)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">2 [1, 3]</td>
+        <td style="text-align:center;">5 [4, 6]</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>If there are multiple grouping columns, they are shown in a nested fashion, with the first group at the highest level:</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (;
+    x = [1, 2, 3, 4, 5, 6],
+    y = [&quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;c&quot;, &quot;c&quot;],
+    z = [&quot;d&quot;, &quot;e&quot;, &quot;d&quot;, &quot;e&quot;, &quot;d&quot;, &quot;e&quot;],
+)
+
+table_one(data, :x, groupby = [:y, :z =&gt; &quot;Column Z&quot;])</code></pre><table class="st-a39c901b">
+    <style>
+        .st-a39c901b {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-a39c901b tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-a39c901b br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-a39c901b sub {
+            line-height: 0;
+        }
+
+        .st-a39c901b sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">a</td>
+        <td colspan="2" style="text-align:center;">b</td>
+        <td colspan="2" style="text-align:center;">c</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Column Z</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Column Z</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Column Z</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">e</td>
+        <td style="text-align:center;">d</td>
+        <td style="text-align:center;">e</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">1 (NaN)</td>
+        <td style="text-align:center;">2 (NaN)</td>
+        <td style="text-align:center;">3 (NaN)</td>
+        <td style="text-align:center;">4 (NaN)</td>
+        <td style="text-align:center;">5 (NaN)</td>
+        <td style="text-align:center;">6 (NaN)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">1 [1, 1]</td>
+        <td style="text-align:center;">2 [2, 2]</td>
+        <td style="text-align:center;">3 [3, 3]</td>
+        <td style="text-align:center;">4 [4, 4]</td>
+        <td style="text-align:center;">5 [5, 5]</td>
+        <td style="text-align:center;">6 [6, 6]</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-show_n"><a class="docs-heading-anchor" href="#Keyword:-show_n">Keyword: <code>show_n</code></a><a id="Keyword:-show_n-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-show_n" title="Permalink"></a></h2><p>When <code>show_n</code> is set to <code>true</code>, the size of each group is shown under its name.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
+
+table_one(data, :x, groupby = :y, show_n = true)</code></pre><table class="st-1f0fd321">
+    <style>
+        .st-1f0fd321 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-1f0fd321 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-1f0fd321 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-1f0fd321 sub {
+            line-height: 0;
+        }
+
+        .st-1f0fd321 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall<br>(n=6)</td>
+        <td style="text-align:center;">a<br>(n=4)</td>
+        <td style="text-align:center;">b<br>(n=2)</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">2.5 (1.29)</td>
+        <td style="text-align:center;">5.5 (0.707)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">2.5 [1, 4]</td>
+        <td style="text-align:center;">5.5 [5, 6]</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-show_overall"><a class="docs-heading-anchor" href="#Keyword:-show_overall">Keyword: <code>show_overall</code></a><a id="Keyword:-show_overall-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-show_overall" title="Permalink"></a></h2><p>When <code>show_overall</code> is set to <code>false</code>, the column summarizing all groups together is hidden. Use this only when <code>groupby</code> is set, otherwise the resulting table will be empty.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;])
+
+table_one(data, :x, groupby = :y, show_overall = false)</code></pre><table class="st-44c7fbec">
+    <style>
+        .st-44c7fbec {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-44c7fbec tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-44c7fbec br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-44c7fbec sub {
+            line-height: 0;
+        }
+
+        .st-44c7fbec sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">a</td>
+        <td style="text-align:center;">b</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">2.5 (1.29)</td>
+        <td style="text-align:center;">5.5 (0.707)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">2.5 [1, 4]</td>
+        <td style="text-align:center;">5.5 [5, 6]</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-sort"><a class="docs-heading-anchor" href="#Keyword:-sort">Keyword: <code>sort</code></a><a id="Keyword:-sort-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-sort" title="Permalink"></a></h2><p>By default, group entries are sorted. If you need to maintain the order of entries from your dataset, set <code>sort = false</code>.</p><p>Notice how in the following two examples, the group indices are <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code>, <code>&quot;uno&quot;</code> when sorted, but <code>&quot;uno&quot;</code>, <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code> when not sorted. If we want to preserve the natural order of these groups (&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot; meaning &quot;one&quot;, &quot;two&quot;, &quot;three&quot; in Spanish but having a different alphabetical order) we need to set <code>sort = false</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;uno&quot;, &quot;uno&quot;, &quot;dos&quot;, &quot;dos&quot;, &quot;tres&quot;, &quot;tres&quot;])
+
+table_one(data, :x, groupby = :y)</code></pre><table class="st-4b320b62">
+    <style>
+        .st-4b320b62 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-4b320b62 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-4b320b62 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-4b320b62 sub {
+            line-height: 0;
+        }
+
+        .st-4b320b62 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">dos</td>
+        <td style="text-align:center;">tres</td>
+        <td style="text-align:center;">uno</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">3.5 (0.707)</td>
+        <td style="text-align:center;">5.5 (0.707)</td>
+        <td style="text-align:center;">1.5 (0.707)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">3.5 [3, 4]</td>
+        <td style="text-align:center;">5.5 [5, 6]</td>
+        <td style="text-align:center;">1.5 [1, 2]</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = :y, sort = false)</code></pre><table class="st-52683df9">
+    <style>
+        .st-52683df9 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-52683df9 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-52683df9 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-52683df9 sub {
+            line-height: 0;
+        }
+
+        .st-52683df9 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">uno</td>
+        <td style="text-align:center;">dos</td>
+        <td style="text-align:center;">tres</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">1.5 (0.707)</td>
+        <td style="text-align:center;">3.5 (0.707)</td>
+        <td style="text-align:center;">5.5 (0.707)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">1.5 [1, 2]</td>
+        <td style="text-align:center;">3.5 [3, 4]</td>
+        <td style="text-align:center;">5.5 [5, 6]</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>If you have multiple groups, <code>sort = false</code> can lead to splitting of higher-level groups if they are not correctly ordered in the source data.</p></div></div><p>Compare the following two tables. In the second one, the group &quot;A&quot; is split by &quot;B&quot; so the label appears twice.</p><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; x = [1, 2, 3, 4, 5, 6], y = [&quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;], z = [&quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;D&quot;, &quot;D&quot;, &quot;D&quot;])
+
+table_one(data, :x, groupby = [:y, :z])</code></pre><table class="st-e82fbaa8">
+    <style>
+        .st-e82fbaa8 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-e82fbaa8 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-e82fbaa8 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-e82fbaa8 sub {
+            line-height: 0;
+        }
+
+        .st-e82fbaa8 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="4" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">A</td>
+        <td colspan="2" style="text-align:center;">B</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+    </tr>
+        <tr><td colspan="6" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">1.5 (0.707)</td>
+        <td style="text-align:center;">6 (NaN)</td>
+        <td style="text-align:center;">3 (NaN)</td>
+        <td style="text-align:center;">4.5 (0.707)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">1.5 [1, 2]</td>
+        <td style="text-align:center;">6 [6, 6]</td>
+        <td style="text-align:center;">3 [3, 3]</td>
+        <td style="text-align:center;">4.5 [4, 5]</td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><pre><code class="language-julia hljs">table_one(data, :x, groupby = [:y, :z], sort = false)</code></pre><table class="st-d304e3e1">
+    <style>
+        .st-d304e3e1 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-d304e3e1 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-d304e3e1 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-d304e3e1 sub {
+            line-height: 0;
+        }
+
+        .st-d304e3e1 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="4" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">y</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td colspan="2" style="text-align:center;">B</td>
+        <td style="text-align:center;">A</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+        <td style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">z</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Overall</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">D</td>
+    </tr>
+        <tr><td colspan="6" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">x</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">1.5 (0.707)</td>
+        <td style="text-align:center;">3 (NaN)</td>
+        <td style="text-align:center;">4.5 (0.707)</td>
+        <td style="text-align:center;">6 (NaN)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">3.5 [1, 6]</td>
+        <td style="text-align:center;">1.5 [1, 2]</td>
+        <td style="text-align:center;">3 [3, 3]</td>
+        <td style="text-align:center;">4.5 [4, 5]</td>
+        <td style="text-align:center;">6 [6, 6]</td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../summarytable/">« <code>summarytable</code></a><a class="docs-footer-nextpage" href="../../custom_tables/table/"><code>Table</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.3.0 on <span class="colophon-date" title="Tuesday 26 March 2024 08:18">Tuesday 26 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
