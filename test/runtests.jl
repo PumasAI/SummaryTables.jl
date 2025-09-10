@@ -87,9 +87,7 @@ function typst_render_test(filepath)
         typ_path = joinpath(path, "input.typ")
         pdfpath = joinpath(path, "input.pdf")
         cp(filepath, typ_path)
-        Typst_jll.typst() do bin
-            run(`$bin compile $typ_path`)
-        end
+        run(`$(typst()) compile $typ_path`)
         @test isfile(pdfpath)
     end
 end
