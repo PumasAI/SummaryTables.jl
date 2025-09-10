@@ -155,9 +155,7 @@ mktempdir() do dir
     end
 
     # render the tex file to pdf
-    Typst_jll.typst() do bin
-        run(`$bin compile $typfile`)
-    end
+    run(`$(typst()) compile $typfile`)
 
     cp(joinpath(dir, "example.pdf"), joinpath(@__DIR__, "..", "public", "example_typst.pdf"))
 end
