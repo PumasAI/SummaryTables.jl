@@ -1,4 +1,7 @@
 function _showas(io::IO, mime::MIME, value)
+    if mime === MIME"text/plain"()
+        return print(io, value)
+    end
     fn(io::IO, ::MIME"text/html", value::AbstractString) = _str_html_escaped(io, value)
     fn(io::IO, ::MIME"text/html", value) = _str_html_escaped(io, repr(value))
     fn(io::IO, ::MIME"text/latex", value::AbstractString) = _str_latex_escaped(io, value)
@@ -8,6 +11,7 @@ function _showas(io::IO, mime::MIME, value)
     fn(io::IO, ::MIME, value) = print(io, value)
     return showable(mime, value) ? show(io, mime, value) : fn(io, mime, value)
 end
+
 function _showas(io::IO, m::MIME, r::RoundedFloat)
     f = r.f
     mode = r.round_mode
