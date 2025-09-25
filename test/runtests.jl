@@ -663,6 +663,12 @@ end
                             round_digits
                         )
                         reftest(t, "references/global_rounding/$(round_mode)_$(trailing_zeros)_$(round_digits)")
+
+                        SummaryTables.with_defaults(; round_mode, trailing_zeros, round_digits) do
+                            t2 = Table(cells)
+                            # same reftest, just via defaults
+                            reftest(t, "references/global_rounding/$(round_mode)_$(trailing_zeros)_$(round_digits)")
+                        end
                     end
                 end
             end
