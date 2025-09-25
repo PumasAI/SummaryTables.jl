@@ -81,5 +81,5 @@ The available settings are:
 $(_defaults_fielddocs())
 """
 function with_defaults(f; kwargs...)
-    return ScopedValues.with(f, current_defaults => (ReentrantLock(), Defaults(; kwargs...)))
+    return ScopedValues.with(f, current_defaults => (ReentrantLock(), Ref(Defaults(; kwargs...))))
 end
