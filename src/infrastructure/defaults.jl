@@ -28,7 +28,7 @@ function Base.show(io::IO, d::Defaults)
     return
 end
 
-current_defaults = ScopedValues.ScopedValue((ReentrantLock(), Ref(Defaults())))
+const current_defaults = ScopedValues.ScopedValue((ReentrantLock(), Ref(Defaults())))
 
 function _defaults_fielddocs()
     fnames = fieldnames(Defaults)
