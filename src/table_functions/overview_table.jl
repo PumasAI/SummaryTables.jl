@@ -62,7 +62,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
         ]
     )
 
-    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP, footnotes)
+    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> defaults().extra_rowgap, footnotes)
 end
 
 has_categorical_eltype(v::AbstractVector{<:Union{Missing,Number}}) = all(ismissing, v)

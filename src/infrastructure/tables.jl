@@ -13,16 +13,21 @@ struct Table
 end
 
 function Table(cells, header, footer;
-        round_digits = 3,
-        round_mode = :auto,
-        trailing_zeros = false,
+        round_digits = nothing,
+        round_mode = nothing,
+        trailing_zeros = nothing,
         footnotes = [],
         postprocess = [],
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
-        linebreak_footnotes::Bool = true,
+        linebreak_footnotes = nothing,
     )
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, round_digits, round_mode, trailing_zeros, linebreak_footnotes)
+    defs = defaults()
+    _round_digits = something(round_digits, defs.round_digits)
+    _round_mode = something(round_mode, defs.round_mode)
+    _trailing_zeros = something(trailing_zeros, defs.trailing_zeros)
+    _linebreak_footnotes = something(linebreak_footnotes, defs.linebreak_footnotes)
+    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _round_digits, _round_mode, _trailing_zeros, _linebreak_footnotes)
 end
 
 """
