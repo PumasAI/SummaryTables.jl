@@ -14,6 +14,12 @@ Base.@kwdef struct Defaults
     annotation_labels = :numbers
 end
 
+struct Default end
+const default = Default()
+
+fallback(value::Default, default) = default
+fallback(value, default) = value
+
 function Base.show(io::IO, d::Defaults)
     println(io, "Defaults(")
     fnames = fieldnames(Defaults)

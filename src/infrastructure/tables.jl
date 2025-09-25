@@ -13,20 +13,20 @@ struct Table
 end
 
 function Table(cells, header, footer;
-        round_digits = nothing,
-        round_mode = nothing,
-        trailing_zeros = nothing,
+        round_digits = default,
+        round_mode = default,
+        trailing_zeros = default,
         footnotes = [],
         postprocess = [],
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
-        linebreak_footnotes = nothing,
+        linebreak_footnotes = default,
     )
     defs = defaults()
-    _round_digits = something(round_digits, defs.round_digits)
-    _round_mode = something(round_mode, defs.round_mode)
-    _trailing_zeros = something(trailing_zeros, defs.trailing_zeros)
-    _linebreak_footnotes = something(linebreak_footnotes, defs.linebreak_footnotes)
+    _round_digits = fallback(round_digits, defs.round_digits)
+    _round_mode = fallback(round_mode, defs.round_mode)
+    _trailing_zeros = fallback(trailing_zeros, defs.trailing_zeros)
+    _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
     Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _round_digits, _round_mode, _trailing_zeros, _linebreak_footnotes)
 end
 
