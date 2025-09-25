@@ -77,6 +77,8 @@ Table(cells; colgaps = [3 => 8.0, 6 => 8.0])
 By default, footnotes are printed on a separate line each.
 They can be printed in a single paragraph by setting `linebreak_footnotes = false`.
 
+This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
+
 ```@example linebreak_footnotes
 using SummaryTables
 
