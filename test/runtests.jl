@@ -752,6 +752,15 @@ end
             )
             reftest(tbl, "references/styled/example")
         end
+
+        @testset "annotation label style" begin
+            tbl = Table([Cell(Annotated("$row$col", "annotation $row$col")) for row in 1:4, col in 'A':'C'])
+            for style in [:letters_lower, :letters_upper, :roman_lower, :roman_upper, :numbers]
+                SummaryTables.with_defaults(; annotation_labels = style) do
+                    reftest(tbl, "references/defaults/annotation_labels_$style")
+                end
+            end
+        end
     end
 end
 

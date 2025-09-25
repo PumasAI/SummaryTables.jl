@@ -1,0 +1,55 @@
+<table id="st-81f7afbd">
+    <style>
+        #st-81f7afbd {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-81f7afbd tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-81f7afbd tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-81f7afbd br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-81f7afbd sub {
+            line-height: 0;
+        }
+        #st-81f7afbd sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">1A<sup>I</sup></td>
+        <td style="text-align:center;">1B<sup>II</sup></td>
+        <td style="text-align:center;">1C<sup>III</sup></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">2A<sup>IV</sup></td>
+        <td style="text-align:center;">2B<sup>V</sup></td>
+        <td style="text-align:center;">2C<sup>VI</sup></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">3A<sup>VII</sup></td>
+        <td style="text-align:center;">3B<sup>VIII</sup></td>
+        <td style="text-align:center;">3C<sup>IX</sup></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">4A<sup>X</sup></td>
+        <td style="text-align:center;">4B<sup>XI</sup></td>
+        <td style="text-align:center;">4C<sup>XII</sup></td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="3" style="font-size: 0.8em;"><sup>I</sup> annotation 1A<br/><sup>II</sup> annotation 1B<br/><sup>III</sup> annotation 1C<br/><sup>IV</sup> annotation 2A<br/><sup>V</sup> annotation 2B<br/><sup>VI</sup> annotation 2C<br/><sup>VII</sup> annotation 3A<br/><sup>VIII</sup> annotation 3B<br/><sup>IX</sup> annotation 3C<br/><sup>X</sup> annotation 4A<br/><sup>XI</sup> annotation 4B<br/><sup>XII</sup> annotation 4C</td></tr>
+</table>

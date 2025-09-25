@@ -1,0 +1,754 @@
+############################## [Content_Types].xml ##############################
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types
+    xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+    <Default Extension="png" ContentType="image/png" />
+    <Default Extension="svg" ContentType="image/svg+xml" />
+    <Default Extension="xml" ContentType="application/xml" />
+    <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" />
+    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml" />
+    <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml" />
+</Types>
+############################## _rels/.rels ##############################
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships
+    xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>
+############################## word/_rels/document.xml.rels ##############################
+<?xml version="1.0" encoding="UTF-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+</Relationships>
+############################## word/styles.xml ##############################
+<?xml version="1.0" encoding="UTF-8"?>
+<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:docDefaults>
+    <w:rPrDefault/>
+    <w:pPrDefault/>
+  </w:docDefaults>
+  <w:style w:type="paragraph" w:styleId="Normal">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="20"/>
+      </w:rPr>
+    </w:pPr>
+    <w:name w:val="Normal"/>
+    <w:link w:val="NormalChar"/>
+    <w:qFormat/>
+  </w:style>
+  <w:style w:type="character" w:styleId="NormalChar">
+    <w:rPr>
+      <w:sz w:val="20"/>
+    </w:rPr>
+    <w:name w:val="Normal"/>
+    <w:link w:val="Normal"/>
+    <w:qFormat/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading1">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="40"/>
+      </w:rPr>
+      <w:spacing w:before="240" w:after="200"/>
+    </w:pPr>
+    <w:name w:val="Heading 1"/>
+    <w:link w:val="Heading1Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading1Char">
+    <w:rPr/>
+    <w:name w:val="Heading 1"/>
+    <w:link w:val="Heading1"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading2">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="32"/>
+      </w:rPr>
+      <w:spacing w:before="200" w:after="160"/>
+    </w:pPr>
+    <w:name w:val="Heading 2"/>
+    <w:link w:val="Heading2Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading2Char">
+    <w:rPr/>
+    <w:name w:val="Heading 2"/>
+    <w:link w:val="Heading2"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading3">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="28"/>
+      </w:rPr>
+      <w:spacing w:before="160" w:after="120"/>
+    </w:pPr>
+    <w:name w:val="Heading 3"/>
+    <w:link w:val="Heading3Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading3Char">
+    <w:rPr/>
+    <w:name w:val="Heading 3"/>
+    <w:link w:val="Heading3"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading4">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="24"/>
+      </w:rPr>
+      <w:spacing w:before="120" w:after="80"/>
+    </w:pPr>
+    <w:name w:val="Heading 4"/>
+    <w:link w:val="Heading4Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading4Char">
+    <w:rPr/>
+    <w:name w:val="Heading 4"/>
+    <w:link w:val="Heading4"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading5">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="22"/>
+        <w:i/>
+      </w:rPr>
+      <w:spacing w:before="120" w:after="80"/>
+    </w:pPr>
+    <w:name w:val="Heading 5"/>
+    <w:link w:val="Heading5Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading5Char">
+    <w:rPr/>
+    <w:name w:val="Heading 5"/>
+    <w:link w:val="Heading5"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="paragraph" w:styleId="Heading6">
+    <w:pPr>
+      <w:rPr>
+        <w:sz w:val="20"/>
+        <w:i/>
+      </w:rPr>
+      <w:spacing w:before="120" w:after="80"/>
+    </w:pPr>
+    <w:name w:val="Heading 6"/>
+    <w:link w:val="Heading6Char"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:style w:type="character" w:styleId="Heading6Char">
+    <w:rPr/>
+    <w:name w:val="Heading 6"/>
+    <w:link w:val="Heading6"/>
+    <w:qFormat/>
+    <w:basedOn w:val="Normal"/>
+  </w:style>
+  <w:latentStyles/>
+</w:styles>
+############################## word/document.xml ##############################
+<?xml version="1.0" encoding="UTF-8"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+  <w:body>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblCellMar>
+          <w:top w:w="0"/>
+          <w:bottom w:w="0"/>
+          <w:start w:w="30"/>
+          <w:end w:w="30"/>
+        </w:tblCellMar>
+        <w:tblCellSpacing w:w="20"/>
+      </w:tblPr>
+      <w:tr>
+        <w:trPr>
+          <w:tblHeader/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="8"/>
+              <w:end w:val="none" w:color="auto" w:sz="8"/>
+              <w:start w:val="none" w:color="auto" w:sz="8"/>
+            </w:tcBorders>
+            <w:gridSpan w:val="3"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>A</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>B</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>1C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>C</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>D</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>E</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>2C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>F</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>3A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>G</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>3B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>H</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>3C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>I</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>4A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>J</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>4B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>K</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar/>
+            <w:vAlign w:val="top"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr/>
+              <w:t>4C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>L</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="8"/>
+              <w:end w:val="none" w:color="auto" w:sz="8"/>
+              <w:start w:val="none" w:color="auto" w:sz="8"/>
+            </w:tcBorders>
+            <w:gridSpan w:val="3"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:trPr/>
+        <w:tc>
+          <w:tcPr>
+            <w:gridSpan w:val="3"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr/>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 1A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 1B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 1C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>D</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 2A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>E</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 2B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>F</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 2C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>G</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 3A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>H</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 3B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>I</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 3C</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>J</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 4A</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>K</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 4B</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>L</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
+              <w:t>annotation 4C</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:sectPr/>
+  </w:body>
+</w:document>
