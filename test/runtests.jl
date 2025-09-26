@@ -766,6 +766,15 @@ end
                     reftest(tbl, "references/defaults/annotation_labels_$style")
                 end
             end
+
+            tbl = Table([Cell(Annotated("$row$col", "annotation $row$col")) for row in 1:1, col in 'A':'C'])
+            SummaryTables.with_defaults(annotation_labels = ["*", "†", "‡"]) do
+                reftest(tbl, "references/defaults/annotation_labels_custom")
+            end
+
+            SummaryTables.with_defaults(annotation_labels = ["*", "†"]) do
+                @test_throws "provides 2 labels, but 3 labels are needed" repr("text/html", tbl)
+            end
         end
     end
 end

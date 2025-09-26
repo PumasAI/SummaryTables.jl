@@ -158,6 +158,8 @@ function get_annotation_labels(s::Symbol)
     end
 end
 
+get_annotation_labels(x) = x
+
 const LETTERS_LOWER = string.('a':'z')
 const LETTERS_UPPER = string.('A':'Z')
 const ROMAN_LOWER = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv", "xvi", "xvii", "xviii", "xix", "xx", "xxi", "xxii", "xxiii", "xxiv", "xxv", "xxvi", "xxvii", "xxviii", "xxix", "xxx"]
