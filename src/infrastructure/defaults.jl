@@ -1,7 +1,5 @@
 "" # otherwise field docstrings are not parsed
 Base.@kwdef struct Defaults
-    "Gap between rows with increased gap size as used in some convenience table functions."
-    extra_rowgap::Float64 = 6.0
     "Rounding mode for floats, can be `:auto`, `:digits` or `:sigdigits`."
     round_mode::Symbol = :auto
     "Number of digits to target when rounding floats."
