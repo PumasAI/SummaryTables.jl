@@ -75,8 +75,10 @@ function latex_render_test(filepath)
         texpath = joinpath(path, "input.tex")
         pdfpath = joinpath(path, "input.pdf")
         cp(filepath, texpath)
-        tectonic_jll.tectonic() do bin
-            run(`$bin $texpath`)
+        stderr_path = joinpath(path, "stderr.txt")
+        s = success(pipeline(`$(tectonic_jll.tectonic()) $texpath`, stderr = stderr_path))
+        if !s
+            error("Tectonic render failed\n" * read(stderr_path, String))
         end
         @test isfile(pdfpath)
     end
