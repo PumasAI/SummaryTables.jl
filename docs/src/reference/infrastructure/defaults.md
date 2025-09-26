@@ -8,9 +8,7 @@ The system provides two public functions: [`SummaryTables.defaults!`](@ref) for 
 SummaryTables.defaults!
 ```
 
-## Setting Global Defaults
-
-### `SummaryTables.defaults!` - Modify Global Settings
+## Persistent Defaults
 
 Use `SummaryTables.defaults!` to change the global default settings that will apply to all subsequently created tables:
 
@@ -29,7 +27,7 @@ Note that explicit settings override the defaults:
 Table(Cell.(numbers), trailing_zeros = false)
 ```
 
-The `defaults!` function applies only the keywords on top of SummaryTables's own defaults, so to reset, you specify no keywords.
+The `defaults!` function does not selectively update but it applies the keywords on top of SummaryTables's own defaults. To reset to the package defaults, you therefore specify no keywords.
 
 ```@example defaults
 SummaryTables.defaults!()
@@ -37,9 +35,9 @@ SummaryTables.defaults!()
 Table(Cell.(numbers))
 ```
 
-### `SummaryTables.with_defaults` - Temporary Scoped Settings
+## Temporary Scoped Defaults
 
-Use `SummaryTables.with_defaults` to temporarily change default settings for a specific block of code without affecting the global settings. This is implemented via ScopedValues.jl:
+Use `SummaryTables.with_defaults` to temporarily change default settings for a specific block of code without affecting the global settings. This is implemented via ScopedValues.jl, so you can use `with_defaults` in multiple separate tasks without interference between them. Within a `with_defaults` block you can again modify settings using `defaults!` and these changes will persist until the scope ends.
 
 ```@example defaults
 # Use different defaults temporarily
