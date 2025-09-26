@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.4.0 - 2025-09-26
+
 - Added global defaults system which allows to override float rounding behavior and annotation label styles, among others [#108](https://github.com/PumasAI/SummaryTables.jl/pull/108). 
 
 ## 3.3.3 - 2025-07-17
