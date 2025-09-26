@@ -21,6 +21,8 @@ import REPL
 import SHA
 import ScopedValues
 
+const DEFAULT_ROWGAP = 6.0
+
 macro public(ex)
     if VERSION >= v"1.11.0-DEV.469"
         args =
