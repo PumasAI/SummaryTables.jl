@@ -50,8 +50,8 @@ export Superscript
 export Subscript
 export Styled
 
-public defaults!
-public with_defaults
+@public defaults!
+@public with_defaults
 
 include("infrastructure/cells.jl")
 include("infrastructure/special_cell_values.jl")
