@@ -69,10 +69,16 @@ struct NoLabel end
 function resolve_annotations(cells::AbstractVector{<:SpannedCell})
     annotations = collect_annotations(cells)
 
+    _annotation_labels = defaults().annotation_labels
+    annotation_labels = get_annotation_labels(_annotation_labels)
+
     k = 1
     for (annotation, label) in annotations
         if label === AutoNumbering()
-            annotations[annotation] = k
+            if k > length(annotation_labels)
+                error("Not enough annotation labels available. The current setting is `annotation_labels = $(repr(_annotation_labels))` which provides $(length(annotation_labels)) labels, but $(k) labels are needed.")
+            end
+            annotations[annotation] = annotation_labels[k]
             k += 1
         elseif label === nothing
             annotations[annotation] = NoLabel()
@@ -135,6 +141,29 @@ function resolve_annotation(c::Concat, annotations)
     end
     Concat(new_args...)
 end
+
+function get_annotation_labels(s::Symbol)
+    if s === :numbers
+        1:typemax(Int)
+    elseif s === :letters_lower
+        LETTERS_LOWER
+    elseif s === :letters_upper
+        LETTERS_UPPER
+    elseif s === :roman_lower
+        ROMAN_LOWER
+    elseif s === :roman_upper
+        ROMAN_UPPER
+    else
+        error("Invalid annotation label identifier $(repr(s)), valid options are :numbers, :letters_lower, :letters_upper, :roman_lower, :roman_upper")
+    end
+end
+
+get_annotation_labels(x) = x
+
+const LETTERS_LOWER = string.('a':'z')
+const LETTERS_UPPER = string.('A':'Z')
+const ROMAN_LOWER = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv", "xvi", "xvii", "xviii", "xix", "xx", "xxi", "xxii", "xxiii", "xxiv", "xxv", "xxvi", "xxvii", "xxviii", "xxix", "xxx"]
+const ROMAN_UPPER = uppercase.(ROMAN_LOWER)
 
 struct Superscript
     super

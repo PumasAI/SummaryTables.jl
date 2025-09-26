@@ -1,0 +1,55 @@
+<table id="st-976493a9">
+    <style>
+        #st-976493a9 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-976493a9 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-976493a9 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-976493a9 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-976493a9 sub {
+            line-height: 0;
+        }
+        #st-976493a9 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">1A<sup>1</sup></td>
+        <td style="text-align:center;">1B<sup>2</sup></td>
+        <td style="text-align:center;">1C<sup>3</sup></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">2A<sup>4</sup></td>
+        <td style="text-align:center;">2B<sup>5</sup></td>
+        <td style="text-align:center;">2C<sup>6</sup></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">3A<sup>7</sup></td>
+        <td style="text-align:center;">3B<sup>8</sup></td>
+        <td style="text-align:center;">3C<sup>9</sup></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">4A<sup>10</sup></td>
+        <td style="text-align:center;">4B<sup>11</sup></td>
+        <td style="text-align:center;">4C<sup>12</sup></td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="3" style="font-size: 0.8em;"><sup>1</sup> annotation 1A<br/><sup>2</sup> annotation 1B<br/><sup>3</sup> annotation 1C<br/><sup>4</sup> annotation 2A<br/><sup>5</sup> annotation 2B<br/><sup>6</sup> annotation 2C<br/><sup>7</sup> annotation 3A<br/><sup>8</sup> annotation 3B<br/><sup>9</sup> annotation 3C<br/><sup>10</sup> annotation 4A<br/><sup>11</sup> annotation 4B<br/><sup>12</sup> annotation 4C</td></tr>
+</table>

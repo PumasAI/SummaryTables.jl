@@ -1,0 +1,36 @@
+
+#table(
+    rows: 4,
+    columns: 3,
+    column-gutter: 0.25em,
+    align: (center, center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [1A#super[1]],
+    [1B#super[2]],
+    [1C#super[3]],
+    [2A#super[4]],
+    [2B#super[5]],
+    [2C#super[6]],
+    [3A#super[7]],
+    [3B#super[8]],
+    [3C#super[9]],
+    [4A#super[10]],
+    [4B#super[11]],
+    [4C#super[12]],
+    table.hline(y: 4, stroke: 1pt),
+    table.cell(align: left, colspan: 3)[#text(size: 0.8em)[
+        #super[1]annotation 1A\
+        #super[2]annotation 1B\
+        #super[3]annotation 1C\
+        #super[4]annotation 2A\
+        #super[5]annotation 2B\
+        #super[6]annotation 2C\
+        #super[7]annotation 3A\
+        #super[8]annotation 3B\
+        #super[9]annotation 3C\
+        #super[10]annotation 4A\
+        #super[11]annotation 4B\
+        #super[12]annotation 4C
+    ]],
+)

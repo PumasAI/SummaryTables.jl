@@ -17,7 +17,22 @@ import StatsBase
 import Printf
 import NaturalSort
 import WriteDocx
+import REPL
 import SHA
+import ScopedValues
+
+const DEFAULT_ROWGAP = 6.0
+
+macro public(ex)
+    if VERSION >= v"1.11.0-DEV.469"
+        args =
+            ex isa Symbol ? (ex,) :
+            Base.isexpr(ex, :tuple) ? ex.args : error("Invalid syntax $ex")
+        esc(Expr(:public, args...))
+    else
+        nothing
+    end
+end
 
 export simple_table
 export overview_table
@@ -37,11 +52,13 @@ export Superscript
 export Subscript
 export Styled
 
-const DEFAULT_ROWGAP = 6.0
+@public defaults!
+@public with_defaults
 
 include("infrastructure/cells.jl")
 include("infrastructure/special_cell_values.jl")
 include("infrastructure/tables.jl")
+include("infrastructure/defaults.jl")
 
 include("table_functions/simple_table.jl")
 include("table_functions/overview_table.jl")

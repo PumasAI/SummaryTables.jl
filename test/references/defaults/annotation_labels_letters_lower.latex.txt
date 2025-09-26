@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{ccc}}
+\toprule
+1A\tnote{a} & 1B\tnote{b} & 1C\tnote{c} \\
+2A\tnote{d} & 2B\tnote{e} & 2C\tnote{f} \\
+3A\tnote{g} & 3B\tnote{h} & 3C\tnote{i} \\
+4A\tnote{j} & 4B\tnote{k} & 4C\tnote{l} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[a]annotation 1A
+\item[b]annotation 1B
+\item[c]annotation 1C
+\item[d]annotation 2A
+\item[e]annotation 2B
+\item[f]annotation 2C
+\item[g]annotation 3A
+\item[h]annotation 3B
+\item[i]annotation 3C
+\item[j]annotation 4A
+\item[k]annotation 4B
+\item[l]annotation 4C
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

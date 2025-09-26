@@ -75,8 +75,10 @@ function latex_render_test(filepath)
         texpath = joinpath(path, "input.tex")
         pdfpath = joinpath(path, "input.pdf")
         cp(filepath, texpath)
-        tectonic_jll.tectonic() do bin
-            run(`$bin $texpath`)
+        stderr_path = joinpath(path, "stderr.txt")
+        s = success(pipeline(`$(tectonic_jll.tectonic()) $texpath`, stderr = stderr_path))
+        if !s
+            error("Tectonic render failed\n" * read(stderr_path, String))
         end
         @test isfile(pdfpath)
     end
@@ -663,6 +665,12 @@ end
                             round_digits
                         )
                         reftest(t, "references/global_rounding/$(round_mode)_$(trailing_zeros)_$(round_digits)")
+
+                        SummaryTables.with_defaults(; round_mode, trailing_zeros, round_digits) do
+                            t2 = Table(cells)
+                            # same reftest, just via defaults
+                            reftest(t, "references/global_rounding/$(round_mode)_$(trailing_zeros)_$(round_digits)")
+                        end
                     end
                 end
             end
@@ -752,6 +760,24 @@ end
             )
             reftest(tbl, "references/styled/example")
         end
+
+        @testset "annotation label style" begin
+            tbl = Table([Cell(Annotated("$row$col", "annotation $row$col")) for row in 1:4, col in 'A':'C'])
+            for style in [:letters_lower, :letters_upper, :roman_lower, :roman_upper, :numbers]
+                SummaryTables.with_defaults(; annotation_labels = style) do
+                    reftest(tbl, "references/defaults/annotation_labels_$style")
+                end
+            end
+
+            tbl = Table([Cell(Annotated("$row$col", "annotation $row$col")) for row in 1:1, col in 'A':'C'])
+            SummaryTables.with_defaults(annotation_labels = ["*", "†", "‡"]) do
+                reftest(tbl, "references/defaults/annotation_labels_custom")
+            end
+
+            SummaryTables.with_defaults(annotation_labels = ["*", "†"]) do
+                @test_throws "provides 2 labels, but 3 labels are needed" repr("text/html", tbl)
+            end
+        end
     end
 end
 
@@ -826,4 +852,52 @@ end
     t = table_one((; a = 1:3, b = ["A", "B", "C"]))
     qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
     @test qnr == repr("text/typst", t)
+end
+
+@testset "Defaults" begin
+    # Test that with_defaults works temporarily and doesn't affect subsequent code
+    original_defaults = SummaryTables.defaults()
+    
+    # Test round_digits default change with with_defaults
+    SummaryTables.with_defaults(round_digits = 5) do
+        current_defaults = SummaryTables.defaults()
+        @test current_defaults.round_digits == 5
+        @test current_defaults.round_mode == original_defaults.round_mode  # other fields unchanged
+        @test current_defaults.trailing_zeros == original_defaults.trailing_zeros
+    end
+    
+    # After with_defaults scope, should be back to original
+    after_defaults = SummaryTables.defaults()
+    @test after_defaults.round_digits == original_defaults.round_digits
+    @test after_defaults == original_defaults
+    
+    # Test multiple parameters with with_defaults
+    SummaryTables.with_defaults(round_digits = 2, round_mode = :digits, trailing_zeros = true) do
+        current_defaults = SummaryTables.defaults()
+        @test current_defaults.round_digits == 2
+        @test current_defaults.round_mode == :digits
+        @test current_defaults.trailing_zeros == true
+        @test current_defaults.linebreak_footnotes == original_defaults.linebreak_footnotes  # unchanged
+    end
+    
+    # Test that defaults! works persistently within with_defaults scope
+    SummaryTables.with_defaults(round_digits = 1) do
+        # Change defaults with defaults!
+        SummaryTables.defaults!(round_digits = 4, round_mode = :sigdigits)
+        current_defaults = SummaryTables.defaults()
+        @test current_defaults.round_digits == 4
+        @test current_defaults.round_mode == :sigdigits
+        
+        # Another call to defaults! should overwrite
+        SummaryTables.defaults!(round_digits = 6)
+        current_defaults = SummaryTables.defaults()
+        @test current_defaults.round_digits == 6
+        @test current_defaults.round_mode == original_defaults.round_mode
+    end
+    
+    # After with_defaults scope ends, should be back to original
+    final_defaults = SummaryTables.defaults()
+    @test final_defaults == original_defaults
+    
+    @test_throws MethodError SummaryTables.defaults!(a = "a", b = "b")
 end

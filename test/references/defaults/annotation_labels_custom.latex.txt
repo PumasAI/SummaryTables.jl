@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{ccc}}
+\toprule
+1A\tnote{*} & 1B\tnote{†} & 1C\tnote{‡} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[*]annotation 1A
+\item[†]annotation 1B
+\item[‡]annotation 1C
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

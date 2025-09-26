@@ -28,6 +28,7 @@ makedocs(
                 "reference/infrastructure/table.md",
                 "reference/infrastructure/cell.md",
                 "reference/infrastructure/cellstyle.md",
+                "reference/infrastructure/defaults.md",
             ],
             "reference/renderers.md",
         ],

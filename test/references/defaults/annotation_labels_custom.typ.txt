@@ -1,0 +1,18 @@
+
+#table(
+    rows: 1,
+    columns: 3,
+    column-gutter: 0.25em,
+    align: (center, center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [1A#super[\*]],
+    [1B#super[†]],
+    [1C#super[‡]],
+    table.hline(y: 1, stroke: 1pt),
+    table.cell(align: left, colspan: 3)[#text(size: 0.8em)[
+        #super[\*]annotation 1A\
+        #super[†]annotation 1B\
+        #super[‡]annotation 1C
+    ]],
+)

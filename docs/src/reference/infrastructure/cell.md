@@ -16,6 +16,8 @@ Most tables display floating point numbers, however, the formatting of these num
 SummaryTables postprocesses every table in order to find unformatted floating point numbers.
 These are then given the default, table-wide, formatting.
 
+The formatting behavior is controlled by the `round_mode`, `round_digits`, and `trailing_zeros` parameters. These can be set as [global defaults](@ref "Global Defaults") or passed as arguments to individual table functions.
+
 ```@example
 using SummaryTables
 
