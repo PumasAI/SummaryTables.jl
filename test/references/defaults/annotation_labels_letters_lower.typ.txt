@@ -6,31 +6,31 @@
     align: (center, center, center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [1A#super[a]],
-    [1B#super[b]],
-    [1C#super[c]],
-    [2A#super[d]],
-    [2B#super[e]],
-    [2C#super[f]],
-    [3A#super[g]],
-    [3B#super[h]],
-    [3C#super[i]],
-    [4A#super[j]],
-    [4B#super[k]],
-    [4C#super[l]],
+    [#"1A"#super[#"a"]],
+    [#"1B"#super[#"b"]],
+    [#"1C"#super[#"c"]],
+    [#"2A"#super[#"d"]],
+    [#"2B"#super[#"e"]],
+    [#"2C"#super[#"f"]],
+    [#"3A"#super[#"g"]],
+    [#"3B"#super[#"h"]],
+    [#"3C"#super[#"i"]],
+    [#"4A"#super[#"j"]],
+    [#"4B"#super[#"k"]],
+    [#"4C"#super[#"l"]],
     table.hline(y: 4, stroke: 1pt),
     table.cell(align: left, colspan: 3)[#text(size: 0.8em)[
-        #super[a]annotation 1A\
-        #super[b]annotation 1B\
-        #super[c]annotation 1C\
-        #super[d]annotation 2A\
-        #super[e]annotation 2B\
-        #super[f]annotation 2C\
-        #super[g]annotation 3A\
-        #super[h]annotation 3B\
-        #super[i]annotation 3C\
-        #super[j]annotation 4A\
-        #super[k]annotation 4B\
-        #super[l]annotation 4C
+        #super[#"a"]#"annotation 1A"\
+        #super[#"b"]#"annotation 1B"\
+        #super[#"c"]#"annotation 1C"\
+        #super[#"d"]#"annotation 2A"\
+        #super[#"e"]#"annotation 2B"\
+        #super[#"f"]#"annotation 2C"\
+        #super[#"g"]#"annotation 3A"\
+        #super[#"h"]#"annotation 3B"\
+        #super[#"i"]#"annotation 3C"\
+        #super[#"j"]#"annotation 4A"\
+        #super[#"k"]#"annotation 4B"\
+        #super[#"l"]#"annotation 4C"
     ]],
 )

@@ -6,8 +6,8 @@
     align: (center, center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [Cell 1],
-    [Cell 2],
+    [#"Cell 1"],
+    [#"Cell 2"],
     table.hline(y: 1, stroke: 1pt),
-    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[First footnote.#h(1.5em, weak: true)Second footnote.]],
+    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[#"First footnote."#h(1.5em, weak: true)#"Second footnote."]],
 )
