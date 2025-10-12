@@ -6,9 +6,9 @@
     align: (center, center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [missing],
+    [#"missing"],
     [],
-    [11],
-    [12],
+    [#"11"],
+    [#"12"],
     table.hline(y: 2, stroke: 1pt),
 )
