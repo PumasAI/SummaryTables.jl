@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- All table functions now use the `"label"` column metadata as a label by default if it's present. A different key can be set as the default setting `label_key`, or `nothing` to disable the feature [#111](https://github.com/PumasAI/SummaryTables.jl/pull/111).
+
 ## 3.4.0 - 2025-09-26
 
 - Added global defaults system which allows to override float rounding behavior and annotation label styles, among others [#108](https://github.com/PumasAI/SummaryTables.jl/pull/108). 
