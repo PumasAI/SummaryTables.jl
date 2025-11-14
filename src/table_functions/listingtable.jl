@@ -66,7 +66,7 @@ Variable(df::DataFrames.DataFrame, p::Pair{String, <:Any}) = Variable(Symbol(p[1
 
 function get_column_label(df, s::Symbol)
     label_key = defaults().label_key
-    return if label_key in DataFrames.colmetadatakeys(df, s)
+    return if label_key !== nothing && label_key in DataFrames.colmetadatakeys(df, s)
         DataFrames.colmetadata(df, s, label_key)
     else
         string(s)
