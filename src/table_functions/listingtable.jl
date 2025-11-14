@@ -6,22 +6,17 @@ struct Group
     name
 end
 
-Group(s::Symbol) = Group(s, string(s))
-Group(p::Pair{Symbol, <:Any}) = Group(p[1], p[2])
-Group(s::String) = Group(Symbol(s), s)
-Group(p::Pair{String, <:Any}) = Group(Symbol(p[1]), p[2])
-
-function Group(df::DataFrames.DataFrame, x, label_key::String)
-    sym, name = _extract_symbol_and_name(df, x, label_key)
-    return Group(sym, name)
-end
+Group(df::DataFrames.DataFrame, s::Symbol) = Group(s, get_column_label(df, s))
+Group(df::DataFrames.DataFrame, s::String) = Group(df, Symbol(s))
+Group(df::DataFrames.DataFrame, p::Pair{Symbol, <:Any}) = Group(p[1], p[2])
+Group(df::DataFrames.DataFrame, p::Pair{String, <:Any}) = Group(Symbol(p[1]), p[2])
 
 make_groups(v::AbstractVector) = map(Group, v)
 make_groups(x) = [Group(x)]
-make_groups(df::DataFrames.DataFrame, v::AbstractVector, label_key::String) = 
-    map(x -> Group(df, x, label_key), v)
-make_groups(df::DataFrames.DataFrame, x, label_key::String) = 
-    [Group(df, x, label_key)]
+make_groups(df::DataFrames.DataFrame, v::AbstractVector) = 
+    map(x -> Group(df, x), v)
+make_groups(df::DataFrames.DataFrame, x) = 
+    [Group(df, x)]
 
 """
 Specifies one function to summarize the raw values of one group with,
@@ -66,49 +61,18 @@ struct Variable
     name
 end
 
-Variable(s::Symbol) = Variable(s, string(s))
-Variable(s::String) = Variable(Symbol(s), s)
-Variable(p::Pair{Symbol, <:Any}) = Variable(p[1], p[2])
-Variable(p::Pair{String, <:Any}) = Variable(Symbol(p[1]), p[2])
+Variable(df::DataFrames.DataFrame, s::Symbol) = Variable(s, get_column_label(df, s))
+Variable(df::DataFrames.DataFrame, s::String) = Variable(df, Symbol(s))
+Variable(df::DataFrames.DataFrame, p::Pair{Symbol, <:Any}) = Variable(p[1], p[2])
+Variable(df::DataFrames.DataFrame, p::Pair{String, <:Any}) = Variable(Symbol(p[1]), p[2])
 
-function Variable(df::DataFrames.DataFrame, x, label_key::String)
-    sym, name = _extract_symbol_and_name(df, x, label_key)
-    return Variable(sym, name)
-end
-
-# Helper function to extract symbol and name from various input types
-# If a manual name is provided via pair syntax, it takes precedence
-# Otherwise, attempts to use label metadata from the dataframe
-# Falls back to string representation of symbol
-function _extract_symbol_and_name(df::DataFrames.DataFrame, x::Symbol, label_key::String)
-    # No manual name, try metadata
-    if label_key in DataFrames.colmetadatakeys(df, x)
-        label = DataFrames.colmetadata(df, x, label_key)
-        return x, label
+function get_column_label(df, s::Symbol)
+    label_key = defaults().label_key
+    return if label_key in DataFrames.colmetadatakeys(df, s)
+        DataFrames.colmetadata(df, s, label_key)
+    else
+        string(s)
     end
-    # Fallback to string representation
-    return x, string(x)
-end
-
-function _extract_symbol_and_name(df::DataFrames.DataFrame, x::String, label_key::String)
-    sym = Symbol(x)
-    # No manual name, try metadata
-    if label_key in DataFrames.colmetadatakeys(df, sym)
-        label = DataFrames.colmetadata(df, sym, label_key)
-        return sym, label
-    end
-    # Fallback to the string itself
-    return sym, x
-end
-
-function _extract_symbol_and_name(df::DataFrames.DataFrame, p::Pair{Symbol, <:Any}, label_key::String)
-    # Manual label takes precedence
-    return p[1], p[2]
-end
-
-function _extract_symbol_and_name(df::DataFrames.DataFrame, p::Pair{String, <:Any}, label_key::String)
-    # Manual label takes precedence
-    return Symbol(p[1]), p[2]
 end
 
 struct ListingTable
@@ -291,7 +255,6 @@ Create a listing table `Table` from `table` which displays raw values from colum
   You can also pass `name => [...]` where name, either a `Symbol` or `String`, is a grouping column, to compute one summary for each level of that group.
 - `summarize_cols = []`: Specifies functions to summarize `variable` with along the columns. Follows the same structure as `summarize_rows`.
 - `variable_header = true`: Controls if the cell with the name of the summarized `variable` is shown. 
-- `label_key = default`: Key to look up column label metadata with. Uses the global default if not specified, which is `"label"` unless changed via `defaults!` or `with_defaults`.
 - `sort = true`: Sort the input table before grouping. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
 
 All other keywords are forwarded to the `Table` constructor, refer to its docstring for details.
@@ -323,19 +286,16 @@ function listingtable(table, variable, pagination::Union{Nothing,Pagination} = n
     summarize_rows = [],
     summarize_cols = [],
     variable_header = true,
-    label_key = default,
     sort = true,
     table_kwargs...)
 
     
     df = DataFrames.DataFrame(table)
+        
+    var = Variable(df, variable)
     
-    _label_key = fallback(label_key, defaults().label_key)
-    
-    var = Variable(df, variable, _label_key)
-    
-    rowgroups = make_groups(df, rows, _label_key)
-    colgroups = make_groups(df, cols, _label_key)
+    rowgroups = make_groups(df, rows)
+    colgroups = make_groups(df, cols)
     
     rowsymbols = [r.symbol for r in rowgroups]
     rowsummary = Summary(summarize_rows, rowsymbols)
