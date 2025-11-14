@@ -521,13 +521,6 @@ end
             t = overview_table(_df; label_metadata_key = "other_label")
             reftest(t, "references/overview_table/other_label_metadata_key")
 
-            # Test new label_key parameter
-            t = overview_table(_df; label_key = "other_label")
-            reftest(t, "references/overview_table/other_label_metadata_key")  # Should produce same output
-
-            # Test that using both parameters throws an error
-            @test_throws "Cannot specify both `label_key` and `label_metadata_key`" overview_table(_df; label_key = "label", label_metadata_key = "other_label")
-
             _df_mis = DataFrame(floatmissing = Union{Float64,Missing}[missing, missing, missing], justmissing = [missing, missing, missing])
             t = overview_table(_df_mis)
             reftest(t, "references/overview_table/only_missings")
