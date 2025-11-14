@@ -37,6 +37,7 @@ Create a summary table `Table` from `table`, which summarizes values from column
 - `variable_header = true`: Controls if the cell with the name of the summarized `variable` is shown.
 - `sort = true`: Sort the input table before grouping. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
 
+Column labels for `variable`, `rows`, and `cols` can be automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`). Manual names provided via the pair syntax (e.g., `:column => "Custom Name"`) take precedence over metadata labels.
 
 All other keywords are forwarded to the `Table` constructor, refer to its docstring for details.
 
@@ -71,10 +72,10 @@ function summarytable(
 
     df = DataFrames.DataFrame(table)
 
-    var = Variable(variable)
+    var = Variable(df, variable)
 
-    rowgroups = make_groups(rows)
-    colgroups = make_groups(cols)
+    rowgroups = make_groups(df, rows)
+    colgroups = make_groups(df, cols)
 
     rowsymbols = [r.symbol for r in rowgroups]
     _summary = Summary(summary, rowsymbols)

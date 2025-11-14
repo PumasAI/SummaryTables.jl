@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{lcc}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Value B}} \\
+\cmidrule{2-3}
+ & a & b \\
+\textbf{Group C} & \multicolumn{2}{c}{\textbf{Value A}} \\
+\midrule
+x & 1 & 2 \\
+y & 3 & 4 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

@@ -39,7 +39,7 @@ as_typst(object) = AsMIME{MIME"text/typst"}(object)
 function run_reftest(table, path, func)
     path_full = joinpath(@__DIR__, path * extension(func))
     if func === as_docx
-        @test_nowarn mktempdir() do dir
+        s = @test_nowarn mktempdir() do dir
             tablenode = to_docx(table)
             doc = W.Document(
                 W.Body([
@@ -56,9 +56,9 @@ function run_reftest(table, path, func)
                 write(buf, read(f, String))
             end
             close(r)
-            s = String(take!(buf))
-            @test_reference path_full s
+            String(take!(buf))
         end
+        @test_reference path_full s
     else
         @test_reference path_full func(table)
         if func === as_latex
@@ -243,6 +243,12 @@ end
 
             t = table_one(df, groupby = :group1)
             reftest(t, "references/table_one/single_arg_with_groupby")
+
+            df_col_labels = DataFrame(A = 1:4, B = ["a", "b", "a", "b"])
+            DataFrames.colmetadata!(df_col_labels, :A, "label", "Value A")
+            DataFrames.colmetadata!(df_col_labels, :B, "label", "Value B")
+            t = table_one(df_col_labels)
+            reftest(t, "references/table_one/col_metadata_labels")
         end
 
 
@@ -395,6 +401,19 @@ end
 
             t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
             reftest(t, "references/listingtable/missing_groups")
+
+            # Test label metadata
+            df_with_labels = DataFrame(A = 1:4, B = ["a", "b", "a", "b"], C = ["x", "x", "y", "y"])
+            DataFrames.colmetadata!(df_with_labels, :A, "label", "Value A")
+            DataFrames.colmetadata!(df_with_labels, :B, "label", "Value B")
+            DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
+
+            t = listingtable(df_with_labels, :A, rows = [:C], cols = [:B])
+            reftest(t, "references/listingtable/label_metadata")
+
+            # Manual labels should override metadata
+            t = listingtable(df_with_labels, :A => "Custom A", rows = [:C => "Custom C"], cols = [:B])
+            reftest(t, "references/listingtable/label_metadata_override")
         end
 
         @testset "summarytable" begin
@@ -436,6 +455,13 @@ end
 
             t = summarytable(df_missing_groups, :value, rows = :A, cols = :B, summary = [sum])
             reftest(t, "references/summarytable/missing_groups")
+
+            df_with_labels = DataFrame(A = 1:4, B = ["a", "b", "a", "b"], C = ["x", "x", "y", "y"])
+            DataFrames.colmetadata!(df_with_labels, :A, "label", "Value A")
+            DataFrames.colmetadata!(df_with_labels, :B, "label", "Value B")
+            DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
+            t = summarytable(df_with_labels, :A, rows = [:B, :C], summary = [only])
+            reftest(t, "references/summarytable/column_label_metadata")
         end
 
         @testset "simple table" begin
@@ -459,6 +485,12 @@ end
 
             t = simple_table(df, ["value1", :group3 => "Group 3", :group1 => Annotated("Group 1", "is annotated")])
             reftest(t, "references/simple_table/three_cols_with_names")
+
+            df_with_labels = DataFrame(A = 1:4, B = ["a", "b", "a", "b"], C = ["x", "x", "y", "y"])
+            DataFrames.colmetadata!(df_with_labels, :A, "label", "Value A")
+            DataFrames.colmetadata!(df_with_labels, :B, "label", "Value B")
+            DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
+            t = simple_table(df_with_labels)
         end
 
         @testset "overview_table" begin
@@ -485,6 +517,7 @@ end
             t = overview_table(_df)
             reftest(t, "references/overview_table/default_label_metadata_key")
 
+            # Test deprecated label_metadata_key still works
             t = overview_table(_df; label_metadata_key = "other_label")
             reftest(t, "references/overview_table/other_label_metadata_key")
 

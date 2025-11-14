@@ -14,6 +14,8 @@ Create a simple `Table` displaying (a subset of) the raw columns from a `table`.
   the `Pair` syntax where the display name can be any object SummaryTables
   knows how to render, for example `[:a, :b => "B", "c"]`.
 
+Column labels can be automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`). Manual names provided via the pair syntax (e.g., `:column => "Custom Name"`) take precedence over metadata labels.
+
 ## Keyword arguments
 
 - `halign = :center`: Either `:left`, `:right`, `:center` or a vector of these values with as many entries as
@@ -34,7 +36,7 @@ function _simple_table(table::DataFrames.DataFrame, columns; halign, subheaders,
     _colsymbol(p::Pair) = Symbol(p[1])
 
     _colname(p::Pair) = p[2]
-    _colname(s::Union{Symbol,AbstractString}) = string(s)
+    _colname(s::Union{Symbol,AbstractString}) = get_column_label(df, Symbol(s))
 
     _colsymbols(::Nothing)::Vector{Symbol} = propertynames(df)
     _colsymbols(v::AbstractVector)::Vector{Symbol} = map(_colsymbol, v)
