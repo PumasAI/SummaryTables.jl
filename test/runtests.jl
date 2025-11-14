@@ -395,6 +395,19 @@ end
 
             t = listingtable(df_missing_groups, :value, rows = :A, cols = :B)
             reftest(t, "references/listingtable/missing_groups")
+
+            # Test label metadata
+            df_with_labels = DataFrame(A = 1:4, B = ["a", "b", "a", "b"], C = ["x", "x", "y", "y"])
+            DataFrames.colmetadata!(df_with_labels, :A, "label", "Value A")
+            DataFrames.colmetadata!(df_with_labels, :B, "label", "Value B")
+            DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
+
+            t = listingtable(df_with_labels, :A, rows = [:C], cols = [:B])
+            reftest(t, "references/listingtable/label_metadata")
+
+            # Manual labels should override metadata
+            t = listingtable(df_with_labels, :A => "Custom A", rows = [:C => "Custom C"], cols = [:B])
+            reftest(t, "references/listingtable/label_metadata_override")
         end
 
         @testset "summarytable" begin
@@ -485,8 +498,16 @@ end
             t = overview_table(_df)
             reftest(t, "references/overview_table/default_label_metadata_key")
 
+            # Test deprecated label_metadata_key still works
             t = overview_table(_df; label_metadata_key = "other_label")
             reftest(t, "references/overview_table/other_label_metadata_key")
+
+            # Test new label_key parameter
+            t = overview_table(_df; label_key = "other_label")
+            reftest(t, "references/overview_table/other_label_metadata_key")  # Should produce same output
+
+            # Test that using both parameters throws an error
+            @test_throws "Cannot specify both `label_key` and `label_metadata_key`" overview_table(_df; label_key = "label", label_metadata_key = "other_label")
 
             _df_mis = DataFrame(floatmissing = Union{Float64,Missing}[missing, missing, missing], justmissing = [missing, missing, missing])
             t = overview_table(_df_mis)

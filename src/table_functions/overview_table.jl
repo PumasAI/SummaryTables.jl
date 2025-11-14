@@ -9,17 +9,29 @@ To render the graphs with LaTeX, you need to include `\\usepackage{tikz}` in you
 ## Keyword arguments
 
 - `max_categories = 10`: Limit the number of categories listed individually for categorical columns, the rest will be lumped together.
-- `label_metadata_key = "label"`: Key to look up column label metadata with.
+- `label_key = "label"`: Key to look up column label metadata with.
+- `label_metadata_key`: Deprecated, use `label_key` instead.
 """
 function overview_table(table; kwargs...)
     _overview_table(DataFrame(table); kwargs...)
 end
 
-function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = "label", footnotes = [])
+function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_key = default, label_metadata_key = default, footnotes = [])
+    # Handle backward compatibility: label_metadata_key is deprecated in favor of label_key
+    if label_key !== default && label_metadata_key !== default
+        throw(ArgumentError("Cannot specify both `label_key` and `label_metadata_key`. Use `label_key` instead (`label_metadata_key` is deprecated)."))
+    end
+    
+    _label_key = if label_metadata_key !== default
+        label_metadata_key
+    else
+        fallback(label_key, defaults().label_key)
+    end
+    
     columns = propertynames(df)
 
     has_labels = any(columns) do col
-        label_metadata_key in DataFrames.colmetadatakeys(df, col)
+        _label_key in DataFrames.colmetadatakeys(df, col)
     end
 
     function row(i, colname; has_labels::Bool)
@@ -34,7 +46,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
         n_missing = count(ismissing, col)
 
         labels = [
-            "Label" => DataFrames.colmetadata(df, colname, label_metadata_key, "")
+            "Label" => DataFrames.colmetadata(df, colname, _label_key, "")
         ]
 
         [
