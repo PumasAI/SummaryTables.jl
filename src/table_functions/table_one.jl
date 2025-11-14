@@ -238,6 +238,8 @@ can be stratified by one, or more, variables using the `groupby` keyword.
   - `show_confints`: Display the `CI` column. Default is `false`.
   - `sort`: Sort the input table before grouping. Default is `true`. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
 
+Variable names for the `analyses` argument can be automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`). Manual names provided via the pair syntax (e.g., `:column => "Custom Name"`) take precedence over metadata labels.
+
 ## Deprecated keywords
 
   - `show_overall`: Use `show_total` instead

@@ -6,32 +6,22 @@ intended to give a quick intuition of the dataset.
 
 To render the graphs with LaTeX, you need to include `\\usepackage{tikz}` in your preamble.
 
+Column labels are automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`).
+
 ## Keyword arguments
 
 - `max_categories = 10`: Limit the number of categories listed individually for categorical columns, the rest will be lumped together.
-- `label_key = "label"`: Key to look up column label metadata with.
-- `label_metadata_key`: Deprecated, use `label_key` instead.
+- `label_metadata_key`: Deprecated. Key to look up column label metadata with. Use the global default `label_key` (via `defaults!` or `with_defaults`) instead, which applies to many table functions.
 """
 function overview_table(table; kwargs...)
     _overview_table(DataFrame(table); kwargs...)
 end
 
-function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_key = default, label_metadata_key = default, footnotes = [])
-    # Handle backward compatibility: label_metadata_key is deprecated in favor of label_key
-    if label_key !== default && label_metadata_key !== default
-        throw(ArgumentError("Cannot specify both `label_key` and `label_metadata_key`. Use `label_key` instead (`label_metadata_key` is deprecated)."))
-    end
-    
-    _label_key = if label_metadata_key !== default
-        label_metadata_key
-    else
-        fallback(label_key, defaults().label_key)
-    end
-    
+function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = defaults().label_key, footnotes = [])   
     columns = propertynames(df)
 
     has_labels = any(columns) do col
-        _label_key in DataFrames.colmetadatakeys(df, col)
+        label_metadata_key in DataFrames.colmetadatakeys(df, col)
     end
 
     function row(i, colname; has_labels::Bool)
@@ -46,7 +36,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_ke
         n_missing = count(ismissing, col)
 
         labels = [
-            "Label" => DataFrames.colmetadata(df, colname, _label_key, "")
+            "Label" => DataFrames.colmetadata(df, colname, label_metadata_key, "")
         ]
 
         [
