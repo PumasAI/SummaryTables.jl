@@ -71,10 +71,10 @@ function summarytable(
 
     df = DataFrames.DataFrame(table)
 
-    var = Variable(variable)
+    var = Variable(df, variable)
 
-    rowgroups = make_groups(rows)
-    colgroups = make_groups(cols)
+    rowgroups = make_groups(df, rows)
+    colgroups = make_groups(df, cols)
 
     rowsymbols = [r.symbol for r in rowgroups]
     _summary = Summary(summary, rowsymbols)

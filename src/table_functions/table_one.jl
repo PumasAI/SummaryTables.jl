@@ -84,42 +84,42 @@ struct Analysis
     name
 end
 
-function Analysis(s::Symbol, df::DataFrames.DataFrame)
-    Analysis(s, default_analysis(df[!, s]), string(s))
+function Analysis(df::DataFrames.DataFrame, s::Symbol)
+    Analysis(s, default_analysis(df[!, s]), get_column_label(df, s))
 end
 
-function Analysis(p::Pair{<:Union{Symbol,String}, <:Any}, df::DataFrames.DataFrame)
+function Analysis(df::DataFrames.DataFrame, p::Pair{<:Union{Symbol,String}, <:Any})
     sym, rest = p
-    Analysis(sym, rest, df)
+    Analysis(df, sym, rest)
 end
 
-function Analysis(sym::Symbol, name, df::DataFrames.DataFrame)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, name)
     Analysis(sym, default_analysis(df[!, sym]), name)
 end
 
-function Analysis(sym::Symbol, funcvec::AbstractVector, df::DataFrames.DataFrame)
-    Analysis(sym, to_func(funcvec), df)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, funcvec::AbstractVector)
+    Analysis(df, sym, to_func(funcvec))
 end
 
-function Analysis(sym::Symbol, f::Function, df::DataFrames.DataFrame)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, f::Function)
     Analysis(sym, f, string(sym))
 end
 
-function Analysis(s::Symbol, f::Function, name, df::DataFrames.DataFrame)
+function Analysis(df::DataFrames.DataFrame, s::Symbol, f::Function, name)
     Analysis(s, f, name)
 end
 
-function Analysis(sym::Symbol, p::Pair, df::DataFrames.DataFrame)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, p::Pair)
     funcs, name = p
-    Analysis(sym, funcs, name, df)
+    Analysis(df, sym, funcs, name)
 end
 
-function Analysis(sym::String, args...)
-    Analysis(Symbol(sym), args...)
+function Analysis(df::DataFrames.DataFrame, sym::String, args...)
+    Analysis(df, Symbol(sym), args...)
 end
 
-make_analyses(v::AbstractVector, df::DataFrame) = map(x -> Analysis(x, df), v)
-make_analyses(x, df::DataFrame) = [Analysis(x, df)]
+make_analyses(v::AbstractVector, df::DataFrame) = map(x -> Analysis(df, x), v)
+make_analyses(x, df::DataFrame) = [Analysis(df, x)]
 
 to_func(f::Function) = f
 function to_func(v::AbstractVector)
@@ -268,7 +268,7 @@ function table_one(
 
     df = DataFrames.DataFrame(table)
 
-    groups = make_groups(groupby)
+    groups = make_groups(df, groupby)
     n_groups = length(groups)
 
     if show_overall !== nothing
@@ -529,11 +529,12 @@ end
 Create a `table_one` with with all columns from `table` except those used in the `groupby` keyword.
 """
 function table_one(table; groupby = [], kwargs...)
-    groups = make_groups(groupby)
+    df = DataFrame(table)
+    groups = make_groups(df, groupby)
     groupsyms = [g.symbol for g in groups]
-    all_names = Tables.columnnames(table)
+    all_names = Tables.columnnames(df)
     all_names_but_groups = setdiff(all_names, groupsyms)
-    return table_one(table, all_names_but_groups; groupby, kwargs...)
+    return table_one(df, all_names_but_groups; groupby, kwargs...)
 end
 
 tableone_column_header() = CellStyle(halign = :center, bold = true)

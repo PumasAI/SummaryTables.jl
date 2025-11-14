@@ -11,11 +11,9 @@ Group(df::DataFrames.DataFrame, s::String) = Group(df, Symbol(s))
 Group(df::DataFrames.DataFrame, p::Pair{Symbol, <:Any}) = Group(p[1], p[2])
 Group(df::DataFrames.DataFrame, p::Pair{String, <:Any}) = Group(Symbol(p[1]), p[2])
 
-make_groups(v::AbstractVector) = map(Group, v)
-make_groups(x) = [Group(x)]
-make_groups(df::DataFrames.DataFrame, v::AbstractVector) = 
+make_groups(df, v::AbstractVector)::Vector{Group} = 
     map(x -> Group(df, x), v)
-make_groups(df::DataFrames.DataFrame, x) = 
+make_groups(df, x)::Vector{Group} = 
     [Group(df, x)]
 
 """

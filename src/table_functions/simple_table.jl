@@ -34,7 +34,7 @@ function _simple_table(table::DataFrames.DataFrame, columns; halign, subheaders,
     _colsymbol(p::Pair) = Symbol(p[1])
 
     _colname(p::Pair) = p[2]
-    _colname(s::Union{Symbol,AbstractString}) = string(s)
+    _colname(s::Union{Symbol,AbstractString}) = get_column_label(df, Symbol(s))
 
     _colsymbols(::Nothing)::Vector{Symbol} = propertynames(df)
     _colsymbols(v::AbstractVector)::Vector{Symbol} = map(_colsymbol, v)

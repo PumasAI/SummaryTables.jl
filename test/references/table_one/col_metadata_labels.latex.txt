@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{lc}}
+\toprule
+ & \textbf{Total} \\
+\midrule
+\textbf{Value A} &  \\
+\hspace{12.0pt}Mean (SD) & 2.5 (1.29) \\
+\hspace{12.0pt}Median \char`[Min, Max] & 2.5 \char`[1, 4] \\
+\textbf{Value B} &  \\
+\hspace{12.0pt}a & 2 (50\%) \\
+\hspace{12.0pt}b & 2 (50\%) \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}
