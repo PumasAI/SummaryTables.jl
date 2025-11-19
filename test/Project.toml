@@ -14,3 +14,6 @@ SummaryTables = {path = ".."}
 
 [compat]
 Typst_jll = "0.11"
+
+[sources]
+SummaryTables = {path = ".."}
