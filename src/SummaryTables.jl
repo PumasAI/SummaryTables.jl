@@ -58,7 +58,6 @@ export Styled
 include("infrastructure/cells.jl")
 include("infrastructure/special_cell_values.jl")
 include("infrastructure/tables.jl")
-include("infrastructure/defaults.jl")
 
 include("table_functions/simple_table.jl")
 include("table_functions/overview_table.jl")
@@ -71,5 +70,7 @@ include("renderers/latex.jl")
 include("renderers/html.jl")
 include("renderers/docx.jl")
 include("renderers/typst.jl")
+
+include("infrastructure/defaults.jl")
 
 end # module

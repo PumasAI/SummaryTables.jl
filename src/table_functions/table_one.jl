@@ -84,42 +84,49 @@ struct Analysis
     name
 end
 
-function Analysis(df::DataFrames.DataFrame, s::Symbol)
-    Analysis(s, default_analysis(df[!, s]), get_column_label(df, s))
+is_numeric_column(v::AbstractVector{<:Union{Missing, <:Real}}) = true
+is_numeric_column(v::AbstractVector) = false
+
+function Analysis(df::DataFrames.DataFrame, s::Symbol; numeric_default, categorical_default)
+    col = df[!, s]
+    analysis_func = is_numeric_column(col) ? numeric_default(col) : categorical_default(col)
+    Analysis(s, analysis_func, get_column_label(df, s))
 end
 
-function Analysis(df::DataFrames.DataFrame, p::Pair{<:Union{Symbol,String}, <:Any})
+function Analysis(df::DataFrames.DataFrame, p::Pair{<:Union{Symbol,String}, <:Any}; numeric_default, categorical_default)
     sym, rest = p
     Analysis(df, sym, rest)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, name)
-    Analysis(sym, default_analysis(df[!, sym]), name)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, name; numeric_default, categorical_default)
+    col = df[!, s]
+    analysis_func = is_numeric_column(col) ? numeric_default(col) : categorical_default(col)
+    Analysis(sym, analysis_func, name)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, funcvec::AbstractVector)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, funcvec::AbstractVector; numeric_default, categorical_default)
     Analysis(df, sym, to_func(funcvec))
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, f::Function)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, f::Function; numeric_default, categorical_default)
     Analysis(sym, f, string(sym))
 end
 
-function Analysis(df::DataFrames.DataFrame, s::Symbol, f::Function, name)
+function Analysis(df::DataFrames.DataFrame, s::Symbol, f::Function, name; numeric_default, categorical_default)
     Analysis(s, f, name)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, p::Pair)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, p::Pair; numeric_default, categorical_default)
     funcs, name = p
     Analysis(df, sym, funcs, name)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::String, args...)
+function Analysis(df::DataFrames.DataFrame, sym::String, args...; numeric_default, categorical_default)
     Analysis(df, Symbol(sym), args...)
 end
 
-make_analyses(v::AbstractVector, df::DataFrame) = map(x -> Analysis(df, x), v)
-make_analyses(x, df::DataFrame) = [Analysis(df, x)]
+make_analyses(v::AbstractVector, df::DataFrame; numeric_default, categorical_default) = map(x -> Analysis(df, x; numeric_default, categorical_default), v)
+make_analyses(x, df::DataFrame; numeric_default, categorical_default) = [Analysis(df, x; numeric_default, categorical_default)]
 
 to_func(f::Function) = f
 function to_func(v::AbstractVector)
@@ -147,7 +154,7 @@ function guard_statistic(stat)
     end
 end
 
-function default_analysis(v::AbstractVector{<:Union{Missing, <:Real}})
+function default_numeric_analysis(v::AbstractVector{<:Union{Missing, <:Real}})
 
     anymissing = any(ismissing, v)
 
@@ -265,6 +272,8 @@ function table_one(
     tests = default_tests(),
     combine = MultipleTesting.Fisher(),
     sort = true,
+    categorical_default = defaults().table_one.categorical_default,
+    numeric_default = defaults().table_one.numeric_default,
     celltable_kws...
 )
 
@@ -279,7 +288,7 @@ function table_one(
     end
     show_total || n_groups > 0 || error("`show_total` can't be false if there are no groups.")
 
-    _analyses = make_analyses(analyses, df)
+    _analyses = make_analyses(analyses, df; categorical_default, numeric_default)
 
     typedict = Dict(map(_analyses) do analysis
         type = if getproperty(df, analysis.variable) isa CategoricalVector
