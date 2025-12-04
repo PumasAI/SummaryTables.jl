@@ -95,17 +95,17 @@ end
 
 function Analysis(df::DataFrames.DataFrame, p::Pair{<:Union{Symbol,String}, <:Any}; numeric_default, categorical_default)
     sym, rest = p
-    Analysis(df, sym, rest)
+    Analysis(df, sym, rest; numeric_default, categorical_default)
 end
 
 function Analysis(df::DataFrames.DataFrame, sym::Symbol, name; numeric_default, categorical_default)
-    col = df[!, s]
+    col = df[!, sym]
     analysis_func = is_numeric_column(col) ? numeric_default(col) : categorical_default(col)
     Analysis(sym, analysis_func, name)
 end
 
 function Analysis(df::DataFrames.DataFrame, sym::Symbol, funcvec::AbstractVector; numeric_default, categorical_default)
-    Analysis(df, sym, to_func(funcvec))
+    Analysis(df, sym, to_func(funcvec); numeric_default, categorical_default)
 end
 
 function Analysis(df::DataFrames.DataFrame, sym::Symbol, f::Function; numeric_default, categorical_default)
@@ -118,11 +118,11 @@ end
 
 function Analysis(df::DataFrames.DataFrame, sym::Symbol, p::Pair; numeric_default, categorical_default)
     funcs, name = p
-    Analysis(df, sym, funcs, name)
+    Analysis(df, sym, funcs, name; numeric_default, categorical_default)
 end
 
 function Analysis(df::DataFrames.DataFrame, sym::String, args...; numeric_default, categorical_default)
-    Analysis(df, Symbol(sym), args...)
+    Analysis(df, Symbol(sym), args...; numeric_default, categorical_default)
 end
 
 make_analyses(v::AbstractVector, df::DataFrame; numeric_default, categorical_default) = map(x -> Analysis(df, x; numeric_default, categorical_default), v)
