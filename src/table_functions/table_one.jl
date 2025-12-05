@@ -85,6 +85,7 @@ struct Analysis
 end
 
 is_numeric_column(v::AbstractVector{<:Union{Missing, <:Real}}) = true
+is_numeric_column(v::AbstractVector{<:Union{Missing, <:Bool}}) = false
 is_numeric_column(v::AbstractVector) = false
 
 make_default_analysis(f::Function, col) = f(col)
@@ -156,11 +157,6 @@ function guard_statistic(stat)
         end
     end
 end
-
-default_analysis(c::CategoricalArray) = level_analyses(c)
-default_analysis(v::AbstractVector{<:Union{Missing, Bool}}) = level_analyses(v)
-# by default we just count levels for all datatypes that are not known
-default_analysis(v) = level_analyses(v)
 
 function level_analyses(c)
     has_missing = any(ismissing, c) # if there's any missing, we report them for every col in c
