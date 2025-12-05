@@ -182,7 +182,7 @@ function level_analyses(c)
 end
 
 """
-    table_one(table, analyses; keywords...)
+    table_one(table, [analyses]; keywords...)
 
 Construct a "Table 1" which summarises the patient baseline
 characteristics from the provided `table` dataset. This table is commonly used
@@ -191,6 +191,29 @@ in biomedical research papers.
 It can handle both continuous and categorical columns in `table` and summary
 statistics and hypothesis testing are able to be customised by the user. Tables
 can be stratified by one, or more, variables using the `groupby` keyword.
+
+The `analyses` argument is optional, if left out, all columns of the tables are analyzed with the defaults.
+If given, `analyses` must be a `Vector` where each entry pairs a column identifier to an analysis specification which should be run on that column.
+The analysis can be left out, in which case the default numeric or categorical analysis function is used (these can be changed with `numeric_default` and `categorical_default`, see below).
+
+```julia
+function custom_analysis(col)
+    (
+        mean(col) => "Mean",
+        Concat(minimum(col), ", ", maximum(col)) => "Min, Max",
+    )
+end
+
+table_one(
+    (; a = [1, 2, 3], b = [4, 5, 6], c = [7, 8, 9]),
+    [
+        :a, # default analysis applied
+        :b => custom_analysis,
+        :c => [mean, std => "SD"]
+    ]
+)
+```
+
 
 ## Keywords
 
@@ -207,6 +230,8 @@ can be stratified by one, or more, variables using the `groupby` keyword.
   - `show_testnames`: Display the `Test` column. Default is `false`.
   - `show_confints`: Display the `CI` column. Default is `false`.
   - `sort`: Sort the input table before grouping. Default is `true`. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
+  - `numeric_default`: What to compute for numeric columns by default. May be set globally via `defaults!(table_one = (; numeric_default = ...))`. Can be either a function `f(column)` that returns an analysis function (to customize the analysis to the data, like including a row for missings if there are any, etc.) or it can be a vector like what the `analyses` positional argument accepts which directly specifies functions with optional labels.
+  - `categorical_default`: What to compute for all non-numeric columns by default. May be set globally via `defaults!(table_one = (; categorical_default = ...))`. Accepted formats are the same as for `numeric_default`.
 
 Variable names for the `analyses` argument can be automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`). Manual names provided via the pair syntax (e.g., `:column => "Custom Name"`) take precedence over metadata labels.
 
