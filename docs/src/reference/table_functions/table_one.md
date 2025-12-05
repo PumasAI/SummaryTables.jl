@@ -294,3 +294,88 @@ table_one(data, :x, groupby = [:y, :z])
 ```@example bad_sort
 table_one(data, :x, groupby = [:y, :z], sort = false)
 ```
+
+## Keyword: `numeric_default`
+
+In a table with many numerical columns, usually all columns are analyzed with the same set of functions. Instead of manually pairing each column with that analysis function in the `analyses` positional argument, one can also change the `numeric_default` parameter. This can also be set globally via `defaults!(table_one = (; numeric_default = ...)).
+
+This parameter can be set to the same "vector of functions" argument as the positional argument `analyses`. In that case, each function is simply evaluated on each column.
+
+```@example
+using SummaryTables
+using Statistics
+
+data = (; x = 1:5, y = 1:2:10, z = 1:3:15)
+
+table_one(data; numeric_default = [mean, std])
+```
+
+If there's missing data, the standard statistical functions all return missing and it can be better to use wrapped versions that skip missings.
+
+```@example numeric_default
+using SummaryTables
+using Statistics
+
+data = (; x = 1:5, y = [1:2:8; missing], z = Union{Float64,Missing}[missing for _ in 1:5])
+
+function n_missings(col)
+    n = count(ismissing, col)
+    Concat(n, " (", n / length(col) * 100, "%)")
+end
+
+function guarded(f)
+    function (col)
+        if all(ismissing, col)
+            Annotated("-", "- No data", label = nothing)
+        else
+            f(skipmissing(col))
+        end
+    end
+end
+
+table_one(data; numeric_default = [
+    guarded(mean) => "Mean",
+    guarded(std) => "SD",
+    n_missings => "Missings"
+])
+```
+
+In the example above, column `x` has no missings, therefore one could avoid showing that row. However, that means the set of analysis functions has to differ depending on whether a given column has missings or not. That level of customization is not possible with the simple vector syntax.
+
+For such logic, you can pass a function `f` to `numeric_default`. Calling `f(col)` should return a function which is the actual analysis function you want to use for that specific column. This way, we can set up an analysis that only includes the missings row if there are any. This is what the default of `table_one` does as well. Note that the column passed to `f` at first is the _whole_ column, before grouping, while the column passed to the analysis function is after grouping. Each group's analyses must return the same set of rows, so whether to include a missings row or not has to be decided initially, given the full column.
+
+```@example
+using SummaryTables
+using Statistics
+
+data = (; x = 1:5, y = [1:2:8; missing], z = Union{Float64,Missing}[missing for _ in 1:5])
+
+function custom_analysis(whole_col)
+    has_missings = any(ismissing, whole_col)
+
+    function actual_analysis(col) # here col is possibly a grouped part of whole_col
+        (
+            guarded(mean)(col) => "Mean",
+            guarded(std)(col) => "SD",
+            # only include Missings row if there are any missings
+            if has_missings
+                (count(ismissing, col) => "Missings",)
+            else
+                ()
+            end...
+        )
+    end
+end
+
+# we could set this analysis globally if we want to use it across a notebook, for example
+SummaryTables.defaults!(table_one = (; numeric_default = custom_analysis))
+
+table_one(data)
+result = table_one(data) # hide
+SummaryTables.defaults!() # hide
+result # hide
+```
+
+## Keyword: `categorical_default`
+
+The `categorical_default` parameter works exactly like the `numeric_default` parameter, only that it is applied to categorical columns (all columns that are not numeric, with `Bool`s counting as categorical).
