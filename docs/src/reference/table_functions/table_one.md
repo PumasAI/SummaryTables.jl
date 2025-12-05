@@ -344,12 +344,7 @@ In the example above, column `x` has no missings, therefore one could avoid show
 
 For such logic, you can pass a function `f` to `numeric_default`. Calling `f(col)` should return a function which is the actual analysis function you want to use for that specific column. This way, we can set up an analysis that only includes the missings row if there are any. This is what the default of `table_one` does as well. Note that the column passed to `f` at first is the _whole_ column, before grouping, while the column passed to the analysis function is after grouping. Each group's analyses must return the same set of rows, so whether to include a missings row or not has to be decided initially, given the full column.
 
-```@example
-using SummaryTables
-using Statistics
-
-data = (; x = 1:5, y = [1:2:8; missing], z = Union{Float64,Missing}[missing for _ in 1:5])
-
+```@example numeric_default
 function custom_analysis(whole_col)
     has_missings = any(ismissing, whole_col)
 
@@ -359,7 +354,7 @@ function custom_analysis(whole_col)
             guarded(std)(col) => "SD",
             # only include Missings row if there are any missings
             if has_missings
-                (count(ismissing, col) => "Missings",)
+                (n_missings(col) => "Missings",)
             else
                 ()
             end...
