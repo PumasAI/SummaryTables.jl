@@ -9,6 +9,9 @@ Typst_jll = "eb4b1da6-20f6-5c66-9826-fdb8ad410d0e"
 ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 tectonic_jll = "d7dd28d6-a5e6-559c-9131-7eb760cdacc5"
 
+[sources]
+SummaryTables = {path = ".."}
+
 [compat]
 Typst_jll = "0.11"
 

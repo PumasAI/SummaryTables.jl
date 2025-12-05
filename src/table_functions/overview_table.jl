@@ -6,16 +6,18 @@ intended to give a quick intuition of the dataset.
 
 To render the graphs with LaTeX, you need to include `\\usepackage{tikz}` in your preamble.
 
+Column labels are automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`).
+
 ## Keyword arguments
 
 - `max_categories = 10`: Limit the number of categories listed individually for categorical columns, the rest will be lumped together.
-- `label_metadata_key = "label"`: Key to look up column label metadata with.
+- `label_metadata_key`: Deprecated. Key to look up column label metadata with. Use the global default `label_key` (via `defaults!` or `with_defaults`) instead, which applies to many table functions.
 """
 function overview_table(table; kwargs...)
     _overview_table(DataFrame(table); kwargs...)
 end
 
-function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = "label", footnotes = [])
+function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_metadata_key = defaults().label_key, footnotes = [])   
     columns = propertynames(df)
 
     has_labels = any(columns) do col

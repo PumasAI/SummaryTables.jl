@@ -8,3 +8,4 @@ Manifest.toml
 /docs/node_modules
 docs/src/resources/changelog.md
 /scratch
+.vscode
