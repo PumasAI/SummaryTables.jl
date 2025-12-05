@@ -87,9 +87,12 @@ end
 is_numeric_column(v::AbstractVector{<:Union{Missing, <:Real}}) = true
 is_numeric_column(v::AbstractVector) = false
 
+make_default_analysis(f::Function, col) = f(col)
+make_default_analysis(any, col) = to_func(any)
+
 function Analysis(df::DataFrames.DataFrame, s::Symbol; numeric_default, categorical_default)
     col = df[!, s]
-    analysis_func = is_numeric_column(col) ? numeric_default(col) : categorical_default(col)
+    analysis_func = make_default_analysis(is_numeric_column(col) ? numeric_default : categorical_default, col)
     Analysis(s, analysis_func, get_column_label(df, s))
 end
 
@@ -151,42 +154,6 @@ function guard_statistic(stat)
         else
             stat(sm)
         end
-    end
-end
-
-function default_numeric_analysis(v::AbstractVector{<:Union{Missing, <:Real}})
-
-    anymissing = any(ismissing, v)
-
-    function (col)
-        allmissing = isempty(skipmissing(col))
-
-        _mean = guard_statistic(mean)(col)
-        _sd = guard_statistic(std)(col)
-        mean_sd = if allmissing
-            not_computable_annotation()
-        else
-            Concat(_mean, " (", _sd, ")")
-        end
-        _median = guard_statistic(median)(col)
-        _min = guard_statistic(minimum)(col)
-        _max = guard_statistic(maximum)(col)
-        med_min_max = if allmissing
-            not_computable_annotation()
-        else
-            Concat(_median, " [", _min, ", ", _max, "]")
-        end
-        
-        if anymissing
-            nm = count(ismissing, col)
-            _mis = Concat(nm, " (", nm / length(col) * 100, "%)")
-        end
-
-        (
-            mean_sd => "Mean (SD)",
-            med_min_max => "Median [Min, Max]",
-            (anymissing ? (_mis => "Missing",) : ())...
-        )
     end
 end
 
@@ -589,3 +556,38 @@ function make_testfunction(show_pvalues::Bool, show_tests::Bool, show_confint::B
     end
 end
 
+function default_numeric_analysis(v::AbstractVector{<:Union{Missing, <:Real}})
+
+    anymissing = any(ismissing, v)
+
+    function (col)
+        allmissing = isempty(skipmissing(col))
+
+        _mean = guard_statistic(mean)(col)
+        _sd = guard_statistic(std)(col)
+        mean_sd = if allmissing
+            not_computable_annotation()
+        else
+            Concat(_mean, " (", _sd, ")")
+        end
+        _median = guard_statistic(median)(col)
+        _min = guard_statistic(minimum)(col)
+        _max = guard_statistic(maximum)(col)
+        med_min_max = if allmissing
+            not_computable_annotation()
+        else
+            Concat(_median, " [", _min, ", ", _max, "]")
+        end
+        
+        if anymissing
+            nm = count(ismissing, col)
+            _mis = Concat(nm, " (", nm / length(col) * 100, "%)")
+        end
+
+        (
+            mean_sd => "Mean (SD)",
+            med_min_max => "Median [Min, Max]",
+            (anymissing ? (_mis => "Missing",) : ())...
+        )
+    end
+end
