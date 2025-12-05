@@ -193,7 +193,7 @@ statistics and hypothesis testing are able to be customised by the user. Tables
 can be stratified by one, or more, variables using the `groupby` keyword.
 
 The `analyses` argument is optional, if left out, all columns of the tables are analyzed with the defaults.
-If given, `analyses` must be a `Vector` where each entry pairs a column identifier to an analysis specification which should be run on that column.
+If given, `analyses` must be a `Vector` where each entry pairs a column identifier to an analysis specification which should be run on that column and/or a label.
 The analysis can be left out, in which case the default numeric or categorical analysis function is used (these can be changed with `numeric_default` and `categorical_default`, see below).
 
 ```julia
@@ -208,7 +208,7 @@ table_one(
     (; a = [1, 2, 3], b = [4, 5, 6], c = [7, 8, 9]),
     [
         :a, # default analysis applied
-        :b => custom_analysis,
+        :b => custom_analysis => "B", # analysis function and label
         :c => [mean, std => "SD"]
     ]
 )
