@@ -249,6 +249,26 @@ end
             DataFrames.colmetadata!(df_col_labels, :B, "label", "Value B")
             t = table_one(df_col_labels)
             reftest(t, "references/table_one/col_metadata_labels")
+
+            # Test custom defaults for numeric and categorical analyses
+            custom_numeric(col) = col -> (mean(skipmissing(col)) => "Mean",)
+            custom_categorical(col) = col -> (length(unique(col)) => "N Unique",)
+            SummaryTables.with_defaults(; table_one = (; numeric_default = custom_numeric, categorical_default = custom_categorical)) do
+                t = table_one(df, [:value1, :group1])
+                reftest(t, "references/table_one/custom_analysis_defaults")
+            end
+
+            # Test custom defaults passed via keywords (should produce same result)
+            t = table_one(df, [:value1, :group1]; numeric_default = custom_numeric, categorical_default = custom_categorical)
+            reftest(t, "references/table_one/custom_analysis_defaults")
+
+            # Custom vector of functions like in normal interface
+            t = table_one(df, [:value1, :group1]; numeric_default = [mean, std, minimum => "min"])
+            reftest(t, "references/table_one/custom_analysis_defaults_vector_of_funcs")
+
+            # Bools are categorical for table_one
+            t = table_one((; bool = [true, false, true, true, missing]))
+            reftest(t, "references/table_one/bool_as_categorical")
         end
 
 

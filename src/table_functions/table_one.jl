@@ -84,42 +84,53 @@ struct Analysis
     name
 end
 
-function Analysis(df::DataFrames.DataFrame, s::Symbol)
-    Analysis(s, default_analysis(df[!, s]), get_column_label(df, s))
+is_numeric_column(v::AbstractVector{<:Union{Missing, <:Real}}) = true
+is_numeric_column(v::AbstractVector{<:Union{Missing, <:Bool}}) = false
+is_numeric_column(v::AbstractVector) = false
+
+make_default_analysis(f::Function, col) = f(col)
+make_default_analysis(any, col) = to_func(any)
+
+function Analysis(df::DataFrames.DataFrame, s::Symbol; numeric_default, categorical_default)
+    col = df[!, s]
+    analysis_func = make_default_analysis(is_numeric_column(col) ? numeric_default : categorical_default, col)
+    Analysis(s, analysis_func, get_column_label(df, s))
 end
 
-function Analysis(df::DataFrames.DataFrame, p::Pair{<:Union{Symbol,String}, <:Any})
+function Analysis(df::DataFrames.DataFrame, p::Pair{<:Union{Symbol,String}, <:Any}; numeric_default, categorical_default)
     sym, rest = p
-    Analysis(df, sym, rest)
+    Analysis(df, sym, rest; numeric_default, categorical_default)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, name)
-    Analysis(sym, default_analysis(df[!, sym]), name)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, name; numeric_default, categorical_default)
+    col = df[!, sym]
+    analysis_func = is_numeric_column(col) ? numeric_default(col) : categorical_default(col)
+    Analysis(sym, analysis_func, name)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, funcvec::AbstractVector)
-    Analysis(df, sym, to_func(funcvec))
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, funcvec::AbstractVector; numeric_default, categorical_default)
+    Analysis(df, sym, to_func(funcvec); numeric_default, categorical_default)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, f::Function)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, f::Function; numeric_default, categorical_default)
     Analysis(sym, f, string(sym))
 end
 
-function Analysis(df::DataFrames.DataFrame, s::Symbol, f::Function, name)
+function Analysis(df::DataFrames.DataFrame, s::Symbol, f::Function, name; numeric_default, categorical_default)
     Analysis(s, f, name)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::Symbol, p::Pair)
+function Analysis(df::DataFrames.DataFrame, sym::Symbol, p::Pair; numeric_default, categorical_default)
     funcs, name = p
-    Analysis(df, sym, funcs, name)
+    Analysis(df, sym, funcs, name; numeric_default, categorical_default)
 end
 
-function Analysis(df::DataFrames.DataFrame, sym::String, args...)
-    Analysis(df, Symbol(sym), args...)
+function Analysis(df::DataFrames.DataFrame, sym::String, args...; numeric_default, categorical_default)
+    Analysis(df, Symbol(sym), args...; numeric_default, categorical_default)
 end
 
-make_analyses(v::AbstractVector, df::DataFrame) = map(x -> Analysis(df, x), v)
-make_analyses(x, df::DataFrame) = [Analysis(df, x)]
+make_analyses(v::AbstractVector, df::DataFrame; numeric_default, categorical_default) = map(x -> Analysis(df, x; numeric_default, categorical_default), v)
+make_analyses(x, df::DataFrame; numeric_default, categorical_default) = [Analysis(df, x; numeric_default, categorical_default)]
 
 to_func(f::Function) = f
 function to_func(v::AbstractVector)
@@ -147,47 +158,6 @@ function guard_statistic(stat)
     end
 end
 
-function default_analysis(v::AbstractVector{<:Union{Missing, <:Real}})
-
-    anymissing = any(ismissing, v)
-
-    function (col)
-        allmissing = isempty(skipmissing(col))
-
-        _mean = guard_statistic(mean)(col)
-        _sd = guard_statistic(std)(col)
-        mean_sd = if allmissing
-            not_computable_annotation()
-        else
-            Concat(_mean, " (", _sd, ")")
-        end
-        _median = guard_statistic(median)(col)
-        _min = guard_statistic(minimum)(col)
-        _max = guard_statistic(maximum)(col)
-        med_min_max = if allmissing
-            not_computable_annotation()
-        else
-            Concat(_median, " [", _min, ", ", _max, "]")
-        end
-        
-        if anymissing
-            nm = count(ismissing, col)
-            _mis = Concat(nm, " (", nm / length(col) * 100, "%)")
-        end
-
-        (
-            mean_sd => "Mean (SD)",
-            med_min_max => "Median [Min, Max]",
-            (anymissing ? (_mis => "Missing",) : ())...
-        )
-    end
-end
-
-default_analysis(c::CategoricalArray) = level_analyses(c)
-default_analysis(v::AbstractVector{<:Union{Missing, Bool}}) = level_analyses(v)
-# by default we just count levels for all datatypes that are not known
-default_analysis(v) = level_analyses(v)
-
 function level_analyses(c)
     has_missing = any(ismissing, c) # if there's any missing, we report them for every col in c
     function (col)
@@ -212,7 +182,7 @@ function level_analyses(c)
 end
 
 """
-    table_one(table, analyses; keywords...)
+    table_one(table, [analyses]; keywords...)
 
 Construct a "Table 1" which summarises the patient baseline
 characteristics from the provided `table` dataset. This table is commonly used
@@ -221,6 +191,29 @@ in biomedical research papers.
 It can handle both continuous and categorical columns in `table` and summary
 statistics and hypothesis testing are able to be customised by the user. Tables
 can be stratified by one, or more, variables using the `groupby` keyword.
+
+The `analyses` argument is optional, if left out, all columns of the tables are analyzed with the defaults.
+If given, `analyses` must be a `Vector` where each entry pairs a column identifier to an analysis specification which should be run on that column and/or a label.
+The analysis can be left out, in which case the default numeric or categorical analysis function is used (these can be changed with `numeric_default` and `categorical_default`, see below).
+
+```julia
+function custom_analysis(col)
+    (
+        mean(col) => "Mean",
+        Concat(minimum(col), ", ", maximum(col)) => "Min, Max",
+    )
+end
+
+table_one(
+    (; a = [1, 2, 3], b = [4, 5, 6], c = [7, 8, 9]),
+    [
+        :a, # default analysis applied
+        :b => custom_analysis => "B", # analysis function and label
+        :c => [mean, std => "SD"]
+    ]
+)
+```
+
 
 ## Keywords
 
@@ -237,6 +230,8 @@ can be stratified by one, or more, variables using the `groupby` keyword.
   - `show_testnames`: Display the `Test` column. Default is `false`.
   - `show_confints`: Display the `CI` column. Default is `false`.
   - `sort`: Sort the input table before grouping. Default is `true`. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
+  - `numeric_default`: What to compute for numeric columns by default. May be set globally via `defaults!(table_one = (; numeric_default = ...))`. Can be either a function `f(column)` that returns an analysis function (to customize the analysis to the data, like including a row for missings if there are any, etc.) or it can be a vector like what the `analyses` positional argument accepts which directly specifies functions with optional labels.
+  - `categorical_default`: What to compute for all non-numeric columns by default. May be set globally via `defaults!(table_one = (; categorical_default = ...))`. Accepted formats are the same as for `numeric_default`.
 
 Variable names for the `analyses` argument can be automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`). Manual names provided via the pair syntax (e.g., `:column => "Custom Name"`) take precedence over metadata labels.
 
@@ -265,6 +260,8 @@ function table_one(
     tests = default_tests(),
     combine = MultipleTesting.Fisher(),
     sort = true,
+    categorical_default = defaults().table_one.categorical_default,
+    numeric_default = defaults().table_one.numeric_default,
     celltable_kws...
 )
 
@@ -279,7 +276,7 @@ function table_one(
     end
     show_total || n_groups > 0 || error("`show_total` can't be false if there are no groups.")
 
-    _analyses = make_analyses(analyses, df)
+    _analyses = make_analyses(analyses, df; categorical_default, numeric_default)
 
     typedict = Dict(map(_analyses) do analysis
         type = if getproperty(df, analysis.variable) isa CategoricalVector
@@ -580,3 +577,38 @@ function make_testfunction(show_pvalues::Bool, show_tests::Bool, show_confint::B
     end
 end
 
+function default_numeric_analysis(v::AbstractVector{<:Union{Missing, <:Real}})
+
+    anymissing = any(ismissing, v)
+
+    function (col)
+        allmissing = isempty(skipmissing(col))
+
+        _mean = guard_statistic(mean)(col)
+        _sd = guard_statistic(std)(col)
+        mean_sd = if allmissing
+            not_computable_annotation()
+        else
+            Concat(_mean, " (", _sd, ")")
+        end
+        _median = guard_statistic(median)(col)
+        _min = guard_statistic(minimum)(col)
+        _max = guard_statistic(maximum)(col)
+        med_min_max = if allmissing
+            not_computable_annotation()
+        else
+            Concat(_median, " [", _min, ", ", _max, "]")
+        end
+        
+        if anymissing
+            nm = count(ismissing, col)
+            _mis = Concat(nm, " (", nm / length(col) * 100, "%)")
+        end
+
+        (
+            mean_sd => "Mean (SD)",
+            med_min_max => "Median [Min, Max]",
+            (anymissing ? (_mis => "Missing",) : ())...
+        )
+    end
+end

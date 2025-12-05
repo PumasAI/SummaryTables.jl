@@ -1,0 +1,23 @@
+
+#table(
+    rows: 5,
+    columns: 2,
+    column-gutter: 0.25em,
+    align: (left, center),
+    stroke: none,
+    table.header(
+        table.hline(y: 0, stroke: 1pt),
+        [],
+        [*Total*],
+        table.hline(y: 1, stroke: 0.75pt),
+    ),
+    [*bool*],
+    [],
+    [#h(12.0pt)false],
+    [1 (20%)],
+    [#h(12.0pt)true],
+    [3 (60%)],
+    [#h(12.0pt)Missing],
+    [1 (20%)],
+    table.hline(y: 5, stroke: 1pt),
+)
