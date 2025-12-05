@@ -265,6 +265,10 @@ end
             # Custom vector of functions like in normal interface
             t = table_one(df, [:value1, :group1]; numeric_default = [mean, std, minimum => "min"])
             reftest(t, "references/table_one/custom_analysis_defaults_vector_of_funcs")
+
+            # Bools are categorical for table_one
+            t = table_one((; bool = [true, false, true, true, missing]))
+            reftest(t, "references/table_one/bool_as_categorical")
         end
 
 
