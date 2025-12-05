@@ -297,7 +297,7 @@ table_one(data, :x, groupby = [:y, :z], sort = false)
 
 ## Keyword: `numeric_default`
 
-In a table with many numerical columns, usually all columns are analyzed with the same set of functions. Instead of manually pairing each column with that analysis function in the `analyses` positional argument, one can also change the `numeric_default` parameter. This can also be set globally via `defaults!(table_one = (; numeric_default = ...)).
+In a table with many numerical columns, usually all columns are analyzed with the same set of functions. Instead of manually pairing each column with that analysis function in the `analyses` positional argument, one can also change the `numeric_default` parameter. This can also be set globally via `defaults!(table_one = (; numeric_default = ...))`.
 
 This parameter can be set to the same "vector of functions" argument as the positional argument `analyses`. In that case, each function is simply evaluated on each column.
 
