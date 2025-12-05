@@ -1,5 +1,15 @@
+abstract type AbstractDefaults end
+
 "" # otherwise field docstrings are not parsed
-Base.@kwdef struct Defaults
+Base.@kwdef struct TableOneDefaults <: AbstractDefaults
+    "Function f(col) that returns an analysis function for categorical columns."
+    categorical_default = level_analyses
+    "Function f(col) that returns an analysis function for numeric columns."
+    numeric_default = default_numeric_analysis
+end
+
+"" # otherwise field docstrings are not parsed
+Base.@kwdef struct Defaults <: AbstractDefaults
     "Rounding mode for floats, can be `:auto`, `:digits` or `:sigdigits`."
     round_mode::Symbol = :auto
     "Number of digits to target when rounding floats."
@@ -12,7 +22,12 @@ Base.@kwdef struct Defaults
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
+    "Defaults for the `table_one` function"
+    table_one::TableOneDefaults = TableOneDefaults()
 end
+
+# for giving defaults in a nested way like `with_defaults(; table_one = (; ...))`
+Base.convert(A::Type{<:AbstractDefaults}, nt::NamedTuple) = A(; nt...)
 
 struct Default end
 const default = Default()
@@ -20,17 +35,28 @@ const default = Default()
 fallback(value::Default, default) = default
 fallback(value, default) = value
 
-function Base.show(io::IO, d::Defaults)
-    println(io, "Defaults(")
-    fnames = fieldnames(Defaults)
+function Base.show(io::IO, d::AbstractDefaults)
+    inner = get(io, :inner, false)
+    indent = get(io, :indent, 1)
+    indentstr = "    " ^ indent
+    indentstr_outer = "    " ^ (indent - 1)
+    inner ? println(io, "(") : println(io, "$(nameof(typeof(d)))(")
+    fnames = fieldnames(typeof(d))
     str_fnames = string.(fnames)
     nmax = maximum(length, str_fnames)
     for (strfield, field) in zip(str_fnames, fnames)
-        print(io, "    ", field, " " ^ (nmax - length(strfield)), " = ")
-        show(io, getfield(d, field))
-        println(io, ",")
+        val = getfield(d, field)
+        if val isa AbstractDefaults
+            print(io, indentstr, field, " = ")
+            s = replace(repr(val, context = (:inner => true, :indent => indent + 1)), "\n" => "    \n")
+            println(io, s)
+        else
+            print(io, indentstr, field, " " ^ (nmax - length(strfield)), " = ")
+            show(io, getfield(d, field))
+            println(io, ",")
+        end
     end
-    println(io, ")")
+    inner ? print(io, indentstr_outer, ")") : println(io, ")")
     return
 end
 
