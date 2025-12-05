@@ -6,9 +6,6 @@
     align: (center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [#"0.124"#super[#"A"]],
+    [#"["],
     table.hline(y: 1, stroke: 1pt),
-    table.cell(align: left, colspan: 1)[#text(size: 0.8em)[
-        #super[#"A"]#"Note 1"
-    ]],
 )
