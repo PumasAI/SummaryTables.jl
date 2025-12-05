@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added `numeric_default` and `categorical_default` keywords to `table_one` to change the default analyses for all columns in a table at once. These parameters can also be changed globally with `defaults!` [#117](https://github.com/PumasAI/SummaryTables.jl/pull/117).
 - All table functions now use the `"label"` column metadata as a label by default if it's present. A different key can be set as the default setting `label_key`, or `nothing` to disable the feature [#111](https://github.com/PumasAI/SummaryTables.jl/pull/111).
 
 ## 3.4.0 - 2025-09-26
