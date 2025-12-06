@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>listingtable · SummaryTables.jl</title><meta name="title" content="listingtable · SummaryTables.jl"/><meta property="og:title" content="listingtable · SummaryTables.jl"/><meta property="twitter:title" content="listingtable · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li class="is-active"><a class="tocitem" href><code>listingtable</code></a><ul class="internal"><li><a class="tocitem" href="#Synopsis"><span>Synopsis</span></a></li><li><a class="tocitem" href="#Argument-1:-table"><span>Argument 1: <code>table</code></span></a></li><li><a class="tocitem" href="#Argument-2:-variable"><span>Argument 2: <code>variable</code></span></a></li><li><a class="tocitem" href="#Optional-argument-3:-pagination"><span>Optional argument 3: <code>pagination</code></span></a></li><li><a class="tocitem" href="#Keyword:-rows"><span>Keyword: <code>rows</code></span></a></li><li><a class="tocitem" href="#Keyword:-cols"><span>Keyword: <code>cols</code></span></a></li><li><a class="tocitem" href="#Keyword:-summarize_rows"><span>Keyword: <code>summarize_rows</code></span></a></li><li><a class="tocitem" href="#Keyword:-summarize_cols"><span>Keyword: <code>summarize_cols</code></span></a></li><li><a class="tocitem" href="#Keyword:-variable_header"><span>Keyword: <code>variable_header</code></span></a></li><li><a class="tocitem" href="#Keyword:-sort"><span>Keyword: <code>sort</code></span></a></li></ul></li><li><a class="tocitem" href="../summarytable/"><code>summarytable</code></a></li><li><a class="tocitem" href="../table_one/"><code>table_one</code></a></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../../custom_tables/table/"><code>Table</code></a></li><li><a class="tocitem" href="../../custom_tables/cell/"><code>Cell</code></a></li><li><a class="tocitem" href="../../custom_tables/cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Predefined Tables</a></li><li class="is-active"><a href><code>listingtable</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>listingtable</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/predefined_tables/listingtable.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="listingtable"><a class="docs-heading-anchor" href="#listingtable"><code>listingtable</code></a><a id="listingtable-1"></a><a class="docs-heading-anchor-permalink" href="#listingtable" title="Permalink"></a></h1><h2 id="Synopsis"><a class="docs-heading-anchor" href="#Synopsis">Synopsis</a><a id="Synopsis-1"></a><a class="docs-heading-anchor-permalink" href="#Synopsis" title="Permalink"></a></h2><p>A listing table displays the raw data from one column of a source table, with optional summary sections interleaved between. The row and column structure of the listing table is defined by grouping columns from the source table. Each row of data has to have its own cell in the listing table, therefore the grouping applied along rows and columns must be exhaustive, i.e., no two rows may end up in the same group together.</p><p>Here is an example of a hypothetical clinical trial with drug concentration measurements of two participants with five time points each.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    concentration = [1.2, 4.5, 2.0, 1.5, 0.1, 1.8, 3.2, 1.8, 1.2, 0.2],
+    id = repeat([1, 2], inner = 5),
+    time = repeat([0, 0.5, 1, 2, 3], 2)
+)
+
+listingtable(
+    data,
+    :concentration =&gt; &quot;Concentration (ng/mL)&quot;,
+    rows = :id =&gt; &quot;ID&quot;,
+    cols = :time =&gt; &quot;Time (hr)&quot;,
+    summarize_rows = [
+        length =&gt; &quot;N&quot;,
+        mean =&gt; &quot;Mean&quot;,
+        std =&gt; &quot;SD&quot;,
+    ]
+)</code></pre><table class="st-4fccab93">
+    <style>
+        .st-4fccab93 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-4fccab93 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-4fccab93 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-4fccab93 sub {
+            line-height: 0;
+        }
+
+        .st-4fccab93 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="5" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Time (hr)</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">0</td>
+        <td style="text-align:center;">0.5</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">ID</td>
+        <td colspan="5" style="font-weight:bold;text-align:center;">Concentration (ng/mL)</td>
+    </tr>
+        <tr><td colspan="6" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">1</td>
+        <td style="text-align:center;">1.2</td>
+        <td style="text-align:center;">4.5</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">1.5</td>
+        <td style="text-align:center;">0.1</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;text-align:left;">2</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">1.8</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">3.2</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">1.8</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">1.2</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">0.2</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;padding-top: 3.0pt;text-align:left;">N</td>
+        <td style="padding-top: 3.0pt;text-align:center;">2</td>
+        <td style="padding-top: 3.0pt;text-align:center;">2</td>
+        <td style="padding-top: 3.0pt;text-align:center;">2</td>
+        <td style="padding-top: 3.0pt;text-align:center;">2</td>
+        <td style="padding-top: 3.0pt;text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean</td>
+        <td style="text-align:center;">1.5</td>
+        <td style="text-align:center;">3.85</td>
+        <td style="text-align:center;">1.9</td>
+        <td style="text-align:center;">1.35</td>
+        <td style="text-align:center;">0.15</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">0.424</td>
+        <td style="text-align:center;">0.919</td>
+        <td style="text-align:center;">0.141</td>
+        <td style="text-align:center;">0.212</td>
+        <td style="text-align:center;">0.0707</td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Argument-1:-table"><a class="docs-heading-anchor" href="#Argument-1:-table">Argument 1: <code>table</code></a><a id="Argument-1:-table-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-1:-table" title="Permalink"></a></h2><p>The first argument can be any object that is a table compatible with the <code>Tables.jl</code> API. Here are some common examples:</p><h3 id="DataFrame"><a class="docs-heading-anchor" href="#DataFrame"><code>DataFrame</code></a><a id="DataFrame-1"></a><a class="docs-heading-anchor-permalink" href="#DataFrame" title="Permalink"></a></h3><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(value = 1:6, group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2), group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3))
+
+listingtable(data, :value, rows = :group1, cols = :group2)</code></pre><table class="st-5bb4600d">
+    <style>
+        .st-5bb4600d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-5bb4600d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-5bb4600d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-5bb4600d sub {
+            line-height: 0;
+        }
+
+        .st-5bb4600d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h3 id="NamedTuple-of-Vectors"><a class="docs-heading-anchor" href="#NamedTuple-of-Vectors"><code>NamedTuple</code> of <code>Vector</code>s</a><a id="NamedTuple-of-Vectors-1"></a><a class="docs-heading-anchor-permalink" href="#NamedTuple-of-Vectors" title="Permalink"></a></h3><pre><code class="language-julia hljs">using SummaryTables
+
+data = (; value = 1:6, group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2), group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3))
+
+listingtable(data, :value, rows = :group1, cols = :group2)</code></pre><table class="st-5bb4600d">
+    <style>
+        .st-5bb4600d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-5bb4600d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-5bb4600d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-5bb4600d sub {
+            line-height: 0;
+        }
+
+        .st-5bb4600d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h3 id="Vector-of-NamedTuples"><a class="docs-heading-anchor" href="#Vector-of-NamedTuples"><code>Vector</code> of <code>NamedTuple</code>s</a><a id="Vector-of-NamedTuples-1"></a><a class="docs-heading-anchor-permalink" href="#Vector-of-NamedTuples" title="Permalink"></a></h3><pre><code class="language-julia hljs">using SummaryTables
+
+data = [
+    (value = 1, group1 = &quot;A&quot;, group2 = &quot;D&quot;)
+    (value = 2, group1 = &quot;B&quot;, group2 = &quot;D&quot;)
+    (value = 3, group1 = &quot;C&quot;, group2 = &quot;D&quot;)
+    (value = 4, group1 = &quot;A&quot;, group2 = &quot;E&quot;)
+    (value = 5, group1 = &quot;B&quot;, group2 = &quot;E&quot;)
+    (value = 6, group1 = &quot;C&quot;, group2 = &quot;E&quot;)
+]
+
+listingtable(data, :value, rows = :group1, cols = :group2)</code></pre><table class="st-5bb4600d">
+    <style>
+        .st-5bb4600d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-5bb4600d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-5bb4600d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-5bb4600d sub {
+            line-height: 0;
+        }
+
+        .st-5bb4600d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Argument-2:-variable"><a class="docs-heading-anchor" href="#Argument-2:-variable">Argument 2: <code>variable</code></a><a id="Argument-2:-variable-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-2:-variable" title="Permalink"></a></h2><p>The second argument primarily selects the table column whose data should populate the cells of the listing table. The column name is specified with a <code>Symbol</code>:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value1 = 1:6,
+    value2 = 7:12,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2),
+    group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3)
+)
+
+listingtable(data, :value1, rows = :group1, cols = :group2)</code></pre><table class="st-e84df5b3">
+    <style>
+        .st-e84df5b3 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-e84df5b3 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-e84df5b3 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-e84df5b3 sub {
+            line-height: 0;
+        }
+
+        .st-e84df5b3 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>Here we choose to list column <code>:value2</code> instead:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value1 = 1:6,
+    value2 = 7:12,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2),
+    group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3)
+)
+
+listingtable(data, :value2, rows = :group1, cols = :group2)</code></pre><table class="st-9de29cfb">
+    <style>
+        .st-9de29cfb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-9de29cfb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-9de29cfb br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-9de29cfb sub {
+            line-height: 0;
+        }
+
+        .st-9de29cfb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value2</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">10</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">11</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">12</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>By default, the variable name is used as the label as well. You can pass a different label as the second element of a <code>Pair</code> using the <code>=&gt;</code> operators. The label can be of any type (refer to <a href="../../custom_tables/table/#Types-of-cell-values">Types of cell values</a> for a list).</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value1 = 1:6,
+    value2 = 7:12,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2),
+    group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3)
+)
+
+listingtable(data, :value1 =&gt; &quot;Value&quot;, rows = :group1, cols = :group2)</code></pre><table class="st-95e026aa">
+    <style>
+        .st-95e026aa {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-95e026aa tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-95e026aa br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-95e026aa sub {
+            line-height: 0;
+        }
+
+        .st-95e026aa sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">Value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Optional-argument-3:-pagination"><a class="docs-heading-anchor" href="#Optional-argument-3:-pagination">Optional argument 3: <code>pagination</code></a><a id="Optional-argument-3:-pagination-1"></a><a class="docs-heading-anchor-permalink" href="#Optional-argument-3:-pagination" title="Permalink"></a></h2><p>A listing table can grow large, in which case it may make sense to split it into multiple pages. You can pass a <code>Pagination</code> object with <code>rows</code> and / or <code>cols</code> keyword arguments. The <code>Int</code> you pass to <code>rows</code> and / or <code>cols</code> determines how many &quot;sections&quot; of the table along that dimension are included in a single page. If there are no summary statistics, a &quot;section&quot; is a single row or column. If there are summary statistics, a &quot;section&quot; includes all the rows or columns that are summarized together (as it would not make sense to split summarized groups across multiple pages).</p><p>If the <code>pagination</code> argument is provided, the return type of <code>listingtable</code> changes to <code>PaginatedTable{ListingPageMetadata}</code>. This object has an interactive HTML representation for convenience the exact form of which should not be considered stable across SummaryTables versions. The <code>PaginatedTable</code> should be deconstructed into separate <code>Table</code>s when you want to include these in a document.</p><p>Here is an example listing table without pagination:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:30,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;], 6),
+    group2 = repeat([&quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;], inner = 5)
+)
+
+listingtable(data, :value, rows = :group1, cols = :group2)</code></pre><table class="st-3ace2aa3">
+    <style>
+        .st-3ace2aa3 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-3ace2aa3 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-3ace2aa3 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-3ace2aa3 sub {
+            line-height: 0;
+        }
+
+        .st-3ace2aa3 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;">K</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="6" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="7" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">21</td>
+        <td style="text-align:center;">26</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">22</td>
+        <td style="text-align:center;">27</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">18</td>
+        <td style="text-align:center;">23</td>
+        <td style="text-align:center;">28</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">19</td>
+        <td style="text-align:center;">24</td>
+        <td style="text-align:center;">29</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">15</td>
+        <td style="text-align:center;">20</td>
+        <td style="text-align:center;">25</td>
+        <td style="text-align:center;">30</td>
+    </tr>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>And here is the same table paginated into groups of 3 sections along the both the rows and columns. Note that there are only five rows in the original table, which is not divisible by 3, so two pages have only two rows.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:30,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;], 6),
+    group2 = repeat([&quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;], inner = 5)
+)
+
+listingtable(data, :value, Pagination(rows = 3, cols = 3), rows = :group1, cols = :group2)</code></pre><div>
+<script>
+function showPaginatedPage(el, index){
+    const container = el.parentElement.querySelector('div');
+    for (var i = 0; i<container.children.length; i++){
+        container.children[i].style.display = i == index ? 'block' : 'none';
+    }
+}
+</script>
+
+<button onclick="showPaginatedPage(this, 0)">
+Page 1
+</button>
+
+<button onclick="showPaginatedPage(this, 1)">
+Page 2
+</button>
+
+<button onclick="showPaginatedPage(this, 2)">
+Page 3
+</button>
+
+<button onclick="showPaginatedPage(this, 3)">
+Page 4
+</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table class="st-c759a18a">
+    <style>
+        .st-c759a18a {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-c759a18a tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-c759a18a br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-c759a18a sub {
+            line-height: 0;
+        }
+
+        .st-c759a18a sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">11</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">12</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">13</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table class="st-1463882d">
+    <style>
+        .st-1463882d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-1463882d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-1463882d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-1463882d sub {
+            line-height: 0;
+        }
+
+        .st-1463882d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;">K</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">21</td>
+        <td style="text-align:center;">26</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">22</td>
+        <td style="text-align:center;">27</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">18</td>
+        <td style="text-align:center;">23</td>
+        <td style="text-align:center;">28</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 3</h3>
+<table class="st-7c922612">
+    <style>
+        .st-7c922612 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-7c922612 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-7c922612 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-7c922612 sub {
+            line-height: 0;
+        }
+
+        .st-7c922612 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">14</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">15</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 4</h3>
+<table class="st-05ea9bf3">
+    <style>
+        .st-05ea9bf3 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-05ea9bf3 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-05ea9bf3 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-05ea9bf3 sub {
+            line-height: 0;
+        }
+
+        .st-05ea9bf3 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;">K</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">19</td>
+        <td style="text-align:center;">24</td>
+        <td style="text-align:center;">29</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">20</td>
+        <td style="text-align:center;">25</td>
+        <td style="text-align:center;">30</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>
+<p>We can also paginate only along the rows:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:30,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;], 6),
+    group2 = repeat([&quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;], inner = 5)
+)
+
+listingtable(data, :value, Pagination(rows = 3), rows = :group1, cols = :group2)</code></pre><div>
+<script>
+function showPaginatedPage(el, index){
+    const container = el.parentElement.querySelector('div');
+    for (var i = 0; i<container.children.length; i++){
+        container.children[i].style.display = i == index ? 'block' : 'none';
+    }
+}
+</script>
+
+<button onclick="showPaginatedPage(this, 0)">
+Page 1
+</button>
+
+<button onclick="showPaginatedPage(this, 1)">
+Page 2
+</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table class="st-d5049bf9">
+    <style>
+        .st-d5049bf9 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-d5049bf9 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-d5049bf9 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-d5049bf9 sub {
+            line-height: 0;
+        }
+
+        .st-d5049bf9 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;">K</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="6" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="7" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">21</td>
+        <td style="text-align:center;">26</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">22</td>
+        <td style="text-align:center;">27</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">18</td>
+        <td style="text-align:center;">23</td>
+        <td style="text-align:center;">28</td>
+    </tr>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table class="st-a1b4c8c1">
+    <style>
+        .st-a1b4c8c1 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-a1b4c8c1 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-a1b4c8c1 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-a1b4c8c1 sub {
+            line-height: 0;
+        }
+
+        .st-a1b4c8c1 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;">K</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="6" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="7" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">19</td>
+        <td style="text-align:center;">24</td>
+        <td style="text-align:center;">29</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">15</td>
+        <td style="text-align:center;">20</td>
+        <td style="text-align:center;">25</td>
+        <td style="text-align:center;">30</td>
+    </tr>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>
+<p>Or only along the columns:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:30,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;], 6),
+    group2 = repeat([&quot;F&quot;, &quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;, &quot;K&quot;], inner = 5)
+)
+
+listingtable(data, :value, Pagination(cols = 3), rows = :group1, cols = :group2)</code></pre><div>
+<script>
+function showPaginatedPage(el, index){
+    const container = el.parentElement.querySelector('div');
+    for (var i = 0; i<container.children.length; i++){
+        container.children[i].style.display = i == index ? 'block' : 'none';
+    }
+}
+</script>
+
+<button onclick="showPaginatedPage(this, 0)">
+Page 1
+</button>
+
+<button onclick="showPaginatedPage(this, 1)">
+Page 2
+</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table class="st-f867a51c">
+    <style>
+        .st-f867a51c {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-f867a51c tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-f867a51c br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-f867a51c sub {
+            line-height: 0;
+        }
+
+        .st-f867a51c sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">11</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">12</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">13</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">14</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">15</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table class="st-d995de64">
+    <style>
+        .st-d995de64 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-d995de64 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-d995de64 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-d995de64 sub {
+            line-height: 0;
+        }
+
+        .st-d995de64 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;">K</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">21</td>
+        <td style="text-align:center;">26</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">22</td>
+        <td style="text-align:center;">27</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">18</td>
+        <td style="text-align:center;">23</td>
+        <td style="text-align:center;">28</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">19</td>
+        <td style="text-align:center;">24</td>
+        <td style="text-align:center;">29</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">20</td>
+        <td style="text-align:center;">25</td>
+        <td style="text-align:center;">30</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>
+<h2 id="Keyword:-rows"><a class="docs-heading-anchor" href="#Keyword:-rows">Keyword: <code>rows</code></a><a id="Keyword:-rows-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-rows" title="Permalink"></a></h2><p>The <code>rows</code> keyword determines the grouping structure along the rows. It can either be a <code>Symbol</code> specifying a grouping column, a <code>Pair{Symbol,Any}</code> where the second element overrides the group&#39;s label, or a <code>Vector</code> with multiple groups of the aforementioned format.</p><p>This example uses a single group with default label.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:5,
+    group = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+)
+
+listingtable(data, :value, rows = :group)</code></pre><table class="st-514185e3">
+    <style>
+        .st-514185e3 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-514185e3 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-514185e3 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-514185e3 sub {
+            line-height: 0;
+        }
+
+        .st-514185e3 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group</td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>The label can be overridden using the <code>Pair</code> operator.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:5,
+    group = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+)
+
+listingtable(data, :value, rows = :group =&gt; &quot;Group&quot;)</code></pre><table class="st-878abc2f">
+    <style>
+        .st-878abc2f {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-878abc2f tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-878abc2f br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-878abc2f sub {
+            line-height: 0;
+        }
+
+        .st-878abc2f sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Group</td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="2" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>Multiple groups are possible as well, in that case you get a nested display where the last group changes the fastest.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:5,
+    group1 = [&quot;F&quot;, &quot;F&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;],
+    group2 = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+)
+
+listingtable(data, :value, rows = [:group1, :group2 =&gt; &quot;Group 2&quot;])</code></pre><table class="st-146863b1">
+    <style>
+        .st-146863b1 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-146863b1 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-146863b1 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-146863b1 sub {
+            line-height: 0;
+        }
+
+        .st-146863b1 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">Group 2</td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">F</td>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="3" style="text-align:left;">G</td>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-cols"><a class="docs-heading-anchor" href="#Keyword:-cols">Keyword: <code>cols</code></a><a id="Keyword:-cols-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-cols" title="Permalink"></a></h2><p>The <code>cols</code> keyword determines the grouping structure along the columns. It can either be a <code>Symbol</code> specifying a grouping column, a <code>Pair{Symbol,Any}</code> where the second element overrides the group&#39;s label, or a <code>Vector</code> with multiple groups of the aforementioned format.</p><p>This example uses a single group with default label.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:5,
+    group = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+)
+
+listingtable(data, :value, cols = :group)</code></pre><table class="st-6d76c484">
+    <style>
+        .st-6d76c484 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-6d76c484 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-6d76c484 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-6d76c484 sub {
+            line-height: 0;
+        }
+
+        .st-6d76c484 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td colspan="5" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>The label can be overridden using the <code>Pair</code> operator.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:5,
+    group = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+)
+
+listingtable(data, :value, cols = :group =&gt; &quot;Group&quot;)</code></pre><table class="st-7bdf5889">
+    <style>
+        .st-7bdf5889 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-7bdf5889 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-7bdf5889 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-7bdf5889 sub {
+            line-height: 0;
+        }
+
+        .st-7bdf5889 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td colspan="5" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>Multiple groups are possible as well, in that case you get a nested display where the last group changes the fastest.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:5,
+    group1 = [&quot;F&quot;, &quot;F&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;],
+    group2 = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;],
+)
+
+listingtable(data, :value, cols = [:group1, :group2 =&gt; &quot;Group 2&quot;])</code></pre><table class="st-f2582903">
+    <style>
+        .st-f2582903 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-f2582903 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-f2582903 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-f2582903 sub {
+            line-height: 0;
+        }
+
+        .st-f2582903 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td colspan="5" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center;">F</td>
+        <td colspan="3" style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Group 2</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">Group 2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-summarize_rows"><a class="docs-heading-anchor" href="#Keyword:-summarize_rows">Keyword: <code>summarize_rows</code></a><a id="Keyword:-summarize_rows-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-summarize_rows" title="Permalink"></a></h2><p>This keyword takes a list of aggregation functions which are used to summarize the listed variable along the rows. A summary function should take a vector of values (usually that will be numbers) and output one summary value. This value can be of any type that SummaryTables can show in a cell (refer to <a href="../../custom_tables/table/#Types-of-cell-values">Types of cell values</a> for a list).</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+using Statistics: mean, std
+
+data = DataFrame(
+    value = 1:24,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;], 4),
+    group2 = repeat([&quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;], inner = 6),
+)
+
+mean_sd(values) = Concat(mean(values), &quot; (&quot;, std(values), &quot;)&quot;)
+
+listingtable(data,
+    :value,
+    rows = :group1,
+    cols = :group2,
+    summarize_rows = [
+        mean,
+        std =&gt; &quot;SD&quot;,
+        mean_sd =&gt; &quot;Mean (SD)&quot;,
+    ]
+)</code></pre><table class="st-3cfe6179">
+    <style>
+        .st-3cfe6179 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-3cfe6179 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-3cfe6179 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-3cfe6179 sub {
+            line-height: 0;
+        }
+
+        .st-3cfe6179 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="4" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="4" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">15</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">23</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;text-align:left;">F</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">6</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">12</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">18</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">24</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-top: 3.0pt;text-align:center;">3.5</td>
+        <td style="padding-top: 3.0pt;text-align:center;">9.5</td>
+        <td style="padding-top: 3.0pt;text-align:center;">15.5</td>
+        <td style="padding-top: 3.0pt;text-align:center;">21.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">1.87</td>
+        <td style="text-align:center;">1.87</td>
+        <td style="text-align:center;">1.87</td>
+        <td style="text-align:center;">1.87</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3.5 (1.87)</td>
+        <td style="text-align:center;">9.5 (1.87)</td>
+        <td style="text-align:center;">15.5 (1.87)</td>
+        <td style="text-align:center;">21.5 (1.87)</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>By default, one summary will be calculated over all rows of a given column. You can also choose to compute one summary for each group of a row grouping column, which makes sense if there is more than one row grouping column.</p><p>In this example, one summary is computed for each level of the <code>group1</code> column.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+using Statistics: mean, std
+
+data = DataFrame(
+    value = 1:24,
+    group1 = repeat([&quot;X&quot;, &quot;Y&quot;], 12),
+    group2 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 8),
+    group3 = repeat([&quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;], inner = 6),
+)
+
+mean_sd(values) = Concat(mean(values), &quot; (&quot;, std(values), &quot;)&quot;)
+
+listingtable(data,
+    :value,
+    rows = [:group1, :group2],
+    cols = :group3,
+    summarize_rows = :group1 =&gt; [
+        mean,
+        std =&gt; &quot;SD&quot;,
+        mean_sd =&gt; &quot;Mean (SD)&quot;,
+    ]
+)</code></pre><table class="st-fb914753">
+    <style>
+        .st-fb914753 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-fb914753 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-fb914753 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-fb914753 sub {
+            line-height: 0;
+        }
+
+        .st-fb914753 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="4" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td colspan="4" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="6" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td rowspan="3" style="padding-bottom: 3.0pt;text-align:left;">X</td>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">23</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;text-align:left;">C</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">3</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">9</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">15</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-top: 3.0pt;text-align:center;">3</td>
+        <td style="padding-top: 3.0pt;text-align:center;">9</td>
+        <td style="padding-top: 3.0pt;text-align:center;">15</td>
+        <td style="padding-top: 3.0pt;text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-bottom: 3.0pt;text-align:left;">Mean (SD)</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">3 (2)</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">9 (2)</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">15 (2)</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">21 (2)</td>
+    </tr>
+    <tr>
+        <td rowspan="3" style="padding-bottom: 3.0pt;padding-top: 3.0pt;text-align:left;">Y</td>
+        <td style="padding-top: 3.0pt;text-align:left;">A</td>
+        <td style="padding-top: 3.0pt;text-align:center;">4</td>
+        <td style="padding-top: 3.0pt;text-align:center;">10</td>
+        <td style="padding-top: 3.0pt;text-align:center;">16</td>
+        <td style="padding-top: 3.0pt;text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 3.0pt;text-align:left;">C</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">6</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">12</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">18</td>
+        <td style="padding-bottom: 3.0pt;text-align:center;">24</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 3.0pt;text-align:center;"></td>
+        <td style="font-weight:bold;padding-top: 3.0pt;text-align:left;">mean</td>
+        <td style="padding-top: 3.0pt;text-align:center;">4</td>
+        <td style="padding-top: 3.0pt;text-align:center;">10</td>
+        <td style="padding-top: 3.0pt;text-align:center;">16</td>
+        <td style="padding-top: 3.0pt;text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">4 (2)</td>
+        <td style="text-align:center;">10 (2)</td>
+        <td style="text-align:center;">16 (2)</td>
+        <td style="text-align:center;">22 (2)</td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-summarize_cols"><a class="docs-heading-anchor" href="#Keyword:-summarize_cols">Keyword: <code>summarize_cols</code></a><a id="Keyword:-summarize_cols-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-summarize_cols" title="Permalink"></a></h2><p>This keyword takes a list of aggregation functions which are used to summarize the listed variable along the columns. A summary function should take a vector of values (usually that will be numbers) and output one summary value. This value can be of any type that SummaryTables can show in a cell (refer to <a href="../../custom_tables/table/#Types-of-cell-values">Types of cell values</a> for a list).</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+using Statistics: mean, std
+
+data = DataFrame(
+    value = 1:24,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;], 4),
+    group2 = repeat([&quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;], inner = 6),
+)
+
+mean_sd(values) = Concat(mean(values), &quot; (&quot;, std(values), &quot;)&quot;)
+
+listingtable(data,
+    :value,
+    rows = :group1,
+    cols = :group2,
+    summarize_cols = [
+        mean,
+        std =&gt; &quot;SD&quot;,
+        mean_sd =&gt; &quot;Mean (SD)&quot;,
+    ]
+)</code></pre><table class="st-7c6353b4">
+    <style>
+        .st-7c6353b4 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-7c6353b4 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-7c6353b4 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-7c6353b4 sub {
+            line-height: 0;
+        }
+
+        .st-7c6353b4 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="4" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">G</td>
+        <td style="text-align:center;">H</td>
+        <td style="text-align:center;">I</td>
+        <td style="text-align:center;">J</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="4" style="font-weight:bold;text-align:center;">value</td>
+        <td style="font-weight:bold;text-align:right;">mean</td>
+        <td style="font-weight:bold;text-align:right;">SD</td>
+        <td style="font-weight:bold;text-align:right;">Mean (SD)</td>
+    </tr>
+        <tr><td colspan="8" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">19</td>
+        <td style="text-align:right;">10</td>
+        <td style="text-align:right;">7.75</td>
+        <td style="text-align:right;">10 (7.75)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">20</td>
+        <td style="text-align:right;">11</td>
+        <td style="text-align:right;">7.75</td>
+        <td style="text-align:right;">11 (7.75)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">15</td>
+        <td style="text-align:center;">21</td>
+        <td style="text-align:right;">12</td>
+        <td style="text-align:right;">7.75</td>
+        <td style="text-align:right;">12 (7.75)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">22</td>
+        <td style="text-align:right;">13</td>
+        <td style="text-align:right;">7.75</td>
+        <td style="text-align:right;">13 (7.75)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">E</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">23</td>
+        <td style="text-align:right;">14</td>
+        <td style="text-align:right;">7.75</td>
+        <td style="text-align:right;">14 (7.75)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">F</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">18</td>
+        <td style="text-align:center;">24</td>
+        <td style="text-align:right;">15</td>
+        <td style="text-align:right;">7.75</td>
+        <td style="text-align:right;">15 (7.75)</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>By default, one summary will be calculated over all columns of a given row. You can also choose to compute one summary for each group of a column grouping column, which makes sense if there is more than one column grouping column.</p><p>In this example, one summary is computed for each level of the <code>group1</code> column.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+using Statistics: mean, std
+
+data = DataFrame(
+    value = 1:24,
+    group1 = repeat([&quot;X&quot;, &quot;Y&quot;], 12),
+    group2 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 8),
+    group3 = repeat([&quot;G&quot;, &quot;H&quot;, &quot;I&quot;, &quot;J&quot;], inner = 6),
+)
+
+mean_sd(values) = Concat(mean(values), &quot; (&quot;, std(values), &quot;)&quot;)
+
+listingtable(data,
+    :value,
+    cols = [:group1, :group2],
+    rows = :group3,
+    summarize_cols = :group1 =&gt; [
+        mean,
+        std =&gt; &quot;SD&quot;,
+        mean_sd =&gt; &quot;Mean (SD)&quot;,
+    ]
+)</code></pre><table class="st-abf10722">
+    <style>
+        .st-abf10722 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-abf10722 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-abf10722 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-abf10722 sub {
+            line-height: 0;
+        }
+
+        .st-abf10722 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="13" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group1</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="text-align:center;">X</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="text-align:center;">Y</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group3</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+        <td style="font-weight:bold;text-align:right;">mean</td>
+        <td style="font-weight:bold;text-align:right;">SD</td>
+        <td style="font-weight:bold;text-align:right;">Mean (SD)</td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+        <td style="font-weight:bold;text-align:right;">mean</td>
+        <td style="font-weight:bold;text-align:right;">SD</td>
+        <td style="font-weight:bold;text-align:right;">Mean (SD)</td>
+    </tr>
+        <tr><td colspan="13" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">G</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:right;">3</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">3 (2)</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:right;">4</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">4 (2)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">H</td>
+        <td style="text-align:center;">7</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:right;">9</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">9 (2)</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">8</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:right;">10</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">10 (2)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">I</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">17</td>
+        <td style="text-align:center;">15</td>
+        <td style="text-align:right;">15</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">15 (2)</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">18</td>
+        <td style="text-align:right;">16</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">16 (2)</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">J</td>
+        <td style="text-align:center;">19</td>
+        <td style="text-align:center;">23</td>
+        <td style="text-align:center;">21</td>
+        <td style="text-align:right;">21</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">21 (2)</td>
+        <td style="text-align:center;">22</td>
+        <td style="text-align:center;">20</td>
+        <td style="text-align:center;">24</td>
+        <td style="text-align:right;">22</td>
+        <td style="text-align:right;">2</td>
+        <td style="text-align:right;">22 (2)</td>
+    </tr>
+    <tr><td colspan="13" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-variable_header"><a class="docs-heading-anchor" href="#Keyword:-variable_header">Keyword: <code>variable_header</code></a><a id="Keyword:-variable_header-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-variable_header" title="Permalink"></a></h2><p>If you set <code>variable_header = false</code>, you can hide the header cell with the variable label, which makes the table layout a little more compact.</p><p>Here is a table with the header cell:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:6,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2),
+    group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3)
+)
+
+listingtable(data, :value, rows = :group1, cols = :group2, variable_header = true)</code></pre><table class="st-5bb4600d">
+    <style>
+        .st-5bb4600d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-5bb4600d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-5bb4600d br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-5bb4600d sub {
+            line-height: 0;
+        }
+
+        .st-5bb4600d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><p>And here is a table without it:</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:6,
+    group1 = repeat([&quot;A&quot;, &quot;B&quot;, &quot;C&quot;], 2),
+    group2 = repeat([&quot;D&quot;, &quot;E&quot;], inner = 3)
+)
+
+listingtable(data, :value, rows = :group1, cols = :group2, variable_header = false)</code></pre><table class="st-9c51ce3f">
+    <style>
+        .st-9c51ce3f {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-9c51ce3f tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-9c51ce3f br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-9c51ce3f sub {
+            line-height: 0;
+        }
+
+        .st-9c51ce3f sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">B</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-sort"><a class="docs-heading-anchor" href="#Keyword:-sort">Keyword: <code>sort</code></a><a id="Keyword:-sort-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-sort" title="Permalink"></a></h2><p>By default, group entries are sorted. If you need to maintain the order of entries from your dataset, set <code>sort = false</code>.</p><p>Notice how in the following two examples, the group indices are <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code>, <code>&quot;uno&quot;</code> when sorted, but <code>&quot;uno&quot;</code>, <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code> when not sorted. If we want to preserve the natural order of these groups (&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot; meaning &quot;one&quot;, &quot;two&quot;, &quot;three&quot; in Spanish but having a different alphabetical order) we need to set <code>sort = false</code>.</p><pre><code class="language-julia hljs">using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    value = 1:6,
+    group1 = repeat([&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot;], inner = 2),
+    group2 = repeat([&quot;cuatro&quot;, &quot;cinco&quot;], 3),
+)
+
+listingtable(data, :value, rows = :group1, cols = :group2)</code></pre><table class="st-97512767">
+    <style>
+        .st-97512767 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-97512767 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-97512767 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-97512767 sub {
+            line-height: 0;
+        }
+
+        .st-97512767 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">cinco</td>
+        <td style="text-align:center;">cuatro</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">dos</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">tres</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">uno</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><pre><code class="language-julia hljs">listingtable(data, :value, rows = :group1, cols = :group2, sort = false)</code></pre><table class="st-a70f7077">
+    <style>
+        .st-a70f7077 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-a70f7077 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-a70f7077 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-a70f7077 sub {
+            line-height: 0;
+        }
+
+        .st-a70f7077 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">cuatro</td>
+        <td style="text-align:center;">cinco</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">uno</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">dos</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">tres</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>If you have multiple groups, <code>sort = false</code> can lead to splitting of higher-level groups if they are not correctly ordered in the source data.</p></div></div><p>Compare the following two tables. In the second one, the group &quot;A&quot; is split by &quot;B&quot; so the label appears twice.</p><pre><code class="language-julia hljs">using SummaryTables
+using DataFrames
+
+data = DataFrame(
+    value = 1:4,
+    group1 = [&quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;],
+    group2 = [&quot;C&quot;, &quot;D&quot;, &quot;C&quot;, &quot;D&quot;],
+)
+
+listingtable(data, :value, rows = [:group1, :group2])</code></pre><table class="st-bd02ae13">
+    <style>
+        .st-bd02ae13 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-bd02ae13 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-bd02ae13 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-bd02ae13 sub {
+            line-height: 0;
+        }
+
+        .st-bd02ae13 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><pre><code class="language-julia hljs">data = DataFrame(
+    value = 1:4,
+    group1 = [&quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;A&quot;],
+    group2 = [&quot;C&quot;, &quot;D&quot;, &quot;C&quot;, &quot;D&quot;],
+)
+
+listingtable(data, :value, rows = [:group1, :group2], sort = false)</code></pre><table class="st-54b6394f">
+    <style>
+        .st-54b6394f {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-54b6394f tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-54b6394f br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-54b6394f sub {
+            line-height: 0;
+        }
+
+        .st-54b6394f sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid black;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:left;">D</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../output/">« Output</a><a class="docs-footer-nextpage" href="../summarytable/"><code>summarytable</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.3.0 on <span class="colophon-date" title="Tuesday 26 March 2024 08:18">Tuesday 26 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
