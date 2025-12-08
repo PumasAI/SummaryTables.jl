@@ -1,0 +1,17 @@
+
+#table(
+    rows: 2,
+    columns: 2,
+    column-gutter: 0.25em,
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [-, -],
+    [#super[-] #linebreak() #sub[-] #linebreak() *#text(fill: rgb(255,0,0))[styled -]*],
+    [1],
+    [2],
+    table.hline(y: 2, stroke: 1pt),
+    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
+        - No value
+    ]],
+)
