@@ -1,7 +1,7 @@
 name = "SummaryTables"
 uuid = "6ce4ecf0-73a7-4ce3-9fb4-80ebfe887b60"
 authors = ["Julius <juliusk@pumas.ai>", "Mike <michael@pumas.ai>"]
-version = "3.4.0"
+version = "3.5.0"
 
 [deps]
 CategoricalArrays = "324d7699-5711-5eae-9e2f-1d82baa6b597"
