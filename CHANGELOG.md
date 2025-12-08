@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added `recursive = false` keyword to `Replace` postprocessor which causes it to recurse into SummaryTables' own wrapper types like `Concat` and `Multiline`. `ReplaceMissing` is set to be recursive by default and is considered a bugfix as the intent was always to replace all missings, not just top-level [#119](https://github.com/PumasAI/SummaryTables.jl/pull/119). 
 - Added `numeric_default` and `categorical_default` keywords to `table_one` to change the default analyses for all columns in a table at once. These parameters can also be changed globally with `defaults!` [#117](https://github.com/PumasAI/SummaryTables.jl/pull/117).
 - All table functions now use the `"label"` column metadata as a label by default if it's present. A different key can be set as the default setting `label_key`, or `nothing` to disable the feature [#111](https://github.com/PumasAI/SummaryTables.jl/pull/111).
 

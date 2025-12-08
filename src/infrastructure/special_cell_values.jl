@@ -130,17 +130,7 @@ function collect_annotations!(annotations, x::Annotated)
     return
 end
 
-resolve_annotation(x, annotations) = x
-function resolve_annotation(a::Annotated, annotations)
-    ResolvedAnnotation(a.value, annotations[a.annotation])
-end
-
-function resolve_annotation(c::Concat, annotations)
-    new_args = map(c.args) do arg
-        resolve_annotation(arg, annotations)
-    end
-    Concat(new_args...)
-end
+resolve_annotation(x, annotations) = recursive_replace(x, y -> y isa Annotated, a -> ResolvedAnnotation(a.value, annotations[a.annotation]))
 
 function get_annotation_labels(s::Symbol)
     if s === :numbers

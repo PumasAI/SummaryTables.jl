@@ -644,6 +644,15 @@ end
 
             t = Table(
                 [
+                    Cell(Concat(missing, ", ", missing)) Cell(Multiline(Superscript(missing), Subscript(missing), Styled(Concat("styled ", missing); color = "#FF0000", bold = true)));
+                    Cell(1) Cell(2);
+                ],
+                postprocess = [ReplaceMissing()]
+            )
+            reftest(t, "references/replace/replacemissing_nested")
+
+            t = Table(
+                [
                     SpannedCell(1, 1, missing),
                     SpannedCell(1, 2, nothing),
                     SpannedCell(2, 1, 1),
