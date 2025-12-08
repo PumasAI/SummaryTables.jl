@@ -189,8 +189,19 @@ function _str_typst_escaped(io::IO, s::AbstractString)
     _s = s isa String ? s : String(s)
     # it's much more difficult to try and make typst markup out of a string by escaping special characters
     # than it is to just use the #"some string" syntax where typst handles everything itself.
-    # The only characters that need to be escaped this way are " and \ but `show` already handles that
-    show(io, _s)
+    # The only characters that need to be escaped this way are " and \ but `show` already handles that.
+    # However, we need to undo the escaping of $ which is the only character that triggers special
+    # behavior in a String and is therefore escaped to \$ in `show`
+    r = repr(_s)
+    replacers = (
+        r"(?<!\\)(?:\\\\)*\\\$" => "\$",
+    )
+    if VERSION >= v"1.10"
+        replace(io, r, replacers...)
+    else
+        rr = replace(r, replacers...)
+        print(io, rr)
+    end
     return
 end
 
