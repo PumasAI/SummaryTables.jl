@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.5.0 - 2025-12-08
+
 - Simplified typst escaping, all custom rules were removed and text is simply wrapped in `""` with `\"` as the only escaped character. This avoids bugs where some text is interpreted as special typst markup [#110](https://github.com/PumasAI/SummaryTables.jl/pull/110).
 - Added `recursive = false` keyword to `Replace` postprocessor which causes it to recurse into SummaryTables' own wrapper types like `Concat` and `Multiline`. `ReplaceMissing` is set to be recursive by default and is considered a bugfix as the intent was always to replace all missings, not just top-level [#119](https://github.com/PumasAI/SummaryTables.jl/pull/119). 
 - Added `numeric_default` and `categorical_default` keywords to `table_one` to change the default analyses for all columns in a table at once. These parameters can also be changed globally with `defaults!` [#117](https://github.com/PumasAI/SummaryTables.jl/pull/117).
