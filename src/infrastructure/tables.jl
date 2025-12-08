@@ -247,11 +247,13 @@ end
 
 """
     Replace(f, with)
-    Replace(f; with)
+    Replace(f; with, recursive = false)
 
 This postprocessor replaces all cell values for which `f(value) === true`
 with the value `with`.
 If `with <: Function` then the new value will be `with(value)`, instead.
+
+If `recursive`, the replacer recurses into SummaryTables' own wrapper types `Concat`, `Multiline`, etc.
 
 ## Examples
 
@@ -264,28 +266,50 @@ Replace(x -> x isa Int && iseven(x), "An even Int was here")
 struct Replace{F,W}
     f::F
     with::W
+    recursive::Bool # step into SummaryTables wrapper objects
 end
 
-Replace(f; with) = Replace(f, with)
+Replace(f, with) = Replace(f, with, false)
+Replace(f; with, recursive = false) = Replace(f, with, recursive)
 
 """
     ReplaceMissing(; with = Annotated("-", "- No value"; label = NoLabel()))
 
-This postprocessor replaces all `missing` cell values with the value in `with`.
+This postprocessor replaces all `missing` cell values with the value in `with` while recursing into SummaryTables' own wrapper types `Concat`, `Multiline`, etc.
 """
-ReplaceMissing(; with = Annotated("-", "- No value"; label = NoLabel())) =
-    Replace(ismissing, with)
+ReplaceMissing(; with = Annotated("-", "- No value"; label = NoLabel()), recursive = true) =
+    Replace(ismissing, with, recursive)
 
 function postprocess_cell(cell::Cell, r::Replace)
-    matches = r.f(cell.value)
+    value = if r.recursive
+        recursive_replace(cell.value, r.f, r.with)
+    else
+        matches = r.f(cell.value)
+        if !(matches isa Bool)
+            error("`Replace` predicate `$(r.f)` did not return a `Bool` but a value of type `$(typeof(matches))`.")
+        end
+        fn(_, with) = with
+        fn(x, with::Function) = with(x)
+        matches ? fn(cell.value, r.with) : cell.value
+    end
+    return Cell(value, cell.style)
+end
+
+recursive_replace(value::Concat, f, with) = Concat(map(x -> recursive_replace(x, f, with), value.args)...)
+recursive_replace(value::Multiline, f, with) = Multiline(map(x -> recursive_replace(x, f, with), value.values)...)
+recursive_replace(x::Styled, f, with) = Styled(recursive_replace(x.value, f, with), x.color, x.bold, x.italic, x.underline)
+recursive_replace(x::Superscript, f, with) = Superscript(recursive_replace(x.super, f, with))
+recursive_replace(x::Subscript, f, with) = Subscript(recursive_replace(x.sub, f, with))
+function recursive_replace(x, f, with)
+    matches = f(x)
     if !(matches isa Bool)
-        error("`Replace` predicate `$(r.f)` did not return a `Bool` but a value of type `$(typeof(matches))`.")
+        error("`Replace` predicate `$(f)` did not return a `Bool` but a value of type `$(typeof(matches))`.")
     end
     fn(_, with) = with
     fn(x, with::Function) = with(x)
-    value = matches ? fn(cell.value, r.with) : cell.value
-    return Cell(value, cell.style)
+    return matches ? fn(x, with) : x
 end
+
 
 struct Rounder
     round_digits::Int
@@ -299,13 +323,12 @@ apply_rounder(x::Concat, r::Rounder) = Concat(map(arg -> apply_rounder(arg, r), 
 apply_rounder(x::Multiline, r::Rounder) = Multiline(map(arg -> apply_rounder(arg, r), x.values)...)
 apply_rounder(x::Annotated, r::Rounder) = Annotated(apply_rounder(x.value, r), x.annotation, x.label)
 apply_rounder(x::Styled, r::Rounder) = Styled(apply_rounder(x.value, r), x.color, x.bold, x.italic, x.underline)
+apply_rounder(x::Superscript, r::Rounder) = Superscript(apply_rounder(x.super, r))
+apply_rounder(x::Subscript, r::Rounder) = Subscript(apply_rounder(x.sub, r))
 
 function postprocess_cell(cell::Cell, r::Rounder)
     Cell(apply_rounder(cell.value, r), cell.style)
 end
-
-apply_rounder(x::Superscript, r::Rounder) = Superscript(apply_rounder(x.super, r))
-apply_rounder(x::Subscript, r::Rounder) = Subscript(apply_rounder(x.sub, r))
 
 function postprocess(ct::Table)
     # every table has float rounding / formatting applied as the very last step
