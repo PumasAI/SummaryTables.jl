@@ -185,28 +185,24 @@ function _showas(io::IO, M::MIME"text/typst", s::Styled)
 end
 
 function _str_typst_escaped(io::IO, s::AbstractString)
-    # TODO: this could be implemented more cleanly with `replace(io, ...)` from Julia 1.10 on
-    escapable_special_chars = raw"\$#*_<@`"
-    escapable_special_chars_with_dot = raw"\$#*_<@`."
-
-    function _print(io, s, escapable_chars)
-        for c in s
-            if c in escapable_chars
-                print(io, '\\', c)
-            else
-                print(io, c)
-            end
-        end
-    end
-
-    # work around numbered lists markup
-    m = match(r"^\d+\.\s", s)
-    if m === nothing
-        _print(io, s, escapable_special_chars)
+    print(io, "#")
+    _s = s isa String ? s : String(s)
+    # it's much more difficult to try and make typst markup out of a string by escaping special characters
+    # than it is to just use the #"some string" syntax where typst handles everything itself.
+    # The only characters that need to be escaped this way are " and \ but `show` already handles that.
+    # However, we need to undo the escaping of $ which is the only character that triggers special
+    # behavior in a String and is therefore escaped to \$ in `show`
+    r = repr(_s)
+    replacers = (
+        r"(?<!\\)(?:\\\\)*\\\$" => "\$",
+    )
+    if VERSION >= v"1.10"
+        replace(io, r, replacers...)
     else
-        _print(io, m.match, escapable_special_chars_with_dot)
-        _print(io, @view(s[m.offset + length(m.match):end]), escapable_special_chars)
+        rr = replace(r, replacers...)
+        print(io, rr)
     end
+    return
 end
 
 function _str_typst_escaped(s::AbstractString)

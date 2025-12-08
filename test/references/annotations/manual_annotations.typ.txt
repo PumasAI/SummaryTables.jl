@@ -6,15 +6,15 @@
     align: (center, center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),
-    [A#super[X]],
-    [B#super[Y]],
-    [C#super[1]],
-    [D#super[2]],
+    [#"A"#super[#"X"]],
+    [#"B"#super[#"Y"]],
+    [#"C"#super[#"1"]],
+    [#"D"#super[#"2"]],
     table.hline(y: 2, stroke: 1pt),
     table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
-        #super[1]Note 3\
-        #super[2]Note 4\
-        #super[X]Note 1\
-        #super[Y]Note 2
+        #super[#"1"]#"Note 3"\
+        #super[#"2"]#"Note 4"\
+        #super[#"X"]#"Note 1"\
+        #super[#"Y"]#"Note 2"
     ]],
 )

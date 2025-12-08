@@ -740,7 +740,7 @@ end
 
         @testset "Character escaping" begin
             cells = [
-                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' @ `")
+                SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' @ ` [ ] . + -")
             ]
             t = Table(
                 cells,
@@ -838,6 +838,15 @@ end
 
             SummaryTables.with_defaults(annotation_labels = ["*", "†"]) do
                 @test_throws "provides 2 labels, but 3 labels are needed" repr("text/html", tbl)
+            end
+        end
+
+        @testset "typst specific" begin
+            if func === as_typst
+                @testset "Open square bracket" begin
+                    tbl = Table([Cell("[");;])
+                    reftest(tbl, "references/typst/open_square_bracket")
+                end
             end
         end
     end
