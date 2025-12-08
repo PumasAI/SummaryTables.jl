@@ -1,6 +1,6 @@
-<table id="st-c559ef64">
+<table id="st-bdf74c50">
     <style>
-        #st-c559ef64 {
+        #st-bdf74c50 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,30 +8,30 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-c559ef64 tr {
+        #st-bdf74c50 tr {
             background-color: transparent;
             border: none;
         }
-        #st-c559ef64 tr td {
+        #st-bdf74c50 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-c559ef64 br {
+        #st-bdf74c50 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-c559ef64 sub {
+        #st-bdf74c50 sub {
             line-height: 0;
         }
-        #st-c559ef64 sup {
+        #st-bdf74c50 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="1" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
-        <td style="text-align:center;">&amp; % $ # _ { } ~ ^ \\ &lt; &gt; &quot; &apos; @ `</td>
+        <td style="text-align:center;">&amp; % $ # _ { } ~ ^ \\ &lt; &gt; &quot; &apos; @ ` [ ] . + -</td>
     </tr>
     <tr><td colspan="1" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
 </table>

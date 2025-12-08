@@ -11,7 +11,7 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{1}{c}}
 \toprule
-\& \% \$ \# \_ \{ \} \textasciitilde{} \textasciicircum{} \textbackslash{} < > " ' @ ` \\
+\& \% \$ \# \_ \{ \} \textasciitilde{} \textasciicircum{} \textbackslash{} < > " ' @ ` \char`[ ] . + - \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}
