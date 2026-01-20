@@ -39,6 +39,7 @@ export overview_table
 export table_one
 export listingtable
 export summarytable
+export rowgroup_table
 export Cell
 export CellStyle
 export Table
@@ -64,6 +65,7 @@ include("table_functions/overview_table.jl")
 include("table_functions/table_one.jl")
 include("table_functions/listingtable.jl")
 include("table_functions/summarytable.jl")
+include("table_functions/rowgroup_table.jl")
 
 include("renderers/utils.jl")
 include("renderers/latex.jl")
