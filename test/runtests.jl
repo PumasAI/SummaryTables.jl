@@ -184,6 +184,16 @@ end
             t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true)
             reftest(t, "references/table_one/one_row_one_group_pvalues_tests_confints")
 
+            t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true, nonnormal = [:value1])
+            reftest(t, "references/table_one/one_row_one_group_nonnormal_pvalues_tests_confints")
+
+            t = table_one(df, [:value1], groupby = [:group1], show_pvalues = true, show_tests = false, show_confints = false)
+            reftest(t, "references/table_one/one_row_one_group_pvalues_no_tests_or_confints")
+
+            df_with_two_cats = hcat(df, DataFrame(value3 = repeat(["A", "B"], 4))) # for fisher exact
+            t = table_one(df_with_two_cats, [:value1, :value2, :value3], groupby = [:group1], show_pvalues = true, show_tests = true, show_confints = true)
+            reftest(t, "references/table_one/multiple_rows_one_group_pvalues_tests_confints")
+
             t = table_one(df, [:value1, :value2], groupby = [:group1, :group2], group_totals = [:group2])
             reftest(t, "references/table_one/group_totals_two_groups_one_total")
 
