@@ -279,7 +279,7 @@ function table_one(
     _analyses = make_analyses(analyses, df; categorical_default, numeric_default)
 
     typedict = Dict(map(_analyses) do analysis
-        type = if getproperty(df, analysis.variable) isa CategoricalVector
+        type = if has_categorical_eltype(getproperty(df, analysis.variable))
             :categorical
         elseif analysis.variable in nonnormal
             :nonnormal
