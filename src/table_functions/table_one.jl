@@ -84,7 +84,7 @@ struct Analysis
     name
 end
 
-is_numeric_column(v::AbstractVector{<:Union{Missing, <:Real}}) = true
+is_numeric_column(v::AbstractVector{<:Union{Missing, <:Real}}) = !all(ismissing, v)
 is_numeric_column(v::AbstractVector{<:Union{Missing, <:Bool}}) = false
 is_numeric_column(v::AbstractVector) = false
 
@@ -279,7 +279,7 @@ function table_one(
     _analyses = make_analyses(analyses, df; categorical_default, numeric_default)
 
     typedict = Dict(map(_analyses) do analysis
-        type = if has_categorical_eltype(getproperty(df, analysis.variable))
+        type = if !is_numeric_column(getproperty(df, analysis.variable))
             :categorical
         elseif analysis.variable in nonnormal
             :nonnormal

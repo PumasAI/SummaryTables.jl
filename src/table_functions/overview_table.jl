@@ -28,10 +28,10 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
         col = df[!, colname]
         n = length(col)
         n_valid = count(!ismissing, col)
-        stats_vals, freqs, graph = if has_categorical_eltype(col)
-            _stats_values_freqs_graph_categorical(col, n_valid; max_categories)
-        else
+        stats_vals, freqs, graph = if is_numeric_column(col)
             _stats_values_freqs_graph_continuous(col)
+        else
+            _stats_values_freqs_graph_categorical(col, n_valid; max_categories)
         end
         n_missing = count(ismissing, col)
 
@@ -66,9 +66,6 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
 
     Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP, footnotes)
 end
-
-has_categorical_eltype(v::AbstractVector{<:Union{Missing,Number}}) = all(ismissing, v)
-has_categorical_eltype(::AbstractVector) = true
 
 function _stats_values_freqs_graph_continuous(column::AbstractVector)
     nonmissing = collect(skipmissing(column))
