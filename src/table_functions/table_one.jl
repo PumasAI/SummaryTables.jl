@@ -227,7 +227,7 @@ table_one(
   - `total_name`: The name for all total columns. Default is `"Total"`.
   - `show_n`: Display the number of rows for each group key next to its label.
   - `show_pvalues`: Display the `P-Value` column. Default is `false`.
-  - `show_testnames`: Display the `Test` column. Default is `false`.
+  - `show_tests`: Display the `Test` column. Default is `false`.
   - `show_confints`: Display the `CI` column. Default is `false`.
   - `sort`: Sort the input table before grouping. Default is `true`. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
   - `numeric_default`: What to compute for numeric columns by default. May be set globally via `defaults!(table_one = (; numeric_default = ...))`. Can be either a function `f(column)` that returns an analysis function (to customize the analysis to the data, like including a row for missings if there are any, etc.) or it can be a vector like what the `analyses` positional argument accepts which directly specifies functions with optional labels.
