@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 3.5.1 - 2026-10-23
+
+- Corrected the docstring of `table_one` which erroneously listed `show_testnames` and not `show_tests` [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).
+- Fixed inconsistent classification of categorical data, now the rules are the same for `table_one` and `overview_table`. A numeric column is a column with some non-missing values, all of which are subtypes of `Real` but not `Bool`. All other columns are categorical [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).
+
 ## 3.5.0 - 2025-12-08
 
 - Simplified typst escaping, all custom rules were removed and text is simply wrapped in `""` with `\"` as the only escaped character. This avoids bugs where some text is interpreted as special typst markup [#110](https://github.com/PumasAI/SummaryTables.jl/pull/110).
