@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Cell · SummaryTables.jl</title><meta name="title" content="Cell · SummaryTables.jl"/><meta property="og:title" content="Cell · SummaryTables.jl"/><meta property="twitter:title" content="Cell · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../../predefined_tables/listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../../predefined_tables/summarytable/"><code>summarytable</code></a></li><li><a class="tocitem" href="../../predefined_tables/table_one/"><code>table_one</code></a></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../table/"><code>Table</code></a></li><li class="is-active"><a class="tocitem" href><code>Cell</code></a><ul class="internal"><li><a class="tocitem" href="#Argument-1:-value"><span>Argument 1: <code>value</code></span></a></li><li><a class="tocitem" href="#Optional-argument-2:-cellstyle"><span>Optional argument 2: <code>cellstyle</code></span></a></li></ul></li><li><a class="tocitem" href="../cellstyle/"><code>CellStyle</code></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Custom Tables</a></li><li class="is-active"><a href><code>Cell</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>Cell</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/custom_tables/cell.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Cell"><a class="docs-heading-anchor" href="#Cell"><code>Cell</code></a><a id="Cell-1"></a><a class="docs-heading-anchor-permalink" href="#Cell" title="Permalink"></a></h1><h2 id="Argument-1:-value"><a class="docs-heading-anchor" href="#Argument-1:-value">Argument 1: <code>value</code></a><a id="Argument-1:-value-1"></a><a class="docs-heading-anchor-permalink" href="#Argument-1:-value" title="Permalink"></a></h2><p>This is the content of the <code>Cell</code>. How it is rendered is decided by the output format and what <code>show</code> methods are defined for the type of <code>value</code> and the respective output <code>MIME</code> type. If no output-specific <code>MIME</code> type has a <code>show</code> method, the fallback is always the generic text output.</p><p>The following are some types which receive special handling by SummaryTables.</p><h3 id="Special-Cell-value-types"><a class="docs-heading-anchor" href="#Special-Cell-value-types">Special <code>Cell</code> value types</a><a id="Special-Cell-value-types-1"></a><a class="docs-heading-anchor-permalink" href="#Special-Cell-value-types" title="Permalink"></a></h3><h4 id="Floating-point-numbers"><a class="docs-heading-anchor" href="#Floating-point-numbers">Floating point numbers</a><a id="Floating-point-numbers-1"></a><a class="docs-heading-anchor-permalink" href="#Floating-point-numbers" title="Permalink"></a></h4><p>Most tables display floating point numbers, however, the formatting of these numbers can vary. SummaryTables postprocesses every table in order to find unformatted floating point numbers. These are then given the default, table-wide, formatting.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = [
+    Cell(1.23456) Cell(12.3456)
+    Cell(0.123456) Cell(0.0123456)
+]
+Table(cells)</code></pre><table class="st-96a4d374">
+    <style>
+        .st-96a4d374 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-96a4d374 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-96a4d374 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-96a4d374 sub {
+            line-height: 0;
+        }
+
+        .st-96a4d374 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">1.23</td>
+        <td style="text-align:center;">12.3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">0.123</td>
+        <td style="text-align:center;">0.0123</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><pre><code class="language-julia hljs">using SummaryTables
+
+cells = [
+    Cell(1.23456) Cell(12.3456)
+    Cell(0.123456) Cell(0.0123456)
+]
+Table(cells; round_mode = :digits, round_digits = 5, trailing_zeros = true)</code></pre><table class="st-8b5a83f8">
+    <style>
+        .st-8b5a83f8 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-8b5a83f8 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-8b5a83f8 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-8b5a83f8 sub {
+            line-height: 0;
+        }
+
+        .st-8b5a83f8 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">1.23456</td>
+        <td style="text-align:center;">12.34560</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">0.12346</td>
+        <td style="text-align:center;">0.01235</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h4 id="Concat"><a class="docs-heading-anchor" href="#Concat"><code>Concat</code></a><a id="Concat-1"></a><a class="docs-heading-anchor-permalink" href="#Concat" title="Permalink"></a></h4><p>All the arguments of <code>Concat</code> are concatenated together in the final output. Note that this is usually preferrable to string-interpolating multiple values because you lose special handling of the value types (like floating point rounding behavior or special LaTeX formatting) if you turn them into strings.</p><pre><code class="language-julia hljs">using SummaryTables
+using Statistics
+
+some_numbers = [1, 2, 4, 7, 8, 13, 27]
+mu = mean(some_numbers)
+sd = std(some_numbers)
+
+cells = [
+    Cell(&quot;Mean (SD) interpolated&quot;)  Cell(&quot;$mu ($sd)&quot;)
+    Cell(&quot;Mean (SD) Concat&quot;)        Cell(Concat(mu, &quot; (&quot;, sd, &quot;)&quot;))
+]
+
+Table(cells)</code></pre><table class="st-f79a96da">
+    <style>
+        .st-f79a96da {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-f79a96da tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-f79a96da br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-f79a96da sub {
+            line-height: 0;
+        }
+
+        .st-f79a96da sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">Mean (SD) interpolated</td>
+        <td style="text-align:center;">8.857142857142858 (8.970852271450605)</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">Mean (SD) Concat</td>
+        <td style="text-align:center;">8.86 (8.97)</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h4 id="Multiline"><a class="docs-heading-anchor" href="#Multiline"><code>Multiline</code></a><a id="Multiline-1"></a><a class="docs-heading-anchor-permalink" href="#Multiline" title="Permalink"></a></h4><p>Use the <code>Multiline</code> type to force linebreaks between different values in a cell. A <code>Multiline</code> value may not be nested inside other values in a cell, it may only be the outermost value. All nested values retain their special behaviors, so using <code>Multiline</code> is preferred over hardcoding linebreaks in the specific output formats yourself.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = [
+    Cell(Multiline(&quot;A1 a&quot;, &quot;A1 b&quot;))  Cell(&quot;B1&quot;)
+    Cell(&quot;A2&quot;)                       Cell(&quot;B2&quot;)
+]
+
+Table(cells)</code></pre><table class="st-b8a6dc67">
+    <style>
+        .st-b8a6dc67 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-b8a6dc67 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-b8a6dc67 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-b8a6dc67 sub {
+            line-height: 0;
+        }
+
+        .st-b8a6dc67 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1 a<br>A1 b</td>
+        <td style="text-align:center;">B1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h4 id="Annotated"><a class="docs-heading-anchor" href="#Annotated"><code>Annotated</code></a><a id="Annotated-1"></a><a class="docs-heading-anchor-permalink" href="#Annotated" title="Permalink"></a></h4><p>To annotate elements in a table with footnotes, use the <code>Annotated</code> type. It takes an arbitrary <code>value</code> to annotate as well as an <code>annotation</code> which becomes a footnote in the table. You can also pass the <code>label</code> keyword if you don&#39;t want an auto-incrementing number as the label. You can also pass <code>label = nothing</code> if you want a footnote without label.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = [
+    Cell(Annotated(&quot;A1&quot;, &quot;This is the first cell&quot;))             Cell(&quot;B1&quot;)
+    Cell(Annotated(&quot;A2&quot;, &quot;A custom label&quot;, label = &quot;x&quot;))        Cell(&quot;B2&quot;)
+    Cell(Annotated(&quot;-&quot;, &quot;- A missing value&quot;, label = nothing))  Cell(&quot;B3&quot;)
+]
+
+Table(cells)</code></pre><table class="st-191ac402">
+    <style>
+        .st-191ac402 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-191ac402 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-191ac402 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-191ac402 sub {
+            line-height: 0;
+        }
+
+        .st-191ac402 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1<sup>1</sup></td>
+        <td style="text-align:center;">B1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2<sup>x</sup></td>
+        <td style="text-align:center;">B2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">-</td>
+        <td style="text-align:center;">B3</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr><td colspan="2" style="font-size: 0.8em;"><sup>1</sup> This is the first cell&nbsp;&nbsp;&nbsp;&nbsp;<sup>x</sup> A custom label&nbsp;&nbsp;&nbsp;&nbsp;- A missing value</td></tr>
+</table><h4 id="Superscript"><a class="docs-heading-anchor" href="#Superscript"><code>Superscript</code></a><a id="Superscript-1"></a><a class="docs-heading-anchor-permalink" href="#Superscript" title="Permalink"></a></h4><p>Displays the wrapped value in superscript style. Use this instead of hardcoding output format specific commands.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = [
+    Cell(&quot;Without superscript&quot;)  Cell(Concat(&quot;With &quot;, Superscript(&quot;superscript&quot;)));
+]
+
+Table(cells)</code></pre><table class="st-c81de9bf">
+    <style>
+        .st-c81de9bf {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-c81de9bf tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-c81de9bf br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-c81de9bf sub {
+            line-height: 0;
+        }
+
+        .st-c81de9bf sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">Without superscript</td>
+        <td style="text-align:center;">With <sup>superscript</sup></td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h4 id="Subscript"><a class="docs-heading-anchor" href="#Subscript"><code>Subscript</code></a><a id="Subscript-1"></a><a class="docs-heading-anchor-permalink" href="#Subscript" title="Permalink"></a></h4><p>Displays the wrapped value in subscript style. Use this instead of hardcoding output format specific commands.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = [
+    Cell(&quot;Without subscript&quot;)  Cell(Concat(&quot;With &quot;, Subscript(&quot;subscript&quot;)));
+]
+
+Table(cells)</code></pre><table class="st-76af6ceb">
+    <style>
+        .st-76af6ceb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-76af6ceb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-76af6ceb br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-76af6ceb sub {
+            line-height: 0;
+        }
+
+        .st-76af6ceb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">Without subscript</td>
+        <td style="text-align:center;">With <sub>subscript</sub></td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Optional-argument-2:-cellstyle"><a class="docs-heading-anchor" href="#Optional-argument-2:-cellstyle">Optional argument 2: <code>cellstyle</code></a><a id="Optional-argument-2:-cellstyle-1"></a><a class="docs-heading-anchor-permalink" href="#Optional-argument-2:-cellstyle" title="Permalink"></a></h2><p>You may pass the style settings of a <code>Cell</code> as a positional argument of type <a href="../cellstyle/#CellStyle"><code>CellStyle</code></a>. It is usually more convenient, however, to use the keyword arguments to <code>Cell</code> instead.</p><pre><code class="language-julia hljs">using SummaryTables
+
+
+Table([
+    Cell(&quot;A1&quot;, CellStyle(bold = true))    Cell(&quot;B1&quot;, CellStyle(underline = true))
+    Cell(&quot;A2&quot;, CellStyle(italic = true))  Cell(&quot;B2&quot;, CellStyle(indent_pt = 10))
+])</code></pre><table class="st-a804da17">
+    <style>
+        .st-a804da17 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-a804da17 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-a804da17 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-a804da17 sub {
+            line-height: 0;
+        }
+
+        .st-a804da17 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:center;">A1</td>
+        <td style="text-decoration:underline;text-align:center;">B1</td>
+    </tr>
+    <tr>
+        <td style="font-style:italic;text-align:center;">A2</td>
+        <td style="padding-left:10.0pt;text-align:center;">B2</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../table/">« <code>Table</code></a><a class="docs-footer-nextpage" href="../cellstyle/"><code>CellStyle</code> »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.3.0 on <span class="colophon-date" title="Tuesday 26 March 2024 08:18">Tuesday 26 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

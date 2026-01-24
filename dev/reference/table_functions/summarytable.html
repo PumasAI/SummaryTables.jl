@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>summarytable | SummaryTables.jl</title>
+    <meta name="description" content="Documentation for SummaryTables.jl">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/SummaryTables.jl/dev/assets/style.D9ZYOTdv.css" as="style">
+    <link rel="preload stylesheet" href="/SummaryTables.jl/dev/vp-icons.css" as="style">
+    
+    <script type="module" src="/SummaryTables.jl/dev/assets/app.D-gCoGNX.js"></script>
+    <link rel="preload" href="/SummaryTables.jl/dev/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/SummaryTables.jl/dev/assets/chunks/theme.CZP5870Y.js">
+    <link rel="modulepreload" href="/SummaryTables.jl/dev/assets/chunks/framework.CAkcY2eT.js">
+    <link rel="modulepreload" href="/SummaryTables.jl/dev/assets/reference_table_functions_summarytable.md.Cqkeqpgr.lean.js">
+    <link rel="icon" href="/SummaryTables.jl/dev/favicon.ico">
+    <script src="/SummaryTables.jl/versions.js"></script>
+    <script src="/SummaryTables.jl/dev/siteinfo.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-a9a9e638><!--[--><!--]--><!--[--><span tabindex="-1" data-v-492508fc></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-492508fc>Skip to content</a><!--]--><!----><header class="VPNav" data-v-a9a9e638 data-v-f1e365da><div class="VPNavBar" data-v-f1e365da data-v-822684d1><div class="wrapper" data-v-822684d1><div class="container" data-v-822684d1><div class="title" data-v-822684d1><div class="VPNavBarTitle has-sidebar" data-v-822684d1 data-v-0f4f798b><a class="title" href="/SummaryTables.jl/dev/" data-v-0f4f798b><!--[--><!--]--><!--[--><img class="VPImage logo" src="/SummaryTables.jl/dev/logo.png" width="24" height="24" alt data-v-35a7d0b8><!--]--><span data-v-0f4f798b>SummaryTables.jl</span><!--[--><!--]--></a></div></div><div class="content" data-v-822684d1><div class="content-body" data-v-822684d1><!--[--><!--]--><div class="VPNavBarSearch search" data-v-822684d1><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-822684d1 data-v-e6d46098><span id="main-nav-aria-label" class="visually-hidden" data-v-e6d46098> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/SummaryTables.jl/dev/index" tabindex="0" data-v-e6d46098 data-v-956ec74c><!--[--><span data-v-956ec74c>Home</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup active" data-v-e6d46098 data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-04f5c5e9><span class="text" data-v-04f5c5e9><!----><span data-v-04f5c5e9>Reference</span><span class="vpi-chevron-down text-icon" data-v-04f5c5e9></span></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><div class="items" data-v-7dd3104a><!--[--><!--[--><div class="VPMenuGroup" data-v-7dd3104a data-v-48c802d0><p class="title" data-v-48c802d0>Table Functions</p><!--[--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/table_functions/simple_table" data-v-acbfed09><!--[--><span data-v-acbfed09>simple_table</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/table_functions/overview_table" data-v-acbfed09><!--[--><span data-v-acbfed09>overview_table</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/table_functions/listingtable" data-v-acbfed09><!--[--><span data-v-acbfed09>listingtable</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link active" href="/SummaryTables.jl/dev/reference/table_functions/summarytable" data-v-acbfed09><!--[--><span data-v-acbfed09>summarytable</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/table_functions/table_one" data-v-acbfed09><!--[--><span data-v-acbfed09>table_one</span><!--]--></a></div><!--]--><!--]--></div><!--]--><!--[--><div class="VPMenuGroup" data-v-7dd3104a data-v-48c802d0><p class="title" data-v-48c802d0>Infrastructure</p><!--[--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/infrastructure/table" data-v-acbfed09><!--[--><span data-v-acbfed09>Table</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/infrastructure/cell" data-v-acbfed09><!--[--><span data-v-acbfed09>Cell</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/infrastructure/cellstyle" data-v-acbfed09><!--[--><span data-v-acbfed09>CellStyle</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/infrastructure/defaults" data-v-acbfed09><!--[--><span data-v-acbfed09>Global Defaults</span><!--]--></a></div><!--]--><!--]--></div><!--]--><!--[--><div class="VPMenuLink" data-v-7dd3104a data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/reference/renderers" data-v-acbfed09><!--[--><span data-v-acbfed09>Renderers</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-e6d46098 data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-04f5c5e9><span class="text" data-v-04f5c5e9><!----><span data-v-04f5c5e9>Resources</span><span class="vpi-chevron-down text-icon" data-v-04f5c5e9></span></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><div class="items" data-v-7dd3104a><!--[--><!--[--><div class="VPMenuLink" data-v-7dd3104a data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/resources/api" data-v-acbfed09><!--[--><span data-v-acbfed09>API</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-7dd3104a data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/dev/resources/changelog" data-v-acbfed09><!--[--><span data-v-acbfed09>Changelog</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><!----><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-822684d1 data-v-af096f4a><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-af096f4a data-v-e40a8bb6 data-v-4a1c76db><span class="check" data-v-4a1c76db><span class="icon" data-v-4a1c76db><!--[--><span class="vpi-sun sun" data-v-e40a8bb6></span><span class="vpi-moon moon" data-v-e40a8bb6></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-822684d1 data-v-164c457f data-v-ee7a9424><!--[--><a class="VPSocialLink no-icon" href="https://github.com/PumasAI/SummaryTables.jl" aria-label="github" target="_blank" rel="noopener" data-v-ee7a9424 data-v-d26d30cb><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-822684d1 data-v-925effce data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-04f5c5e9><span class="vpi-more-horizontal icon" data-v-04f5c5e9></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><!----><!--[--><!--[--><!----><div class="group" data-v-925effce><div class="item appearance" data-v-925effce><p class="label" data-v-925effce>Appearance</p><div class="appearance-action" data-v-925effce><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-925effce data-v-e40a8bb6 data-v-4a1c76db><span class="check" data-v-4a1c76db><span class="icon" data-v-4a1c76db><!--[--><span class="vpi-sun sun" data-v-e40a8bb6></span><span class="vpi-moon moon" data-v-e40a8bb6></span><!--]--></span></span></button></div></div></div><div class="group" data-v-925effce><div class="item social-links" data-v-925effce><div class="VPSocialLinks social-links-list" data-v-925effce data-v-ee7a9424><!--[--><a class="VPSocialLink no-icon" href="https://github.com/PumasAI/SummaryTables.jl" aria-label="github" target="_blank" rel="noopener" data-v-ee7a9424 data-v-d26d30cb><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--[--><!--[--><div class="VPFlyout VPNolebaseEnhancedReadabilitiesMenu VPNolebaseEnhancedReadabilitiesMenuFlyout" aria-label="Enhanced Readability" role="menuitem" data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-04f5c5e9><span class="text" data-v-04f5c5e9><span class="i-icon-park-outline:book-open option-icon" data-v-04f5c5e9></span><!----><span class="vpi-chevron-down text-icon" data-v-04f5c5e9></span></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><!----><!--[--><!--]--></div></div></div><!--]--><!--]--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-822684d1 data-v-5dea55bf><span class="container" data-v-5dea55bf><span class="top" data-v-5dea55bf></span><span class="middle" data-v-5dea55bf></span><span class="bottom" data-v-5dea55bf></span></span></button></div></div></div></div><div class="divider" data-v-822684d1><div class="divider-line" data-v-822684d1></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-a9a9e638 data-v-070ab83d><div class="container" data-v-070ab83d><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-070ab83d><span class="vpi-align-left menu-icon" data-v-070ab83d></span><span class="menu-text" data-v-070ab83d>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-070ab83d data-v-168ddf5d><button data-v-168ddf5d>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-a9a9e638 data-v-18756405><div class="curtain" data-v-18756405></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-18756405><span class="visually-hidden" id="sidebar-aria-label" data-v-18756405> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-9e426adc><section class="VPSidebarItem level-0" data-v-9e426adc data-v-a4b0d9bf><!----><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/index" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Home</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-9e426adc><section class="VPSidebarItem level-0 collapsible has-active" data-v-9e426adc data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h2 class="text" data-v-a4b0d9bf>Reference</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><section class="VPSidebarItem level-1 collapsible has-active" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h3 class="text" data-v-a4b0d9bf>Table Functions</h3><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/table_functions/simple_table" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>simple_table</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/table_functions/overview_table" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>overview_table</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/table_functions/listingtable" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>listingtable</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/table_functions/summarytable" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>summarytable</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/table_functions/table_one" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>table_one</p><!--]--></a><!----></div><!----></div><!--]--></div></section><section class="VPSidebarItem level-1 collapsible" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h3 class="text" data-v-a4b0d9bf>Infrastructure</h3><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/infrastructure/table" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Table</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/infrastructure/cell" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Cell</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/infrastructure/cellstyle" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>CellStyle</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/infrastructure/defaults" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Global Defaults</p><!--]--></a><!----></div><!----></div><!--]--></div></section><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/reference/renderers" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Renderers</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-9e426adc><section class="VPSidebarItem level-0 collapsible" data-v-9e426adc data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h2 class="text" data-v-a4b0d9bf>Resources</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/resources/api" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>API</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/dev/resources/changelog" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Changelog</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-a9a9e638 data-v-91765379><div class="VPDoc has-sidebar has-aside" data-v-91765379 data-v-83890dd9><!--[--><!--]--><div class="container" data-v-83890dd9><div class="aside" data-v-83890dd9><div class="aside-curtain" data-v-83890dd9></div><div class="aside-container" data-v-83890dd9><div class="aside-content" data-v-83890dd9><div class="VPDocAside" data-v-83890dd9 data-v-6d7b3c46><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-6d7b3c46 data-v-b38bf2ff><div class="content" data-v-b38bf2ff><div class="outline-marker" data-v-b38bf2ff></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-b38bf2ff>On this page</div><ul class="VPDocOutlineItem root" data-v-b38bf2ff data-v-3f927ebe><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-6d7b3c46></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-83890dd9><div class="content-container" data-v-83890dd9><!--[--><!--]--><main class="main" data-v-83890dd9><div style="position:relative;" class="vp-doc _SummaryTables_jl_dev_reference_table_functions_summarytable" data-v-83890dd9><div><h1 id="summarytable" tabindex="-1"><code>summarytable</code> <a class="header-anchor" href="#summarytable" aria-label="Permalink to &quot;`summarytable` {#summarytable}&quot;">​</a></h1><h2 id="Synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#Synopsis" aria-label="Permalink to &quot;Synopsis {#Synopsis}&quot;">​</a></h2><p>A summary table summarizes the raw data from one column of a source table for different groups defined by grouping columns. It is similar to a <a href="/SummaryTables.jl/dev/reference/table_functions/listingtable#listingtable"><code>listingtable</code></a> without the raw values.</p><p>Here is an example of a hypothetical clinical trial with drug concentration measurements of two participants with five time points each.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    concentration </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4.5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">3.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    time </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    data,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    :concentration</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Concentration (ng/mL)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :time</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Time (hr)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        length </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;N&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        mean </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Mean&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        std </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;SD&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-8a17bea4">
+    <style>
+        #st-8a17bea4 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-8a17bea4 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-8a17bea4 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-8a17bea4 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-8a17bea4 sub {
+            line-height: 0;
+        }
+        #st-8a17bea4 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="5" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Time (hr)</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">0</td>
+        <td style="text-align:center;">0.5</td>
+        <td style="text-align:center;">1</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="5" style="font-weight:bold;text-align:center;">Concentration (ng/mL)</td>
+    </tr>
+        <tr><td colspan="6" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">N</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean</td>
+        <td style="text-align:center;">1.5</td>
+        <td style="text-align:center;">3.85</td>
+        <td style="text-align:center;">1.9</td>
+        <td style="text-align:center;">1.35</td>
+        <td style="text-align:center;">0.15</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">0.424</td>
+        <td style="text-align:center;">0.919</td>
+        <td style="text-align:center;">0.141</td>
+        <td style="text-align:center;">0.212</td>
+        <td style="text-align:center;">0.0707</td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Argument-1:-table" tabindex="-1">Argument 1: <code>table</code> <a class="header-anchor" href="#Argument-1:-table" aria-label="Permalink to &quot;Argument 1: `table` {#Argument-1:-table}&quot;">​</a></h2><p>The first argument can be any object that is a table compatible with the <code>Tables.jl</code> API. Here are some common examples:</p><h3 id="DataFrame" tabindex="-1"><code>DataFrame</code> <a class="header-anchor" href="#DataFrame" aria-label="Permalink to &quot;`DataFrame` {#DataFrame}&quot;">​</a></h3><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-cca70cdb">
+    <style>
+        #st-cca70cdb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-cca70cdb tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-cca70cdb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-cca70cdb br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-cca70cdb sub {
+            line-height: 0;
+        }
+        #st-cca70cdb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h3 id="NamedTuple-of-Vectors" tabindex="-1"><code>NamedTuple</code> of <code>Vector</code>s <a class="header-anchor" href="#NamedTuple-of-Vectors" aria-label="Permalink to &quot;`NamedTuple` of `Vector`s {#NamedTuple-of-Vectors}&quot;">​</a></h3><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (; value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-cca70cdb">
+    <style>
+        #st-cca70cdb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-cca70cdb tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-cca70cdb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-cca70cdb br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-cca70cdb sub {
+            line-height: 0;
+        }
+        #st-cca70cdb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h3 id="Vector-of-NamedTuples" tabindex="-1"><code>Vector</code> of <code>NamedTuple</code>s <a class="header-anchor" href="#Vector-of-NamedTuples" aria-label="Permalink to &quot;`Vector` of `NamedTuple`s {#Vector-of-NamedTuples}&quot;">​</a></h3><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    (value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    (value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    (value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    (value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    (value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    (value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-cca70cdb">
+    <style>
+        #st-cca70cdb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-cca70cdb tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-cca70cdb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-cca70cdb br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-cca70cdb sub {
+            line-height: 0;
+        }
+        #st-cca70cdb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Argument-2:-variable" tabindex="-1">Argument 2: <code>variable</code> <a class="header-anchor" href="#Argument-2:-variable" aria-label="Permalink to &quot;Argument 2: `variable` {#Argument-2:-variable}&quot;">​</a></h2><p>The second argument primarily selects the table column whose data should populate the cells of the summary table. The column name is specified with a <code>Symbol</code> or <code>String</code>:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 7</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-6d5d573e">
+    <style>
+        #st-6d5d573e {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-6d5d573e tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-6d5d573e tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-6d5d573e br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-6d5d573e sub {
+            line-height: 0;
+        }
+        #st-6d5d573e sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value1</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>Here we choose to list column <code>:value2</code> instead:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 7</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-4b4b2fcf">
+    <style>
+        #st-4b4b2fcf {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-4b4b2fcf tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-4b4b2fcf tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-4b4b2fcf br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-4b4b2fcf sub {
+            line-height: 0;
+        }
+        #st-4b4b2fcf sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value2</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">8.5</td>
+        <td style="text-align:center;">9.5</td>
+        <td style="text-align:center;">10.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>By default, the variable name is used as the label as well. You can pass a different label as the second element of a <code>Pair</code> using the <code>=&gt;</code> operators. The label can be of any type (refer to <a href="/SummaryTables.jl/dev/reference/infrastructure/cell#Special-Cell-value-types">Special <code>Cell</code> value types</a> for a list).</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 7</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Value&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-7fd42d6a">
+    <style>
+        #st-7fd42d6a {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-7fd42d6a tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-7fd42d6a tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-7fd42d6a br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-7fd42d6a sub {
+            line-height: 0;
+        }
+        #st-7fd42d6a sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">Value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-rows" tabindex="-1">Keyword: <code>rows</code> <a class="header-anchor" href="#Keyword:-rows" aria-label="Permalink to &quot;Keyword: `rows` {#Keyword:-rows}&quot;">​</a></h2><p>The <code>rows</code> keyword determines the grouping structure along the rows. It can either be a <code>Symbol</code> or <code>String</code> specifying a grouping column, a <code>Pair{Symbol,Any}</code> or <code>Pair{String,Any}</code> where the second element overrides the group&#39;s label, or a <code>Vector</code> with multiple groups of the aforementioned format.</p><p>This example uses a single group with default label.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-31ada1e2">
+    <style>
+        #st-31ada1e2 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-31ada1e2 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-31ada1e2 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-31ada1e2 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-31ada1e2 sub {
+            line-height: 0;
+        }
+        #st-31ada1e2 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>The label can be overridden using the <code>Pair</code> operator.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Group&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-da7197dc">
+    <style>
+        #st-da7197dc {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-da7197dc tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-da7197dc tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-da7197dc br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-da7197dc sub {
+            line-height: 0;
+        }
+        #st-da7197dc sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Group</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>Multiple groups are possible as well, in that case you get a nested display where the last group changes the fastest.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group2</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Group 2&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-89d6dc68">
+    <style>
+        #st-89d6dc68 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-89d6dc68 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-89d6dc68 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-89d6dc68 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-89d6dc68 sub {
+            line-height: 0;
+        }
+        #st-89d6dc68 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">Group 2</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="6" style="text-align:left;">A</td>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">E</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="6" style="text-align:left;">B</td>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">8.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">9.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">E</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">10.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-cols" tabindex="-1">Keyword: <code>cols</code> <a class="header-anchor" href="#Keyword:-cols" aria-label="Permalink to &quot;Keyword: `cols` {#Keyword:-cols}&quot;">​</a></h2><p>The <code>cols</code> keyword determines the grouping structure along the columns. It can either be a <code>Symbol</code> or <code>String</code> specifying a grouping column, a <code>Pair{Symbol,Any}</code> or <code>Pair{String,Any}</code> where the second element overrides the group&#39;s label, or a <code>Vector</code> with multiple groups of the aforementioned format.</p><p>This example uses a single group with default label.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-cca70cdb">
+    <style>
+        #st-cca70cdb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-cca70cdb tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-cca70cdb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-cca70cdb br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-cca70cdb sub {
+            line-height: 0;
+        }
+        #st-cca70cdb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>The label can be overridden using the <code>Pair</code> operator.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Group&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-1de9ee66">
+    <style>
+        #st-1de9ee66 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-1de9ee66 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-1de9ee66 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-1de9ee66 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-1de9ee66 sub {
+            line-height: 0;
+        }
+        #st-1de9ee66 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Group</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">A</td>
+        <td style="text-align:center;">B</td>
+        <td style="text-align:center;">C</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>Multiple groups are possible as well, in that case you get a nested display where the last group changes the fastest.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group2</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Group 2&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-9ea81bf8">
+    <style>
+        #st-9ea81bf8 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-9ea81bf8 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-9ea81bf8 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-9ea81bf8 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-9ea81bf8 sub {
+            line-height: 0;
+        }
+        #st-9ea81bf8 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="text-align:center;">A</td>
+        <td colspan="3" style="text-align:center;">B</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Group 2</td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Group 2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">C</td>
+        <td style="text-align:center;">D</td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="6" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="7" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2.5</td>
+        <td style="text-align:center;">3.5</td>
+        <td style="text-align:center;">4.5</td>
+        <td style="text-align:center;">8.5</td>
+        <td style="text-align:center;">9.5</td>
+        <td style="text-align:center;">10.5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+        <td style="text-align:center;">2.12</td>
+    </tr>
+    <tr><td colspan="7" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-summary" tabindex="-1">Keyword: <code>summary</code> <a class="header-anchor" href="#Keyword:-summary" aria-label="Permalink to &quot;Keyword: `summary` {#Keyword:-summary}&quot;">​</a></h2><p>This keyword takes a list of aggregation functions which are used to summarize the chosen variable. A summary function should take a vector of values (usually that will be numbers) and output one summary value. This value can be of any type that SummaryTables can show in a cell (refer to <a href="/SummaryTables.jl/dev/reference/infrastructure/cell#Special-Cell-value-types">Special <code>Cell</code> value types</a> for a list).</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">24</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;F&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;G&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mean_sd</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(values) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> Concat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">mean</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(values), </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot; (&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">std</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(values), </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    data,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    :value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        mean,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        std </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;SD&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        mean_sd </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Mean (SD)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    ]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-cda6afdb">
+    <style>
+        #st-cda6afdb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-cda6afdb tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-cda6afdb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-cda6afdb br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-cda6afdb sub {
+            line-height: 0;
+        }
+        #st-cda6afdb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="3" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">3 (2.83)</td>
+        <td style="text-align:center;">11 (2.83)</td>
+        <td style="text-align:center;">19 (2.83)</td>
+    </tr>
+    <tr>
+        <td rowspan="3" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">4 (2.83)</td>
+        <td style="text-align:center;">12 (2.83)</td>
+        <td style="text-align:center;">20 (2.83)</td>
+    </tr>
+    <tr>
+        <td rowspan="3" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">5 (2.83)</td>
+        <td style="text-align:center;">13 (2.83)</td>
+        <td style="text-align:center;">21 (2.83)</td>
+    </tr>
+    <tr>
+        <td rowspan="3" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">SD</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">6 (2.83)</td>
+        <td style="text-align:center;">14 (2.83)</td>
+        <td style="text-align:center;">22 (2.83)</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-variable_header" tabindex="-1">Keyword: <code>variable_header</code> <a class="header-anchor" href="#Keyword:-variable_header" aria-label="Permalink to &quot;Keyword: `variable_header` {#Keyword:-variable_header}&quot;">​</a></h2><p>If you set <code>variable_header = false</code>, you can hide the header cell with the variable label, which makes the table layout a little more compact.</p><p>Here is a table with the header cell:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">24</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;F&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;G&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    data,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    :value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-db936fc0">
+    <style>
+        #st-db936fc0 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-db936fc0 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-db936fc0 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-db936fc0 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-db936fc0 sub {
+            line-height: 0;
+        }
+        #st-db936fc0 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><p>And here is a table without it:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">24</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;F&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;G&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    data,</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    :value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    variable_header </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-e4097b7c">
+    <style>
+        #st-e4097b7c {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-e4097b7c tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-e4097b7c tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-e4097b7c br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-e4097b7c sub {
+            line-height: 0;
+        }
+        #st-e4097b7c sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-sort" tabindex="-1">Keyword: <code>sort</code> <a class="header-anchor" href="#Keyword:-sort" aria-label="Permalink to &quot;Keyword: `sort` {#Keyword:-sort}&quot;">​</a></h2><p>By default, group entries are sorted. If you need to maintain the order of entries from your dataset, set <code>sort = false</code>.</p><p>Notice how in the following two examples, the group indices are <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code>, <code>&quot;uno&quot;</code> when sorted, but <code>&quot;uno&quot;</code>, <code>&quot;dos&quot;</code>, <code>&quot;tres&quot;</code> when not sorted. If we want to preserve the natural order of these groups (&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot; meaning &quot;one&quot;, &quot;two&quot;, &quot;three&quot; in Spanish but having a different alphabetical order) we need to set <code>sort = false</code>.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">18</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;uno&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;dos&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;tres&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;cuatro&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;cinco&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">9</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><table id="st-215bc3ef">
+    <style>
+        #st-215bc3ef {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-215bc3ef tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-215bc3ef tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-215bc3ef br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-215bc3ef sub {
+            line-height: 0;
+        }
+        #st-215bc3ef sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">cinco</td>
+        <td style="text-align:center;">cuatro</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">dos</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">10</td>
+        <td style="text-align:center;">9</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">tres</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">16</td>
+        <td style="text-align:center;">15</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">uno</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std], sort </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-d8bd56dc">
+    <style>
+        #st-d8bd56dc {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-d8bd56dc tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-d8bd56dc tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-d8bd56dc br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-d8bd56dc sub {
+            line-height: 0;
+        }
+        #st-d8bd56dc sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">cuatro</td>
+        <td style="text-align:center;">cinco</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">uno</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">dos</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">9</td>
+        <td style="text-align:center;">10</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">tres</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">15</td>
+        <td style="text-align:center;">16</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><div class="warning custom-block"><p class="custom-block-title">Warning</p><p>If you have multiple groups, <code>sort = false</code> can lead to splitting of higher-level groups if they are not correctly ordered in the source data.</p></div><p>Compare the following two tables. In the second one, the group &quot;A&quot; is split by &quot;B&quot; so the label appears twice.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean])</span></span></code></pre></div><div><table id="st-bfa35f1f">
+    <style>
+        #st-bfa35f1f {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-bfa35f1f tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-bfa35f1f tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-bfa35f1f br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-bfa35f1f sub {
+            line-height: 0;
+        }
+        #st-bfa35f1f sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean], sort </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-ee657416">
+    <style>
+        #st-ee657416 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-ee657416 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-ee657416 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-ee657416 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-ee657416 sub {
+            line-height: 0;
+        }
+        #st-ee657416 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="font-weight:bold;text-align:left;">group2</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">1</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">2</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">A</td>
+        <td style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div></div></div></main><footer class="VPDocFooter" data-v-83890dd9 data-v-4f9813fa><!--[--><!--]--><div class="edit-info" data-v-4f9813fa><div class="edit-link" data-v-4f9813fa><a class="VPLink link vp-external-link-icon no-icon edit-link-button" href="https://https://github.com/PumasAI/SummaryTables.jl/edit/master/docs/src/reference/table_functions/summarytable.md" target="_blank" rel="noreferrer" data-v-4f9813fa><!--[--><span class="vpi-square-pen edit-link-icon" data-v-4f9813fa></span> Edit this page<!--]--></a></div><!----></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-4f9813fa><span class="visually-hidden" id="doc-footer-aria-label" data-v-4f9813fa>Pager</span><div class="pager" data-v-4f9813fa><a class="VPLink link pager-link prev" href="/SummaryTables.jl/dev/reference/table_functions/listingtable" data-v-4f9813fa><!--[--><span class="desc" data-v-4f9813fa>Previous page</span><span class="title" data-v-4f9813fa>listingtable</span><!--]--></a></div><div class="pager" data-v-4f9813fa><a class="VPLink link pager-link next" href="/SummaryTables.jl/dev/reference/table_functions/table_one" data-v-4f9813fa><!--[--><span class="desc" data-v-4f9813fa>Next page</span><span class="title" data-v-4f9813fa>table_one</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-a9a9e638 data-v-c970a860><div class="container" data-v-c970a860><p class="message" data-v-c970a860>Made with <a href="https://luxdl.github.io/DocumenterVitepress.jl/dev/" target="_blank"><strong>DocumenterVitepress.jl</strong></a><br></p><p class="copyright" data-v-c970a860>© Copyright 2026.</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"D90OEZcI\",\"reference_infrastructure_cell.md\":\"CtkEPts4\",\"reference_infrastructure_cellstyle.md\":\"BbkaYtDm\",\"reference_infrastructure_defaults.md\":\"BH_XKNQh\",\"reference_infrastructure_table.md\":\"CkLQcMbR\",\"reference_renderers.md\":\"CzM2n_wK\",\"reference_table_functions_listingtable.md\":\"CrQo6H31\",\"reference_table_functions_overview_table.md\":\"C8bUsLTx\",\"reference_table_functions_simple_table.md\":\"DEe4819s\",\"reference_table_functions_summarytable.md\":\"Cqkeqpgr\",\"reference_table_functions_table_one.md\":\"BunJTNLW\",\"resources_api.md\":\"Da0vSxR9\",\"resources_changelog.md\":\"Q-ktHF_g\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"SummaryTables.jl\",\"description\":\"Documentation for SummaryTables.jl\",\"base\":\"/SummaryTables.jl/dev/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"outline\":\"deep\",\"logo\":{\"src\":\"/logo.png\",\"width\":24,\"height\":24},\"search\":{\"provider\":\"local\",\"options\":{\"detailedView\":true}},\"nav\":[{\"text\":\"Home\",\"link\":\"/index\"},{\"text\":\"Reference\",\"collapsed\":false,\"items\":[{\"text\":\"Table Functions\",\"collapsed\":false,\"items\":[{\"text\":\"simple_table\",\"link\":\"/reference/table_functions/simple_table\"},{\"text\":\"overview_table\",\"link\":\"/reference/table_functions/overview_table\"},{\"text\":\"listingtable\",\"link\":\"/reference/table_functions/listingtable\"},{\"text\":\"summarytable\",\"link\":\"/reference/table_functions/summarytable\"},{\"text\":\"table_one\",\"link\":\"/reference/table_functions/table_one\"}]},{\"text\":\"Infrastructure\",\"collapsed\":false,\"items\":[{\"text\":\"Table\",\"link\":\"/reference/infrastructure/table\"},{\"text\":\"Cell\",\"link\":\"/reference/infrastructure/cell\"},{\"text\":\"CellStyle\",\"link\":\"/reference/infrastructure/cellstyle\"},{\"text\":\"Global Defaults\",\"link\":\"/reference/infrastructure/defaults\"}]},{\"text\":\"Renderers\",\"link\":\"/reference/renderers\"}]},{\"text\":\"Resources\",\"collapsed\":false,\"items\":[{\"text\":\"API\",\"link\":\"/resources/api\"},{\"text\":\"Changelog\",\"link\":\"/resources/changelog\"}]},{\"component\":\"VersionPicker\"}],\"sidebar\":[{\"text\":\"Home\",\"link\":\"/index\"},{\"text\":\"Reference\",\"collapsed\":false,\"items\":[{\"text\":\"Table Functions\",\"collapsed\":false,\"items\":[{\"text\":\"simple_table\",\"link\":\"/reference/table_functions/simple_table\"},{\"text\":\"overview_table\",\"link\":\"/reference/table_functions/overview_table\"},{\"text\":\"listingtable\",\"link\":\"/reference/table_functions/listingtable\"},{\"text\":\"summarytable\",\"link\":\"/reference/table_functions/summarytable\"},{\"text\":\"table_one\",\"link\":\"/reference/table_functions/table_one\"}]},{\"text\":\"Infrastructure\",\"collapsed\":false,\"items\":[{\"text\":\"Table\",\"link\":\"/reference/infrastructure/table\"},{\"text\":\"Cell\",\"link\":\"/reference/infrastructure/cell\"},{\"text\":\"CellStyle\",\"link\":\"/reference/infrastructure/cellstyle\"},{\"text\":\"Global Defaults\",\"link\":\"/reference/infrastructure/defaults\"}]},{\"text\":\"Renderers\",\"link\":\"/reference/renderers\"}]},{\"text\":\"Resources\",\"collapsed\":false,\"items\":[{\"text\":\"API\",\"link\":\"/resources/api\"},{\"text\":\"Changelog\",\"link\":\"/resources/changelog\"}]}],\"editLink\":{\"pattern\":\"https://https://github.com/PumasAI/SummaryTables.jl/edit/master/docs/src/:path\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/PumasAI/SummaryTables.jl\"}],\"footer\":{\"message\":\"Made with <a href=\\\"https://luxdl.github.io/DocumenterVitepress.jl/dev/\\\" target=\\\"_blank\\\"><strong>DocumenterVitepress.jl</strong></a><br>\",\"copyright\":\"© Copyright 2026.\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":true}");</script>
+    
+  </body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Table | SummaryTables.jl</title>
+    <meta name="description" content="Documentation for SummaryTables.jl">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/SummaryTables.jl/v3/assets/style.6pgDzDao.css" as="style">
+    <link rel="preload stylesheet" href="/SummaryTables.jl/v3/vp-icons.css" as="style">
+    
+    <script type="module" src="/SummaryTables.jl/v3/assets/app.Cer4ZSx_.js"></script>
+    <link rel="preload" href="/SummaryTables.jl/v3/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/SummaryTables.jl/v3/assets/chunks/theme.Cnr-CboU.js">
+    <link rel="modulepreload" href="/SummaryTables.jl/v3/assets/chunks/framework.BKUja_M7.js">
+    <link rel="modulepreload" href="/SummaryTables.jl/v3/assets/reference_infrastructure_table.md.BKALbavZ.lean.js">
+    <link rel="icon" href="/SummaryTables.jl/v3/favicon.ico">
+    <script src="/SummaryTables.jl/versions.js"></script>
+    <script src="/SummaryTables.jl/v3/siteinfo.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-a9a9e638><!--[--><!--]--><!--[--><span tabindex="-1" data-v-492508fc></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-492508fc>Skip to content</a><!--]--><!----><header class="VPNav" data-v-a9a9e638 data-v-f1e365da><div class="VPNavBar" data-v-f1e365da data-v-822684d1><div class="wrapper" data-v-822684d1><div class="container" data-v-822684d1><div class="title" data-v-822684d1><div class="VPNavBarTitle has-sidebar" data-v-822684d1 data-v-0f4f798b><a class="title" href="/SummaryTables.jl/v3/" data-v-0f4f798b><!--[--><!--]--><!--[--><img class="VPImage logo" src="/SummaryTables.jl/v3/logo.png" width="24" height="24" alt data-v-35a7d0b8><!--]--><span data-v-0f4f798b>SummaryTables.jl</span><!--[--><!--]--></a></div></div><div class="content" data-v-822684d1><div class="content-body" data-v-822684d1><!--[--><!--]--><div class="VPNavBarSearch search" data-v-822684d1><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-822684d1 data-v-e6d46098><span id="main-nav-aria-label" class="visually-hidden" data-v-e6d46098> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/SummaryTables.jl/v3/index" tabindex="0" data-v-e6d46098 data-v-956ec74c><!--[--><span data-v-956ec74c>Home</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup active" data-v-e6d46098 data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-04f5c5e9><span class="text" data-v-04f5c5e9><!----><span data-v-04f5c5e9>Reference</span><span class="vpi-chevron-down text-icon" data-v-04f5c5e9></span></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><div class="items" data-v-7dd3104a><!--[--><!--[--><div class="VPMenuGroup" data-v-7dd3104a data-v-48c802d0><p class="title" data-v-48c802d0>Table Functions</p><!--[--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/table_functions/simple_table" data-v-acbfed09><!--[--><span data-v-acbfed09>simple_table</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/table_functions/overview_table" data-v-acbfed09><!--[--><span data-v-acbfed09>overview_table</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/table_functions/listingtable" data-v-acbfed09><!--[--><span data-v-acbfed09>listingtable</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/table_functions/summarytable" data-v-acbfed09><!--[--><span data-v-acbfed09>summarytable</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/table_functions/table_one" data-v-acbfed09><!--[--><span data-v-acbfed09>table_one</span><!--]--></a></div><!--]--><!--]--></div><!--]--><!--[--><div class="VPMenuGroup" data-v-7dd3104a data-v-48c802d0><p class="title" data-v-48c802d0>Infrastructure</p><!--[--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link active" href="/SummaryTables.jl/v3/reference/infrastructure/table" data-v-acbfed09><!--[--><span data-v-acbfed09>Table</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/infrastructure/cell" data-v-acbfed09><!--[--><span data-v-acbfed09>Cell</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/infrastructure/cellstyle" data-v-acbfed09><!--[--><span data-v-acbfed09>CellStyle</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-48c802d0 data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/infrastructure/defaults" data-v-acbfed09><!--[--><span data-v-acbfed09>Global Defaults</span><!--]--></a></div><!--]--><!--]--></div><!--]--><!--[--><div class="VPMenuLink" data-v-7dd3104a data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/reference/renderers" data-v-acbfed09><!--[--><span data-v-acbfed09>Renderers</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-e6d46098 data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-04f5c5e9><span class="text" data-v-04f5c5e9><!----><span data-v-04f5c5e9>Resources</span><span class="vpi-chevron-down text-icon" data-v-04f5c5e9></span></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><div class="items" data-v-7dd3104a><!--[--><!--[--><div class="VPMenuLink" data-v-7dd3104a data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/resources/api" data-v-acbfed09><!--[--><span data-v-acbfed09>API</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-7dd3104a data-v-acbfed09><a class="VPLink link" href="/SummaryTables.jl/v3/resources/changelog" data-v-acbfed09><!--[--><span data-v-acbfed09>Changelog</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><!----><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-822684d1 data-v-af096f4a><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-af096f4a data-v-e40a8bb6 data-v-4a1c76db><span class="check" data-v-4a1c76db><span class="icon" data-v-4a1c76db><!--[--><span class="vpi-sun sun" data-v-e40a8bb6></span><span class="vpi-moon moon" data-v-e40a8bb6></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-822684d1 data-v-164c457f data-v-ee7a9424><!--[--><a class="VPSocialLink no-icon" href="https://github.com/PumasAI/SummaryTables.jl" aria-label="github" target="_blank" rel="noopener" data-v-ee7a9424 data-v-d26d30cb><span class="vpi-social-github"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-822684d1 data-v-925effce data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-04f5c5e9><span class="vpi-more-horizontal icon" data-v-04f5c5e9></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><!----><!--[--><!--[--><!----><div class="group" data-v-925effce><div class="item appearance" data-v-925effce><p class="label" data-v-925effce>Appearance</p><div class="appearance-action" data-v-925effce><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-925effce data-v-e40a8bb6 data-v-4a1c76db><span class="check" data-v-4a1c76db><span class="icon" data-v-4a1c76db><!--[--><span class="vpi-sun sun" data-v-e40a8bb6></span><span class="vpi-moon moon" data-v-e40a8bb6></span><!--]--></span></span></button></div></div></div><div class="group" data-v-925effce><div class="item social-links" data-v-925effce><div class="VPSocialLinks social-links-list" data-v-925effce data-v-ee7a9424><!--[--><a class="VPSocialLink no-icon" href="https://github.com/PumasAI/SummaryTables.jl" aria-label="github" target="_blank" rel="noopener" data-v-ee7a9424 data-v-d26d30cb><span class="vpi-social-github"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--[--><!--[--><div class="VPFlyout VPNolebaseEnhancedReadabilitiesMenu VPNolebaseEnhancedReadabilitiesMenuFlyout" aria-label="Enhanced Readability" role="menuitem" data-v-04f5c5e9><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-04f5c5e9><span class="text" data-v-04f5c5e9><span class="i-icon-park-outline:book-open option-icon" data-v-04f5c5e9></span><!----><span class="vpi-chevron-down text-icon" data-v-04f5c5e9></span></span></button><div class="menu" data-v-04f5c5e9><div class="VPMenu" data-v-04f5c5e9 data-v-7dd3104a><!----><!--[--><!--]--></div></div></div><!--]--><!--]--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-822684d1 data-v-5dea55bf><span class="container" data-v-5dea55bf><span class="top" data-v-5dea55bf></span><span class="middle" data-v-5dea55bf></span><span class="bottom" data-v-5dea55bf></span></span></button></div></div></div></div><div class="divider" data-v-822684d1><div class="divider-line" data-v-822684d1></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-a9a9e638 data-v-070ab83d><div class="container" data-v-070ab83d><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-070ab83d><span class="vpi-align-left menu-icon" data-v-070ab83d></span><span class="menu-text" data-v-070ab83d>Menu</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-070ab83d data-v-168ddf5d><button data-v-168ddf5d>Return to top</button><!----></div></div></div><aside class="VPSidebar" data-v-a9a9e638 data-v-18756405><div class="curtain" data-v-18756405></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-18756405><span class="visually-hidden" id="sidebar-aria-label" data-v-18756405> Sidebar Navigation </span><!--[--><!--]--><!--[--><div class="no-transition group" data-v-9e426adc><section class="VPSidebarItem level-0" data-v-9e426adc data-v-a4b0d9bf><!----><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/index" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Home</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-9e426adc><section class="VPSidebarItem level-0 collapsible has-active" data-v-9e426adc data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h2 class="text" data-v-a4b0d9bf>Reference</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><section class="VPSidebarItem level-1 collapsible" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h3 class="text" data-v-a4b0d9bf>Table Functions</h3><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/table_functions/simple_table" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>simple_table</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/table_functions/overview_table" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>overview_table</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/table_functions/listingtable" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>listingtable</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/table_functions/summarytable" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>summarytable</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/table_functions/table_one" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>table_one</p><!--]--></a><!----></div><!----></div><!--]--></div></section><section class="VPSidebarItem level-1 collapsible has-active" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h3 class="text" data-v-a4b0d9bf>Infrastructure</h3><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/infrastructure/table" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Table</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/infrastructure/cell" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Cell</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/infrastructure/cellstyle" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>CellStyle</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-2 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/infrastructure/defaults" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Global Defaults</p><!--]--></a><!----></div><!----></div><!--]--></div></section><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/reference/renderers" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Renderers</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><div class="no-transition group" data-v-9e426adc><section class="VPSidebarItem level-0 collapsible" data-v-9e426adc data-v-a4b0d9bf><div class="item" role="button" tabindex="0" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><h2 class="text" data-v-a4b0d9bf>Resources</h2><div class="caret" role="button" aria-label="toggle section" tabindex="0" data-v-a4b0d9bf><span class="vpi-chevron-right caret-icon" data-v-a4b0d9bf></span></div></div><div class="items" data-v-a4b0d9bf><!--[--><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/resources/api" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>API</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 is-link" data-v-a4b0d9bf data-v-a4b0d9bf><div class="item" data-v-a4b0d9bf><div class="indicator" data-v-a4b0d9bf></div><a class="VPLink link link" href="/SummaryTables.jl/v3/resources/changelog" data-v-a4b0d9bf><!--[--><p class="text" data-v-a4b0d9bf>Changelog</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-a9a9e638 data-v-91765379><div class="VPDoc has-sidebar has-aside" data-v-91765379 data-v-83890dd9><!--[--><!--]--><div class="container" data-v-83890dd9><div class="aside" data-v-83890dd9><div class="aside-curtain" data-v-83890dd9></div><div class="aside-container" data-v-83890dd9><div class="aside-content" data-v-83890dd9><div class="VPDocAside" data-v-83890dd9 data-v-6d7b3c46><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-6d7b3c46 data-v-b38bf2ff><div class="content" data-v-b38bf2ff><div class="outline-marker" data-v-b38bf2ff></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-b38bf2ff>On this page</div><ul class="VPDocOutlineItem root" data-v-b38bf2ff data-v-3f927ebe><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-6d7b3c46></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-83890dd9><div class="content-container" data-v-83890dd9><!--[--><!--]--><main class="main" data-v-83890dd9><div style="position:relative;" class="vp-doc _SummaryTables_jl_v3_reference_infrastructure_table" data-v-83890dd9><div><h1 id="Table" tabindex="-1"><code>Table</code> <a class="header-anchor" href="#Table" aria-label="Permalink to &quot;`Table` {#Table}&quot;">​</a></h1><p>You can build custom tables using the <code>Table</code> type.</p><h2 id="Argument-1:-cells" tabindex="-1">Argument 1: <code>cells</code> <a class="header-anchor" href="#Argument-1:-cells" aria-label="Permalink to &quot;Argument 1: `cells` {#Argument-1:-cells}&quot;">​</a></h2><p>The table&#39;s content is given as an <code>AbstractMatrix</code> of <code>Cell</code>s:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;E&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells)</span></span></code></pre></div><div><table id="st-a67428ab">
+    <style>
+        #st-a67428ab {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-a67428ab tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-a67428ab tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-a67428ab br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-a67428ab sub {
+            line-height: 0;
+        }
+        #st-a67428ab sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="text-align:center;">C3</td>
+        <td style="text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-header" tabindex="-1">Keyword: <code>header</code> <a class="header-anchor" href="#Keyword:-header" aria-label="Permalink to &quot;Keyword: `header` {#Keyword:-header}&quot;">​</a></h2><p>You can pass an <code>Int</code> to mark the last row of the header section. A divider line is placed after this row.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;E&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; header </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-de7c448a">
+    <style>
+        #st-de7c448a {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-de7c448a tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-de7c448a tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-de7c448a br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-de7c448a sub {
+            line-height: 0;
+        }
+        #st-de7c448a sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="text-align:center;">C3</td>
+        <td style="text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-footer" tabindex="-1">Keyword: <code>footer</code> <a class="header-anchor" href="#Keyword:-footer" aria-label="Permalink to &quot;Keyword: `footer` {#Keyword:-footer}&quot;">​</a></h2><p>You can pass an <code>Int</code> to mark the first row of the footer section. A divider line is placed before this row.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;E&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; footer </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-d94b254d">
+    <style>
+        #st-d94b254d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-d94b254d tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-d94b254d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-d94b254d br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-d94b254d sub {
+            line-height: 0;
+        }
+        #st-d94b254d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="text-align:center;">C3</td>
+        <td style="text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+    </tr>
+    <tfoot>
+        <tr><td colspan="5" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    </tfoot>
+</table></div><h2 id="Keyword:-footnotes" tabindex="-1">Keyword: <code>footnotes</code> <a class="header-anchor" href="#Keyword:-footnotes" aria-label="Permalink to &quot;Keyword: `footnotes` {#Keyword:-footnotes}&quot;">​</a></h2><p>The <code>footnotes</code> keyword allows to add custom footnotes to the table which do not correspond to specific <a href="/SummaryTables.jl/v3/reference/infrastructure/cell#Annotated"><code>Annotated</code></a> values in the table.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;E&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; footnotes </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Custom footnote 1&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Custom footnote 2&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">])</span></span></code></pre></div><div><table id="st-08db099b">
+    <style>
+        #st-08db099b {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-08db099b tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-08db099b tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-08db099b br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-08db099b sub {
+            line-height: 0;
+        }
+        #st-08db099b sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="text-align:center;">C3</td>
+        <td style="text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="5" style="font-size: 0.8em;">Custom footnote 1<br/>Custom footnote 2</td></tr>
+</table></div><h2 id="Keyword:-rowgaps" tabindex="-1">Keyword: <code>rowgaps</code> <a class="header-anchor" href="#Keyword:-rowgaps" aria-label="Permalink to &quot;Keyword: `rowgaps` {#Keyword:-rowgaps}&quot;">​</a></h2><p>It can be beneficial for the readability of larger tables to add gaps between certain rows. These gaps can be passed as a <code>Vector</code> of <code>Pair</code>s where the first element is the index of the row gap and the second element is the gap size in <code>pt</code>.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">9</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;E&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; rowgaps </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">])</span></span></code></pre></div><div><table id="st-9c65a86f">
+    <style>
+        #st-9c65a86f {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-9c65a86f tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-9c65a86f tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-9c65a86f br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-9c65a86f sub {
+            line-height: 0;
+        }
+        #st-9c65a86f sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 4.0pt;text-align:center;">A3</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">B3</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">C3</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">D3</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">E3</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 4.0pt;text-align:center;">A4</td>
+        <td style="padding-top: 4.0pt;text-align:center;">B4</td>
+        <td style="padding-top: 4.0pt;text-align:center;">C4</td>
+        <td style="padding-top: 4.0pt;text-align:center;">D4</td>
+        <td style="padding-top: 4.0pt;text-align:center;">E4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+    </tr>
+    <tr>
+        <td style="padding-bottom: 4.0pt;text-align:center;">A6</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">B6</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">C6</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">D6</td>
+        <td style="padding-bottom: 4.0pt;text-align:center;">E6</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 4.0pt;text-align:center;">A7</td>
+        <td style="padding-top: 4.0pt;text-align:center;">B7</td>
+        <td style="padding-top: 4.0pt;text-align:center;">C7</td>
+        <td style="padding-top: 4.0pt;text-align:center;">D7</td>
+        <td style="padding-top: 4.0pt;text-align:center;">E7</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A8</td>
+        <td style="text-align:center;">B8</td>
+        <td style="text-align:center;">C8</td>
+        <td style="text-align:center;">D8</td>
+        <td style="text-align:center;">E8</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A9</td>
+        <td style="text-align:center;">B9</td>
+        <td style="text-align:center;">C9</td>
+        <td style="text-align:center;">D9</td>
+        <td style="text-align:center;">E9</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-colgaps" tabindex="-1">Keyword: <code>colgaps</code> <a class="header-anchor" href="#Keyword:-colgaps" aria-label="Permalink to &quot;Keyword: `colgaps` {#Keyword:-colgaps}&quot;">​</a></h2><p>It can be beneficial for the readability of larger tables to add gaps between certain columns. These gaps can be passed as a <code>Vector</code> of <code>Pair</code>s where the first element is the index of the column gap and the second element is the gap size in <code>pt</code>.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;I&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; colgaps </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">])</span></span></code></pre></div><div><table id="st-eeeaebd1">
+    <style>
+        #st-eeeaebd1 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-eeeaebd1 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-eeeaebd1 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-eeeaebd1 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-eeeaebd1 sub {
+            line-height: 0;
+        }
+        #st-eeeaebd1 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="padding-right:4.0pt;text-align:center;">C1</td>
+        <td style="padding-left:4.0pt;text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+        <td style="padding-right:4.0pt;text-align:center;">F1</td>
+        <td style="padding-left:4.0pt;text-align:center;">G1</td>
+        <td style="text-align:center;">H1</td>
+        <td style="text-align:center;">I1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="padding-right:4.0pt;text-align:center;">C2</td>
+        <td style="padding-left:4.0pt;text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+        <td style="padding-right:4.0pt;text-align:center;">F2</td>
+        <td style="padding-left:4.0pt;text-align:center;">G2</td>
+        <td style="text-align:center;">H2</td>
+        <td style="text-align:center;">I2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="padding-right:4.0pt;text-align:center;">C3</td>
+        <td style="padding-left:4.0pt;text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+        <td style="padding-right:4.0pt;text-align:center;">F3</td>
+        <td style="padding-left:4.0pt;text-align:center;">G3</td>
+        <td style="text-align:center;">H3</td>
+        <td style="text-align:center;">I3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="padding-right:4.0pt;text-align:center;">C4</td>
+        <td style="padding-left:4.0pt;text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+        <td style="padding-right:4.0pt;text-align:center;">F4</td>
+        <td style="padding-left:4.0pt;text-align:center;">G4</td>
+        <td style="text-align:center;">H4</td>
+        <td style="text-align:center;">I4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="padding-right:4.0pt;text-align:center;">C5</td>
+        <td style="padding-left:4.0pt;text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+        <td style="padding-right:4.0pt;text-align:center;">F5</td>
+        <td style="padding-left:4.0pt;text-align:center;">G5</td>
+        <td style="text-align:center;">H5</td>
+        <td style="text-align:center;">I5</td>
+    </tr>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Keyword:-linebreak_footnotes" tabindex="-1">Keyword: <code>linebreak_footnotes</code> <a class="header-anchor" href="#Keyword:-linebreak_footnotes" aria-label="Permalink to &quot;Keyword: `linebreak_footnotes` {#Keyword:-linebreak_footnotes}&quot;">​</a></h2><p>By default, footnotes are printed on a separate line each. They can be printed in a single paragraph by setting <code>linebreak_footnotes = false</code>.</p><p>This parameter can also be set as a <a href="/SummaryTables.jl/v3/reference/infrastructure/defaults#Global-Defaults">global default</a> to apply the setting across all tables.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cells </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Cell</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">$col$row</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> row </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, col </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">in</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;I&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; footnotes </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Footnote 1.&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Footnote 2.&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">])</span></span></code></pre></div><div><table id="st-68a24abe">
+    <style>
+        #st-68a24abe {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-68a24abe tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-68a24abe tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-68a24abe br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-68a24abe sub {
+            line-height: 0;
+        }
+        #st-68a24abe sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+        <td style="text-align:center;">F1</td>
+        <td style="text-align:center;">G1</td>
+        <td style="text-align:center;">H1</td>
+        <td style="text-align:center;">I1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+        <td style="text-align:center;">F2</td>
+        <td style="text-align:center;">G2</td>
+        <td style="text-align:center;">H2</td>
+        <td style="text-align:center;">I2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="text-align:center;">C3</td>
+        <td style="text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+        <td style="text-align:center;">F3</td>
+        <td style="text-align:center;">G3</td>
+        <td style="text-align:center;">H3</td>
+        <td style="text-align:center;">I3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+        <td style="text-align:center;">F4</td>
+        <td style="text-align:center;">G4</td>
+        <td style="text-align:center;">H4</td>
+        <td style="text-align:center;">I4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+        <td style="text-align:center;">F5</td>
+        <td style="text-align:center;">G5</td>
+        <td style="text-align:center;">H5</td>
+        <td style="text-align:center;">I5</td>
+    </tr>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="9" style="font-size: 0.8em;">Footnote 1.<br/>Footnote 2.</td></tr>
+</table></div><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Table</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cells; footnotes </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Footnote 1.&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;Footnote 2.&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], linebreak_footnotes </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> false</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><table id="st-1228ed59">
+    <style>
+        #st-1228ed59 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-1228ed59 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-1228ed59 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-1228ed59 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-1228ed59 sub {
+            line-height: 0;
+        }
+        #st-1228ed59 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+        <td style="text-align:center;">E1</td>
+        <td style="text-align:center;">F1</td>
+        <td style="text-align:center;">G1</td>
+        <td style="text-align:center;">H1</td>
+        <td style="text-align:center;">I1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td style="text-align:center;">B2</td>
+        <td style="text-align:center;">C2</td>
+        <td style="text-align:center;">D2</td>
+        <td style="text-align:center;">E2</td>
+        <td style="text-align:center;">F2</td>
+        <td style="text-align:center;">G2</td>
+        <td style="text-align:center;">H2</td>
+        <td style="text-align:center;">I2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">B3</td>
+        <td style="text-align:center;">C3</td>
+        <td style="text-align:center;">D3</td>
+        <td style="text-align:center;">E3</td>
+        <td style="text-align:center;">F3</td>
+        <td style="text-align:center;">G3</td>
+        <td style="text-align:center;">H3</td>
+        <td style="text-align:center;">I3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+        <td style="text-align:center;">E4</td>
+        <td style="text-align:center;">F4</td>
+        <td style="text-align:center;">G4</td>
+        <td style="text-align:center;">H4</td>
+        <td style="text-align:center;">I4</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A5</td>
+        <td style="text-align:center;">B5</td>
+        <td style="text-align:center;">C5</td>
+        <td style="text-align:center;">D5</td>
+        <td style="text-align:center;">E5</td>
+        <td style="text-align:center;">F5</td>
+        <td style="text-align:center;">G5</td>
+        <td style="text-align:center;">H5</td>
+        <td style="text-align:center;">I5</td>
+    </tr>
+    <tr><td colspan="9" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="9" style="font-size: 0.8em;">Footnote 1.&nbsp;&nbsp;&nbsp;&nbsp;Footnote 2.</td></tr>
+</table></div></div></div></main><footer class="VPDocFooter" data-v-83890dd9 data-v-4f9813fa><!--[--><!--]--><div class="edit-info" data-v-4f9813fa><div class="edit-link" data-v-4f9813fa><a class="VPLink link vp-external-link-icon no-icon edit-link-button" href="https://https://github.com/PumasAI/SummaryTables.jl/edit/master/docs/src/reference/infrastructure/table.md" target="_blank" rel="noreferrer" data-v-4f9813fa><!--[--><span class="vpi-square-pen edit-link-icon" data-v-4f9813fa></span> Edit this page<!--]--></a></div><!----></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-4f9813fa><span class="visually-hidden" id="doc-footer-aria-label" data-v-4f9813fa>Pager</span><div class="pager" data-v-4f9813fa><a class="VPLink link pager-link prev" href="/SummaryTables.jl/v3/reference/table_functions/table_one" data-v-4f9813fa><!--[--><span class="desc" data-v-4f9813fa>Previous page</span><span class="title" data-v-4f9813fa>table_one</span><!--]--></a></div><div class="pager" data-v-4f9813fa><a class="VPLink link pager-link next" href="/SummaryTables.jl/v3/reference/infrastructure/cell" data-v-4f9813fa><!--[--><span class="desc" data-v-4f9813fa>Next page</span><span class="title" data-v-4f9813fa>Cell</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-a9a9e638 data-v-c970a860><div class="container" data-v-c970a860><p class="message" data-v-c970a860>Made with <a href="https://luxdl.github.io/DocumenterVitepress.jl/dev/" target="_blank"><strong>DocumenterVitepress.jl</strong></a><br></p><p class="copyright" data-v-c970a860>© Copyright 2026.</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"g2WcssdY\",\"reference_infrastructure_cell.md\":\"2mFTKhUt\",\"reference_infrastructure_cellstyle.md\":\"nE4a15Rr\",\"reference_infrastructure_defaults.md\":\"CTe7WKS4\",\"reference_infrastructure_table.md\":\"BKALbavZ\",\"reference_renderers.md\":\"DeYp1znC\",\"reference_table_functions_listingtable.md\":\"B1xnj61k\",\"reference_table_functions_overview_table.md\":\"CRDefxnT\",\"reference_table_functions_simple_table.md\":\"Bx_RTvlS\",\"reference_table_functions_summarytable.md\":\"AJwqYLKB\",\"reference_table_functions_table_one.md\":\"2_jPtbol\",\"resources_api.md\":\"BZ9NLQ64\",\"resources_changelog.md\":\"dnqsXZAf\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"SummaryTables.jl\",\"description\":\"Documentation for SummaryTables.jl\",\"base\":\"/SummaryTables.jl/v3/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"outline\":\"deep\",\"logo\":{\"src\":\"/logo.png\",\"width\":24,\"height\":24},\"search\":{\"provider\":\"local\",\"options\":{\"detailedView\":true}},\"nav\":[{\"text\":\"Home\",\"link\":\"/index\"},{\"text\":\"Reference\",\"collapsed\":false,\"items\":[{\"text\":\"Table Functions\",\"collapsed\":false,\"items\":[{\"text\":\"simple_table\",\"link\":\"/reference/table_functions/simple_table\"},{\"text\":\"overview_table\",\"link\":\"/reference/table_functions/overview_table\"},{\"text\":\"listingtable\",\"link\":\"/reference/table_functions/listingtable\"},{\"text\":\"summarytable\",\"link\":\"/reference/table_functions/summarytable\"},{\"text\":\"table_one\",\"link\":\"/reference/table_functions/table_one\"}]},{\"text\":\"Infrastructure\",\"collapsed\":false,\"items\":[{\"text\":\"Table\",\"link\":\"/reference/infrastructure/table\"},{\"text\":\"Cell\",\"link\":\"/reference/infrastructure/cell\"},{\"text\":\"CellStyle\",\"link\":\"/reference/infrastructure/cellstyle\"},{\"text\":\"Global Defaults\",\"link\":\"/reference/infrastructure/defaults\"}]},{\"text\":\"Renderers\",\"link\":\"/reference/renderers\"}]},{\"text\":\"Resources\",\"collapsed\":false,\"items\":[{\"text\":\"API\",\"link\":\"/resources/api\"},{\"text\":\"Changelog\",\"link\":\"/resources/changelog\"}]},{\"component\":\"VersionPicker\"}],\"sidebar\":[{\"text\":\"Home\",\"link\":\"/index\"},{\"text\":\"Reference\",\"collapsed\":false,\"items\":[{\"text\":\"Table Functions\",\"collapsed\":false,\"items\":[{\"text\":\"simple_table\",\"link\":\"/reference/table_functions/simple_table\"},{\"text\":\"overview_table\",\"link\":\"/reference/table_functions/overview_table\"},{\"text\":\"listingtable\",\"link\":\"/reference/table_functions/listingtable\"},{\"text\":\"summarytable\",\"link\":\"/reference/table_functions/summarytable\"},{\"text\":\"table_one\",\"link\":\"/reference/table_functions/table_one\"}]},{\"text\":\"Infrastructure\",\"collapsed\":false,\"items\":[{\"text\":\"Table\",\"link\":\"/reference/infrastructure/table\"},{\"text\":\"Cell\",\"link\":\"/reference/infrastructure/cell\"},{\"text\":\"CellStyle\",\"link\":\"/reference/infrastructure/cellstyle\"},{\"text\":\"Global Defaults\",\"link\":\"/reference/infrastructure/defaults\"}]},{\"text\":\"Renderers\",\"link\":\"/reference/renderers\"}]},{\"text\":\"Resources\",\"collapsed\":false,\"items\":[{\"text\":\"API\",\"link\":\"/resources/api\"},{\"text\":\"Changelog\",\"link\":\"/resources/changelog\"}]}],\"editLink\":{\"pattern\":\"https://https://github.com/PumasAI/SummaryTables.jl/edit/master/docs/src/:path\"},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/PumasAI/SummaryTables.jl\"}],\"footer\":{\"message\":\"Made with <a href=\\\"https://luxdl.github.io/DocumenterVitepress.jl/dev/\\\" target=\\\"_blank\\\"><strong>DocumenterVitepress.jl</strong></a><br>\",\"copyright\":\"© Copyright 2026.\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":true}");</script>
+    
+  </body>
+</html>
