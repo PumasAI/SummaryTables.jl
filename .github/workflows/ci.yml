@@ -1,0 +1,53 @@
+name: CI
+on:
+  merge_group:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+  workflow_dispatch:
+concurrency:
+  # Skip intermediate builds: all builds except for builds on the `master` branch
+  # Cancel intermediate builds: only pull request builds
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref != 'refs/heads/master' || github.run_number }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+permissions:
+  contents: read
+jobs:
+  test:
+    uses: ./.github/workflows/_test.yml
+    permissions:
+      contents: read
+
+  docs:
+    uses: ./.github/workflows/_docs.yml
+    permissions:
+      contents: write
+      statuses: write
+      pages: write
+      id-token: write
+      pull-requests: write
+    secrets: inherit
+
+  readme:
+    uses: ./.github/workflows/_readme.yml
+    permissions:
+      contents: read
+
+  finalize:
+    name: CI result
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [test, docs, readme]
+    steps:
+      - run: |
+          results='${{ toJSON(needs.*.result) }}'
+          echo "Job results: $results"
+          if echo "$results" | grep -qE '"(failure|cancelled)"'; then
+            echo "Some required jobs failed or were cancelled"
+            exit 1
+          fi
