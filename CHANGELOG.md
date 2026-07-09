@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
+
 ## 3.5.1 - 2026-10-23
 
 - Corrected the docstring of `table_one` which erroneously listed `show_testnames` and not `show_tests` [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).

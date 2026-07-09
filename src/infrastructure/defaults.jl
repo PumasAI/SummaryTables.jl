@@ -18,7 +18,7 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     trailing_zeros::Bool = false
     "If `true`, each footnote is displayed on a separate line."
     linebreak_footnotes::Bool = true
-    "An indexable collection or a `Symbol` that specifies a predefined collection which contains annotation labels. Predefined variants are `:numbers`, `:lowercase`, `:uppercase`, `:roman_lower` and `:roman_upper`."
+    "An indexable collection or a `Symbol` that specifies a predefined collection which contains annotation labels. Predefined variants are `:numbers`, `:letters_lower`, `:letters_upper`, `:roman_lower` and `:roman_upper`."
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
