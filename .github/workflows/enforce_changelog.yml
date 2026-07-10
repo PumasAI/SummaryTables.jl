@@ -1,5 +1,6 @@
 name: "Enforce changelog"
 on:
+  merge_group:
   pull_request:
       types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
 
