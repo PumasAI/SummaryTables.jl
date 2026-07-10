@@ -1,0 +1,14 @@
+
+#table(
+    rows: 2,
+    columns: 2,
+    column-gutter: 0.25em,
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [#"5.43k"],
+    [#"1.23M"],
+    [#"1M"],
+    [#"0.75"],
+    table.hline(y: 2, stroke: 1pt),
+)

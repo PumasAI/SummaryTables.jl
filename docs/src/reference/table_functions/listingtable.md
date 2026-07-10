@@ -457,6 +457,27 @@ listingtable(data, :value, rows = :group1, cols = :group2, variable_header = fal
 ```
 
 
+## Keyword: `format`
+
+A `NumberFormat` that is applied to the raw values of `variable`.
+Summary values are not affected by it, their formatting can be controlled by composing formats with the summary functions instead, like `NumberFormat(digits = 2) ∘ mean`.
+
+```@example
+using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    value = [1.23456, 2.34567, 3.45678, 4.56789, 5.67891, 6.78912],
+    group1 = repeat(["A", "B", "C"], 2),
+    group2 = repeat(["D", "E"], inner = 3)
+)
+
+listingtable(data, :value, rows = :group1, cols = :group2,
+    format = NumberFormat(digits = 2, mode = :digits),
+    summarize_rows = [NumberFormat(digits = 4) ∘ mean => "Mean"])
+```
+
 ## Keyword: `sort`
 
 By default, group entries are sorted.

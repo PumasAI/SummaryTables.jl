@@ -1,0 +1,14 @@
+
+#table(
+    rows: 2,
+    columns: 2,
+    column-gutter: 0.25em,
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [#"12.3 %"],
+    [#"45.7 %"],
+    [#"89.1 %"],
+    [#"50 %"],
+    table.hline(y: 2, stroke: 1pt),
+)

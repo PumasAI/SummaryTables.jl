@@ -58,6 +58,23 @@ data = [(; a = 1, b = "x"), (; a = 2, b = "y"), (; a = 3, b = "z")]
 simple_table(data)
 ```
 
+## Argument 2: `columns`
+
+The optional second argument selects the columns to display.
+Each entry is a column name (`Symbol` or `String`), optionally paired with a display name, a `NumberFormat`, or both.
+
+```@example
+using SummaryTables
+
+data = (; id = 1:3, fraction = [0.123, 0.456, 0.789], count = [1200, 55000, 1_230_000])
+
+simple_table(data, [
+    :id => "ID",
+    :fraction => NumberFormat(scale = 100, suffix = " %", digits = 3) => "Fraction",
+    :count => NumberFormat(magnitudes = :financial),
+])
+```
+
 ## Keyword: `halign`
 
 Controls the horizontal alignment of column contents. Accepts `:left`, `:right`, `:center`, or a vector of these values (one for each column).

@@ -8,25 +8,110 @@ function _showas(io::IO, mime::MIME, value)
     fn(io::IO, ::MIME, value) = print(io, value)
     return showable(mime, value) ? show(io, mime, value) : fn(io, mime, value)
 end
-function _showas(io::IO, m::MIME, r::RoundedFloat)
+_showas(io::IO, m::MIME, r::FormattedFloat) = _showas(io, m, formatted_value(r))
+
+function formatted_value(r::FormattedFloat)
+    fmt = merge_formats(r.format, DEFAULT_NUMBER_FORMAT)
     f = r.f
-    mode = r.round_mode
-    digits = r.round_digits
-    s = if mode === :auto
-        string(auto_round(f, target_digits = digits))
+    if !isfinite(f)
+        return string(fmt.prefix, f, fmt.suffix)
+    end
+    x = f * fmt.scale
+    comparator = ""
+    if x < fmt.lower_limit
+        x = fmt.lower_limit
+        comparator = "<"
+    elseif x > fmt.upper_limit
+        x = fmt.upper_limit
+        comparator = ">"
+    end
+    magnitude = ""
+    magnitudes = magnitude_strings(fmt.magnitudes)
+    if magnitudes !== nothing
+        x, magnitude = scale_to_magnitude(x, magnitudes, fmt)
+    end
+    s = format_rounded(x, fmt.mode, fmt.digits)
+    if !fmt.trailing_zeros
+        s = strip_trailing_zeros(s)
+    end
+    i_e = findfirst('e', s)
+    if fmt.exponent_style === :x10 && i_e !== nothing
+        mantissa = s[1:prevind(s, i_e)]
+        exponent = s[nextind(s, i_e):end]
+        return Concat(
+            string(fmt.prefix, comparator, mantissa, " × 10"),
+            Superscript(exponent),
+            string(magnitude, fmt.suffix),
+        )
+    end
+    return string(fmt.prefix, comparator, s, magnitude, fmt.suffix)
+end
+
+function format_rounded(x::Float64, mode::Symbol, digits::Int)
+    if mode === :auto
+        string(auto_round(x, target_digits = digits))
     elseif mode === :sigdigits
-        string(round(f, sigdigits = digits))
+        string(round(x, sigdigits = digits))
     elseif mode === :digits
-        fmt = Printf.Format("%.$(digits)f")
-        Printf.format(fmt, f)
+        Printf.format(Printf.Format("%.$(digits)f"), x)
     else
         error("Unknown round mode $mode")
     end
-    if !r.trailing_zeros
-        s = replace(s, r"^(\d+)$|^(\d+)\.0*$|^(\d+\.[1-9]*?)0*$" => s"\1\2\3")
-    end
-    _showas(io, m, s)
 end
+
+function strip_trailing_zeros(s::String)
+    i_e = findfirst('e', s)
+    if i_e !== nothing
+        return string(strip_trailing_zeros(s[1:prevind(s, i_e)]), s[i_e:end])
+    end
+    occursin('.', s) || return s
+    s = replace(s, r"(\.\d*?)0+$" => s"\1")
+    s = replace(s, r"\.$" => "")
+    return s == "-0" ? "0" : s
+end
+
+magnitude_strings(s::Symbol) = s === :none ? nothing : s === :financial ? MAGNITUDES_FINANCIAL : MAGNITUDES_SI
+magnitude_strings(v::Vector{String}) = v
+
+function scale_to_magnitude(x::Float64, magnitudes::Vector{String}, fmt::NumberFormat)
+    for i in 1:length(magnitudes)
+        mantissa = x / 1000.0 ^ (i - 1)
+        if abs(round_mantissa(mantissa, fmt)) < 1000
+            return mantissa, magnitudes[i]
+        end
+    end
+    return x, magnitudes[1]
+end
+
+round_mantissa(x::Float64, fmt::NumberFormat) =
+    fmt.mode === :digits ? round(x, digits = fmt.digits) :
+    fmt.mode === :sigdigits ? round(x, sigdigits = fmt.digits) :
+    auto_round(x, target_digits = fmt.digits)
+Base.show(io::IO, f::FormattedFloat) = _showas(io, MIME"text"(), f)
+
+const SUPERSCRIPT_CHARS = Dict(
+    '0' => '⁰', '1' => '¹', '2' => '²', '3' => '³', '4' => '⁴',
+    '5' => '⁵', '6' => '⁶', '7' => '⁷', '8' => '⁸', '9' => '⁹',
+    '+' => '⁺', '-' => '⁻',
+)
+const SUBSCRIPT_CHARS = Dict(
+    '0' => '₀', '1' => '₁', '2' => '₂', '3' => '₃', '4' => '₄',
+    '5' => '₅', '6' => '₆', '7' => '₇', '8' => '₈', '9' => '₉',
+    '+' => '₊', '-' => '₋',
+)
+
+function print_script_fallback(io::IO, m::MIME, value, chars::Dict{Char,Char}, ascii_marker::Char)
+    s = sprint(io -> _showas(io, m, value))
+    if all(c -> haskey(chars, c), s)
+        print(io, map(c -> chars[c], s))
+    else
+        print(io, ascii_marker, s)
+    end
+end
+
+_showas(io::IO, m::MIME, s::Superscript) = print_script_fallback(io, m, s.super, SUPERSCRIPT_CHARS, '^')
+_showas(io::IO, m::MIME, s::Subscript) = print_script_fallback(io, m, s.sub, SUBSCRIPT_CHARS, '_')
+
 _showas(io::IO, m::MIME, c::CategoricalValue) = _showas(io, m, CategoricalArrays.DataAPI.unwrap(c))
 
 function _showas(io::IO, m::MIME, c::Concat)
