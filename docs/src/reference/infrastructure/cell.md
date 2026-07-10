@@ -16,7 +16,17 @@ Most tables display floating point numbers, however, the formatting of these num
 SummaryTables postprocesses every table in order to find unformatted floating point numbers.
 These are then given the default, table-wide, formatting.
 
-The formatting behavior is controlled by the `round_mode`, `round_digits`, and `trailing_zeros` parameters. These can be set as [global defaults](@ref "Global Defaults") or passed as arguments to individual table functions.
+The formatting behavior is controlled by a `NumberFormat`, which can be passed to
+individual table functions via the `number_format` keyword or set as a
+[global default](@ref "Global Defaults").
+Refer to the [`NumberFormat`](@ref SummaryTables.NumberFormat) docstring for all available settings.
+
+!!! note
+    Before version 3.6, number formatting was controlled by the three separate keywords
+    `round_mode`, `round_digits` and `trailing_zeros`. These were rolled into `NumberFormat`
+    as the `mode`, `digits` and `trailing_zeros` settings. The old keywords continue to work,
+    both on table functions and in the global defaults, but they cannot be combined with
+    `number_format` in the same call.
 
 ```@example
 using SummaryTables
@@ -35,8 +45,38 @@ cells = [
     Cell(1.23456) Cell(12.3456)
     Cell(0.123456) Cell(0.0123456)
 ]
-Table(cells; round_mode = :digits, round_digits = 5, trailing_zeros = true)
+Table(cells; number_format = NumberFormat(mode = :digits, digits = 5, trailing_zeros = true))
 ```
+
+##### NumberFormat
+
+To format numbers individually, call a [`NumberFormat`](@ref SummaryTables.NumberFormat) on them, which wraps them
+in an object carrying the formatting information.
+Any settings not specified in such a format are inherited from the table's `number_format`,
+which in turn inherits its unset settings from the package defaults.
+
+```@example
+using SummaryTables
+
+fraction = NumberFormat(scale = 100, suffix = " %", digits = 2)
+count = NumberFormat(magnitudes = :financial)
+concentration = NumberFormat(suffix = " mol/L")
+pvalue = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001)
+
+cells = [
+    Cell(fraction(0.4567)) Cell(fraction(0.891))
+    Cell(count(5432.1))    Cell(count(1_230_000))
+    Cell(concentration(2.34e-7)) Cell(concentration(1.5e-8))
+    Cell(pvalue(0.0234)) Cell(pvalue(0.00004))
+]
+Table(cells)
+```
+
+In `simple_table`, a `NumberFormat` can be attached to a column with the pair syntax,
+and `listingtable` accepts a `NumberFormat` for its raw values via the `format` keyword.
+Anywhere a function is expected, for example for summary analyses in `listingtable` or
+`summarytable`, formats can be composed with the summary function instead, like
+`NumberFormat(digits = 2) ∘ mean`.
 
 #### `Concat`
 

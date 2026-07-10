@@ -252,7 +252,10 @@ Create a listing table `Table` from `table` which displays raw values from colum
   By default, one summary is computed over all groups.
   You can also pass `name => [...]` where name, either a `Symbol` or `String`, is a grouping column, to compute one summary for each level of that group.
 - `summarize_cols = []`: Specifies functions to summarize `variable` with along the columns. Follows the same structure as `summarize_rows`.
-- `variable_header = true`: Controls if the cell with the name of the summarized `variable` is shown. 
+- `variable_header = true`: Controls if the cell with the name of the summarized `variable` is shown.
+- `format = nothing`: A `NumberFormat` applied to the raw values of `variable`.
+  Summary values are not affected by it because their formatting can be controlled by
+  wrapping the summary functions, for example `NumberFormat(digits = 2) ∘ mean` instead of `mean`.
 - `sort = true`: Sort the input table before grouping. Pre-sort as desired and set to `false` when you want to maintain a specific group order or are using non-sortable objects as group keys.
 
 Column names for `variable`, `rows`, and `cols` can be automatically retrieved from the table's column metadata using the key specified by the `label_key` default (which is `"label"` unless changed via `defaults!` or `with_defaults`). Manual names provided via the pair syntax (e.g., `:column => "Custom Name"`) take precedence over metadata labels.
@@ -287,6 +290,7 @@ function listingtable(table, variable, pagination::Union{Nothing,Pagination} = n
     summarize_cols = [],
     variable_header = true,
     sort = true,
+    format = nothing,
     table_kwargs...)
 
     
@@ -304,7 +308,7 @@ function listingtable(table, variable, pagination::Union{Nothing,Pagination} = n
     colsummary = Summary(summarize_cols, colsymbols)
     
     if pagination === nothing
-        return _listingtable(df, var, rowgroups, colgroups, rowsummary, colsummary; variable_header, sort, table_kwargs...)
+        return _listingtable(df, var, rowgroups, colgroups, rowsummary, colsummary; variable_header, sort, format, table_kwargs...)
     else
         sd = setdiff(keys(pagination.options), [:rows, :cols])
         if !isempty(sd)
@@ -324,7 +328,7 @@ function listingtable(table, variable, pagination::Union{Nothing,Pagination} = n
             colgrouped = DataFrames.groupby(DataFrame(rowgrouped[r_indices]), paginated_colgroupers; sort)
             colgroup_indices = 1:length(colgrouped)
             for c_indices in Iterators.partition(colgroup_indices, something(paginate_cols, length(colgroup_indices)))
-                t = _listingtable(DataFrame(colgrouped[c_indices]), var, rowgroups, colgroups, rowsummary, colsummary; variable_header, sort, table_kwargs...)
+                t = _listingtable(DataFrame(colgrouped[c_indices]), var, rowgroups, colgroups, rowsummary, colsummary; variable_header, sort, format, table_kwargs...)
                 push!(pages, Page(
                     ListingPageMetadata(
                         cols = paginate_cols === nothing ? GroupKey[] : GroupKey.(keys(colgrouped)[c_indices]),
@@ -363,6 +367,7 @@ function _listingtable(
         colsummary::Summary;
         variable_header::Bool,
         sort::Bool,
+        format::Union{Nothing,NumberFormat},
         celltable_kws...)
 
     rowsymbols = [r.symbol for r in rowgroups]
@@ -433,11 +438,11 @@ function _listingtable(
         gdf_colsummary,
     )
 
-    cl, i_header, rowgap_indices = get_cells(lt; variable_header)
+    cl, i_header, rowgap_indices = get_cells(lt; variable_header, format)
     Table(cl, i_header, nothing; rowgaps = rowgap_indices .=> DEFAULT_ROWGAP, celltable_kws...)
 end
 
-function get_cells(l::ListingTable; variable_header::Bool)
+function get_cells(l::ListingTable; variable_header::Bool, format::Union{Nothing,NumberFormat})
     cells = SpannedCell[]
 
     row_summaryindex = l.rowsummary.groupindex
@@ -570,7 +575,8 @@ function get_cells(l::ListingTable; variable_header::Bool)
                     end
                     row = rowoffset + i_row
                     col = coloffset + i_col
-                    cell = SpannedCell(row, col, format_value(value), listingtable_body())
+                    formatted = format === nothing ? value : format(value)
+                    cell = SpannedCell(row, col, format_value(formatted), listingtable_body())
                     push!(cells, cell)
                 end
             end

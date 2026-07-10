@@ -163,11 +163,194 @@ struct Subscript
     sub
 end
 
-struct RoundedFloat
+const MAGNITUDES_FINANCIAL = ["", "k", "M", "B", "T"]
+const MAGNITUDES_SI = [" ", " k", " M", " G", " T", " P", " E"]
+
+"""
+    NumberFormat(; kwargs...)
+
+Create a `NumberFormat` which controls how numbers are rendered.
+
+A `NumberFormat` can be used in several ways:
+
+- Passed to the `number_format` keyword of `Table` or any table function forwarding
+  its keywords to `Table`, where it applies to every floating point number in the
+  table that is not already wrapped in a more specific format.
+- Called like a function on a value, which wraps the value such that it renders
+  according to the format, for example `NumberFormat(digits = 2)(1.234)`.
+  Floats and integers are wrapped, all other values are returned unchanged, and
+  wrapper types like `Concat` or `Annotated` are recursed into.
+- Attached to a column in `simple_table` via the pair syntax, or passed to the
+  `format` keyword of `listingtable`.
+
+Every setting is `nothing` by default, which means it inherits its value from the
+next level up: a format applied to a value inherits unset settings from the table's
+`number_format`, which in turn inherits from the global defaults (see `defaults!`)
+and finally from the package defaults listed below.
+
+## Settings
+
+- `digits`: How many digits to round to, interpreted according to `mode`. Package default `3`.
+- `mode`: The rounding mode, one of `:auto`, `:digits` or `:sigdigits`. Package default `:auto`.
+  - `:auto` rounds to `digits` significant digits but never rounds away digits before
+    the decimal point. Numbers at orders of magnitude >= 6 or <= -5 are shown in
+    exponential notation.
+  - `:digits` rounds to `digits` digits after the decimal point and never uses
+    exponential notation.
+  - `:sigdigits` rounds to `digits` significant digits. Numbers at orders of
+    magnitude >= 6 or <= -5 are shown in exponential notation.
+- `trailing_zeros`: Whether trailing zeros after the decimal point are kept,
+  for example `4.0` vs `4`. Package default `false`.
+- `prefix`: A string printed before the number. Package default `""`.
+- `suffix`: A string printed after the number and after any magnitude suffix.
+  Package default `""`.
+- `scale`: A factor the number is multiplied with before rounding, for example `100`
+  for fractions displayed as percentages. Package default `1`.
+- `lower_limit`: Numbers smaller than this limit are displayed as the limit itself preceded
+  by `<`, for example `<0.001` for p-values. The comparison applies after `scale`.
+  Package default `-Inf`.
+- `upper_limit`: Numbers larger than this limit are displayed as the limit itself preceded
+  by `>`, for example `>0.9`. The comparison applies after `scale`. Package default `Inf`.
+- `magnitudes`: If not `:none`, large numbers are scaled by powers of 1000 and suffixed
+  with a magnitude string, like `5.4k` or `1.2M`. Available presets are `:financial`
+  (`$(repr(MAGNITUDES_FINANCIAL))`) and `:si` (`$(repr(MAGNITUDES_SI))`).
+  A custom `Vector{String}` may also be passed, where the first entry belongs to 10^0,
+  the second to 10^3, and so on. Each entry contains its own separator to the number,
+  which is why the `:si` entries start with a space. Numbers too large for the last
+  entry fall back to exponential notation. The rounding settings apply to the scaled
+  mantissa, so for example `:auto`'s preservation of pre-decimal digits refers to the
+  digits of the mantissa, not those of the original number. Package default `:none`.
+- `exponent_style`: How exponential notation is rendered, either `:e` like `1.5e6` or
+  `:x10` like `1.5 × 10⁶`, which uses proper superscript rendering in each output format.
+  Package default `:x10`.
+
+## Examples
+
+```jldoctest
+julia> fmt(values; kwargs...) = println(join(NumberFormat(; kwargs...).(values), "  "));
+
+julia> fmt([0.4567, 1.23456, 123.456], digits = 2)
+0.46  1.2  123
+
+julia> fmt([0.4, 0.44444], mode = :digits, digits = 2, trailing_zeros = true)
+0.40  0.44
+
+julia> fmt([0.4567, 0.891], scale = 100, suffix = " %")
+45.7 %  89.1 %
+
+julia> fmt([0.0004, 0.0234, 0.7], mode = :digits, digits = 3, lower_limit = 0.001)
+<0.001  0.023  0.7
+
+julia> fmt([999.0, 5432.1, 1_230_000], magnitudes = :financial)
+999  5.43k  1.23M
+
+julia> fmt([512, 1_230_000], magnitudes = :si, suffix = "B")
+512 B  1.23 MB
+
+julia> fmt([1.5, 1.5e18])
+1.5  1.5 × 10¹⁸
+
+julia> fmt([1.5, 1.5e18], exponent_style = :e)
+1.5  1.5e18
+```
+"""
+struct NumberFormat
+    digits::Union{Nothing,Int}
+    mode::Union{Nothing,Symbol}
+    trailing_zeros::Union{Nothing,Bool}
+    prefix::Union{Nothing,String}
+    suffix::Union{Nothing,String}
+    scale::Union{Nothing,Float64}
+    lower_limit::Union{Nothing,Float64}
+    upper_limit::Union{Nothing,Float64}
+    magnitudes::Union{Nothing,Symbol,Vector{String}}
+    exponent_style::Union{Nothing,Symbol}
+end
+
+function NumberFormat(;
+        digits = nothing,
+        mode = nothing,
+        trailing_zeros = nothing,
+        prefix = nothing,
+        suffix = nothing,
+        scale = nothing,
+        lower_limit = nothing,
+        upper_limit = nothing,
+        magnitudes = nothing,
+        exponent_style = nothing,
+    )
+    if mode !== nothing && mode ∉ (:auto, :digits, :sigdigits)
+        throw(ArgumentError("Invalid mode $(repr(mode)), valid options are :auto, :digits and :sigdigits."))
+    end
+    if digits !== nothing && digits < 0
+        throw(ArgumentError("digits must not be negative, got $digits."))
+    end
+    if exponent_style !== nothing && exponent_style ∉ (:e, :x10)
+        throw(ArgumentError("Invalid exponent_style $(repr(exponent_style)), valid options are :e and :x10."))
+    end
+    return NumberFormat(
+        digits,
+        mode,
+        trailing_zeros,
+        prefix === nothing ? nothing : String(prefix),
+        suffix === nothing ? nothing : String(suffix),
+        scale === nothing ? nothing : Float64(scale),
+        lower_limit === nothing ? nothing : Float64(lower_limit),
+        upper_limit === nothing ? nothing : Float64(upper_limit),
+        validate_magnitudes(magnitudes),
+        exponent_style,
+    )
+end
+
+validate_magnitudes(::Nothing) = nothing
+function validate_magnitudes(s::Symbol)
+    if s ∉ (:none, :financial, :si)
+        throw(ArgumentError("Invalid magnitudes preset $(repr(s)), valid options are :none, :financial and :si, or a custom vector of strings where the first entry belongs to 10^0."))
+    end
+    return s
+end
+function validate_magnitudes(v::AbstractVector)
+    isempty(v) && throw(ArgumentError("A custom magnitudes vector must not be empty, it needs at least the entry for 10^0."))
+    return convert(Vector{String}, v)
+end
+
+const DEFAULT_NUMBER_FORMAT = NumberFormat(
+    digits = 3,
+    mode = :auto,
+    trailing_zeros = false,
+    prefix = "",
+    suffix = "",
+    scale = 1.0,
+    lower_limit = -Inf,
+    upper_limit = Inf,
+    magnitudes = :none,
+    exponent_style = :x10,
+)
+
+function Base.show(io::IO, fmt::NumberFormat)
+    print(io, "NumberFormat(")
+    is_first = true
+    for name in fieldnames(NumberFormat)
+        value = getfield(fmt, name)
+        value === nothing && continue
+        is_first || print(io, ", ")
+        is_first = false
+        print(io, name, " = ", repr(value))
+    end
+    print(io, ")")
+end
+
+function merge_formats(inner::NumberFormat, outer::NumberFormat)
+    merged = map(fieldnames(NumberFormat)) do name
+        inner_value = getfield(inner, name)
+        inner_value === nothing ? getfield(outer, name) : inner_value
+    end
+    return NumberFormat(merged...)
+end
+
+struct FormattedFloat
     f::Float64
-    round_digits::Int
-    round_mode::Symbol
-    trailing_zeros::Bool
+    format::NumberFormat
 end
 
 struct Color

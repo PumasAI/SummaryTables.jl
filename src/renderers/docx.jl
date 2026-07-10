@@ -246,6 +246,8 @@ end
 
 to_runs(x, props) = [WriteDocx.Run([WriteDocx.Text(docx_sprint(x))], props)]
 
+to_runs(r::FormattedFloat, props) = to_runs(formatted_value(r), props)
+
 function to_runs(c::Concat, props)
     runs = WriteDocx.Run[]
     for arg in c.args

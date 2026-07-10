@@ -224,7 +224,17 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>1.0e7</w:t>
+              <w:t>1 × 10</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>7</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -242,7 +252,17 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>1.0e8</w:t>
+              <w:t>1 × 10</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>8</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>

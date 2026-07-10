@@ -250,6 +250,8 @@ function _str_latex_escaped(io::IO, s::AbstractString)
             print(io, raw"$\leq$")
         elseif c === '≥'
             print(io, raw"$\geq$")
+        elseif c === '×'
+            print(io, raw"$\times$")
         elseif c === '['
             print(io, "\\char`[")
         elseif isascii(c)

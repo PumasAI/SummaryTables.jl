@@ -1,5 +1,11 @@
 abstract type AbstractDefaults end
 
+struct Default end
+const default = Default()
+
+fallback(value::Default, default) = default
+fallback(value, default) = value
+
 "" # otherwise field docstrings are not parsed
 Base.@kwdef struct TableOneDefaults <: AbstractDefaults
     "Function f(col) that returns an analysis function for categorical columns."
@@ -16,6 +22,8 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     round_digits::Int = 3
     "If `false`, removes trailing zeros when formatting floats."
     trailing_zeros::Bool = false
+    "Default `NumberFormat` for floats, or `nothing` to disable formatting. If set, the separate settings `round_mode`, `round_digits` and `trailing_zeros` are ignored, and setting both in the same call is an error."
+    number_format::Union{Default,Nothing,NumberFormat} = default
     "If `true`, each footnote is displayed on a separate line."
     linebreak_footnotes::Bool = true
     "An indexable collection or a `Symbol` that specifies a predefined collection which contains annotation labels. Predefined variants are `:numbers`, `:letters_lower`, `:letters_upper`, `:roman_lower` and `:roman_upper`."
@@ -28,12 +36,6 @@ end
 
 # for giving defaults in a nested way like `with_defaults(; table_one = (; ...))`
 Base.convert(A::Type{<:AbstractDefaults}, nt::NamedTuple) = A(; nt...)
-
-struct Default end
-const default = Default()
-
-fallback(value::Default, default) = default
-fallback(value, default) = value
 
 function Base.show(io::IO, d::AbstractDefaults)
     inner = get(io, :inner, false)
@@ -68,6 +70,12 @@ function _defaults_fielddocs()
     return join(["`$fname`: $(REPL.fielddoc(Defaults, fname)) Default = `$(repr(getfield(def, fname)))`" for fname in fnames], "\\\n")
 end
 
+function check_number_format_kwargs(kwargs)
+    if haskey(kwargs, :number_format) && any(key -> haskey(kwargs, key), (:round_digits, :round_mode, :trailing_zeros))
+        error("Cannot set `number_format` together with any of `round_digits`, `round_mode` and `trailing_zeros`. Either use only `number_format` or only the separate settings.")
+    end
+end
+
 """
     defaults!(; kwargs...)
 
@@ -85,6 +93,7 @@ The available settings are:
 $(_defaults_fielddocs())
 """
 function defaults!(; kwargs...)
+    check_number_format_kwargs(kwargs)
     _lock, ref = current_defaults[]
     new_defaults = Defaults(; kwargs...)
     lock(_lock) do
@@ -113,5 +122,6 @@ The available settings are:
 $(_defaults_fielddocs())
 """
 function with_defaults(f; kwargs...)
+    check_number_format_kwargs(kwargs)
     return ScopedValues.with(f, current_defaults => (ReentrantLock(), Ref(Defaults(; kwargs...))))
 end

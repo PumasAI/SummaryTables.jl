@@ -748,6 +748,39 @@ end
             end
         end
 
+        @testset "NumberFormat rendering" begin
+            cells = [
+                Cell(1.5e18)  Cell(0.5)
+                Cell(2.34e-7) Cell(1.0)
+            ]
+            t = Table(cells, number_format = NumberFormat(exponent_style = :x10))
+            reftest(t, "references/number_format/x10")
+
+            cells = [
+                Cell(5432.1)    Cell(1_230_000.0)
+                Cell(999_999.9) Cell(0.75)
+            ]
+            t = Table(cells, number_format = NumberFormat(magnitudes = :financial))
+            reftest(t, "references/number_format/magnitudes_financial")
+
+            t = Table(cells, number_format = NumberFormat(magnitudes = :si, suffix = "B", digits = 4))
+            reftest(t, "references/number_format/magnitudes_si")
+
+            cells = [
+                Cell(0.123)  Cell(0.4567)
+                Cell(0.891)  Cell(0.5)
+            ]
+            t = Table(cells, number_format = NumberFormat(scale = 100, suffix = " %", mode = :digits, digits = 1))
+            reftest(t, "references/number_format/scale_percent")
+
+            cells = [
+                Cell(0.0004)  Cell(0.5)
+                Cell(0.9999)  Cell(0.001)
+            ]
+            t = Table(cells, number_format = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001, upper_limit = 0.99))
+            reftest(t, "references/number_format/limits")
+        end
+
         @testset "Character escaping" begin
             cells = [
                 SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' @ ` [ ] . + -")
@@ -885,7 +918,7 @@ end
 end
 
 @testset "Formatted float strings" begin
-    RF = SummaryTables.RoundedFloat
+    RF(x, digits, mode, trailing_zeros) = SummaryTables.FormattedFloat(x, NumberFormat(; digits, mode, trailing_zeros, exponent_style = :e))
     str(rf) = sprint(io -> SummaryTables._showas(io, MIME"text"(), rf))
 
     x = 0.006789
@@ -927,6 +960,117 @@ end
     @test str(RF(x, 3, :auto, false)) == "1.23e7"
     @test str(RF(x, 3, :sigdigits, false)) == "1.23e7"
     @test str(RF(x, 3, :digits, false)) == "12345678.91"
+
+    @test str(RF(1.0e8, 3, :auto, false)) == "1e8"
+    @test str(RF(1.0e8, 3, :auto, true)) == "1.0e8"
+    @test str(RF(-1.0, 3, :auto, false)) == "-1"
+    @test str(RF(-0.0001, 3, :digits, false)) == "0"
+end
+
+@testset "NumberFormat" begin
+    str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+    html(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text/html"(), fmt(x)))
+
+    @test str(1.23456, NumberFormat(digits = 2)) == "1.2"
+    @test str(1.23456, NumberFormat(digits = 2, mode = :digits)) == "1.23"
+    @test str(1.5, NumberFormat(prefix = "~", suffix = " kg")) == "~1.5 kg"
+    @test str(0.4567, NumberFormat(digits = 3, scale = 100, suffix = " %")) == "45.7 %"
+    @test str(NaN, NumberFormat(suffix = " %")) == "NaN %"
+
+    @test str(512.0, NumberFormat(magnitudes = :financial)) == "512"
+    @test str(5432.1, NumberFormat(magnitudes = :financial)) == "5.43k"
+    @test str(-5432.1, NumberFormat(magnitudes = :financial)) == "-5.43k"
+    @test str(1_230_000.0, NumberFormat(magnitudes = :financial)) == "1.23M"
+    @test str(999_999.9, NumberFormat(magnitudes = :financial)) == "1M"
+    @test str(1.5e18, NumberFormat(magnitudes = :financial, exponent_style = :e)) == "1.5e18"
+    @test html(1.5e18, NumberFormat(magnitudes = :financial)) == "1.5 × 10<sup>18</sup>"
+    @test html(1.0e8, NumberFormat()) == "1 × 10<sup>8</sup>"
+    @test str(1.0e8, NumberFormat(exponent_style = :e)) == "1e8"
+    @test str(512.0, NumberFormat(magnitudes = :si, suffix = "B")) == "512 B"
+    @test str(1_230_000.0, NumberFormat(magnitudes = :si, suffix = "B")) == "1.23 MB"
+    @test str(5400.0, NumberFormat(magnitudes = ["", " thousand"])) == "5.4 thousand"
+
+    pvalue = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001)
+    @test str(0.0004, pvalue) == "<0.001"
+    @test str(0.001, pvalue) == "0.001"
+    @test str(0.5, pvalue) == "0.5"
+    @test str(0.94, NumberFormat(digits = 1, upper_limit = 0.9)) == ">0.9"
+    @test str(0.9, NumberFormat(digits = 1, upper_limit = 0.9)) == "0.9"
+    @test str(0.999, NumberFormat(scale = 100, upper_limit = 99.0, suffix = " %")) == ">99 %"
+    @test str(2.0e9, NumberFormat(magnitudes = :financial, upper_limit = 1.0e9)) == ">1B"
+    @test html(1.0e-8, NumberFormat(exponent_style = :x10, lower_limit = 1.0e-6)) == "&lt;1 × 10<sup>-6</sup>"
+
+    @test str(1.5, NumberFormat(exponent_style = :x10)) == "1.5"
+    @test html(1.5e18, NumberFormat(exponent_style = :x10)) == "1.5 × 10<sup>18</sup>"
+    @test html(2.34e-7, NumberFormat(exponent_style = :x10, suffix = " g")) == "2.34 × 10<sup>-7</sup> g"
+    @test string(NumberFormat(digits = 2)(1.5e18)) == "1.5 × 10¹⁸"
+    @test string(NumberFormat(scale = 100, suffix = " %")(0.4567)) == "45.7 %"
+
+    fmt = NumberFormat(digits = 3, magnitudes = :financial)
+    @test str(12400, fmt) == "12.4k"
+    @test fmt(true) === true
+    @test fmt(missing) === missing
+    @test fmt("text") === "text"
+    concat = fmt(Concat(1200.0, " and ", 5))
+    @test str(0, _ -> concat) == "1.2k and 5"
+
+    @test_throws "Invalid mode" NumberFormat(mode = :roundabout)
+    @test_throws "Invalid exponent_style" NumberFormat(exponent_style = :x2)
+    @test_throws "Invalid magnitudes preset" NumberFormat(magnitudes = :metric)
+    @test_throws "must not be empty" NumberFormat(magnitudes = String[])
+    @test_throws "must not be negative" NumberFormat(digits = -1)
+
+    celltext(t, i, j) = sprint(io -> SummaryTables._showas(io, MIME"text"(), SummaryTables.postprocess(t).cells[i, j].value))
+
+    t = Table([Cell(1.23456) Cell(NumberFormat(digits = 5)(1.23456))]; round_digits = 2)
+    @test celltext(t, 1, 1) == "1.2"
+    @test celltext(t, 1, 2) == "1.2346"
+
+    t = Table([Cell(NumberFormat(suffix = " s")(1.23456));;]; number_format = NumberFormat(digits = 2))
+    @test celltext(t, 1, 1) == "1.2 s"
+
+    t = Table([Cell(1.23456);;]; number_format = nothing)
+    @test celltext(t, 1, 1) == "1.23456"
+
+    t = Table([Cell(NumberFormat(digits = 5)(1.23456));;]; number_format = nothing)
+    @test celltext(t, 1, 1) == "1.2346"
+
+    @test_throws "Cannot pass `number_format`" Table([Cell(1.0);;]; number_format = NumberFormat(), round_digits = 2)
+    @test_throws "Cannot set `number_format`" SummaryTables.with_defaults(() -> nothing; number_format = NumberFormat(), round_mode = :digits)
+    @test_throws "must be a `NumberFormat` or `nothing`" Table([Cell(1.0);;]; number_format = :auto)
+
+    SummaryTables.with_defaults(number_format = NumberFormat(digits = 1, suffix = "!")) do
+        t = Table([Cell(3.14159);;])
+        @test celltext(t, 1, 1) == "3!"
+        t = Table([Cell(3.14159);;], round_digits = 3)
+        @test celltext(t, 1, 1) == "3.14!"
+        t = Table([Cell(3.14159);;], number_format = NumberFormat(digits = 3))
+        @test celltext(t, 1, 1) == "3.14!"
+        t = Table([Cell(3.14159);;], number_format = nothing)
+        @test celltext(t, 1, 1) == "3.14159"
+    end
+    SummaryTables.with_defaults(number_format = nothing) do
+        t = Table([Cell(3.14159);;])
+        @test celltext(t, 1, 1) == "3.14159"
+        t = Table([Cell(3.14159);;], number_format = NumberFormat(digits = 2))
+        @test celltext(t, 1, 1) == "3.1"
+    end
+
+    df = DataFrame(est = [1.23456, 22.9188], rse = [0.12345, 0.5], n = [1200, 5])
+    t = simple_table(df, [
+        :est => NumberFormat(digits = 4),
+        :rse => NumberFormat(digits = 1, mode = :digits, scale = 100, suffix = " %") => "RSE",
+        :n => NumberFormat(magnitudes = :financial),
+    ])
+    @test SummaryTables.postprocess(t).cells[1, 2].value == "RSE"
+    @test [celltext(t, i, j) for i in 2:3, j in 1:3] == ["1.235" "12.3 %" "1.2k"; "22.92" "50 %" "5"]
+    @test_throws "Expected a `NumberFormat`" simple_table(df, [:est => "Estimate" => NumberFormat()])
+
+    df = DataFrame(x = [1.234567, 2.5], g = ["a", "b"])
+    t = listingtable(df, :x; rows = [:g], format = NumberFormat(digits = 2, mode = :digits),
+        summarize_rows = [NumberFormat(digits = 4) ∘ mean => "Mean"])
+    values = [celltext(t, i, j) for i in 1:4, j in 1:2]
+    @test values == ["g" "x"; "a" "1.23"; "b" "2.5"; "Mean" "1.867"]
 end
 
 @testset "QuartoNotebookRunner/typst" begin

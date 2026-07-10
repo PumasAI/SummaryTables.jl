@@ -1,6 +1,6 @@
-<table id="st-a653a76b">
+<table id="st-bc32e420">
     <style>
-        #st-a653a76b {
+        #st-bc32e420 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,34 +8,34 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-a653a76b tr {
+        #st-bc32e420 tr {
             background-color: transparent;
             border: none;
         }
-        #st-a653a76b tr td {
+        #st-bc32e420 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-a653a76b br {
+        #st-bc32e420 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-a653a76b sub {
+        #st-bc32e420 sub {
             line-height: 0;
         }
-        #st-a653a76b sup {
+        #st-bc32e420 sup {
             line-height: 0;
         }
     </style>
     <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;">1.0</td>
-        <td style="text-align:center;">1.0e7</td>
+        <td style="text-align:center;">1.0 × 10<sup>7</sup></td>
     </tr>
     <tr>
-        <td style="text-align:center;">1.0e8</td>
+        <td style="text-align:center;">1.0 × 10<sup>8</sup></td>
         <td style="text-align:center;">0.001</td>
     </tr>
     <tr>
