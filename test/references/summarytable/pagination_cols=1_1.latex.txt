@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{3}{llc}}
+\toprule
+ &  & \textbf{group2} \\
+ &  & e \\
+\textbf{group1} &  & \textbf{value1} \\
+\midrule
+\multirow[t]{2}{*}{a} & \textbf{mean} & 2 \\
+ & \textbf{std} & 1.41 \\
+\multirow[t]{2}{*}{b} & \textbf{mean} & 6 \\
+ & \textbf{std} & 1.41 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

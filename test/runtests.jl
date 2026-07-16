@@ -492,6 +492,12 @@ end
             DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
             t = summarytable(df_with_labels, :A, rows = [:B, :C], summary = [only])
             reftest(t, "references/summarytable/column_label_metadata")
+
+            # Pagination splits the summary into a `PaginatedTable`, one page per column combination.
+            pt = summarytable(df, :value1, Pagination(cols = 1); rows = [:group1], cols = [:group2], summary = [mean, std])
+            for (i, page) in enumerate(pt.pages)
+                reftest(page.table, "references/summarytable/pagination_cols=1_$i")
+            end
         end
 
         @testset "simple table" begin

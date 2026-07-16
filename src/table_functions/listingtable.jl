@@ -86,6 +86,13 @@ struct ListingTable
     gdf_colsummary::DataFrames.GroupedDataFrame
 end
 
+"""
+    Pagination(; rows, cols)
+
+Options for splitting a table across multiple pages.
+Pass the maximum number of row and / or column sections to include on each page as the `rows` and / or `cols` keyword arguments.
+When a table function receives a `Pagination`, it returns a [`PaginatedTable`](@ref) instead of a single table.
+"""
 struct Pagination{T<:NamedTuple}
     options::T
 end
