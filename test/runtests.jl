@@ -492,6 +492,10 @@ end
             DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
             t = summarytable(df_with_labels, :A, rows = [:B, :C], summary = [only])
             reftest(t, "references/summarytable/column_label_metadata")
+
+            # full_width renders the table at the full text width instead of sized to content.
+            t = summarytable(df, :value1, rows = [:group1], cols = [:group2], summary = [mean, std], full_width = true)
+            reftest(t, "references/summarytable/full_width")
         end
 
         @testset "simple table" begin

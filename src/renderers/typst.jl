@@ -11,6 +11,11 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
 
     column_alignments = most_common_column_alignments(cells, matrix)
 
+    # When `full_width` is set, proportional `fr` weights fill the text column (matching the DOCX `tblW
+    # pct=100` stretch); otherwise N content-sized columns.
+    columns_spec = ct.full_width ? "(" * join(("$(w)fr" for w in _typst_column_weights(cells, matrix)), ", ") * ")" :
+        string(size(matrix, 2))
+
     validate_rowgaps(ct.rowgaps, size(matrix, 1))
     validate_colgaps(ct.colgaps, size(matrix, 2))
     rowgaps = Dict(ct.rowgaps)
@@ -20,7 +25,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
 
     #table(
         rows: $(size(matrix, 1)),
-        columns: $(size(matrix, 2)),
+        columns: $(columns_spec),
         column-gutter: 0.25em,
         align: ($(join(column_alignments, ", "))),
         stroke: none,
@@ -214,3 +219,38 @@ function _showas(io::IO, ::MIME"text/typst", r::RectPlot)
     show(io, MIME"image/svg+xml"(), r)
     print(io, """\")""")
 end
+
+# Per-column `fr` weights so the Typst table fills the text width. A column's weight is proportional to its
+# widest single-column cell (colspans don't count); empty columns get weight 1, normalised to the narrowest.
+function _typst_column_weights(cells, matrix)
+    ncols = size(matrix, 2)
+    widths = zeros(Float64, ncols)
+    for cell in cells
+        cell.value === nothing && continue
+        length(cell.span[2]) == 1 || continue
+        icol = cell.span[2].start
+        widths[icol] = max(widths[icol], _typst_content_width(cell.value))
+    end
+    for icol in 1:ncols
+        widths[icol] == 0 && (widths[icol] = 1.0)
+    end
+    minw = minimum(widths)
+    return [round(w / minw, digits = 2) for w in widths]
+end
+
+# Rough rendered width of a cell value, in character units, used only to proportion `full_width` columns.
+# One method per value type; `Multiline` takes its widest line and `RectPlot` a fixed width so they don't inflate it.
+_typst_content_width(::Nothing) = 0.0
+_typst_content_width(s::AbstractString) = isempty(s) ? 0.0 : Float64(maximum(textwidth, split(s, '\n')))
+_typst_content_width(m::Multiline) = maximum(_typst_content_width, m.values; init = 0.0)
+_typst_content_width(c::Concat) = sum(_typst_content_width, c.args; init = 0.0)
+_typst_content_width(s::Superscript) = 0.7 * _typst_content_width(s.super)
+_typst_content_width(s::Subscript) = 0.7 * _typst_content_width(s.sub)
+_typst_content_width(s::Styled) = _typst_content_width(s.value)
+_typst_content_width(r::ResolvedAnnotation) =
+    _typst_content_width(r.value) + (r.label === NoLabel() ? 0.0 : 0.7 * _typst_content_width(r.label))
+_typst_content_width(c::CategoricalValue) = _typst_content_width(CategoricalArrays.DataAPI.unwrap(c))
+_typst_content_width(::RectPlot) = 20.0
+# Fallback: measure the rendered markup. This overestimates for styled/math content, which is fine since it
+# only proportions opt-in `full_width` columns. Exact widths are Word/Typst's job.
+_typst_content_width(x) = Float64(textwidth(sprint((io, v) -> _showas(io, MIME"text/typst"(), v), x)))
