@@ -169,13 +169,13 @@
   <w:body>
     <w:tbl>
       <w:tblPr>
-        <w:tblCellSpacing w:type="dxa" w:w="20"/>
         <w:tblCellMar>
           <w:top w:w="0"/>
           <w:bottom w:w="0"/>
           <w:start w:w="30"/>
           <w:end w:w="30"/>
         </w:tblCellMar>
+        <w:tblCellSpacing w:w="20"/>
       </w:tblPr>
       <w:tr>
         <w:trPr>
