@@ -492,6 +492,10 @@ end
             DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
             t = summarytable(df_with_labels, :A, rows = [:B, :C], summary = [only])
             reftest(t, "references/summarytable/column_label_metadata")
+
+            # merge_row_labels = false keeps each row-group label in its own row (no vertical merge).
+            t = summarytable(df, :value1, rows = [:group1, :group2], summary = [mean], merge_row_labels = false)
+            reftest(t, "references/summarytable/merge_row_labels_false")
         end
 
         @testset "simple table" begin

@@ -66,7 +66,7 @@ function to_docx(ct::Table)
                 if !is_firstcol
                     continue
                 end
-                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps))
+                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps, ct.merge_row_labels))
                 running_index = index
             
             end
@@ -219,11 +219,13 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
     )
 end
 
-function docx_cell(row, col, cell, rowgaps, colgaps)    
+function docx_cell(row, col, cell, rowgaps, colgaps, merge_row_labels)    
     ncols = length(cell.span[2])
     is_firstrow = row == cell.span[1].start
     is_firstcol = col == cell.span[2].start
-    vertical_merge = length(cell.span[1]) == 1 ? nothing : is_firstrow
+    # Word cannot page-break a `w:vMerge` region, so when `merge_row_labels` is off the label stays in the
+    # group's first row (continuation rows already render empty) and every row is independently breakable.
+    vertical_merge = merge_row_labels && length(cell.span[1]) > 1 ? is_firstrow : nothing
     gridspan = ncols > 1 ? ncols : nothing
 
     paraproperties, runproperties = paragraph_and_run_properties(cell.style)
