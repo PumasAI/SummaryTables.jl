@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
+- Added a `merge_row_labels` option (default `true`); set it to `false` to keep each row-group label in its own row so DOCX tables can page-break cleanly across long groups [#142](https://github.com/PumasAI/SummaryTables.jl/pull/142).
 
 ## 3.5.1 - 2026-10-23
 

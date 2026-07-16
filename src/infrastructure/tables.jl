@@ -10,6 +10,7 @@ struct Table
     round_mode::Union{Nothing,Symbol}
     trailing_zeros::Bool
     linebreak_footnotes::Bool
+    merge_row_labels::Bool
 end
 
 function Table(cells, header, footer;
@@ -21,13 +22,15 @@ function Table(cells, header, footer;
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
         linebreak_footnotes = default,
+        merge_row_labels = default,
     )
     defs = defaults()
     _round_digits = fallback(round_digits, defs.round_digits)
     _round_mode = fallback(round_mode, defs.round_mode)
     _trailing_zeros = fallback(trailing_zeros, defs.trailing_zeros)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _round_digits, _round_mode, _trailing_zeros, _linebreak_footnotes)
+    _merge_row_labels = fallback(merge_row_labels, defs.merge_row_labels)
+    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _round_digits, _round_mode, _trailing_zeros, _linebreak_footnotes, _merge_row_labels)
 end
 
 """
@@ -67,6 +70,9 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
     the size of `gap_pt` is added between the columns `index` and `index+1`.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
+- `merge_row_labels = true`: If `true`, row-group label cells are vertically merged across their rows in DOCX.
+    Word cannot page-break a merged region, so set `false` when a group can span more rows than fit on a page
+    (the label then top-anchors in the group's first row).
 
 ## Round mode
 
@@ -234,7 +240,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.round_digits, ct.round_mode, ct.trailing_zeros, ct.linebreak_footnotes)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.round_digits, ct.round_mode, ct.trailing_zeros, ct.linebreak_footnotes, ct.merge_row_labels)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)

@@ -22,6 +22,8 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
+    "If `true`, row-group label cells are vertically merged across their rows in DOCX. Word cannot page-break a merged region, so set `false` when a group can span more rows than fit on a page (the label then top-anchors in the group's first row)."
+    merge_row_labels::Bool = true
     "Defaults for the `table_one` function"
     table_one::TableOneDefaults = TableOneDefaults()
 end
