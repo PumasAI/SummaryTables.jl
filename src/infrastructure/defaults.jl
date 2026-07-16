@@ -22,6 +22,8 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
+    "If `true`, tables render at the full text width (Typst `fr` columns / Word \"AutoFit to window\") instead of sized to content."
+    full_width::Bool = false
     "Defaults for the `table_one` function"
     table_one::TableOneDefaults = TableOneDefaults()
 end

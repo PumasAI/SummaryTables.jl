@@ -106,6 +106,9 @@ function to_docx(ct::Table)
 
     tablenode = WriteDocx.Table(tablerows,
         WriteDocx.TableProperties(
+            # Opt-in full width (`full_width` default): Word "AutoFit to window" spreads columns proportionally
+            # across the text column. Unset otherwise, so every other consumer keeps content-sized tables.
+            width = ct.full_width ? WriteDocx.TableWidth(pct = 100) : nothing,
             margins = WriteDocx.TableLevelCellMargins(
                 # Word already has relatively broadly spaced tables,
                 # so we keep margins to a minimum. A little bit on the left
