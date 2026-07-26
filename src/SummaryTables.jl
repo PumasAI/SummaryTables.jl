@@ -61,8 +61,8 @@ include("infrastructure/tables.jl")
 
 include("table_functions/simple_table.jl")
 include("table_functions/overview_table.jl")
-include("table_functions/table_one.jl")
 include("table_functions/listingtable.jl")
+include("table_functions/table_one.jl")
 include("table_functions/summarytable.jl")
 
 include("renderers/utils.jl")

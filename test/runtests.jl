@@ -863,6 +863,40 @@ end
 end
 
 
+@testset "table_one pagination" begin
+    df = DataFrame(
+        age = repeat(1:2, 60),
+        dose = repeat(["10mg", "20mg", "50mg"], inner = 40),
+        sex = repeat(["M", "F"], inner = 20, outer = 3),
+        race = repeat(["White", "Black"], 60),
+    )
+
+    t_full = table_one(df, [:age], groupby = [:dose, :sex, :race])
+    @test t_full isa Table  # unpaginated call is unaffected by adding the `pagination` argument
+
+    pt = table_one(df, [:age], Pagination(cols = 4), groupby = [:dose, :sex, :race])
+    @test pt isa SummaryTables.PaginatedTable
+    @test length(pt.pages) == 3  # 3 dose x 2 sex x 2 race = 12 group combinations / 4 per page
+
+    for page in pt.pages
+        @test page.table isa Table
+        @test !isempty(page.metadata.cols)
+        # Total and the analysis-name column must be the SAME on every page as in the unpaginated
+        # table — pagination slices already-computed columns, it never recomputes Total from a
+        # row subset (which would silently show the wrong grand total on later pages).
+        @test page.table.cells[:, 1] == t_full.cells[:, 1]
+        @test page.table.cells[:, 2] == t_full.cells[:, 2]
+    end
+
+    @test_throws ArgumentError table_one(df, [:age], Pagination(rows = 2), groupby = [:dose])
+
+    # No groupby: nothing to split, so pagination is a no-op — one page, same content as unpaginated.
+    t_nogroup = table_one(df, [:age])
+    pt_nogroup = table_one(df, [:age], Pagination(cols = 2))
+    @test length(pt_nogroup.pages) == 1
+    @test pt_nogroup.pages[1].table.cells == t_nogroup.cells
+end
+
 @testset "auto rounding" begin
     @test SummaryTables.auto_round(        1234567, target_digits = 4) == 1.235e6
     @test SummaryTables.auto_round(       123456.7, target_digits = 4) == 123457
