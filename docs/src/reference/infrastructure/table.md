@@ -89,3 +89,25 @@ Table(cells; footnotes = ["Footnote 1.", "Footnote 2."])
 ```@example linebreak_footnotes
 Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], linebreak_footnotes = false)
 ```
+
+## Keyword: `merge_row_labels`
+
+In DOCX output, row-group label cells are by default vertically merged across the rows they span. Word cannot page-break a merged region, so a group spanning more rows than fit on a page breaks awkwardly. Setting `merge_row_labels = false` keeps each row's label cell separate (the label stays in the group's first row, with the remaining rows in that group left blank), so the table can break cleanly across pages. This option only affects DOCX output.
+
+This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
+
+Row-group label cells only arise from grouped tables such as [`summarytable`](@ref), so the option is shown there instead of with a raw `Cell`/`Table` example:
+
+```@example merge_row_labels
+using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    value = 1:8,
+    group1 = repeat(["a", "b"], inner = 4),
+    group2 = repeat(["c", "d"], 4),
+)
+
+summarytable(data, :value, rows = [:group1, :group2], summary = [mean], merge_row_labels = false)
+```
