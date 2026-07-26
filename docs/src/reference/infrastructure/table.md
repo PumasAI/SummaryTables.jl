@@ -89,3 +89,21 @@ Table(cells; footnotes = ["Footnote 1.", "Footnote 2."])
 ```@example linebreak_footnotes
 Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], linebreak_footnotes = false)
 ```
+
+## Keyword: `full_width`
+
+By default, a table is sized to its content. Setting `full_width = true` makes it fill the available
+text width instead (Typst `fr` columns, Word's "AutoFit to window").
+
+This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
+
+```@example full_width
+using SummaryTables
+
+cells = [Cell("$col$row") for row in 1:3, col in 'A':'C']
+Table(cells)
+```
+
+```@example full_width
+Table(cells; full_width = true)
+```
