@@ -163,7 +163,7 @@ struct Subscript
     sub
 end
 
-const MAGNITUDES_FINANCIAL = ["", "k", "M", "B", "T"]
+const MAGNITUDES_FINANCIAL = ["", "K", "M", "B", "T"]
 const MAGNITUDES_SI = [" ", " k", " M", " G", " T", " P", " E"]
 
 """
@@ -259,7 +259,7 @@ julia> fmt([0.0004, 0.0234, 0.7], mode = :digits, digits = 3, lower_limit = 0.00
 <0.001  0.023  0.700
 
 julia> fmt([999.0, 5432.1, 1_230_000], magnitudes = :financial)
-999  5.43k  1.23M
+999  5.43K  1.23M
 
 julia> fmt([512, 1_230_000], magnitudes = :si, suffix = "B")
 512 B  1.23 MB

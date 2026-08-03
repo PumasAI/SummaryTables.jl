@@ -1027,8 +1027,8 @@ end
     @test str(NaN, NumberFormat(suffix = " %")) == "NaN %"
 
     @test str(512.0, NumberFormat(magnitudes = :financial)) == "512"
-    @test str(5432.1, NumberFormat(magnitudes = :financial)) == "5.43k"
-    @test str(-5432.1, NumberFormat(magnitudes = :financial)) == "-5.43k"
+    @test str(5432.1, NumberFormat(magnitudes = :financial)) == "5.43K"
+    @test str(-5432.1, NumberFormat(magnitudes = :financial)) == "-5.43K"
     @test str(1_230_000.0, NumberFormat(magnitudes = :financial)) == "1.23M"
     @test str(999_999.9, NumberFormat(magnitudes = :financial)) == "1M"
     @test str(1.5e18, NumberFormat(magnitudes = :financial, exponent_style = :e)) == "1.5e18"
@@ -1056,12 +1056,12 @@ end
     @test string(NumberFormat(scale = 100, suffix = " %")(0.4567)) == "45.7 %"
 
     fmt = NumberFormat(digits = 3, magnitudes = :financial)
-    @test str(12400, fmt) == "12.4k"
+    @test str(12400, fmt) == "12.4K"
     @test fmt(true) === true
     @test fmt(missing) === missing
     @test fmt("text") === "text"
     concat = fmt(Concat(1200.0, " and ", 5))
-    @test str(0, _ -> concat) == "1.2k and 5"
+    @test str(0, _ -> concat) == "1.2K and 5"
 
     @test_throws "Invalid mode" NumberFormat(mode = :roundabout)
     @test_throws "Invalid exponent_style" NumberFormat(exponent_style = :x2)
@@ -1112,7 +1112,7 @@ end
         :n => NumberFormat(magnitudes = :financial),
     ])
     @test SummaryTables.postprocess(t).cells[1, 2].value == "RSE"
-    @test [celltext(t, i, j) for i in 2:3, j in 1:3] == ["1.235" "12.3 %" "1.2k"; "22.92" "50.0 %" "5"]
+    @test [celltext(t, i, j) for i in 2:3, j in 1:3] == ["1.235" "12.3 %" "1.2K"; "22.92" "50.0 %" "5"]
     @test_throws "Expected a `NumberFormat`" simple_table(df, [:est => "Estimate" => NumberFormat()])
 
     df = DataFrame(x = [1.234567, 2.5], g = ["a", "b"])

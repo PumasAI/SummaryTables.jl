@@ -11,7 +11,7 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
 \toprule
-5.43k & 1.23M \\
+5.43K & 1.23M \\
 1M & 0.75 \\
 \bottomrule
 \end{tabular}
