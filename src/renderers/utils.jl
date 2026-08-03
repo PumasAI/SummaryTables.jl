@@ -30,44 +30,58 @@ function formatted_value(r::FormattedFloat)
     if magnitudes !== nothing
         x, magnitude = scale_to_magnitude(x, magnitudes, fmt)
     end
-    s = format_rounded(x, fmt.mode, fmt.digits)
-    if !fmt.trailing_zeros
-        s = strip_trailing_zeros(s)
-    end
-    i_e = findfirst('e', s)
-    if fmt.exponent_style === :x10 && i_e !== nothing
-        mantissa = s[1:prevind(s, i_e)]
-        exponent = s[nextind(s, i_e):end]
+    mantissa, exponent = format_mantissa_exponent(x, fmt)
+    if exponent === nothing
+        return string(fmt.prefix, comparator, mantissa, magnitude, fmt.suffix)
+    elseif fmt.exponent_style === :x10
         return Concat(
             string(fmt.prefix, comparator, mantissa, " × 10"),
-            Superscript(exponent),
+            Superscript(string(exponent)),
             string(magnitude, fmt.suffix),
         )
     end
-    return string(fmt.prefix, comparator, s, magnitude, fmt.suffix)
+    return string(fmt.prefix, comparator, mantissa, "e", exponent, magnitude, fmt.suffix)
 end
 
-function format_rounded(x::Float64, mode::Symbol, digits::Int)
-    if mode === :auto
-        string(auto_round(x, target_digits = digits))
-    elseif mode === :sigdigits
-        string(round(x, sigdigits = digits))
-    elseif mode === :digits
-        Printf.format(Printf.Format("%.$(digits)f"), x)
-    else
-        error("Unknown round mode $mode")
+function format_mantissa_exponent(x::Float64, fmt::NumberFormat)
+    digits = fmt.digits
+    trailing_zeros = resolve_trailing_zeros(fmt.trailing_zeros, fmt.mode)
+    fmt.mode === :digits && return (fixed_string(x, digits, trailing_zeros), nothing)
+    iszero(x) && return (fixed_string(x, max(0, digits - 1), trailing_zeros), nothing)
+
+    rounded = Printf.format(Printf.Format("%.$(max(0, digits - 1))e"), x)
+    i_e = findfirst('e', rounded)
+    exponent = parse(Int, rounded[nextind(rounded, i_e):end])
+    significant = parse(Float64, rounded)
+
+    decimals = max(0, digits - 1 - exponent)
+    plain = fmt.mode === :sigdigits ? significant : round(x, digits = decimals)
+    if use_exponent(plain, fmt)
+        mantissa = rounded[1:prevind(rounded, i_e)]
+        return (trailing_zeros ? mantissa : strip_trailing_zeros(mantissa), exponent)
     end
+    return (fixed_string(plain, decimals, trailing_zeros), nothing)
+end
+
+resolve_trailing_zeros(trailing_zeros::Bool, mode::Symbol) = trailing_zeros
+resolve_trailing_zeros(::Symbol, mode::Symbol) = mode !== :auto
+
+function use_exponent(x::Float64, fmt::NumberFormat)
+    lower, upper = fmt.exponent_thresholds
+    upper_value = upper === :digits ? 10.0^fmt.digits : upper
+    return abs(x) < lower || abs(x) >= upper_value
+end
+
+function fixed_string(x::Float64, decimals::Int, trailing_zeros::Bool)
+    s = Printf.format(Printf.Format("%.$(decimals)f"), x)
+    trailing_zeros || (s = strip_trailing_zeros(s))
+    return replace(s, r"^-(0(\.0*)?)$" => s"\1")
 end
 
 function strip_trailing_zeros(s::String)
-    i_e = findfirst('e', s)
-    if i_e !== nothing
-        return string(strip_trailing_zeros(s[1:prevind(s, i_e)]), s[i_e:end])
-    end
     occursin('.', s) || return s
     s = replace(s, r"(\.\d*?)0+$" => s"\1")
-    s = replace(s, r"\.$" => "")
-    return s == "-0" ? "0" : s
+    return replace(s, r"\.$" => "")
 end
 
 magnitude_strings(s::Symbol) = s === :none ? nothing : s === :financial ? MAGNITUDES_FINANCIAL : MAGNITUDES_SI
@@ -130,7 +144,7 @@ For example, with 3 target digits, desirable numbers would be 123.0, 12.3, 1.23,
 0.123, 0.0123 etc. Numbers larger than the number of digits are only rounded to the next integer
 (compare with `round(1234, sigdigits = 3)` which rounds to `1230.0`).
 Numbers are rounded to `target_digits` significant digits when the floored base 10
-exponent is -5 and lower or 6 and higher, as these numbers print with `e` notation by default in Julia.
+exponent is -5 and lower or 6 and higher.
 
 ```
 auto_round(        1234567, target_digits = 4) = 1.235e6
@@ -158,7 +172,6 @@ function auto_round(number; target_digits::Int)
     if -5 < oom < 6
         round(number, digits = ndigits)
     else
-        # this relies on Base printing e notation >= 6 and <= -5
         round(number, sigdigits = target_digits)
     end
 end

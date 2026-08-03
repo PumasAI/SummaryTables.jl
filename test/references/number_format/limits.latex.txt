@@ -11,8 +11,8 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
 \toprule
-<0.001 & 0.5 \\
->0.99 & 0.001 \\
+<0.001 & 0.500 \\
+>0.990 & 0.001 \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

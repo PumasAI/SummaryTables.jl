@@ -193,14 +193,15 @@ and finally from the package defaults listed below.
 - `digits`: How many digits to round to, interpreted according to `mode`. Package default `3`.
 - `mode`: The rounding mode, one of `:auto`, `:digits` or `:sigdigits`. Package default `:auto`.
   - `:auto` rounds to `digits` significant digits but never rounds away digits before
-    the decimal point. Numbers at orders of magnitude >= 6 or <= -5 are shown in
-    exponential notation.
+    the decimal point, so at 3 digits `1234` stays `1234` instead of becoming `1230`.
   - `:digits` rounds to `digits` digits after the decimal point and never uses
     exponential notation.
-  - `:sigdigits` rounds to `digits` significant digits. Numbers at orders of
-    magnitude >= 6 or <= -5 are shown in exponential notation.
-- `trailing_zeros`: Whether trailing zeros after the decimal point are kept,
-  for example `4.0` vs `4`. Package default `false`.
+  - `:sigdigits` rounds to `digits` significant digits.
+  Outside of `exponent_thresholds`, `:auto` and `:sigdigits` switch to exponential notation.
+- `trailing_zeros`: Whether numbers are padded with zeros up to the precision given by
+  `digits`, for example `1.50` vs `1.5` at 3 significant digits. `:auto` means `false`
+  for `mode = :auto` and `true` for `:digits` and `:sigdigits`, so the exact modes display
+  exactly the requested precision while `:auto` stays compact. Package default `:auto`.
 - `prefix`: A string printed before the number. Package default `""`.
 - `suffix`: A string printed after the number and after any magnitude suffix.
   Package default `""`.
@@ -223,6 +224,13 @@ and finally from the package defaults listed below.
 - `exponent_style`: How exponential notation is rendered, either `:e` like `1.5e6` or
   `:x10` like `1.5 × 10⁶`, which uses proper superscript rendering in each output format.
   Package default `:x10`.
+- `exponent_thresholds`: The range `(lower, upper)` of absolute values that are displayed
+  plainly, outside of it `:auto` and `:sigdigits` switch to exponential notation
+  (`mode = :digits` never does and ignores this setting). The upper threshold may also be
+  `:digits`, which stands for `10^digits`. With `(0.1, :digits)`, every displayed digit is
+  a significant one, because plain display outside that range needs placeholder zeros on
+  one side or the other. Package default `(0.0001, 1000000.0)`, matching the range in which
+  Julia prints floats without an exponent.
 
 ## Examples
 
@@ -232,14 +240,23 @@ julia> fmt(values; kwargs...) = println(join(NumberFormat(; kwargs...).(values),
 julia> fmt([0.4567, 1.23456, 123.456], digits = 2)
 0.46  1.2  123
 
-julia> fmt([0.4, 0.44444], mode = :digits, digits = 2, trailing_zeros = true)
+julia> fmt([0.4, 0.44444], mode = :digits, digits = 2)
 0.40  0.44
+
+julia> fmt([1.5, 0.7, 1234.0], mode = :sigdigits, digits = 3)
+1.50  0.700  1230
+
+julia> fmt([1.5, 0.7, 1234.0], mode = :sigdigits, digits = 3, trailing_zeros = false)
+1.5  0.7  1230
+
+julia> fmt([1234.0, 0.0234], mode = :sigdigits, digits = 3, exponent_thresholds = (0.1, :digits))
+1.23 × 10³  2.34 × 10⁻²
 
 julia> fmt([0.4567, 0.891], scale = 100, suffix = " %")
 45.7 %  89.1 %
 
 julia> fmt([0.0004, 0.0234, 0.7], mode = :digits, digits = 3, lower_limit = 0.001)
-<0.001  0.023  0.7
+<0.001  0.023  0.700
 
 julia> fmt([999.0, 5432.1, 1_230_000], magnitudes = :financial)
 999  5.43k  1.23M
@@ -257,7 +274,7 @@ julia> fmt([1.5, 1.5e18], exponent_style = :e)
 struct NumberFormat
     digits::Union{Nothing,Int}
     mode::Union{Nothing,Symbol}
-    trailing_zeros::Union{Nothing,Bool}
+    trailing_zeros::Union{Nothing,Bool,Symbol}
     prefix::Union{Nothing,String}
     suffix::Union{Nothing,String}
     scale::Union{Nothing,Float64}
@@ -265,6 +282,7 @@ struct NumberFormat
     upper_limit::Union{Nothing,Float64}
     magnitudes::Union{Nothing,Symbol,Vector{String}}
     exponent_style::Union{Nothing,Symbol}
+    exponent_thresholds::Union{Nothing,Tuple{Float64,Union{Float64,Symbol}}}
 end
 
 function NumberFormat(;
@@ -278,6 +296,7 @@ function NumberFormat(;
         upper_limit = nothing,
         magnitudes = nothing,
         exponent_style = nothing,
+        exponent_thresholds = nothing,
     )
     if mode !== nothing && mode ∉ (:auto, :digits, :sigdigits)
         throw(ArgumentError("Invalid mode $(repr(mode)), valid options are :auto, :digits and :sigdigits."))
@@ -291,7 +310,7 @@ function NumberFormat(;
     return NumberFormat(
         digits,
         mode,
-        trailing_zeros,
+        validate_trailing_zeros(trailing_zeros),
         prefix === nothing ? nothing : String(prefix),
         suffix === nothing ? nothing : String(suffix),
         scale === nothing ? nothing : Float64(scale),
@@ -299,7 +318,28 @@ function NumberFormat(;
         upper_limit === nothing ? nothing : Float64(upper_limit),
         validate_magnitudes(magnitudes),
         exponent_style,
+        validate_exponent_thresholds(exponent_thresholds),
     )
+end
+
+validate_trailing_zeros(::Nothing) = nothing
+validate_trailing_zeros(b::Bool) = b
+function validate_trailing_zeros(x)
+    x === :auto && return x
+    throw(ArgumentError("Invalid trailing_zeros $(repr(x)), valid options are true, false and :auto, which means false for `mode = :auto` and true for the other modes."))
+end
+
+validate_exponent_thresholds(::Nothing) = nothing
+function validate_exponent_thresholds(thresholds)
+    length(thresholds) == 2 || throw(ArgumentError("exponent_thresholds needs a lower and an upper threshold, got $(repr(thresholds))."))
+    lower, upper = thresholds
+    lower isa Real && lower >= 0 || throw(ArgumentError("The lower exponent threshold must be a number >= 0, got $(repr(lower))."))
+    if upper isa Symbol
+        upper === :digits || throw(ArgumentError("Invalid upper exponent threshold $(repr(upper)), valid options are a number or :digits, which means 10^digits."))
+        return (Float64(lower), upper)
+    end
+    upper isa Real && upper > lower || throw(ArgumentError("The upper exponent threshold must be a number larger than the lower threshold, or :digits, got $(repr(upper))."))
+    return (Float64(lower), Float64(upper))
 end
 
 validate_magnitudes(::Nothing) = nothing
@@ -317,7 +357,7 @@ end
 const DEFAULT_NUMBER_FORMAT = NumberFormat(
     digits = 3,
     mode = :auto,
-    trailing_zeros = false,
+    trailing_zeros = :auto,
     prefix = "",
     suffix = "",
     scale = 1.0,
@@ -325,6 +365,7 @@ const DEFAULT_NUMBER_FORMAT = NumberFormat(
     upper_limit = Inf,
     magnitudes = :none,
     exponent_style = :x10,
+    exponent_thresholds = (1e-4, 1e6),
 )
 
 function Base.show(io::IO, fmt::NumberFormat)

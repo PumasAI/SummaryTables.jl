@@ -5,6 +5,9 @@
 - Added `NumberFormat` for formatting numbers per value, per column (`simple_table`), per variable (`listingtable`) or per table, with new settings for prefixes and suffixes, scaling, display limits like `<0.001`, magnitude suffixes like `5.4k` and exponent style [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - Exponential notation now renders like `1.5 × 10⁶` instead of `1.5e6` by default, which can be changed back with the `exponent_style = :e` setting [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - Trailing zeros are now also stripped from e-notation mantissas and negative numbers [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
+- `trailing_zeros = true` now pads numbers to the requested precision in the `:auto` and `:sigdigits` modes, for example `1.50` at 3 significant digits [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
+- `trailing_zeros` now defaults to `:auto`, which means `false` for `round_mode = :auto` and `true` for `:digits` and `:sigdigits`, so the exact modes display exactly the requested precision [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
+- Added the `exponent_thresholds` setting which controls the range of values displayed without an exponent, with `(0.1, :digits)` as the setting where every displayed digit is a significant one [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
 
 ## 3.5.1 - 2026-10-23

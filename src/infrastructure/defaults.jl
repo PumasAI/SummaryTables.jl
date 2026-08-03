@@ -20,8 +20,8 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     round_mode::Symbol = :auto
     "Number of digits to target when rounding floats."
     round_digits::Int = 3
-    "If `false`, removes trailing zeros when formatting floats."
-    trailing_zeros::Bool = false
+    "Whether trailing zeros are kept when formatting floats. `:auto` means `false` for `round_mode = :auto` and `true` for the other modes."
+    trailing_zeros::Union{Bool,Symbol} = :auto
     "Default `NumberFormat` for floats, or `nothing` to disable formatting. If set, the separate settings `round_mode`, `round_digits` and `trailing_zeros` are ignored, and setting both in the same call is an error."
     number_format::Union{Default,Nothing,NumberFormat} = default
     "If `true`, each footnote is displayed on a separate line."

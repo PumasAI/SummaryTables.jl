@@ -60,7 +60,7 @@ using SummaryTables
 
 fraction = NumberFormat(scale = 100, suffix = " %", digits = 2)
 count = NumberFormat(magnitudes = :financial)
-concentration = NumberFormat(suffix = " mol/L")
+concentration = NumberFormat(mode = :sigdigits, suffix = " mol/L")
 pvalue = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001)
 
 cells = [
@@ -77,6 +77,30 @@ and `listingtable` accepts a `NumberFormat` for its raw values via the `format` 
 Anywhere a function is expected, for example for summary analyses in `listingtable` or
 `summarytable`, formats can be composed with the summary function instead, like
 `NumberFormat(digits = 2) ∘ mean`.
+
+##### Exponential notation
+
+The `mode`s `:auto` and `:sigdigits` switch to exponential notation for numbers outside
+of `exponent_thresholds`, which defaults to `(0.0001, 1000000)`, the range in which Julia
+prints floats without an exponent.
+The upper threshold can also be set to `:digits`, which stands for `10^digits`.
+Together with a lower threshold of `0.1`, this means that every digit that is displayed
+is a significant one, because outside of that range, plain notation needs placeholder
+zeros on one side or the other.
+
+```@example
+using SummaryTables
+
+default = NumberFormat(mode = :sigdigits)
+significant = NumberFormat(mode = :sigdigits, exponent_thresholds = (0.1, :digits))
+
+values = [12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234]
+cells = [
+    Cell("Value", bold = true) Cell("Default", bold = true) Cell("(0.1, :digits)", bold = true)
+    Cell.(string.(values)) Cell.(default.(values)) Cell.(significant.(values))
+]
+Table(cells)
+```
 
 #### `Concat`
 

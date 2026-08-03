@@ -933,8 +933,8 @@ end
 
     x = 0.120
 
-    @test str(RF(x, 3, :auto, true)) == "0.12"
-    @test str(RF(x, 3, :sigdigits, true)) == "0.12"
+    @test str(RF(x, 3, :auto, true)) == "0.120"
+    @test str(RF(x, 3, :sigdigits, true)) == "0.120"
     @test str(RF(x, 3, :digits, true)) == "0.120"
 
     @test str(RF(x, 3, :auto, false)) == "0.12"
@@ -943,8 +943,8 @@ end
 
     x = 1.0
 
-    @test str(RF(x, 3, :auto, true)) == "1.0"
-    @test str(RF(x, 3, :sigdigits, true)) == "1.0"
+    @test str(RF(x, 3, :auto, true)) == "1.00"
+    @test str(RF(x, 3, :sigdigits, true)) == "1.00"
     @test str(RF(x, 3, :digits, true)) == "1.000"
 
     @test str(RF(x, 3, :auto, false)) == "1"
@@ -962,9 +962,58 @@ end
     @test str(RF(x, 3, :digits, false)) == "12345678.91"
 
     @test str(RF(1.0e8, 3, :auto, false)) == "1e8"
-    @test str(RF(1.0e8, 3, :auto, true)) == "1.0e8"
+    @test str(RF(1.0e8, 3, :auto, true)) == "1.00e8"
     @test str(RF(-1.0, 3, :auto, false)) == "-1"
     @test str(RF(-0.0001, 3, :digits, false)) == "0"
+    @test str(RF(-0.0001, 3, :digits, true)) == "0.000"
+end
+
+@testset "Trailing zeros per mode" begin
+    str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+
+    mode_auto = NumberFormat(digits = 3)
+    mode_sigdigits = NumberFormat(digits = 3, mode = :sigdigits)
+    mode_digits = NumberFormat(digits = 3, mode = :digits)
+
+    @test str(1.5, mode_auto) == "1.5"
+    @test str(1.5, mode_sigdigits) == "1.50"
+    @test str(1.5, mode_digits) == "1.500"
+
+    @test str(0.7, mode_sigdigits) == "0.700"
+    @test str(1234.0, mode_sigdigits) == "1230"
+    @test str(0.0, mode_sigdigits) == "0.00"
+    @test str(8.7e-6, NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e)) == "8.70e-6"
+
+    @test str(1.5, NumberFormat(digits = 3, mode = :sigdigits, trailing_zeros = false)) == "1.5"
+    @test str(1.5, NumberFormat(digits = 3, trailing_zeros = true)) == "1.50"
+
+    @test_throws "Invalid trailing_zeros" NumberFormat(trailing_zeros = :yes)
+end
+
+@testset "Exponent thresholds" begin
+    str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+
+    strict = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (0.1, :digits))
+    @test [str(x, strict) for x in (12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234)] ==
+        ["1.23e4", "1.23e3", "123", "12.3", "1.23", "0.123", "1.23e-2"]
+    @test str(0.0, strict) == "0.00"
+    @test str(-1234.0, strict) == "-1.23e3"
+    @test str(1234.0, NumberFormat(digits = 3, mode = :digits, exponent_thresholds = (0.1, :digits))) == "1234.000"
+
+    default = NumberFormat(digits = 3, exponent_style = :e)
+    @test str(999999.4, default) == "999999"
+    @test str(999999.6, default) == "1e6"
+    @test str(0.0001234, default) == "0.000123"
+    @test str(0.00001234, default) == "1.23e-5"
+
+    never = NumberFormat(digits = 3, exponent_style = :e, exponent_thresholds = (0, Inf))
+    @test str(1.5e8, never) == "150000000"
+    @test str(1.5e-8, never) == "0.000000015"
+
+    @test_throws "needs a lower and an upper threshold" NumberFormat(exponent_thresholds = (1,))
+    @test_throws "lower exponent threshold" NumberFormat(exponent_thresholds = (-1, 10))
+    @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (1, :sigdigits))
+    @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (10, 1))
 end
 
 @testset "NumberFormat" begin
@@ -993,7 +1042,7 @@ end
     pvalue = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001)
     @test str(0.0004, pvalue) == "<0.001"
     @test str(0.001, pvalue) == "0.001"
-    @test str(0.5, pvalue) == "0.5"
+    @test str(0.5, pvalue) == "0.500"
     @test str(0.94, NumberFormat(digits = 1, upper_limit = 0.9)) == ">0.9"
     @test str(0.9, NumberFormat(digits = 1, upper_limit = 0.9)) == "0.9"
     @test str(0.999, NumberFormat(scale = 100, upper_limit = 99.0, suffix = " %")) == ">99 %"
@@ -1063,14 +1112,14 @@ end
         :n => NumberFormat(magnitudes = :financial),
     ])
     @test SummaryTables.postprocess(t).cells[1, 2].value == "RSE"
-    @test [celltext(t, i, j) for i in 2:3, j in 1:3] == ["1.235" "12.3 %" "1.2k"; "22.92" "50 %" "5"]
+    @test [celltext(t, i, j) for i in 2:3, j in 1:3] == ["1.235" "12.3 %" "1.2k"; "22.92" "50.0 %" "5"]
     @test_throws "Expected a `NumberFormat`" simple_table(df, [:est => "Estimate" => NumberFormat()])
 
     df = DataFrame(x = [1.234567, 2.5], g = ["a", "b"])
     t = listingtable(df, :x; rows = [:g], format = NumberFormat(digits = 2, mode = :digits),
         summarize_rows = [NumberFormat(digits = 4) ∘ mean => "Mean"])
     values = [celltext(t, i, j) for i in 1:4, j in 1:2]
-    @test values == ["g" "x"; "a" "1.23"; "b" "2.5"; "Mean" "1.867"]
+    @test values == ["g" "x"; "a" "1.23"; "b" "2.50"; "Mean" "1.867"]
 end
 
 @testset "QuartoNotebookRunner/typst" begin
