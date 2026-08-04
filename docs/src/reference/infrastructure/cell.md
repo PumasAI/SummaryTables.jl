@@ -81,23 +81,26 @@ Anywhere a function is expected, for example for summary analyses in `listingtab
 ##### Exponential notation
 
 The `mode`s `:auto` and `:sigdigits` switch to exponential notation for numbers whose
-base 10 exponent lies outside of `exponent_thresholds`, which defaults to `(-4, 6)`, the
-range in which Julia prints floats without an exponent.
-The upper threshold can also be set to `:digits`, which stands for the `digits` setting.
-Together with a lower threshold of `-1`, this means that every digit that is displayed
-is a significant one, because outside of that range, plain notation needs placeholder
-zeros before or after the decimal point.
+base 10 exponent lies outside of `exponent_thresholds`, and the default range depends on
+the mode.
+`:auto` uses `(-4, 6)`, the range in which Julia prints floats without an exponent.
+`:sigdigits` uses `(-1, :digits)`, where `:digits` stands for the `digits` setting, so that
+every digit that is displayed is a significant one.
+Outside of that range, plain notation needs placeholder zeros, and `1234` at 3 digits would
+have to be shown as `1230` where the final zero holds the units position without carrying
+any precision.
 
 ```@example
 using SummaryTables
 
-default = NumberFormat(mode = :sigdigits)
-significant = NumberFormat(mode = :sigdigits, exponent_thresholds = (-1, :digits))
+auto = NumberFormat(mode = :auto)
+sigdigits = NumberFormat(mode = :sigdigits)
+lenient = NumberFormat(mode = :sigdigits, exponent_thresholds = (-4, 6))
 
 values = [12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234]
 cells = [
-    Cell("Value", bold = true) Cell("Default", bold = true) Cell("(-1, :digits)", bold = true)
-    Cell.(string.(values)) Cell.(default.(values)) Cell.(significant.(values))
+    Cell("Value", bold = true) Cell(":auto", bold = true) Cell(":sigdigits", bold = true) Cell("(-4, 6)", bold = true)
+    Cell.(string.(values)) Cell.(auto.(values)) Cell.(sigdigits.(values)) Cell.(lenient.(values))
 ]
 Table(cells)
 ```

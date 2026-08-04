@@ -67,8 +67,11 @@ end
 resolve_trailing_zeros(trailing_zeros::Bool, mode::Symbol) = trailing_zeros
 resolve_trailing_zeros(::Symbol, mode::Symbol) = mode !== :auto
 
+resolve_exponent_thresholds(thresholds::Tuple, mode::Symbol) = thresholds
+resolve_exponent_thresholds(::Symbol, mode::Symbol) = mode === :sigdigits ? (-1, :digits) : (-4, 6)
+
 function use_exponent(x::Float64, fmt::NumberFormat)
-    lower, upper = fmt.exponent_thresholds
+    lower, upper = resolve_exponent_thresholds(fmt.exponent_thresholds, fmt.mode)
     exponent = floor(Int, log10(abs(x)))
     below = lower !== nothing && exponent < lower
     above = upper !== nothing && exponent >= (upper === :digits ? fmt.digits : upper)

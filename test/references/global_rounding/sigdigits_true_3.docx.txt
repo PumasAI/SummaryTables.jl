@@ -277,7 +277,17 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t>0.00111</w:t>
+              <w:t>1.11 × 10</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>-3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -303,7 +313,17 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.00123</w:t>
+              <w:t>1.23 × 10</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>-3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -326,7 +346,17 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t>0.00123</w:t>
+              <w:t>1.23 × 10</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t>-3</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>

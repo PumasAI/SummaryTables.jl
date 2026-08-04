@@ -228,11 +228,12 @@ and finally from the package defaults listed below.
   plainly, so plain notation is used when a value's exponent `e` fulfills `lower <= e < upper`
   and exponential notation otherwise. `mode = :digits` never uses exponential notation and
   ignores this setting. The upper threshold may also be `:digits`, which stands for the
-  `digits` setting. With `(-1, :digits)`, every displayed digit is a significant one, because
-  plain notation outside that range needs placeholder zeros before or after the decimal point.
-  Either threshold may be `nothing`, which switches exponential notation off on that side.
-  Package default `(-4, 6)`, matching the range in which Julia prints floats without an
-  exponent.
+  `digits` setting, and either threshold may be `nothing`, which switches exponential notation
+  off on that side. `:auto` means `(-4, 6)` for `mode = :auto`, the range in which Julia prints
+  floats without an exponent, and `(-1, :digits)` for `mode = :sigdigits`, where every
+  displayed digit is a significant one: outside of that range, plain notation needs placeholder
+  zeros, showing `1234` as `1230` or `0.0123` with a leading zero that carries no precision.
+  Package default `:auto`.
 
 ## Examples
 
@@ -245,14 +246,20 @@ julia> fmt([0.4567, 1.23456, 123.456], digits = 2)
 julia> fmt([0.4, 0.44444], mode = :digits, digits = 2)
 0.40  0.44
 
-julia> fmt([1.5, 0.7, 1234.0], mode = :sigdigits, digits = 3)
-1.50  0.700  1230
+julia> fmt([1.5, 0.7, 12.34], mode = :sigdigits, digits = 3)
+1.50  0.700  12.3
 
-julia> fmt([1.5, 0.7, 1234.0], mode = :sigdigits, digits = 3, trailing_zeros = false)
-1.5  0.7  1230
+julia> fmt([1.5, 0.7, 12.34], mode = :sigdigits, digits = 3, trailing_zeros = false)
+1.5  0.7  12.3
 
-julia> fmt([1234.0, 0.0234], mode = :sigdigits, digits = 3, exponent_thresholds = (-1, :digits))
-1.23 × 10³  2.34 × 10⁻²
+julia> fmt([1234, 0.0123], digits = 3)
+1234  0.0123
+
+julia> fmt([1234, 0.0123], mode = :sigdigits, digits = 3)
+1.23 × 10³  1.23 × 10⁻²
+
+julia> fmt([1234, 0.0123], mode = :sigdigits, digits = 3, exponent_thresholds = (-4, 6))
+1230  0.0123
 
 julia> fmt([0.4567, 0.891], scale = 100, suffix = " %")
 45.7 %  89.1 %
@@ -284,7 +291,7 @@ struct NumberFormat
     upper_limit::Union{Nothing,Float64}
     magnitudes::Union{Nothing,Symbol,Vector{String}}
     exponent_style::Union{Nothing,Symbol}
-    exponent_thresholds::Union{Nothing,Tuple{Union{Nothing,Int},Union{Nothing,Int,Symbol}}}
+    exponent_thresholds::Union{Nothing,Symbol,Tuple{Union{Nothing,Int},Union{Nothing,Int,Symbol}}}
 end
 
 function NumberFormat(;
@@ -332,6 +339,10 @@ function validate_trailing_zeros(x)
 end
 
 validate_exponent_thresholds(::Nothing) = nothing
+function validate_exponent_thresholds(s::Symbol)
+    s === :auto || throw(ArgumentError("Invalid exponent_thresholds $(repr(s)), the only valid symbol is :auto, which derives the thresholds from `mode`."))
+    return s
+end
 function validate_exponent_thresholds(thresholds)
     length(thresholds) == 2 || throw(ArgumentError("exponent_thresholds needs a lower and an upper threshold, got $(repr(thresholds))."))
     lower, upper = thresholds
@@ -366,7 +377,7 @@ const DEFAULT_NUMBER_FORMAT = NumberFormat(
     upper_limit = Inf,
     magnitudes = :none,
     exponent_style = :x10,
-    exponent_thresholds = (-4, 6),
+    exponent_thresholds = :auto,
 )
 
 function Base.show(io::IO, fmt::NumberFormat)

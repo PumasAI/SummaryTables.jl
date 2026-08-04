@@ -924,11 +924,11 @@ end
     x = 0.006789
     
     @test str(RF(x, 3, :auto, true)) == "0.00679"
-    @test str(RF(x, 3, :sigdigits, true)) == "0.00679"
+    @test str(RF(x, 3, :sigdigits, true)) == "6.79e-3"
     @test str(RF(x, 3, :digits, true)) == "0.007"
 
     @test str(RF(x, 2, :auto, true)) == "0.0068"
-    @test str(RF(x, 2, :sigdigits, true)) == "0.0068"
+    @test str(RF(x, 2, :sigdigits, true)) == "6.8e-3"
     @test str(RF(x, 2, :digits, true)) == "0.01"
 
     x = 0.120
@@ -980,7 +980,7 @@ end
     @test str(1.5, mode_digits) == "1.500"
 
     @test str(0.7, mode_sigdigits) == "0.700"
-    @test str(1234.0, mode_sigdigits) == "1230"
+    @test str(1234.0, mode_sigdigits) == "1.23 × 10³"
     @test str(0.0, mode_sigdigits) == "0.00"
     @test str(8.7e-6, NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e)) == "8.70e-6"
 
@@ -993,12 +993,15 @@ end
 @testset "Exponent thresholds" begin
     str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
 
-    strict = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (-1, :digits))
-    @test [str(x, strict) for x in (12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234)] ==
+    sigdigits = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e)
+    @test [str(x, sigdigits) for x in (12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234)] ==
         ["1.23e4", "1.23e3", "123", "12.3", "1.23", "0.123", "1.23e-2"]
-    @test str(0.0, strict) == "0.00"
-    @test str(-1234.0, strict) == "-1.23e3"
+    @test str(0.0, sigdigits) == "0.00"
+    @test str(-1234.0, sigdigits) == "-1.23e3"
     @test str(1234.0, NumberFormat(digits = 3, mode = :digits, exponent_thresholds = (-1, :digits))) == "1234.000"
+
+    lenient = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (-4, 6))
+    @test [str(x, lenient) for x in (1234, 0.01234)] == ["1230", "0.0123"]
 
     default = NumberFormat(digits = 3, exponent_style = :e)
     @test str(999999.4, default) == "999999"
@@ -1018,6 +1021,7 @@ end
     @test_throws "needs a lower and an upper threshold" NumberFormat(exponent_thresholds = (1,))
     @test_throws "lower exponent threshold" NumberFormat(exponent_thresholds = (0.1, 10))
     @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (1, :sigdigits))
+    @test_throws "the only valid symbol is :auto" NumberFormat(exponent_thresholds = :strict)
     @test_throws "must be larger than the lower threshold" NumberFormat(exponent_thresholds = (10, 1))
 end
 
