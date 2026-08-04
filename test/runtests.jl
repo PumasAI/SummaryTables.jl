@@ -993,12 +993,12 @@ end
 @testset "Exponent thresholds" begin
     str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
 
-    strict = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (0.1, :digits))
+    strict = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (-1, :digits))
     @test [str(x, strict) for x in (12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234)] ==
         ["1.23e4", "1.23e3", "123", "12.3", "1.23", "0.123", "1.23e-2"]
     @test str(0.0, strict) == "0.00"
     @test str(-1234.0, strict) == "-1.23e3"
-    @test str(1234.0, NumberFormat(digits = 3, mode = :digits, exponent_thresholds = (0.1, :digits))) == "1234.000"
+    @test str(1234.0, NumberFormat(digits = 3, mode = :digits, exponent_thresholds = (-1, :digits))) == "1234.000"
 
     default = NumberFormat(digits = 3, exponent_style = :e)
     @test str(999999.4, default) == "999999"
@@ -1006,14 +1006,19 @@ end
     @test str(0.0001234, default) == "0.000123"
     @test str(0.00001234, default) == "1.23e-5"
 
-    never = NumberFormat(digits = 3, exponent_style = :e, exponent_thresholds = (0, Inf))
+    never = NumberFormat(digits = 3, exponent_style = :e, exponent_thresholds = (nothing, nothing))
     @test str(1.5e8, never) == "150000000"
     @test str(1.5e-8, never) == "0.000000015"
 
+    lower_off = NumberFormat(digits = 3, exponent_style = :e, exponent_thresholds = (nothing, 6))
+    @test str(1.5e-8, lower_off) == "0.000000015"
+    @test str(1.5e8, lower_off) == "1.5e8"
+
+    @test_throws "digits must be 1 or more" str(0.3, NumberFormat(digits = 0, mode = :sigdigits))
     @test_throws "needs a lower and an upper threshold" NumberFormat(exponent_thresholds = (1,))
-    @test_throws "lower exponent threshold" NumberFormat(exponent_thresholds = (-1, 10))
+    @test_throws "lower exponent threshold" NumberFormat(exponent_thresholds = (0.1, 10))
     @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (1, :sigdigits))
-    @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (10, 1))
+    @test_throws "must be larger than the lower threshold" NumberFormat(exponent_thresholds = (10, 1))
 end
 
 @testset "NumberFormat" begin

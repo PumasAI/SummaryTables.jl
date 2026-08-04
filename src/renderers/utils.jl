@@ -47,9 +47,10 @@ function format_mantissa_exponent(x::Float64, fmt::NumberFormat)
     digits = fmt.digits
     trailing_zeros = resolve_trailing_zeros(fmt.trailing_zeros, fmt.mode)
     fmt.mode === :digits && return (fixed_string(x, digits, trailing_zeros), nothing)
-    iszero(x) && return (fixed_string(x, max(0, digits - 1), trailing_zeros), nothing)
+    digits < 1 && throw(ArgumentError("digits must be 1 or more for mode $(repr(fmt.mode)), got $digits."))
+    iszero(x) && return (fixed_string(x, digits - 1, trailing_zeros), nothing)
 
-    rounded = Printf.format(Printf.Format("%.$(max(0, digits - 1))e"), x)
+    rounded = Printf.format(Printf.Format("%.$(digits - 1)e"), x)
     i_e = findfirst('e', rounded)
     exponent = parse(Int, rounded[nextind(rounded, i_e):end])
     significant = parse(Float64, rounded)
@@ -68,8 +69,10 @@ resolve_trailing_zeros(::Symbol, mode::Symbol) = mode !== :auto
 
 function use_exponent(x::Float64, fmt::NumberFormat)
     lower, upper = fmt.exponent_thresholds
-    upper_value = upper === :digits ? 10.0^fmt.digits : upper
-    return abs(x) < lower || abs(x) >= upper_value
+    exponent = floor(Int, log10(abs(x)))
+    below = lower !== nothing && exponent < lower
+    above = upper !== nothing && exponent >= (upper === :digits ? fmt.digits : upper)
+    return below || above
 end
 
 function fixed_string(x::Float64, decimals::Int, trailing_zeros::Bool)

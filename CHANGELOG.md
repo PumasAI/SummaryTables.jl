@@ -7,7 +7,7 @@
 - Trailing zeros are now also stripped from e-notation mantissas and negative numbers [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - `trailing_zeros = true` now pads numbers to the requested precision in the `:auto` and `:sigdigits` modes, for example `1.50` at 3 significant digits [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - `trailing_zeros` now defaults to `:auto`, which means `false` for `round_mode = :auto` and `true` for `:digits` and `:sigdigits`, so the exact modes display exactly the requested precision [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
-- Added the `exponent_thresholds` setting which controls the range of values displayed without an exponent, with `(0.1, :digits)` as the setting where every displayed digit is a significant one [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
+- Added the `exponent_thresholds` setting which controls the range of values displayed without an exponent, with `(-1, :digits)` as the setting where every displayed digit is a significant one [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - The `:financial` magnitude for 10^3 is now `K` instead of `k` [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
 - Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
 

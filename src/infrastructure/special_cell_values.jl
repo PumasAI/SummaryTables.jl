@@ -224,13 +224,15 @@ and finally from the package defaults listed below.
 - `exponent_style`: How exponential notation is rendered, either `:e` like `1.5e6` or
   `:x10` like `1.5 × 10⁶`, which uses proper superscript rendering in each output format.
   Package default `:x10`.
-- `exponent_thresholds`: The range `(lower, upper)` of absolute values that are displayed
-  plainly, outside of it `:auto` and `:sigdigits` switch to exponential notation
-  (`mode = :digits` never does and ignores this setting). The upper threshold may also be
-  `:digits`, which stands for `10^digits`. With `(0.1, :digits)`, every displayed digit is
-  a significant one, because plain display outside that range needs placeholder zeros on
-  one side or the other. Package default `(0.0001, 1000000.0)`, matching the range in which
-  Julia prints floats without an exponent.
+- `exponent_thresholds`: The range `(lower, upper)` of base 10 exponents that are displayed
+  plainly, so plain notation is used when a value's exponent `e` fulfills `lower <= e < upper`
+  and exponential notation otherwise. `mode = :digits` never uses exponential notation and
+  ignores this setting. The upper threshold may also be `:digits`, which stands for the
+  `digits` setting. With `(-1, :digits)`, every displayed digit is a significant one, because
+  plain notation outside that range needs placeholder zeros before or after the decimal point.
+  Either threshold may be `nothing`, which switches exponential notation off on that side.
+  Package default `(-4, 6)`, matching the range in which Julia prints floats without an
+  exponent.
 
 ## Examples
 
@@ -249,7 +251,7 @@ julia> fmt([1.5, 0.7, 1234.0], mode = :sigdigits, digits = 3)
 julia> fmt([1.5, 0.7, 1234.0], mode = :sigdigits, digits = 3, trailing_zeros = false)
 1.5  0.7  1230
 
-julia> fmt([1234.0, 0.0234], mode = :sigdigits, digits = 3, exponent_thresholds = (0.1, :digits))
+julia> fmt([1234.0, 0.0234], mode = :sigdigits, digits = 3, exponent_thresholds = (-1, :digits))
 1.23 × 10³  2.34 × 10⁻²
 
 julia> fmt([0.4567, 0.891], scale = 100, suffix = " %")
@@ -282,7 +284,7 @@ struct NumberFormat
     upper_limit::Union{Nothing,Float64}
     magnitudes::Union{Nothing,Symbol,Vector{String}}
     exponent_style::Union{Nothing,Symbol}
-    exponent_thresholds::Union{Nothing,Tuple{Float64,Union{Float64,Symbol}}}
+    exponent_thresholds::Union{Nothing,Tuple{Union{Nothing,Int},Union{Nothing,Int,Symbol}}}
 end
 
 function NumberFormat(;
@@ -333,13 +335,12 @@ validate_exponent_thresholds(::Nothing) = nothing
 function validate_exponent_thresholds(thresholds)
     length(thresholds) == 2 || throw(ArgumentError("exponent_thresholds needs a lower and an upper threshold, got $(repr(thresholds))."))
     lower, upper = thresholds
-    lower isa Real && lower >= 0 || throw(ArgumentError("The lower exponent threshold must be a number >= 0, got $(repr(lower))."))
-    if upper isa Symbol
-        upper === :digits || throw(ArgumentError("Invalid upper exponent threshold $(repr(upper)), valid options are a number or :digits, which means 10^digits."))
-        return (Float64(lower), upper)
+    lower === nothing || lower isa Integer || throw(ArgumentError("The lower exponent threshold must be an integer or `nothing`, got $(repr(lower))."))
+    upper === nothing || upper === :digits || upper isa Integer || throw(ArgumentError("The upper exponent threshold must be an integer, `:digits` or `nothing`, got $(repr(upper))."))
+    if lower isa Integer && upper isa Integer && upper <= lower
+        throw(ArgumentError("The upper exponent threshold must be larger than the lower threshold, got $(repr(thresholds))."))
     end
-    upper isa Real && upper > lower || throw(ArgumentError("The upper exponent threshold must be a number larger than the lower threshold, or :digits, got $(repr(upper))."))
-    return (Float64(lower), Float64(upper))
+    return (lower === nothing ? nothing : Int(lower), upper isa Integer ? Int(upper) : upper)
 end
 
 validate_magnitudes(::Nothing) = nothing
@@ -365,7 +366,7 @@ const DEFAULT_NUMBER_FORMAT = NumberFormat(
     upper_limit = Inf,
     magnitudes = :none,
     exponent_style = :x10,
-    exponent_thresholds = (1e-4, 1e6),
+    exponent_thresholds = (-4, 6),
 )
 
 function Base.show(io::IO, fmt::NumberFormat)
