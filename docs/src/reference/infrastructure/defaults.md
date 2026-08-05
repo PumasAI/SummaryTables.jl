@@ -41,7 +41,7 @@ Use `SummaryTables.with_defaults` to temporarily change default settings for a s
 
 ```@example defaults
 # Use different defaults temporarily
-SummaryTables.with_defaults(round_mode = :sigdigits, round_digits = 4, trailing_zeros = false) do
+SummaryTables.with_defaults(number_format = NumberFormat(mode = :sigdigits, digits = 4, trailing_zeros = false)) do
     numbers = [1.23456 2.3456; 34.56789 4.5000]
     Table(Cell.(numbers))
 end
