@@ -8,6 +8,7 @@ using Test
 using DataFrames
 using Statistics
 using ReferenceTests
+using Supposition
 using tectonic_jll
 using Typst_jll
 using ZipFile
@@ -1027,6 +1028,62 @@ end
     @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (1, :sigdigits))
     @test_throws "the only valid symbol is :auto" NumberFormat(exponent_thresholds = :strict)
     @test_throws "must be larger than the lower threshold" NumberFormat(exponent_thresholds = (10, 1))
+end
+
+@testset "Rounding properties" begin
+    formatted(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+    displayed_digits(s) = length(lstrip(filter(isdigit, first(split(s, 'e'))), '0'))
+
+    function last_digit_place(s)
+        mantissa, exponent = occursin('e', s) ? split(s, 'e') : (s, "0")
+        point = findfirst('.', mantissa)
+        decimals = point === nothing ? 0 : length(mantissa) - point
+        return BigFloat(10)^(parse(Int, exponent) - decimals)
+    end
+
+    function correctly_rounded(x, s, fmt)
+        displayed = parse(BigFloat, s)
+        # a trailing zero before the point is a placeholder in :sigdigits, so the last
+        # printed digit is not necessarily the last significant one
+        step = if !iszero(displayed) && fmt.mode === :sigdigits
+            BigFloat(10)^(floor(Int, log10(abs(displayed))) - fmt.digits + 1)
+        else
+            last_digit_place(s)
+        end
+        # the slack absorbs the binary representation error of decimal ties, which is
+        # orders of magnitude smaller than a wrong digit would be
+        return abs(BigFloat(x) - displayed) <= step / 2 + step / BigFloat(10)^30
+    end
+
+    floats = Data.Floats{Float64}(nans = false, infs = false, minimum = -1e300, maximum = 1e300)
+    digitcounts = Data.Integers(1, 8)
+    thresholdsets = Data.SampledFrom([nothing, (-4, 6), (-1, :digits), (nothing, nothing), (-2, 3)])
+    modes = Data.SampledFrom([:auto, :sigdigits, :digits])
+
+    @check db = false function displays_the_correctly_rounded_value(x = floats, digits = digitcounts, mode = modes,
+            trailing_zeros = Data.Booleans(), exponent_thresholds = thresholdsets)
+        fmt = NumberFormat(; mode, digits, trailing_zeros, exponent_thresholds, exponent_style = :e)
+        correctly_rounded(x, formatted(x, fmt), fmt)
+    end
+
+    @check db = false function sigdigits_displays_only_significant_digits(x = floats, digits = digitcounts)
+        assume!(!iszero(x))
+        fmt = NumberFormat(; mode = :sigdigits, digits, exponent_style = :e)
+        displayed_digits(formatted(x, fmt)) == digits
+    end
+
+    @check db = false function digits_mode_displays_the_requested_decimals(x = floats, digits = digitcounts)
+        fmt = NumberFormat(; mode = :digits, digits, exponent_style = :e)
+        s = formatted(x, fmt)
+        length(s) - findfirst('.', s) == digits
+    end
+
+    @check db = false function formatting_is_idempotent(x = floats, digits = digitcounts, mode = modes,
+            trailing_zeros = Data.Booleans(), exponent_thresholds = thresholdsets)
+        fmt = NumberFormat(; mode, digits, trailing_zeros, exponent_thresholds, exponent_style = :e)
+        s = formatted(x, fmt)
+        formatted(parse(Float64, s), fmt) == s
+    end
 end
 
 @testset "NumberFormat" begin
