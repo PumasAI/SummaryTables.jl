@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+1.5 $\times$ 10\textsuperscript{18} & 0.5 \\
+2.34 $\times$ 10\textsuperscript{-7} & 1 \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\end{document}

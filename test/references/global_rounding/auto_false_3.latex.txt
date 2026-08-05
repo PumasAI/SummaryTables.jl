@@ -11,8 +11,8 @@
 \begin{threeparttable}
 \begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
 \toprule
-1.41 & 1.24e7 \\
-1.06e8 & 0.00111 \\
+1.41 & 1.24 $\times$ 10\textsuperscript{7} \\
+1.06 $\times$ 10\textsuperscript{8} & 0.00111 \\
 1.23 \& 0.00123 & \begin{tabular}{@{}c@{}}1.23 \\ 0.00123\end{tabular} \\
 \bottomrule
 \end{tabular}

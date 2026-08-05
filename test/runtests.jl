@@ -8,6 +8,7 @@ using Test
 using DataFrames
 using Statistics
 using ReferenceTests
+using Supposition
 using tectonic_jll
 using Typst_jll
 using ZipFile
@@ -748,6 +749,39 @@ end
             end
         end
 
+        @testset "NumberFormat rendering" begin
+            cells = [
+                Cell(1.5e18)  Cell(0.5)
+                Cell(2.34e-7) Cell(1.0)
+            ]
+            t = Table(cells, number_format = NumberFormat(exponent_style = :x10))
+            reftest(t, "references/number_format/x10")
+
+            cells = [
+                Cell(5432.1)    Cell(1_230_000.0)
+                Cell(999_999.9) Cell(0.75)
+            ]
+            t = Table(cells, number_format = NumberFormat(magnitudes = :financial))
+            reftest(t, "references/number_format/magnitudes_financial")
+
+            t = Table(cells, number_format = NumberFormat(magnitudes = :si, suffix = "B", digits = 4))
+            reftest(t, "references/number_format/magnitudes_si")
+
+            cells = [
+                Cell(0.123)  Cell(0.4567)
+                Cell(0.891)  Cell(0.5)
+            ]
+            t = Table(cells, number_format = NumberFormat(scale = 100, suffix = " %", mode = :digits, digits = 1))
+            reftest(t, "references/number_format/scale_percent")
+
+            cells = [
+                Cell(0.0004)  Cell(0.5)
+                Cell(0.9999)  Cell(0.001)
+            ]
+            t = Table(cells, number_format = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001, upper_limit = 0.99))
+            reftest(t, "references/number_format/limits")
+        end
+
         @testset "Character escaping" begin
             cells = [
                 SpannedCell(1, 1, "& % \$ # _ { } ~ ^ \\ < > \" ' @ ` [ ] . + -")
@@ -885,23 +919,23 @@ end
 end
 
 @testset "Formatted float strings" begin
-    RF = SummaryTables.RoundedFloat
+    RF(x, digits, mode, trailing_zeros) = SummaryTables.FormattedFloat(x, NumberFormat(; digits, mode, trailing_zeros, exponent_style = :e))
     str(rf) = sprint(io -> SummaryTables._showas(io, MIME"text"(), rf))
 
     x = 0.006789
     
     @test str(RF(x, 3, :auto, true)) == "0.00679"
-    @test str(RF(x, 3, :sigdigits, true)) == "0.00679"
+    @test str(RF(x, 3, :sigdigits, true)) == "6.79e-3"
     @test str(RF(x, 3, :digits, true)) == "0.007"
 
     @test str(RF(x, 2, :auto, true)) == "0.0068"
-    @test str(RF(x, 2, :sigdigits, true)) == "0.0068"
+    @test str(RF(x, 2, :sigdigits, true)) == "6.8e-3"
     @test str(RF(x, 2, :digits, true)) == "0.01"
 
     x = 0.120
 
-    @test str(RF(x, 3, :auto, true)) == "0.12"
-    @test str(RF(x, 3, :sigdigits, true)) == "0.12"
+    @test str(RF(x, 3, :auto, true)) == "0.120"
+    @test str(RF(x, 3, :sigdigits, true)) == "0.120"
     @test str(RF(x, 3, :digits, true)) == "0.120"
 
     @test str(RF(x, 3, :auto, false)) == "0.12"
@@ -910,8 +944,8 @@ end
 
     x = 1.0
 
-    @test str(RF(x, 3, :auto, true)) == "1.0"
-    @test str(RF(x, 3, :sigdigits, true)) == "1.0"
+    @test str(RF(x, 3, :auto, true)) == "1.00"
+    @test str(RF(x, 3, :sigdigits, true)) == "1.00"
     @test str(RF(x, 3, :digits, true)) == "1.000"
 
     @test str(RF(x, 3, :auto, false)) == "1"
@@ -927,6 +961,235 @@ end
     @test str(RF(x, 3, :auto, false)) == "1.23e7"
     @test str(RF(x, 3, :sigdigits, false)) == "1.23e7"
     @test str(RF(x, 3, :digits, false)) == "12345678.91"
+
+    @test str(RF(1.0e8, 3, :auto, false)) == "1e8"
+    @test str(RF(1.0e8, 3, :auto, true)) == "1.00e8"
+    @test str(RF(-1.0, 3, :auto, false)) == "-1"
+    @test str(RF(-0.0001, 3, :digits, false)) == "0"
+    @test str(RF(-0.0001, 3, :digits, true)) == "0.000"
+end
+
+@testset "Trailing zeros per mode" begin
+    str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+
+    mode_auto = NumberFormat(digits = 3)
+    mode_sigdigits = NumberFormat(digits = 3, mode = :sigdigits)
+    mode_digits = NumberFormat(digits = 3, mode = :digits)
+
+    @test str(1.5, mode_auto) == "1.5"
+    @test str(1.5, mode_sigdigits) == "1.50"
+    @test str(1.5, mode_digits) == "1.500"
+
+    @test str(0.7, mode_sigdigits) == "0.700"
+    @test str(1234.0, mode_sigdigits) == "1.23 × 10³"
+    @test str(0.0, mode_sigdigits) == "0.00"
+    @test str(8.7e-6, NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e)) == "8.70e-6"
+
+    @test str(1.5, NumberFormat(digits = 3, mode = :sigdigits, trailing_zeros = false)) == "1.5"
+    @test str(1.5, NumberFormat(digits = 3, trailing_zeros = true)) == "1.50"
+
+    @test_throws "Invalid trailing_zeros" NumberFormat(trailing_zeros = :yes)
+end
+
+@testset "Exponent thresholds" begin
+    str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+
+    sigdigits = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e)
+    @test [str(x, sigdigits) for x in (12340, 1234, 123.4, 12.34, 1.234, 0.1234, 0.01234)] ==
+        ["1.23e4", "1.23e3", "123", "12.3", "1.23", "0.123", "1.23e-2"]
+    @test str(0.0, sigdigits) == "0.00"
+    @test str(-1234.0, sigdigits) == "-1.23e3"
+    @test str(1234.0, NumberFormat(digits = 3, mode = :digits, exponent_thresholds = (-1, :digits))) == "1234.000"
+
+    lenient = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (-4, 6))
+    @test [str(x, lenient) for x in (1234, 0.01234)] == ["1230", "0.0123"]
+
+    default = NumberFormat(digits = 3, exponent_style = :e)
+    @test str(999999.4, default) == "999999"
+    @test str(999999.6, default) == "1e6"
+    @test str(0.0001234, default) == "0.000123"
+    @test str(0.00001234, default) == "1.23e-5"
+
+    never = NumberFormat(digits = 3, exponent_style = :e, exponent_thresholds = (nothing, nothing))
+    @test str(1.5e8, never) == "150000000"
+    @test str(1.5e-8, never) == "0.000000015"
+
+    lower_off = NumberFormat(digits = 3, exponent_style = :e, exponent_thresholds = (nothing, 6))
+    @test str(1.5e-8, lower_off) == "0.000000015"
+    @test str(1.5e8, lower_off) == "1.5e8"
+
+    huge = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (nothing, nothing))
+    @test str(1.0049999999999999e217, huge) == "1" * "0"^217
+    @test str(1234.0, huge) == "1230"
+
+    @test_throws "digits must be 1 or more" str(0.3, NumberFormat(digits = 0, mode = :sigdigits))
+    @test_throws "needs a lower and an upper threshold" NumberFormat(exponent_thresholds = (1,))
+    @test_throws "lower exponent threshold" NumberFormat(exponent_thresholds = (0.1, 10))
+    @test_throws "upper exponent threshold" NumberFormat(exponent_thresholds = (1, :sigdigits))
+    @test_throws "the only valid symbol is :auto" NumberFormat(exponent_thresholds = :strict)
+    @test_throws "must be larger than the lower threshold" NumberFormat(exponent_thresholds = (10, 1))
+end
+
+@testset "Rounding properties" begin
+    formatted(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+    displayed_digits(s) = length(lstrip(filter(isdigit, first(split(s, 'e'))), '0'))
+
+    function last_digit_place(s)
+        mantissa, exponent = occursin('e', s) ? split(s, 'e') : (s, "0")
+        point = findfirst('.', mantissa)
+        decimals = point === nothing ? 0 : length(mantissa) - point
+        return BigFloat(10)^(parse(Int, exponent) - decimals)
+    end
+
+    function correctly_rounded(x, s, fmt)
+        displayed = parse(BigFloat, s)
+        # a trailing zero before the point is a placeholder in :sigdigits, so the last
+        # printed digit is not necessarily the last significant one
+        step = if !iszero(displayed) && fmt.mode === :sigdigits
+            BigFloat(10)^(floor(Int, log10(abs(displayed))) - fmt.digits + 1)
+        else
+            last_digit_place(s)
+        end
+        # the slack absorbs the binary representation error of decimal ties, which is
+        # orders of magnitude smaller than a wrong digit would be
+        return abs(BigFloat(x) - displayed) <= step / 2 + step / BigFloat(10)^30
+    end
+
+    floats = Data.Floats{Float64}(nans = false, infs = false, minimum = -1e300, maximum = 1e300)
+    digitcounts = Data.Integers(1, 8)
+    thresholdsets = Data.SampledFrom([nothing, (-4, 6), (-1, :digits), (nothing, nothing), (-2, 3)])
+    modes = Data.SampledFrom([:auto, :sigdigits, :digits])
+
+    @check db = false function displays_the_correctly_rounded_value(x = floats, digits = digitcounts, mode = modes,
+            trailing_zeros = Data.Booleans(), exponent_thresholds = thresholdsets)
+        fmt = NumberFormat(; mode, digits, trailing_zeros, exponent_thresholds, exponent_style = :e)
+        correctly_rounded(x, formatted(x, fmt), fmt)
+    end
+
+    @check db = false function sigdigits_displays_only_significant_digits(x = floats, digits = digitcounts)
+        assume!(!iszero(x))
+        fmt = NumberFormat(; mode = :sigdigits, digits, exponent_style = :e)
+        displayed_digits(formatted(x, fmt)) == digits
+    end
+
+    @check db = false function digits_mode_displays_the_requested_decimals(x = floats, digits = digitcounts)
+        fmt = NumberFormat(; mode = :digits, digits, exponent_style = :e)
+        s = formatted(x, fmt)
+        length(s) - findfirst('.', s) == digits
+    end
+
+    @check db = false function formatting_is_idempotent(x = floats, digits = digitcounts, mode = modes,
+            trailing_zeros = Data.Booleans(), exponent_thresholds = thresholdsets)
+        fmt = NumberFormat(; mode, digits, trailing_zeros, exponent_thresholds, exponent_style = :e)
+        s = formatted(x, fmt)
+        formatted(parse(Float64, s), fmt) == s
+    end
+end
+
+@testset "NumberFormat" begin
+    str(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text"(), fmt(x)))
+    html(x, fmt) = sprint(io -> SummaryTables._showas(io, MIME"text/html"(), fmt(x)))
+
+    @test str(1.23456, NumberFormat(digits = 2)) == "1.2"
+    @test str(1.23456, NumberFormat(digits = 2, mode = :digits)) == "1.23"
+    @test str(1.5, NumberFormat(prefix = "~", suffix = " kg")) == "~1.5 kg"
+    @test str(0.4567, NumberFormat(digits = 3, scale = 100, suffix = " %")) == "45.7 %"
+    @test str(NaN, NumberFormat(suffix = " %")) == "NaN %"
+
+    @test str(512.0, NumberFormat(magnitudes = :financial)) == "512"
+    @test str(5432.1, NumberFormat(magnitudes = :financial)) == "5.43K"
+    @test str(-5432.1, NumberFormat(magnitudes = :financial)) == "-5.43K"
+    @test str(1_230_000.0, NumberFormat(magnitudes = :financial)) == "1.23M"
+    @test str(999_999.9, NumberFormat(magnitudes = :financial)) == "1M"
+    @test str(1.5e18, NumberFormat(magnitudes = :financial, exponent_style = :e)) == "1.5e18"
+    @test html(1.5e18, NumberFormat(magnitudes = :financial)) == "1.5 × 10<sup>18</sup>"
+    @test html(1.0e8, NumberFormat()) == "1 × 10<sup>8</sup>"
+    @test str(1.0e8, NumberFormat(exponent_style = :e)) == "1e8"
+    @test str(512.0, NumberFormat(magnitudes = :si, suffix = "B")) == "512 B"
+    @test str(1_230_000.0, NumberFormat(magnitudes = :si, suffix = "B")) == "1.23 MB"
+    @test str(5400.0, NumberFormat(magnitudes = ["", " thousand"])) == "5.4 thousand"
+
+    pvalue = NumberFormat(mode = :digits, digits = 3, lower_limit = 0.001)
+    @test str(0.0004, pvalue) == "<0.001"
+    @test str(0.001, pvalue) == "0.001"
+    @test str(0.5, pvalue) == "0.500"
+    @test str(0.94, NumberFormat(digits = 1, upper_limit = 0.9)) == ">0.9"
+    @test str(0.9, NumberFormat(digits = 1, upper_limit = 0.9)) == "0.9"
+    @test str(0.999, NumberFormat(scale = 100, upper_limit = 99.0, suffix = " %")) == ">99 %"
+    @test str(2.0e9, NumberFormat(magnitudes = :financial, upper_limit = 1.0e9)) == ">1B"
+    @test html(1.0e-8, NumberFormat(exponent_style = :x10, lower_limit = 1.0e-6)) == "&lt;1 × 10<sup>-6</sup>"
+
+    @test str(1.5, NumberFormat(exponent_style = :x10)) == "1.5"
+    @test html(1.5e18, NumberFormat(exponent_style = :x10)) == "1.5 × 10<sup>18</sup>"
+    @test html(2.34e-7, NumberFormat(exponent_style = :x10, suffix = " g")) == "2.34 × 10<sup>-7</sup> g"
+    @test string(NumberFormat(digits = 2)(1.5e18)) == "1.5 × 10¹⁸"
+    @test string(NumberFormat(scale = 100, suffix = " %")(0.4567)) == "45.7 %"
+
+    fmt = NumberFormat(digits = 3, magnitudes = :financial)
+    @test str(12400, fmt) == "12.4K"
+    @test fmt(true) === true
+    @test fmt(missing) === missing
+    @test fmt("text") === "text"
+    concat = fmt(Concat(1200.0, " and ", 5))
+    @test str(0, _ -> concat) == "1.2K and 5"
+
+    @test_throws "Invalid mode" NumberFormat(mode = :roundabout)
+    @test_throws "Invalid exponent_style" NumberFormat(exponent_style = :x2)
+    @test_throws "Invalid magnitudes preset" NumberFormat(magnitudes = :metric)
+    @test_throws "must not be empty" NumberFormat(magnitudes = String[])
+    @test_throws "must not be negative" NumberFormat(digits = -1)
+
+    celltext(t, i, j) = sprint(io -> SummaryTables._showas(io, MIME"text"(), SummaryTables.postprocess(t).cells[i, j].value))
+
+    t = Table([Cell(1.23456) Cell(NumberFormat(digits = 5)(1.23456))]; round_digits = 2)
+    @test celltext(t, 1, 1) == "1.2"
+    @test celltext(t, 1, 2) == "1.2346"
+
+    t = Table([Cell(NumberFormat(suffix = " s")(1.23456));;]; number_format = NumberFormat(digits = 2))
+    @test celltext(t, 1, 1) == "1.2 s"
+
+    t = Table([Cell(1.23456);;]; number_format = nothing)
+    @test celltext(t, 1, 1) == "1.23456"
+
+    t = Table([Cell(NumberFormat(digits = 5)(1.23456));;]; number_format = nothing)
+    @test celltext(t, 1, 1) == "1.2346"
+
+    @test_throws "Cannot pass `number_format`" Table([Cell(1.0);;]; number_format = NumberFormat(), round_digits = 2)
+    @test_throws "Cannot set `number_format`" SummaryTables.with_defaults(() -> nothing; number_format = NumberFormat(), round_mode = :digits)
+    @test_throws "must be a `NumberFormat` or `nothing`" Table([Cell(1.0);;]; number_format = :auto)
+
+    SummaryTables.with_defaults(number_format = NumberFormat(digits = 1, suffix = "!")) do
+        t = Table([Cell(3.14159);;])
+        @test celltext(t, 1, 1) == "3!"
+        t = Table([Cell(3.14159);;], round_digits = 3)
+        @test celltext(t, 1, 1) == "3.14!"
+        t = Table([Cell(3.14159);;], number_format = NumberFormat(digits = 3))
+        @test celltext(t, 1, 1) == "3.14!"
+        t = Table([Cell(3.14159);;], number_format = nothing)
+        @test celltext(t, 1, 1) == "3.14159"
+    end
+    SummaryTables.with_defaults(number_format = nothing) do
+        t = Table([Cell(3.14159);;])
+        @test celltext(t, 1, 1) == "3.14159"
+        t = Table([Cell(3.14159);;], number_format = NumberFormat(digits = 2))
+        @test celltext(t, 1, 1) == "3.1"
+    end
+
+    df = DataFrame(est = [1.23456, 22.9188], rse = [0.12345, 0.5], n = [1200, 5])
+    t = simple_table(df, [
+        :est => NumberFormat(digits = 4),
+        :rse => NumberFormat(digits = 1, mode = :digits, scale = 100, suffix = " %") => "RSE",
+        :n => NumberFormat(magnitudes = :financial),
+    ])
+    @test SummaryTables.postprocess(t).cells[1, 2].value == "RSE"
+    @test [celltext(t, i, j) for i in 2:3, j in 1:3] == ["1.235" "12.3 %" "1.2K"; "22.92" "50.0 %" "5"]
+    @test_throws "Expected a `NumberFormat`" simple_table(df, [:est => "Estimate" => NumberFormat()])
+
+    df = DataFrame(x = [1.234567, 2.5], g = ["a", "b"])
+    t = listingtable(df, :x; rows = [:g], format = NumberFormat(digits = 2, mode = :digits),
+        summarize_rows = [NumberFormat(digits = 4) ∘ mean => "Mean"])
+    values = [celltext(t, i, j) for i in 1:4, j in 1:2]
+    @test values == ["g" "x"; "a" "1.23"; "b" "2.50"; "Mean" "1.867"]
 end
 
 @testset "QuartoNotebookRunner/typst" begin

@@ -15,7 +15,7 @@ Use `SummaryTables.defaults!` to change the global default settings that will ap
 ```@example defaults
 using SummaryTables
 
-SummaryTables.defaults!(round_mode = :digits, round_digits = 4, trailing_zeros = true)
+SummaryTables.defaults!(number_format = NumberFormat(mode = :digits, digits = 4))
 
 numbers = [1.23456 2.3456; 34.56789 4.5000]
 Table(Cell.(numbers))
@@ -24,7 +24,7 @@ Table(Cell.(numbers))
 Note that explicit settings override the defaults:
 
 ```@example defaults
-Table(Cell.(numbers), trailing_zeros = false)
+Table(Cell.(numbers), number_format = NumberFormat(trailing_zeros = false))
 ```
 
 The `defaults!` function does not selectively update but it applies the keywords on top of SummaryTables's own defaults. To reset to the package defaults, you therefore specify no keywords.
@@ -41,7 +41,7 @@ Use `SummaryTables.with_defaults` to temporarily change default settings for a s
 
 ```@example defaults
 # Use different defaults temporarily
-SummaryTables.with_defaults(round_mode = :sigdigits, round_digits = 4, trailing_zeros = false) do
+SummaryTables.with_defaults(number_format = NumberFormat(mode = :sigdigits, digits = 4, trailing_zeros = false)) do
     numbers = [1.23456 2.3456; 34.56789 4.5000]
     Table(Cell.(numbers))
 end
