@@ -45,7 +45,7 @@ cells = [
     Cell(1.23456) Cell(12.3456)
     Cell(0.123456) Cell(0.0123456)
 ]
-Table(cells; number_format = NumberFormat(mode = :digits, digits = 5, trailing_zeros = true))
+Table(cells; number_format = NumberFormat(mode = :digits, digits = 5))
 ```
 
 ##### NumberFormat

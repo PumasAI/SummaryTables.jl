@@ -83,14 +83,14 @@ Controls the horizontal alignment of column contents. Accepts `:left`, `:right`,
 using SummaryTables
 
 data = (; value = 1:3, sin = sin.(1:3), cos = cos.(1:3))
-simple_table(data, halign = :right, round_mode = :digits, trailing_zeros = true)
+simple_table(data, halign = :right, round_mode = :digits)
 ```
 
 ```@example
 using SummaryTables
 
 data = (; value = 1:3, sin = sin.(1:3), cos = cos.(1:3))
-simple_table(data, halign = [:left, :right, :right], round_mode = :digits, trailing_zeros = true)
+simple_table(data, halign = [:left, :right, :right], round_mode = :digits)
 ```
 
 ## Keyword: `subheaders`
