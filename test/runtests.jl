@@ -1017,6 +1017,10 @@ end
     @test str(1.5e-8, lower_off) == "0.000000015"
     @test str(1.5e8, lower_off) == "1.5e8"
 
+    huge = NumberFormat(digits = 3, mode = :sigdigits, exponent_style = :e, exponent_thresholds = (nothing, nothing))
+    @test str(1.0049999999999999e217, huge) == "1" * "0"^217
+    @test str(1234.0, huge) == "1230"
+
     @test_throws "digits must be 1 or more" str(0.3, NumberFormat(digits = 0, mode = :sigdigits))
     @test_throws "needs a lower and an upper threshold" NumberFormat(exponent_thresholds = (1,))
     @test_throws "lower exponent threshold" NumberFormat(exponent_thresholds = (0.1, 10))

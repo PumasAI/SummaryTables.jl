@@ -57,9 +57,14 @@ function format_mantissa_exponent(x::Float64, fmt::NumberFormat)
 
     decimals = max(0, digits - 1 - exponent)
     plain = fmt.mode === :sigdigits ? significant : round(x, digits = decimals)
+    mantissa = rounded[1:prevind(rounded, i_e)]
     if use_exponent(plain, fmt)
-        mantissa = rounded[1:prevind(rounded, i_e)]
         return (trailing_zeros ? mantissa : strip_trailing_zeros(mantissa), exponent)
+    end
+    if fmt.mode === :sigdigits && decimals == 0
+        # the placeholder zeros are appended rather than printed from `plain`, whose
+        # exact decimal expansion is not all zeros once it exceeds 2^53
+        return (string(replace(mantissa, "." => ""), "0"^(exponent - digits + 1)), nothing)
     end
     return (fixed_string(plain, decimals, trailing_zeros), nothing)
 end
