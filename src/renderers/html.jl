@@ -321,12 +321,14 @@ function _showas(io::IO, ::MIME"text/html", r::RectPlot)
 end
 
 # each bar occupies one line box of the table's line-height, so the bars
-# align with the corresponding text lines of the neighboring cells
+# align with the corresponding text lines of the neighboring cells; 1lh tracks
+# the line-height even if the environment overrides it, with a static fallback
+# for browsers that don't support the unit
 function _showas(io::IO, ::MIME"text/html", c::CatFreqPlot)
     print(io, "<div style=\"width:6.25em;\">")
     for fraction in c.fractions
         width_percent = round(fraction * 100, digits = 2)
-        print(io, "<div style=\"height:$(HTML_LINE_HEIGHT);display:flex;align-items:center;\">")
+        print(io, "<div style=\"height:$(HTML_LINE_HEIGHT);height:1lh;display:flex;align-items:center;\">")
         print(io, "<div style=\"width:$(width_percent)%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;\"></div>")
         print(io, "</div>")
     end
