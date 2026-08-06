@@ -312,6 +312,8 @@ docx_sprint(x) = sprint(x) do io, x
 end
 
 
+to_runs(c::CatFreqPlot, props::WriteDocx.RunProperties) = to_runs(RectPlot(c), props)
+
 function to_runs(r::RectPlot, props::WriteDocx.RunProperties)
     W = WriteDocx
     return [W.Run([W.InlineDrawing(W.Image(MIME"image/svg+xml"(), r), r.size[1] * W.pt, r.size[2] * W.pt)], props)]
