@@ -47,7 +47,10 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     indentprint(level, args...) = print(io, "    " ^ level, args...)
     indentprintln(level, args...) = indentprint(level, args..., "\n")
     
-    if ct.header !== nothing
+    # `header = 0` means no header rows, which is how the `row <= ct.header` check
+    # below already treats it. Opening the block here for `header = 0` left it
+    # unclosed, because it is closed on `row == ct.header` and `row` starts at 1.
+    if ct.header !== nothing && ct.header > 0
         print(io, "    table.header(\n    ")
     end
 
