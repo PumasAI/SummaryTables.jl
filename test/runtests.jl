@@ -891,6 +891,16 @@ end
                     tbl = Table([Cell("[");;])
                     reftest(tbl, "references/typst/open_square_bracket")
                 end
+
+                @testset "header = 0 emits no header block" begin
+                    # `header = 0` used to open a `table.header(` that was never
+                    # closed, so the body cells were parsed as part of the header
+                    # and `#table(` was left open, which Typst rejects.
+                    tbl = Table([Cell("a") Cell("b"); Cell(1) Cell(2)]; header = 0)
+                    s = repr("text/typst", tbl)
+                    @test !occursin("table.header(", s)
+                    @test count(==('('), s) == count(==(')'), s)
+                end
             end
         end
     end
