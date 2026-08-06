@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.6.0 - 2026-08-06
 
 - The category bars in `overview_table`'s HTML, typst and latex output now line up with the corresponding text lines [#149](https://github.com/PumasAI/SummaryTables.jl/pull/149).
 - Added `NumberFormat` for formatting numbers per value, per column (`simple_table`), per variable (`listingtable`) or per table, with new settings for prefixes and suffixes, scaling, display limits like `<0.001`, magnitude suffixes like `5.4K` and exponent style [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
@@ -12,7 +12,7 @@
   - Trailing zeros are now also stripped from e-notation mantissas and negative numbers.
 - Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
 
-## 3.5.1 - 2026-10-23
+## 3.5.1 - 2026-01-23
 
 - Corrected the docstring of `table_one` which erroneously listed `show_testnames` and not `show_tests` [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).
 - Fixed inconsistent classification of categorical data, now the rules are the same for `table_one` and `overview_table`. A numeric column is a column with some non-missing values, all of which are subtypes of `Real` but not `Bool`. All other columns are categorical [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).
