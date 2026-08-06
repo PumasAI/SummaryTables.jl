@@ -283,6 +283,18 @@ end
 
 
 
+# an inner tabular like the one Multiline uses, with one bar per row,
+# so the bars align with the corresponding category lines of the neighboring cells
+function _showas(io::IO, ::MIME"text/latex", c::CatFreqPlot)
+    print(io, "\\begin{tabular}{@{}l@{}}")
+    for (i, fraction) in enumerate(c.fractions)
+        i > 1 && print(io, " \\\\ ")
+        width = round(fraction * 6.25, digits = 3)
+        print(io, "\\setlength{\\fboxsep}{0pt}\\setlength{\\fboxrule}{0.75pt}\\fcolorbox{gray}{lightgray}{\\rule{0pt}{0.75em}\\rule{$(width)em}{0pt}}")
+    end
+    print(io, "\\end{tabular}")
+end
+
 function _showas(io::IO, ::MIME"text/latex", r::RectPlot)
     print(io, "\\raisebox{-.5\\height}{\\begin{tikzpicture}")
 

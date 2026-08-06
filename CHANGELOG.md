@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- The category bars in `overview_table`'s HTML, typst and latex output now line up with the corresponding text lines [#149](https://github.com/PumasAI/SummaryTables.jl/pull/149).
 - Added `NumberFormat` for formatting numbers per value, per column (`simple_table`), per variable (`listingtable`) or per table, with new settings for prefixes and suffixes, scaling, display limits like `<0.001`, magnitude suffixes like `5.4K` and exponent style [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
   - Exponential notation now renders like `1.5 × 10⁶` instead of `1.5e6` by default, which can be changed back with the `exponent_style = :e` setting.
   - Added the `exponent_thresholds` setting which controls the range of base 10 exponents that are displayed without exponential notation.
