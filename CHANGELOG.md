@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Fixed `Table(cells; header = 0)` rendering Typst with an unclosed `table.header(`, which made the output fail to compile.
+- Fixed `Table(cells; header = 0)` rendering Typst with an unclosed `table.header(`, which made the output fail to compile [#151](https://github.com/PumasAI/SummaryTables.jl/pull/151).
 
 ## 3.6.0 - 2026-08-06
 
