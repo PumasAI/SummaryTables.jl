@@ -1,6 +1,6 @@
-<table id="st-f3ddc0cd">
+<table id="st-2bc8587a">
     <style>
-        #st-f3ddc0cd {
+        #st-2bc8587a {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-f3ddc0cd tr {
+        #st-2bc8587a tr {
             background-color: transparent;
             border: none;
         }
-        #st-f3ddc0cd tr td {
+        #st-2bc8587a tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-f3ddc0cd br {
+        #st-2bc8587a br {
             line-height: 0em;
             margin: 0;
         }
-        #st-f3ddc0cd sub {
+        #st-2bc8587a sub {
             line-height: 0;
         }
-        #st-f3ddc0cd sup {
+        #st-2bc8587a sup {
             line-height: 0;
         }
     </style>
@@ -53,7 +53,7 @@
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">categorical<br>[String?]</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1. C<br>2. A<br>3. B</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">40 (40%)<br>35 (35%)<br>25 (25%)</td>
-        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><div style="width:6.25em;"><div style="height:1.2em;display:flex;align-items:center;"><div style="width:40.0%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;"></div></div><div style="height:1.2em;display:flex;align-items:center;"><div style="width:35.0%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;"></div></div><div style="height:1.2em;display:flex;align-items:center;"><div style="width:25.0%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;"></div></div></div></td>
+        <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;"><div style="width:6.25em;"><div style="height:1.2em;height:1lh;display:flex;align-items:center;"><div style="width:40.0%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;"></div></div><div style="height:1.2em;height:1lh;display:flex;align-items:center;"><div style="width:35.0%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;"></div></div><div style="height:1.2em;height:1lh;display:flex;align-items:center;"><div style="width:25.0%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;"></div></div></div></td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">100<br>(99%)</td>
         <td style="padding-top: 3.0pt;vertical-align:middle;text-align:left;">1<br>(1%)</td>
     </tr>

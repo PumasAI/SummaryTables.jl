@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.6.1 - 2026-08-07
+
+- Fixed misalignment of `overview_table` category bars in HTML output when the environment overrides the table's line-height [#152](https://github.com/PumasAI/SummaryTables.jl/pull/152).
+
 ## 3.6.0 - 2026-08-06
 
 - The category bars in `overview_table`'s HTML, typst and latex output now line up with the corresponding text lines [#149](https://github.com/PumasAI/SummaryTables.jl/pull/149).
