@@ -1,5 +1,5 @@
-# Typst spaces lines with `par` leading, the gap between the cap height of one line and the
-# baseline of the next, so a line height becomes a leading by subtracting an assumed cap height.
+# typst spaces lines with `par` leading, the gap from one line's cap height to the next line's
+# baseline, so a line height turns into a leading by subtracting an assumed cap height
 const TYPST_CAP_HEIGHT = 0.7
 
 Base.show(io::IO, ::MIME"QuartoNotebookRunner/typst", t::Table) = show(io, MIME"text/typst"(), t)
@@ -112,7 +112,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         if ct.footnote_line_height !== nothing
             # a negative leading would stack the lines backwards, so 0 is as tight as typst goes
             leading = max(0, ct.footnote_line_height - TYPST_CAP_HEIGHT)
-            # the semicolon terminates the set rule, which typst requires when content follows directly
+            # the semicolon is required when content follows the set rule without a line break
             print(io, "#set par(leading: $(round_factor(leading))em);")
         end
 

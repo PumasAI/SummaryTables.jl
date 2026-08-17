@@ -122,7 +122,8 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
         line_height = something(ct.footnote_line_height, DEFAULT_LINE_HEIGHT)
         if ct.footnote_size === nothing
             println(io, raw"\footnotesize")
-            # \footnotesize already spaces lines by `DEFAULT_LINE_HEIGHT`, which \linespread scales
+            # \linespread scales the baseline skip \footnotesize picked, which the document class
+            # sets to roughly `DEFAULT_LINE_HEIGHT` times the font size
             ct.footnote_line_height === nothing ||
                 println(io, "\\linespread{$(round_factor(line_height / DEFAULT_LINE_HEIGHT))}\\selectfont")
         else

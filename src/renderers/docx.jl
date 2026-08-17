@@ -1,14 +1,15 @@
 const DOCX_OUTER_RULE_SIZE = 8 * WriteDocx.eighthpt
 const DOCX_INNER_RULE_SIZE = 4 * WriteDocx.eighthpt
 const DOCX_ANNOTATION_FONTSIZE = 8 * WriteDocx.pt
+
 docx_footnote_fontsize(ct::Table) = ct.footnote_size === nothing ?
     DOCX_ANNOTATION_FONTSIZE : ct.footnote_size * WriteDocx.pt
 
-docx_footnote_justification(halign::Symbol) =
-    halign === :left ? nothing :
+docx_justification(halign::Symbol) =
+    halign === :left ? WriteDocx.Justification.start :
     halign === :center ? WriteDocx.Justification.center :
     halign === :right ? WriteDocx.Justification.stop :
-    error("Unhandled footnote_halign $(halign)")
+    error("Unhandled halign $(halign)")
 
 """
     to_docx(ct::Table)
@@ -93,8 +94,6 @@ function to_docx(ct::Table)
     if !isempty(annotations) || !isempty(ct.footnotes)
         footnote_fontsize = docx_footnote_fontsize(ct)
         footnote_props = WriteDocx.RunProperties(size = footnote_fontsize)
-        # the label shares its line with the break run that carries the line height, so leaving it
-        # at Word's default size would let it drive the line height instead
         label_props = WriteDocx.RunProperties(
             valign = WriteDocx.VerticalAlignment.superscript,
             size = footnote_fontsize,
@@ -117,9 +116,10 @@ function to_docx(ct::Table)
             (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element], separator_props))
             append!(elements, to_runs(footnote, footnote_props))
         end
+        # left is Word's own default, so it stays unset to keep the properties empty
+        footnote_justification = ct.footnote_halign === :left ? nothing : docx_justification(ct.footnote_halign)
         annotation_row = WriteDocx.TableRow([WriteDocx.TableCell(
-            [WriteDocx.Paragraph(elements, WriteDocx.ParagraphProperties(
-                justification = docx_footnote_justification(ct.footnote_halign)))],
+            [WriteDocx.Paragraph(elements, WriteDocx.ParagraphProperties(justification = footnote_justification))],
             WriteDocx.TableCellProperties(gridspan = size(matrix, 2))
         )])
         push!(tablerows, annotation_row)
@@ -146,12 +146,7 @@ function to_docx(ct::Table)
 end
 
 function paragraph_and_run_properties(st::CellStyle)
-    para = WriteDocx.ParagraphProperties(
-        justification = st.halign === :center ? WriteDocx.Justification.center :
-            st.halign === :left ? WriteDocx.Justification.start :
-            st.halign === :right ? WriteDocx.Justification.stop :
-            error("Unhandled halign $(st.halign)"),
-    )
+    para = WriteDocx.ParagraphProperties(justification = docx_justification(st.halign))
     run = WriteDocx.RunProperties(
         bold = st.bold ? true : nothing, # TODO: fix bug in WriteDocx?
         italic = st.italic ? true : nothing, # TODO: fix bug in WriteDocx?

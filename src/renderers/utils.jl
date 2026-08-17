@@ -192,7 +192,6 @@ natural_lt(x, y) = isless(x, y)
 
 # the factor of the body font size that HTML and typst fall back to when `footnote_size` is unset
 const DEFAULT_FOOTNOTE_SIZE = 0.8
-# the baseline-to-baseline ratio LaTeX and CSS both apply without being told otherwise
 const DEFAULT_LINE_HEIGHT = 1.2
 
 footnote_font_size(ct::Table) =

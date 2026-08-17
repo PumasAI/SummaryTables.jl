@@ -1,4 +1,4 @@
-const HTML_LINE_HEIGHT = "1.2em"
+const HTML_LINE_HEIGHT = "$(DEFAULT_LINE_HEIGHT)em"
 
 Base.show(io::IO, ::MIME"juliavscode/html", ct::Table) = show(io, MIME"text/html"(), ct)
 
@@ -93,7 +93,7 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
 
     if !isempty(annotations) || !isempty(ct.footnotes)
         footnote_style = "font-size: $(footnote_font_size(ct));"
-        # a td is left aligned anyway, so `:left` leaves the document's own alignment in place
+        # left is a td's own default, so it leaves the surrounding alignment in place
         if ct.footnote_halign !== :left
             footnote_style *= " text-align: $(ct.footnote_halign);"
         end

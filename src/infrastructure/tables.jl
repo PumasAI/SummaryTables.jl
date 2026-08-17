@@ -129,10 +129,12 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `footnote_halign = :left`: Horizontal alignment of the footnotes and annotations, either `:left`,
   `:center` or `:right`.
 - `footnote_line_height = nothing`: Baseline-to-baseline distance of the footnote lines as a factor of
-  the footnote font size, so `2` gives double spacing. `nothing` keeps each renderer's built-in line spacing. Typst has no line
-  height setting, so the factor becomes a `par` leading via an assumed cap height and therefore cannot
-  go tighter than that cap height, and docx has none either, so it applies to the line breaks between
-  footnotes but not within a wrapped one.
+  the footnote font size, so `2` gives double spacing. `nothing` keeps each renderer's built-in line
+  spacing. Only LaTeX with a `footnote_size` set applies the factor exactly. Typst has no line height
+  setting, so the factor becomes a `par` leading via an assumed cap height and therefore cannot go
+  tighter than that cap height, docx has none either, so it applies to the line breaks between
+  footnotes but neither within a wrapped one nor to the last one, and LaTeX without a `footnote_size`
+  scales `\\footnotesize`, whose own line spacing is close to but not exactly the assumed factor.
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 

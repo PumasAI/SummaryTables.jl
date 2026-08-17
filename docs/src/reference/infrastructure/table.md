@@ -119,9 +119,10 @@ Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], footnote_halign = :cent
 The `footnote_line_height` keyword sets the baseline-to-baseline distance of the footnote lines as a factor of the footnote font size, so `2` gives double spacing.
 Left at `nothing`, each renderer keeps its built-in line spacing.
 
-Two renderers approximate this setting.
+Only LaTeX with a `footnote_size` set applies the factor exactly, the other renderers approximate it.
 Typst has no line height setting, so the factor becomes a `par` leading via an assumed cap height, which means it cannot go tighter than the cap height itself.
-Docx has none either, so the spacing applies to the line breaks between footnotes but not within a single footnote that wraps.
+Docx has none either, so the spacing applies to the line breaks between footnotes, but not within a single footnote that wraps and not to the last footnote.
+LaTeX without a `footnote_size` scales `\footnotesize`, whose own line spacing is close to but not exactly the factor assumed here.
 
 This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
 
