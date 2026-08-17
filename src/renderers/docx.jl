@@ -1,6 +1,14 @@
 const DOCX_OUTER_RULE_SIZE = 8 * WriteDocx.eighthpt
 const DOCX_INNER_RULE_SIZE = 4 * WriteDocx.eighthpt
 const DOCX_ANNOTATION_FONTSIZE = 8 * WriteDocx.pt
+docx_footnote_fontsize(ct::Table) = ct.footnote_size === nothing ?
+    DOCX_ANNOTATION_FONTSIZE : ct.footnote_size * WriteDocx.pt
+
+docx_footnote_justification(halign::Symbol) =
+    halign === :left ? nothing :
+    halign === :center ? WriteDocx.Justification.center :
+    halign === :right ? WriteDocx.Justification.stop :
+    error("Unhandled footnote_halign $(halign)")
 
 """
     to_docx(ct::Table)
@@ -83,22 +91,35 @@ function to_docx(ct::Table)
     separator_element = ct.linebreak_footnotes ? WriteDocx.Break() : WriteDocx.Text("    ")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
+        footnote_fontsize = docx_footnote_fontsize(ct)
+        footnote_props = WriteDocx.RunProperties(size = footnote_fontsize)
+        # the label shares its line with the break run that carries the line height, so leaving it
+        # at Word's default size would let it drive the line height instead
+        label_props = WriteDocx.RunProperties(
+            valign = WriteDocx.VerticalAlignment.superscript,
+            size = footnote_fontsize,
+        )
+        # Word takes a line's height from the largest font on it and WriteDocx cannot set line
+        # spacing, so the break ending a line carries the line height
+        separator_props = ct.footnote_line_height === nothing || !ct.linebreak_footnotes ?
+            WriteDocx.RunProperties() :
+            WriteDocx.RunProperties(size = (ct.footnote_line_height / DEFAULT_LINE_HEIGHT) * footnote_fontsize)
         elements = []
         for (i, (annotation, label)) in enumerate(annotations)
-            i > 1 && push!(elements, WriteDocx.Run([separator_element]))
+            i > 1 && push!(elements, WriteDocx.Run([separator_element], separator_props))
             if label !== NoLabel()
-                append!(elements, to_runs(label, WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
-                push!(elements, WriteDocx.Run([WriteDocx.Text(" ")],
-                    WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
+                append!(elements, to_runs(label, label_props))
+                push!(elements, WriteDocx.Run([WriteDocx.Text(" ")], label_props))
             end
-            append!(elements, to_runs(annotation, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            append!(elements, to_runs(annotation, footnote_props))
         end
         for (i, footnote) in enumerate(ct.footnotes)
-            (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element]))
-            append!(elements, to_runs(footnote, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element], separator_props))
+            append!(elements, to_runs(footnote, footnote_props))
         end
         annotation_row = WriteDocx.TableRow([WriteDocx.TableCell(
-            [WriteDocx.Paragraph(elements)],
+            [WriteDocx.Paragraph(elements, WriteDocx.ParagraphProperties(
+                justification = docx_footnote_justification(ct.footnote_halign)))],
             WriteDocx.TableCellProperties(gridspan = size(matrix, 2))
         )])
         push!(tablerows, annotation_row)
@@ -303,7 +324,8 @@ _rgb_to_hex(rgb) = join(string.(round.(Int, rgb .* 255); base = 16, pad = 2))
 
 function to_runs(s::Styled, props::WriteDocx.RunProperties)
     # TODO: add underline once WriteDocx fixes support for it
-    props = merge_props(props, WriteDocx.RunProperties(; s.bold, s.italic, color = s.color === nothing ? nothing : WriteDocx.HexColor(_rgb_to_hex(s.color.rgb))))
+    size = s.size === nothing ? nothing : s.size * WriteDocx.pt
+    props = merge_props(props, WriteDocx.RunProperties(; s.bold, s.italic, size, color = s.color === nothing ? nothing : WriteDocx.HexColor(_rgb_to_hex(s.color.rgb))))
     return to_runs(s.value, props)
 end
 

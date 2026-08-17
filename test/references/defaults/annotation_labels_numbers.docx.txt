@@ -487,12 +487,14 @@
             <w:pPr/>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>1</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -509,12 +511,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>2</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -531,12 +535,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>3</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -553,12 +559,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>4</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -575,12 +583,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>5</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -597,12 +607,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>6</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -619,12 +631,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>7</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -641,12 +655,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>8</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -663,12 +679,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>9</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -685,12 +703,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>10</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -707,12 +727,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>11</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -729,12 +751,14 @@
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>12</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>

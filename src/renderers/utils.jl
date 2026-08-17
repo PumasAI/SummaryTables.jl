@@ -190,6 +190,17 @@ end
 natural_lt(x::AbstractString, y::AbstractString) = NaturalSort.natural(x, y)
 natural_lt(x, y) = isless(x, y)
 
+# the factor of the body font size that HTML and typst fall back to when `footnote_size` is unset
+const DEFAULT_FOOTNOTE_SIZE = 0.8
+# the baseline-to-baseline ratio LaTeX and CSS both apply without being told otherwise
+const DEFAULT_LINE_HEIGHT = 1.2
+
+footnote_font_size(ct::Table) =
+    ct.footnote_size === nothing ? "$(DEFAULT_FOOTNOTE_SIZE)em" : "$(ct.footnote_size)pt"
+
+# keeps float noise like 0.30000000000000004 out of the output
+round_factor(x) = round(x; digits = 4)
+
 function validate_rowgaps(rowgaps, nrows)
     nrows == 1 && !isempty(rowgaps) && error("No row gaps allowed for a table with one row.")
     for (m, _) in rowgaps

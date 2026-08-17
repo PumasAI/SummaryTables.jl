@@ -26,6 +26,12 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     number_format::Union{Default,Nothing,NumberFormat} = default
     "If `true`, each footnote is displayed on a separate line."
     linebreak_footnotes::Bool = true
+    "Font size of footnotes and annotations in points. `nothing` keeps each renderer's built-in footnote size, which is a factor of the body font size instead."
+    footnote_size::Union{Nothing,Float64} = nothing
+    "Horizontal alignment of the footnotes, either `:left`, `:center` or `:right`."
+    footnote_halign::Symbol = :left
+    "Baseline-to-baseline distance of the footnote lines as a factor of the footnote font size. `nothing` keeps each renderer's built-in line spacing."
+    footnote_line_height::Union{Nothing,Float64} = nothing
     "An indexable collection or a `Symbol` that specifies a predefined collection which contains annotation labels. Predefined variants are `:numbers`, `:letters_lower`, `:letters_upper`, `:roman_lower` and `:roman_upper`."
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."

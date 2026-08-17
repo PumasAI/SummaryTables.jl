@@ -639,6 +639,30 @@ end
             end
         end
 
+        @testset "footnote size, alignment and line height" begin
+            footnote_table(; kwargs...) = Table(
+                [
+                    SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
+                    SpannedCell(1, 2, "Cell 2"),
+                ];
+                footnotes = ["First footnote.", "Second footnote."],
+                kwargs...,
+            )
+
+            reftest(footnote_table(footnote_size = 12), "references/manual_footnotes/footnote_size_points")
+
+            for footnote_halign in [:center, :right]
+                reftest(footnote_table(; footnote_halign), "references/manual_footnotes/footnote_halign_$footnote_halign")
+            end
+
+            reftest(footnote_table(footnote_line_height = 2), "references/manual_footnotes/footnote_line_height_loose")
+
+            t = SummaryTables.with_defaults(footnote_size = 12, footnote_halign = :center, footnote_line_height = 1.5) do
+                footnote_table()
+            end
+            reftest(t, "references/manual_footnotes/footnote_style_defaults")
+        end
+
         @testset "Replace" begin
             t = Table(
                 [
@@ -865,6 +889,14 @@ end
                 ]
             )
             reftest(tbl, "references/styled/example")
+
+            sized = Table(
+                [
+                    Cell(Concat("Normal, ", Styled("small", size = 8), ", ", Styled("large", size = 18)))  Cell(Styled("Large and bold", size = 18, bold = true, color = "#FF0000"))
+                ];
+                footnotes = [Styled("This footnote should be at 12pt.", size = 12)],
+            )
+            reftest(sized, "references/styled/size")
         end
 
         @testset "annotation label style" begin
@@ -1196,6 +1228,31 @@ end
     t = table_one((; a = 1:3, b = ["A", "B", "C"]))
     qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
     @test qnr == repr("text/typst", t)
+end
+
+@testset "footnote style settings validation" begin
+    cells = [Cell("Cell 1") Cell("Cell 2")]
+    @test Table(cells).footnote_size === nothing
+    @test Table(cells).footnote_halign === :left
+    @test Table(cells).footnote_line_height === nothing
+    @test Table(cells; footnote_size = 12).footnote_size === 12.0
+    @test Table(cells; footnote_line_height = 2).footnote_line_height === 2.0
+    @test Styled("x").size === nothing
+    @test Styled("x", size = 14).size === 14.0
+
+    for name in [:footnote_size, :footnote_line_height]
+        for bad in [0, -0.5, Inf, "large"]
+            @test_throws_message "must be a positive, finite" Table(cells; (name => bad,)...)
+        end
+    end
+    @test_throws_message "must be a positive, finite" Styled("x", size = 0)
+    @test_throws_message "must be `:left`, `:center` or `:right`" Table(cells; footnote_halign = :middle)
+
+    # an explicit `:left` renders the same as the default
+    t = Table(cells; footnotes = ["A footnote."])
+    for mime in [MIME"text/html"(), MIME"text/latex"(), MIME"text/typst"()]
+        @test repr(mime, t) == repr(mime, Table(cells; footnotes = ["A footnote."], footnote_halign = :left))
+    end
 end
 
 @testset "Defaults" begin

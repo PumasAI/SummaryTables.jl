@@ -259,44 +259,50 @@
             <w:gridSpan w:val="2"/>
           </w:tcPr>
           <w:p>
-            <w:pPr/>
+            <w:pPr>
+              <w:jc w:val="center"/>
+            </w:pPr>
             <w:r>
               <w:rPr>
-                <w:sz w:val="16"/>
+                <w:sz w:val="24"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>1</w:t>
             </w:r>
             <w:r>
               <w:rPr>
-                <w:sz w:val="16"/>
+                <w:sz w:val="24"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
             </w:r>
             <w:r>
               <w:rPr>
-                <w:sz w:val="16"/>
+                <w:sz w:val="24"/>
               </w:rPr>
               <w:t>Note 1</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:rPr>
+                <w:sz w:val="30"/>
+              </w:rPr>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
-                <w:sz w:val="16"/>
+                <w:sz w:val="24"/>
               </w:rPr>
               <w:t>First footnote.</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:rPr>
+                <w:sz w:val="30"/>
+              </w:rPr>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
-                <w:sz w:val="16"/>
+                <w:sz w:val="24"/>
               </w:rPr>
               <w:t>Second footnote.</w:t>
             </w:r>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.7.0 - 2026-08-17
+
+- Added the `footnote_size`, `footnote_halign` and `footnote_line_height` settings to `Table` and to the global defaults. `footnote_size` sets the footnote font size in points, so `footnote_size = 12` prints footnotes at 12pt in every renderer instead of at each one's hardcoded size [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
+- Added the `size` keyword to `Styled`, which sets the font size of a single value in points [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
+- Fixed the superscript annotation labels in docx footnotes rendering at Word's default font size instead of the footnote font size, which also made them override `footnote_line_height` on the first footnote line [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
+
 ## 3.6.1 - 2026-08-07
 
 - Fixed misalignment of `overview_table` category bars in HTML output when the environment overrides the table's line-height [#152](https://github.com/PumasAI/SummaryTables.jl/pull/152).

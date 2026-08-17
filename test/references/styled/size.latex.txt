@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{0pt}
+\centering
+\begin{threeparttable}
+\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
+\toprule
+Normal, {\fontsize{8.0pt}{9.6pt}\selectfont small}, {\fontsize{18.0pt}{21.6pt}\selectfont large} & \textbf{\textcolor[RGB]{255,0,0}{{\fontsize{18.0pt}{21.6pt}\selectfont Large and bold}}} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[]{\fontsize{12.0pt}{14.4pt}\selectfont This footnote should be at 12pt.}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

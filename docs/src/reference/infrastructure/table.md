@@ -89,3 +89,42 @@ Table(cells; footnotes = ["Footnote 1.", "Footnote 2."])
 ```@example linebreak_footnotes
 Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], linebreak_footnotes = false)
 ```
+
+## Keyword: `footnote_size`
+
+Each renderer prints footnotes and annotations at its own built-in size, which is a factor of the body font size (0.8 in HTML and typst, `\footnotesize` in LaTeX, 8pt in docx).
+Set `footnote_size` to a size in points to override this and get the same size out of every renderer.
+
+This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
+
+```@example footnote_style
+using SummaryTables
+
+cells = [Cell("$col$row") for row in 1:5, col in 'A':'I']
+Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], footnote_size = 12)
+```
+
+## Keyword: `footnote_halign`
+
+Footnotes are left-aligned by default. Pass `:center` or `:right` to `footnote_halign` to align them differently.
+
+This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
+
+```@example footnote_style
+Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], footnote_halign = :center)
+```
+
+## Keyword: `footnote_line_height`
+
+The `footnote_line_height` keyword sets the baseline-to-baseline distance of the footnote lines as a factor of the footnote font size, so `2` gives double spacing.
+Left at `nothing`, each renderer keeps its built-in line spacing.
+
+Two renderers approximate this setting.
+Typst has no line height setting, so the factor becomes a `par` leading via an assumed cap height, which means it cannot go tighter than the cap height itself.
+Docx has none either, so the spacing applies to the line breaks between footnotes but not within a single footnote that wraps.
+
+This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
+
+```@example footnote_style
+Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], footnote_line_height = 2)
+```

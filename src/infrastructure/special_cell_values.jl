@@ -421,13 +421,14 @@ function Color(hex::String)
 end
 
 """
-    Styled(value; color, bold, italic, underline)
+    Styled(value; color, bold, italic, underline, size)
 
 Create a `Styled` object wrapping `value` which renders `value` formatted according to these optional properties:
 - `bold::Union{Nothing,Bool}`
 - `italic::Union{Nothing,Bool}`
 - `underline::Union{Nothing,Bool}`
 - `color::Union{Nothing,String}` The text color as a hex RGB string like #FA03C7.  Note that you need to add `\\usepackage{xcolor}` to use colored text in LaTeX.
+- `size::Union{Nothing,Real}` The font size in points, so `size = 14` renders `value` at 14pt whichever renderer is used.
 """
 struct Styled
     value
@@ -435,6 +436,7 @@ struct Styled
     bold::Union{Nothing,Bool}
     italic::Union{Nothing,Bool}
     underline::Union{Nothing,Bool}
+    size::Union{Nothing,Float64}
 end
 
 function Styled(
@@ -443,6 +445,8 @@ function Styled(
     bold = nothing,
     italic = nothing,
     underline = nothing,
+    size = nothing,
 )
-    Styled(value, color === nothing ? nothing : Color(color), bold, italic, underline)
+    Styled(value, color === nothing ? nothing : Color(color), bold, italic, underline,
+        resolve_positive_number(size, "size", "point size"))
 end

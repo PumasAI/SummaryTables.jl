@@ -1,3 +1,7 @@
+# Typst spaces lines with `par` leading, the gap between the cap height of one line and the
+# baseline of the next, so a line height becomes a leading by subtracting an assumed cap height.
+const TYPST_CAP_HEIGHT = 0.7
+
 Base.show(io::IO, ::MIME"QuartoNotebookRunner/typst", t::Table) = show(io, MIME"text/typst"(), t)
 
 function Base.show(io::IO, M::MIME"text/typst", ct::Table)
@@ -100,10 +104,17 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     println(io, "    table.hline(y: $(size(matrix, 1)), stroke: 1pt),")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        align = _align(CellStyle(halign = :left), 1)
+        align = _align(CellStyle(halign = ct.footnote_halign), 1)
         colspan = "colspan: $(size(matrix, 2))"
         options = join(filter(!isempty, [align, colspan]), ", ")
-        print(io, "    table.cell($options)[#text(size: 0.8em)[")
+        print(io, "    table.cell($options)[#text(size: $(footnote_font_size(ct)))[")
+
+        if ct.footnote_line_height !== nothing
+            # a negative leading would stack the lines backwards, so 0 is as tight as typst goes
+            leading = max(0, ct.footnote_line_height - TYPST_CAP_HEIGHT)
+            # the semicolon terminates the set rule, which typst requires when content follows directly
+            print(io, "#set par(leading: $(round_factor(leading))em);")
+        end
 
         if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
             print(io, "\n        ")
@@ -177,7 +188,9 @@ function _showas(io::IO, M::MIME"text/typst", s::Styled)
     if s.color !== nothing
         print(io, "#text(fill: rgb($(join(round.(Int, s.color.rgb .* 255), ","))))[")
     end
+    s.size !== nothing && print(io, "#text(size: $(s.size)pt)[")
     _showas(io, M, s.value)
+    s.size !== nothing && print(io, "]")
     s.color !== nothing && print(io, "]")
     s.underline === true && print(io, "]")
     s.italic === true && print(io, "_")

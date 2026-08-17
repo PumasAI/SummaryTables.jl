@@ -119,7 +119,20 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
     """)
     if !isempty(annotations) || !isempty(ct.footnotes)
         println(io, "\\begin{tablenotes}[flushleft$(ct.linebreak_footnotes ? "" : ",para")]")
-        println(io, raw"\footnotesize")
+        line_height = something(ct.footnote_line_height, DEFAULT_LINE_HEIGHT)
+        if ct.footnote_size === nothing
+            println(io, raw"\footnotesize")
+            # \footnotesize already spaces lines by `DEFAULT_LINE_HEIGHT`, which \linespread scales
+            ct.footnote_line_height === nothing ||
+                println(io, "\\linespread{$(round_factor(line_height / DEFAULT_LINE_HEIGHT))}\\selectfont")
+        else
+            println(io, "\\fontsize{$(ct.footnote_size)pt}{$(round_factor(line_height * ct.footnote_size))pt}\\selectfont")
+        end
+        if ct.footnote_halign === :center
+            println(io, raw"\centering")
+        elseif ct.footnote_halign === :right
+            println(io, raw"\raggedleft")
+        end
         for (annotation, label) in annotations
             if label !== NoLabel()
                 print(io, raw"\item[")
@@ -227,7 +240,11 @@ function _showas(io::IO, ::MIME"text/latex", s::Styled)
     if s.color !== nothing
         print(io, "\\textcolor[RGB]{$(join(round.(Int, s.color.rgb .* 255), ","))}{")
     end
+    if s.size !== nothing
+        print(io, "{\\fontsize{$(s.size)pt}{$(round_factor(DEFAULT_LINE_HEIGHT * s.size))pt}\\selectfont ")
+    end
     _showas(io, MIME"text/latex"(), s.value)
+    s.size !== nothing && print(io, "}")
     s.color !== nothing && print(io, "}")
     s.underline === true && print(io, "}")
     s.italic === true && print(io, "}")

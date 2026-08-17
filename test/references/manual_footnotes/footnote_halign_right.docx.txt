@@ -259,7 +259,9 @@
             <w:gridSpan w:val="2"/>
           </w:tcPr>
           <w:p>
-            <w:pPr/>
+            <w:pPr>
+              <w:jc w:val="end"/>
+            </w:pPr>
             <w:r>
               <w:rPr>
                 <w:sz w:val="16"/>
@@ -282,7 +284,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
@@ -292,7 +294,7 @@
             </w:r>
             <w:r>
               <w:rPr/>
-              <w:t xml:space="preserve">    </w:t>
+              <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>

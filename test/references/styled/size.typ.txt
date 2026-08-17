@@ -1,0 +1,15 @@
+
+#table(
+    rows: 1,
+    columns: 2,
+    column-gutter: 0.25em,
+    align: (center, center),
+    stroke: none,
+    table.hline(y: 0, stroke: 1pt),
+    [#"Normal, "#text(size: 8.0pt)[#"small"]#", "#text(size: 18.0pt)[#"large"]],
+    [*#text(fill: rgb(255,0,0))[#text(size: 18.0pt)[#"Large and bold"]]*],
+    table.hline(y: 1, stroke: 1pt),
+    table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
+        #text(size: 12.0pt)[#"This footnote should be at 12pt."]
+    ]],
+)

@@ -8,6 +8,9 @@ struct Table
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
+    footnote_size::Union{Nothing,Float64}
+    footnote_halign::Symbol
+    footnote_line_height::Union{Nothing,Float64}
 end
 
 function Table(cells, header, footer;
@@ -20,11 +23,32 @@ function Table(cells, header, footer;
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
         linebreak_footnotes = default,
+        footnote_size = default,
+        footnote_halign = default,
+        footnote_line_height = default,
     )
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes)
+    _footnote_size = resolve_positive_number(fallback(footnote_size, defs.footnote_size), "footnote_size", "point size")
+    _footnote_halign = resolve_footnote_halign(fallback(footnote_halign, defs.footnote_halign))
+    _footnote_line_height = resolve_positive_number(fallback(footnote_line_height, defs.footnote_line_height), "footnote_line_height", "factor of the footnote font size")
+    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes, _footnote_size, _footnote_halign, _footnote_line_height)
+end
+
+resolve_positive_number(::Nothing, name, unit) = nothing
+function resolve_positive_number(value, name, unit)
+    if !(value isa Real) || !isfinite(value) || value <= 0
+        error("`$name` must be a positive, finite $unit, or `nothing`, got `$(repr(value))`.")
+    end
+    return Float64(value)
+end
+
+function resolve_footnote_halign(halign)
+    if !(halign in (:left, :center, :right))
+        error("`footnote_halign` must be `:left`, `:center` or `:right`, got `$(repr(halign))`.")
+    end
+    return halign
 end
 
 function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
@@ -65,6 +89,9 @@ end
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
         linebreak_footnotes = true,
+        footnote_size = nothing,
+        footnote_halign = :left,
+        footnote_line_height = nothing,
     )
 
 Create a `Table` which can be rendered in multiple formats, such as HTML or LaTeX.
@@ -96,6 +123,16 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
     the size of `gap_pt` is added between the columns `index` and `index+1`.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
+- `footnote_size = nothing`: Font size of the footnotes and annotations in points, so `footnote_size = 12`
+  prints them at 12pt whichever renderer is used. `nothing` keeps each renderer's built-in size, which is
+  a factor of the body font size instead (0.8 in HTML and typst, `\\footnotesize` in LaTeX, 8pt in docx).
+- `footnote_halign = :left`: Horizontal alignment of the footnotes and annotations, either `:left`,
+  `:center` or `:right`.
+- `footnote_line_height = nothing`: Baseline-to-baseline distance of the footnote lines as a factor of
+  the footnote font size, so `2` gives double spacing. `nothing` keeps each renderer's built-in line spacing. Typst has no line
+  height setting, so the factor becomes a `par` leading via an assumed cap height and therefore cannot
+  go tighter than that cap height, and docx has none either, so it applies to the line breaks between
+  footnotes but not within a wrapped one.
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 
@@ -247,7 +284,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes, ct.footnote_size, ct.footnote_halign, ct.footnote_line_height)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)
@@ -310,7 +347,7 @@ end
 
 recursive_replace(value::Concat, f, with) = Concat(map(x -> recursive_replace(x, f, with), value.args)...)
 recursive_replace(value::Multiline, f, with) = Multiline(map(x -> recursive_replace(x, f, with), value.values)...)
-recursive_replace(x::Styled, f, with) = Styled(recursive_replace(x.value, f, with), x.color, x.bold, x.italic, x.underline)
+recursive_replace(x::Styled, f, with) = Styled(recursive_replace(x.value, f, with), x.color, x.bold, x.italic, x.underline, x.size)
 recursive_replace(x::Superscript, f, with) = Superscript(recursive_replace(x.super, f, with))
 recursive_replace(x::Subscript, f, with) = Subscript(recursive_replace(x.sub, f, with))
 function recursive_replace(x, f, with)
@@ -332,7 +369,7 @@ apply_format(x::FormattedFloat, fmt::NumberFormat, floats_only::Bool) = Formatte
 apply_format(x::Concat, fmt::NumberFormat, floats_only::Bool) = Concat(map(arg -> apply_format(arg, fmt, floats_only), x.args)...)
 apply_format(x::Multiline, fmt::NumberFormat, floats_only::Bool) = Multiline(map(arg -> apply_format(arg, fmt, floats_only), x.values)...)
 apply_format(x::Annotated, fmt::NumberFormat, floats_only::Bool) = Annotated(apply_format(x.value, fmt, floats_only), x.annotation, x.label)
-apply_format(x::Styled, fmt::NumberFormat, floats_only::Bool) = Styled(apply_format(x.value, fmt, floats_only), x.color, x.bold, x.italic, x.underline)
+apply_format(x::Styled, fmt::NumberFormat, floats_only::Bool) = Styled(apply_format(x.value, fmt, floats_only), x.color, x.bold, x.italic, x.underline, x.size)
 apply_format(x::Superscript, fmt::NumberFormat, floats_only::Bool) = Superscript(apply_format(x.super, fmt, floats_only))
 apply_format(x::Subscript, fmt::NumberFormat, floats_only::Bool) = Subscript(apply_format(x.sub, fmt, floats_only))
 

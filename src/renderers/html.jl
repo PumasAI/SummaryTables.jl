@@ -92,7 +92,16 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
     println(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom: 1.5px solid currentColor; padding: 0\"></td></tr>")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        print(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"font-size: 0.8em;\">")
+        footnote_style = "font-size: $(footnote_font_size(ct));"
+        # a td is left aligned anyway, so `:left` leaves the document's own alignment in place
+        if ct.footnote_halign !== :left
+            footnote_style *= " text-align: $(ct.footnote_halign);"
+        end
+        if ct.footnote_line_height !== nothing
+            # unitless, so it multiplies the footnote font size and not the table's
+            footnote_style *= " line-height: $(ct.footnote_line_height);"
+        end
+        print(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"$(footnote_style)\">")
         for (i, (annotation, label)) in enumerate(annotations)
             if i > 1
                 if ct.linebreak_footnotes
@@ -164,6 +173,9 @@ end
 
 function _showas(io::IO, M::MIME"text/html", s::Styled)
     print(io, "<span style=\"")
+    if s.size !== nothing
+        print(io, "font-size:$(s.size)pt;")
+    end
     if s.bold !== nothing
         print(io, "font-weight:$(s.bold ? "bold" : "normal");")
     end
