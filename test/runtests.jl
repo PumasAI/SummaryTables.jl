@@ -1248,7 +1248,6 @@ end
     @test_throws_message "must be a positive, finite" Styled("x", size = 0)
     @test_throws_message "must be `:left`, `:center` or `:right`" Table(cells; footnote_halign = :middle)
 
-    # an explicit `:left` renders the same as the default
     t = Table(cells; footnotes = ["A footnote."])
     for mime in [MIME"text/html"(), MIME"text/latex"(), MIME"text/typst"()]
         @test repr(mime, t) == repr(mime, Table(cells; footnotes = ["A footnote."], footnote_halign = :left))

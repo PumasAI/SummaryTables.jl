@@ -93,12 +93,10 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
 
     if !isempty(annotations) || !isempty(ct.footnotes)
         footnote_style = "font-size: $(footnote_font_size(ct));"
-        # left is a td's own default, so it leaves the surrounding alignment in place
         if ct.footnote_halign !== :left
             footnote_style *= " text-align: $(ct.footnote_halign);"
         end
         if ct.footnote_line_height !== nothing
-            # unitless, so it multiplies the footnote font size and not the table's
             footnote_style *= " line-height: $(ct.footnote_line_height);"
         end
         print(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"$(footnote_style)\">")

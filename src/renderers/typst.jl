@@ -110,7 +110,6 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         print(io, "    table.cell($options)[#text(size: $(footnote_font_size(ct)))[")
 
         if ct.footnote_line_height !== nothing
-            # a negative leading would stack the lines backwards, so 0 is as tight as typst goes
             leading = max(0, ct.footnote_line_height - TYPST_CAP_HEIGHT)
             # the semicolon is required when content follows the set rule without a line break
             print(io, "#set par(leading: $(round_factor(leading))em);")

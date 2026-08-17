@@ -116,7 +116,6 @@ function to_docx(ct::Table)
             (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element], separator_props))
             append!(elements, to_runs(footnote, footnote_props))
         end
-        # left is Word's own default, so it stays unset to keep the properties empty
         footnote_justification = ct.footnote_halign === :left ? nothing : docx_justification(ct.footnote_halign)
         annotation_row = WriteDocx.TableRow([WriteDocx.TableCell(
             [WriteDocx.Paragraph(elements, WriteDocx.ParagraphProperties(justification = footnote_justification))],
