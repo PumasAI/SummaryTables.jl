@@ -51,25 +51,40 @@ Table(cells; footnotes = ["Custom footnote 1", "Custom footnote 2"])
 ## Keyword: `rowgaps`
 
 It can be beneficial for the readability of larger tables to add gaps between certain rows.
-These gaps can be passed as a `Vector` of `Pair`s where the first element is the index of the row gap and the second element is the gap size in `pt`.
+These gaps can be passed as a `Vector` of `Pair`s where the first element is the index of the row gap and the second element is the gap size.
+
+Sizes are given as `SummaryTables.Relative(factor)`, a factor of the font size, so the gaps keep their proportion to the text when the document the table is embedded in changes its font size.
 
 ```@example
 using SummaryTables
 
 cells = [Cell("$col$row") for row in 1:9, col in 'A':'E']
-Table(cells; rowgaps = [3 => 8.0, 6 => 8.0])
+Table(cells; rowgaps = [3 => SummaryTables.Relative(0.8), 6 => SummaryTables.Relative(0.8)])
 ```
+
+For a gap that stays the same size regardless of the font size, use `SummaryTables.Points(size)` instead.
+
+```@example
+using SummaryTables
+
+cells = [Cell("$col$row") for row in 1:9, col in 'A':'E']
+Table(cells; rowgaps = [3 => SummaryTables.Points(8), 6 => SummaryTables.Points(8)])
+```
+
+!!! warning "Deprecated: plain numbers"
+    A plain number like `rowgaps = [3 => 8.0]` is taken as `Points(8.0)` and warns.
+    Pass `Relative` or `Points` explicitly instead. To convert, divide the old point value by the font size you were assuming, so `8.0` at a 10pt body font size becomes `Relative(0.8)`.
 
 ## Keyword: `colgaps`
 
 It can be beneficial for the readability of larger tables to add gaps between certain columns.
-These gaps can be passed as a `Vector` of `Pair`s where the first element is the index of the column gap and the second element is the gap size in `pt`.
+These gaps take the same sizes as [`rowgaps`](@ref "Keyword: `rowgaps`"), but the index refers to the column gap.
 
 ```@example
 using SummaryTables
 
 cells = [Cell("$col$row") for row in 1:5, col in 'A':'I']
-Table(cells; colgaps = [3 => 8.0, 6 => 8.0])
+Table(cells; colgaps = [3 => SummaryTables.Relative(0.8), 6 => SummaryTables.Relative(0.8)])
 ```
 
 ## Keyword: `linebreak_footnotes`
@@ -92,8 +107,11 @@ Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], linebreak_footnotes = f
 
 ## Keyword: `footnote_size`
 
-Each renderer prints footnotes and annotations at its own built-in size, which is a factor of the body font size (0.8 in HTML and typst, `\footnotesize` in LaTeX, 8pt in docx).
-Set `footnote_size` to a size in points to override this and get the same size out of every renderer.
+Each renderer prints footnotes and annotations at its own built-in size, which is a factor of the body font size (0.8 in HTML, typst and docx, `\footnotesize` in LaTeX).
+Set `footnote_size` to a different factor to override this, so `footnote_size = 0.5` prints them at half the size of the table body.
+
+Sizes stay relative on purpose. HTML, LaTeX and typst emit them as such, so a table keeps following whatever body font size the surrounding document or stylesheet sets.
+Word is the exception: it has no relative font metrics, so the docx renderer resolves the factor to an absolute size at render time using the [`base_font_size` docx default](@ref "Global Defaults"), which should match the body font size of the document you embed the table in.
 
 This parameter can also be set as a [global default](@ref "Global Defaults") to apply the setting across all tables.
 
@@ -101,7 +119,7 @@ This parameter can also be set as a [global default](@ref "Global Defaults") to 
 using SummaryTables
 
 cells = [Cell("$col$row") for row in 1:5, col in 'A':'I']
-Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], footnote_size = 12)
+Table(cells; footnotes = ["Footnote 1.", "Footnote 2."], footnote_size = 0.5)
 ```
 
 ## Keyword: `footnote_halign`

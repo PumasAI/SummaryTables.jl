@@ -201,7 +201,7 @@ To apply font styles only to a rendered value and not the whole cell, use the `S
 - `italic::Bool`
 - `underline::Bool`
 - `color::String` a hex color string like #FF0000. Note that you need to add `\usepackage{xcolor}` to use colored text in LaTeX.
-- `size::Real` the font size in points, so `size = 14` renders the value at 14pt whichever renderer is used. Use it to enlarge a single footnote, or to set apart part of a cell.
+- `size::Real` the font size as a factor of the surrounding font size, so `size = 2` renders the value at twice the size of the text around it. Use it to enlarge a single footnote, or to set apart part of a cell.
 
 ```@example
 using SummaryTables
@@ -216,11 +216,11 @@ Table(Cell.([together annotated]))
 ```@example
 using SummaryTables
 
-mixed = Concat("Normal, ", Styled("small", size = 8), ", ", Styled("large", size = 18))
-emphasized = Styled("Large and bold", size = 18, bold = true)
+mixed = Concat("Normal, ", Styled("small", size = 0.7), ", ", Styled("large", size = 1.5))
+emphasized = Styled("Large and bold", size = 1.5, bold = true)
 Table(
     Cell.([mixed emphasized]);
-    footnotes = ["A footnote.", Styled("A footnote at 12pt.", size = 12)],
+    footnotes = ["A footnote.", Styled("A larger footnote.", size = 1.5)],
 )
 ```
 
@@ -235,6 +235,6 @@ using SummaryTables
 
 Table([
     Cell("A1", CellStyle(bold = true))    Cell("B1", CellStyle(underline = true))
-    Cell("A2", CellStyle(italic = true))  Cell("B2", CellStyle(indent_pt = 10))
+    Cell("A2", CellStyle(italic = true))  Cell("B2", CellStyle(indent = 1.0))
 ])
 ```

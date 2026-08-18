@@ -1,9 +1,16 @@
 const DOCX_OUTER_RULE_SIZE = 8 * WriteDocx.eighthpt
 const DOCX_INNER_RULE_SIZE = 4 * WriteDocx.eighthpt
-const DOCX_ANNOTATION_FONTSIZE = 8 * WriteDocx.pt
+# Word has no relative font metrics, so relative sizes are resolved against this at render time
+docx_base_fontsize() = defaults().docx.base_font_size * WriteDocx.pt
 
-docx_footnote_fontsize(ct::Table) = ct.footnote_size === nothing ?
-    DOCX_ANNOTATION_FONTSIZE : ct.footnote_size * WriteDocx.pt
+# an unset size means the run inherits the document's base font size
+docx_enclosing_fontsize(props::WriteDocx.RunProperties) =
+    props.size === nothing ? docx_base_fontsize() : props.size
+
+docx_footnote_fontsize(ct::Table) = footnote_size_factor(ct) * docx_base_fontsize()
+
+# a length in points, the relative part resolved against the base font size
+docx_points(l::Length) = l.em * defaults().docx.base_font_size + l.pt
 
 docx_justification(halign::Symbol) =
     halign === :left ? WriteDocx.Justification.start :
@@ -170,29 +177,30 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
             bottom_margin = nothing
         end
     else
-        bottom_margin = 0.5 * bottom_rowgap * pt
+        bottom_margin = 0.5 * docx_points(bottom_rowgap) * pt
     end
 
     top_rowgap = get(rowgaps, cell.span[1].start-1, nothing)
-    top_margin = top_rowgap === nothing ? nothing : 0.5 * top_rowgap * pt
+    top_margin = top_rowgap === nothing ? nothing : 0.5 * docx_points(top_rowgap) * pt
 
     left_colgap = get(colgaps, cell.span[2].start-1, nothing)
+    indent = docx_points(cell_indent(cs))
     if left_colgap === nothing
-        if cs.indent_pt != 0
-            left_margin = cs.indent_pt * pt
+        if indent != 0
+            left_margin = indent * pt
         else
             left_margin = nothing
         end
     else
-        if cs.indent_pt != 0
-            left_margin = (cs.indent_pt + 0.5 * left_colgap) * pt
+        if indent != 0
+            left_margin = (indent + 0.5 * docx_points(left_colgap)) * pt
         else
-            left_margin = 0.5 * left_colgap * pt
+            left_margin = 0.5 * docx_points(left_colgap) * pt
         end
     end
 
     right_colgap = get(colgaps, cell.span[2].stop, nothing)
-    right_margin = right_colgap === nothing ? nothing : 0.5 * right_colgap * pt
+    right_margin = right_colgap === nothing ? nothing : 0.5 * docx_points(right_colgap) * pt
 
     left_end = col == cell.span[2].start
     right_end = col == cell.span[2].stop
@@ -318,7 +326,7 @@ _rgb_to_hex(rgb) = join(string.(round.(Int, rgb .* 255); base = 16, pad = 2))
 
 function to_runs(s::Styled, props::WriteDocx.RunProperties)
     # TODO: add underline once WriteDocx fixes support for it
-    size = s.size === nothing ? nothing : s.size * WriteDocx.pt
+    size = s.size === nothing ? nothing : s.size * docx_enclosing_fontsize(props)
     props = merge_props(props, WriteDocx.RunProperties(; s.bold, s.italic, size, color = s.color === nothing ? nothing : WriteDocx.HexColor(_rgb_to_hex(s.color.rgb))))
     return to_runs(s.value, props)
 end

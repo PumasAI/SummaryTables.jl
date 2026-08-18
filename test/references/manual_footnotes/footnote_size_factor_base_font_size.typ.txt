@@ -9,7 +9,7 @@
     [#"Cell 1"#super[#"1"]],
     [#"Cell 2"],
     table.hline(y: 1, stroke: 1pt),
-    table.cell(colspan: 2)[#text(size: 0.5em)[#set par(leading: 0.8em);
+    table.cell(align: left, colspan: 2)[#text(size: 0.5em)[
         #super[#"1"]#"Note 1"\
         #"First footnote."\
         #"Second footnote."

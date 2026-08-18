@@ -1,6 +1,6 @@
-<table id="st-759fe405">
+<table id="st-77d37018">
     <style>
-        #st-759fe405 {
+        #st-77d37018 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-759fe405 tr {
+        #st-77d37018 tr {
             background-color: transparent;
             border: none;
         }
-        #st-759fe405 tr td {
+        #st-77d37018 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-759fe405 br {
+        #st-77d37018 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-759fe405 sub {
+        #st-77d37018 sub {
             line-height: 0;
         }
-        #st-759fe405 sup {
+        #st-77d37018 sup {
             line-height: 0;
         }
     </style>
@@ -68,7 +68,7 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="padding-left:1.2em;text-align:left;">Mean (SD)</td>
         <td style="text-align:center;">3.5 (1.87)</td>
         <td style="text-align:center;">2 (1.41)</td>
         <td style="text-align:center;">4 (NaN)</td>
@@ -77,7 +77,7 @@
         <td style="text-align:center;">4 (2.83)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="padding-left:1.2em;text-align:left;">Median [Min, Max]</td>
         <td style="text-align:center;">3.5 [1, 6]</td>
         <td style="text-align:center;">2 [1, 3]</td>
         <td style="text-align:center;">4 [4, 4]</td>

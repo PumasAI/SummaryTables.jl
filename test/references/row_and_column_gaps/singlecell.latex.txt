@@ -9,10 +9,10 @@
 \setlength\tabcolsep{0pt}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{cc@{\hskip 4.0pt}c@{\hskip 8.0pt}c}}
+\begin{tabular}{@{\extracolsep{2ex}}*{4}{cc@{\hskip 0.4em}c@{\hskip 0.8em}c}}
 \toprule
-1, 1 & 1, 2 & 1, 3 & 1, 4 \\[4.0pt]
-2, 1 & 2, 2 & 2, 3 & 2, 4 \\[8.0pt]
+1, 1 & 1, 2 & 1, 3 & 1, 4 \\[0.4em]
+2, 1 & 2, 2 & 2, 3 & 2, 4 \\[0.8em]
 3, 1 & 3, 2 & 3, 3 & 3, 4 \\
 4, 1 & 4, 2 & 4, 3 & 4, 4 \\
 \bottomrule

@@ -76,10 +76,13 @@ cells = reshape([
 Table(cells)
 ```
 
-## Keyword: `indent_pt`
+## Keyword: `indent`
 
-Indents the content of the cell on the left by the given number of `pt` units.
+Indents the content of the cell on the left by a factor of the font size, so `indent = 1.5` indents by one and a half times the font size.
 This can be used to give hierarchical structure to adjacent rows.
+
+The indentation is relative so that it keeps its proportion to the text when the surrounding document changes its font size.
+HTML, LaTeX and typst emit it as a relative length, while docx resolves it against the [`base_font_size` docx default](@ref "Global Defaults") because Word has no relative font metrics.
 
 ```@example
 using SummaryTables
@@ -88,12 +91,17 @@ C(value; kwargs...) = Cell(value; halign = :left, kwargs...)
 
 cells = [
     C("Group A")  C("Group B")
-    C("Subgroup A", indent_pt = 6)  C("Subgroup B", indent_pt = 6)
-    C("Subgroup A", indent_pt = 6)  C("Subgroup B", indent_pt = 6)
+    C("Subgroup A", indent = 0.6)  C("Subgroup B", indent = 0.6)
+    C("Subgroup A", indent = 0.6)  C("Subgroup B", indent = 0.6)
 ]
 
 Table(cells)
 ```
+
+!!! warning "Deprecated: `indent_pt`"
+    The `indent_pt` keyword indents by an absolute number of points, which cannot follow the font size of the document the table is embedded in.
+    It still works but is deprecated, use `indent` instead.
+    To convert, divide the old point value by the font size you were assuming, so `indent_pt = 12` at a 10pt body font size becomes `indent = 1.2`.
 
 ## Keyword: `border_bottom`
 

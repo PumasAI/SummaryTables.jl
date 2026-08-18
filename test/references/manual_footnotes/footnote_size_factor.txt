@@ -1,6 +1,6 @@
-<table id="st-44fe90e7">
+<table id="st-eff6478e">
     <style>
-        #st-44fe90e7 {
+        #st-eff6478e {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-44fe90e7 tr {
+        #st-eff6478e tr {
             background-color: transparent;
             border: none;
         }
-        #st-44fe90e7 tr td {
+        #st-eff6478e tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-44fe90e7 br {
+        #st-eff6478e br {
             line-height: 0em;
             margin: 0;
         }
-        #st-44fe90e7 sub {
+        #st-eff6478e sub {
             line-height: 0;
         }
-        #st-44fe90e7 sup {
+        #st-eff6478e sup {
             line-height: 0;
         }
     </style>
@@ -35,5 +35,5 @@
         <td style="text-align:center;">Cell 2</td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
-    <tr><td colspan="2" style="font-size: 12.0pt;"><sup>1</sup> Note 1<br/>First footnote.<br/>Second footnote.</td></tr>
+    <tr><td colspan="2" style="font-size: 0.5em;"><sup>1</sup> Note 1<br/>First footnote.<br/>Second footnote.</td></tr>
 </table>

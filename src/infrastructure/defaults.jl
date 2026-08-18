@@ -15,6 +15,16 @@ Base.@kwdef struct TableOneDefaults <: AbstractDefaults
 end
 
 "" # otherwise field docstrings are not parsed
+Base.@kwdef struct DocxDefaults <: AbstractDefaults
+    "Font size in points of the body text of the Word document the table is embedded in. Word has no relative font metrics, so relative sizes such as `footnote_size` are resolved against this value when rendering to docx, while the other renderers emit relative units and let the surrounding document resolve them."
+    base_font_size::Float64 = 10.0
+
+    function DocxDefaults(base_font_size)
+        return new(resolve_positive_number(base_font_size, "base_font_size", "font size in points"))
+    end
+end
+
+"" # otherwise field docstrings are not parsed
 Base.@kwdef struct Defaults <: AbstractDefaults
     "Rounding mode for floats, can be `:auto`, `:digits` or `:sigdigits`. Use the `mode` setting of `number_format` instead, which is the only way to combine it with the other formatting settings."
     round_mode::Symbol = :auto
@@ -26,7 +36,7 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     number_format::Union{Default,Nothing,NumberFormat} = default
     "If `true`, each footnote is displayed on a separate line."
     linebreak_footnotes::Bool = true
-    "Font size of footnotes and annotations in points. `nothing` keeps each renderer's built-in footnote size, which is a factor of the body font size instead."
+    "Font size of footnotes and annotations as a factor of the table's body font size, so `0.5` is half the body size. `nothing` keeps each renderer's built-in footnote size."
     footnote_size::Union{Nothing,Float64} = nothing
     "Horizontal alignment of the footnotes, either `:left`, `:center` or `:right`."
     footnote_halign::Symbol = :left
@@ -36,6 +46,8 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
+    "Defaults for the docx renderer, which needs absolute font metrics because Word has no relative ones."
+    docx::DocxDefaults = DocxDefaults()
     "Defaults for the `table_one` function"
     table_one::TableOneDefaults = TableOneDefaults()
 end

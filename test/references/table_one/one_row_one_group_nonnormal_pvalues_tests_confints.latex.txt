@@ -16,8 +16,8 @@
  & \textbf{Total} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\
 \midrule
 \textbf{value1} &  &  &  & 0.021 & KruskalWallisTest &  \\
-\hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\
-\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] &  &  &  \\
+\hspace{1.2em}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\
+\hspace{1.2em}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] &  &  &  \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

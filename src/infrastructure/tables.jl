@@ -3,8 +3,8 @@ struct Table
     header::Union{Nothing, Int}
     footer::Union{Nothing, Int}
     footnotes::Vector{Any}
-    rowgaps::Vector{Pair{Int,Float64}}
-    colgaps::Vector{Pair{Int,Float64}}
+    rowgaps::Vector{Pair{Int,Length}}
+    colgaps::Vector{Pair{Int,Length}}
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
@@ -20,8 +20,8 @@ function Table(cells, header, footer;
         number_format = default,
         footnotes = [],
         postprocess = [],
-        rowgaps = Pair{Int,Float64}[],
-        colgaps = Pair{Int,Float64}[],
+        rowgaps = Pair{Int,Length}[],
+        colgaps = Pair{Int,Length}[],
         linebreak_footnotes = default,
         footnote_size = default,
         footnote_halign = default,
@@ -30,11 +30,27 @@ function Table(cells, header, footer;
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    _footnote_size = resolve_positive_number(fallback(footnote_size, defs.footnote_size), "footnote_size", "point size")
+    _footnote_size = resolve_positive_number(fallback(footnote_size, defs.footnote_size), "footnote_size", "factor of the body font size")
     _footnote_halign = resolve_footnote_halign(fallback(footnote_halign, defs.footnote_halign))
     _footnote_line_height = resolve_positive_number(fallback(footnote_line_height, defs.footnote_line_height), "footnote_line_height", "factor of the footnote font size")
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes, _footnote_size, _footnote_halign, _footnote_line_height)
+    _rowgaps = resolve_gaps(rowgaps, "rowgaps")
+    _colgaps = resolve_gaps(colgaps, "colgaps")
+    Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, _footnote_size, _footnote_halign, _footnote_line_height)
 end
+
+resolve_gaps(gaps, name) = Pair{Int,Length}[index => resolve_gap(gap, name) for (index, gap) in gaps]
+resolve_gap(gap::Length, name) = gap
+function resolve_gap(gap::Real, name)
+    Base.depwarn(
+        "Passing a plain number as a `$name` value is deprecated because it is taken as an " *
+        "absolute size in points, which cannot follow the font size of the document the table " *
+        "is embedded in. Use `SummaryTables.Relative(factor)` for a size relative to the font " *
+        "size, or `SummaryTables.Points($gap)` to keep the absolute size.",
+        :Table,
+    )
+    return Points(gap)
+end
+resolve_gap(gap, name) = error("A `$name` value must be a `SummaryTables.Relative` or `SummaryTables.Points` length, got `$(repr(gap))`.")
 
 resolve_positive_number(::Nothing, name, unit) = nothing
 function resolve_positive_number(value, name, unit)
@@ -86,8 +102,8 @@ end
         number_format = NumberFormat(),
         footnotes = [],
         postprocess = [],
-        rowgaps = Pair{Int,Float64}[],
-        colgaps = Pair{Int,Float64}[],
+        rowgaps = Pair{Int,Length}[],
+        colgaps = Pair{Int,Length}[],
         linebreak_footnotes = true,
         footnote_size = nothing,
         footnote_halign = :left,
@@ -118,14 +134,21 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `postprocess = []`: A list of post-processors which will be applied left to right to the table before displaying the table.
    A post-processor can either work element-wise or on the whole table object. See the `postprocess_table` and
    `postprocess_cell` functions for defining custom postprocessors.
-- `rowgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the rows `index` and `index+1`.
-- `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the columns `index` and `index+1`.
+- `rowgaps = Pair{Int,Length}[]`: A list of pairs `index => gap`. For each pair, a visual gap
+    the size of `gap` is added between the rows `index` and `index+1`. Use
+    `SummaryTables.Relative(factor)` for a gap relative to the font size, which keeps its
+    proportion to the text when the surrounding document changes its font size, or
+    `SummaryTables.Points(size)` for a fixed size. Passing a plain number is deprecated and
+    taken as `Points`.
+- `colgaps = Pair{Int,Length}[]`: A list of pairs `index => gap`, like `rowgaps` but between
+    the columns `index` and `index+1`.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
-- `footnote_size = nothing`: Font size of the footnotes and annotations in points, so `footnote_size = 12`
-  prints them at 12pt whichever renderer is used. `nothing` keeps each renderer's built-in size, which is
-  a factor of the body font size instead (0.8 in HTML and typst, `\\footnotesize` in LaTeX, 8pt in docx).
+- `footnote_size = nothing`: Font size of the footnotes and annotations as a factor of the body font size,
+  so `footnote_size = 0.5` prints them at half the size of the table body. `nothing` keeps each renderer's
+  built-in size (0.8 in HTML and typst, `\\footnotesize` in LaTeX, 0.8 in docx). HTML, LaTeX and typst keep
+  the factor relative, so the footnotes follow whatever body size the surrounding document sets. Word has
+  no relative font metrics, so the docx renderer resolves the factor against the `base_font_size` docx
+  default, which should be set to the body font size of the document the table is embedded in.
 - `footnote_halign = :left`: Horizontal alignment of the footnotes and annotations, either `:left`,
   `:center` or `:right`.
 - `footnote_line_height = nothing`: Baseline-to-baseline distance of the footnote lines as a factor of

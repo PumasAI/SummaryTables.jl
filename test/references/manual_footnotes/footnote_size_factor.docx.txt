@@ -209,23 +209,13 @@
             </w:pPr>
             <w:r>
               <w:rPr/>
-              <w:t xml:space="preserve">Normal, </w:t>
+              <w:t>Cell 1</w:t>
             </w:r>
             <w:r>
               <w:rPr>
-                <w:sz w:val="14"/>
+                <w:vertAlign w:val="superscript"/>
               </w:rPr>
-              <w:t>small</w:t>
-            </w:r>
-            <w:r>
-              <w:rPr/>
-              <w:t xml:space="preserve">, </w:t>
-            </w:r>
-            <w:r>
-              <w:rPr>
-                <w:sz w:val="30"/>
-              </w:rPr>
-              <w:t>large</w:t>
+              <w:t>1</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -239,12 +229,8 @@
               <w:jc w:val="center"/>
             </w:pPr>
             <w:r>
-              <w:rPr>
-                <w:color w:val="ff0000"/>
-                <w:sz w:val="30"/>
-                <w:b/>
-              </w:rPr>
-              <w:t>Large and bold</w:t>
+              <w:rPr/>
+              <w:t>Cell 2</w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -276,9 +262,43 @@
             <w:pPr/>
             <w:r>
               <w:rPr>
-                <w:sz w:val="24"/>
+                <w:sz w:val="10"/>
+                <w:vertAlign w:val="superscript"/>
               </w:rPr>
-              <w:t>This footnote should be larger than the other footnote text.</w:t>
+              <w:t>1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="10"/>
+                <w:vertAlign w:val="superscript"/>
+              </w:rPr>
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="10"/>
+              </w:rPr>
+              <w:t>Note 1</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="10"/>
+              </w:rPr>
+              <w:t>First footnote.</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr/>
+              <w:br w:type="textWrapping"/>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:sz w:val="10"/>
+              </w:rPr>
+              <w:t>Second footnote.</w:t>
             </w:r>
           </w:p>
         </w:tc>

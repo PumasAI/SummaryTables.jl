@@ -172,7 +172,7 @@ end
 function _showas(io::IO, M::MIME"text/html", s::Styled)
     print(io, "<span style=\"")
     if s.size !== nothing
-        print(io, "font-size:$(s.size)pt;")
+        print(io, "font-size:$(s.size)em;")
     end
     if s.bold !== nothing
         print(io, "font-weight:$(s.bold ? "bold" : "normal");")
@@ -211,26 +211,26 @@ function print_html_cell(io, cell::SpannedCell, rowgaps, colgaps)
         print(io, "text-decoration:underline;")
     end
     padding_left = get(colgaps, cell.span[2].start-1, nothing)
-    if cell.style.indent_pt != 0 || padding_left !== nothing
-        pl = something(padding_left, 0.0) / 2 + cell.style.indent_pt
-        print(io, "padding-left:$(pl)pt;")
+    pl = cell_indent(cell.style) + 0.5 * something(padding_left, zero(Length))
+    if !iszero(pl)
+        print(io, "padding-left:$(css_length(pl));")
     end
     padding_right = get(colgaps, cell.span[2].stop, nothing)
     if padding_right !== nothing
-        print(io, "padding-right:$(padding_right/2)pt;")
+        print(io, "padding-right:$(css_length(0.5 * padding_right));")
     end
     if cell.style.border_bottom
         print(io, "border-bottom:1px solid currentColor; ")
     end
     padding_bottom = get(rowgaps, cell.span[1].stop, nothing)
     if padding_bottom !== nothing
-        print(io, "padding-bottom: $(padding_bottom/2)pt;")
+        print(io, "padding-bottom: $(css_length(0.5 * padding_bottom));")
     elseif cell.style.border_bottom
         print(io, "padding-bottom: 0.25em;") # needed to make border bottoms look less cramped
     end
     padding_top = get(rowgaps, cell.span[1].start-1, nothing)
     if padding_top !== nothing
-        print(io, "padding-top: $(padding_top/2)pt;")
+        print(io, "padding-top: $(css_length(0.5 * padding_top));")
     end
     if cell.style.valign ∉ (:top, :center, :bottom)
         error("Invalid valign $(repr(cell.style.valign)). Options are :top, :center, :bottom.")

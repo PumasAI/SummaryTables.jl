@@ -21,7 +21,8 @@ import REPL
 import SHA
 import ScopedValues
 
-const DEFAULT_ROWGAP = 6.0
+# a factor of the font size, see `SummaryTables.Relative`
+const DEFAULT_ROWGAP_FACTOR = 0.6
 
 macro public(ex)
     if VERSION >= v"1.11.0-DEV.469"
@@ -55,7 +56,10 @@ export Styled
 
 @public defaults!
 @public with_defaults
+@public Relative
+@public Points
 
+include("infrastructure/lengths.jl")
 include("infrastructure/cells.jl")
 include("infrastructure/special_cell_values.jl")
 include("infrastructure/tables.jl")

@@ -2,7 +2,8 @@
 #table(
     rows: 4,
     columns: 4,
-    column-gutter: 0.25em,
+    column-gutter: (0.25em, 0.25em + 4.0pt, 0.25em,),
+    row-gutter: (4.0pt, 0.0pt, 0.0pt,),
     align: (center, center, center, center),
     stroke: none,
     table.hline(y: 0, stroke: 1pt),

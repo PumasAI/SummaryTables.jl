@@ -14,11 +14,11 @@
  & \textbf{Total} \\
 \midrule
 \textbf{Value A} &  \\
-\hspace{12.0pt}Mean (SD) & 2.5 (1.29) \\
-\hspace{12.0pt}Median \char`[Min, Max] & 2.5 \char`[1, 4] \\
+\hspace{1.2em}Mean (SD) & 2.5 (1.29) \\
+\hspace{1.2em}Median \char`[Min, Max] & 2.5 \char`[1, 4] \\
 \textbf{Value B} &  \\
-\hspace{12.0pt}a & 2 (50\%) \\
-\hspace{12.0pt}b & 2 (50\%) \\
+\hspace{1.2em}a & 2 (50\%) \\
+\hspace{1.2em}b & 2 (50\%) \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

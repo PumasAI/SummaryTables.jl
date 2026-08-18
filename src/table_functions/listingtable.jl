@@ -439,7 +439,7 @@ function _listingtable(
     )
 
     cl, i_header, rowgap_indices = get_cells(lt; variable_header, format)
-    Table(cl, i_header, nothing; rowgaps = rowgap_indices .=> DEFAULT_ROWGAP, celltable_kws...)
+    Table(cl, i_header, nothing; rowgaps = rowgap_indices .=> Relative(DEFAULT_ROWGAP_FACTOR), celltable_kws...)
 end
 
 function get_cells(l::ListingTable; variable_header::Bool, format::Union{Nothing,NumberFormat})
