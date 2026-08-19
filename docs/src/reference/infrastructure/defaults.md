@@ -47,3 +47,32 @@ SummaryTables.with_defaults(number_format = NumberFormat(mode = :sigdigits, digi
 end
 ```
 
+
+## Nested Defaults
+
+Some settings only apply to one renderer or one table function, and are grouped in nested settings objects.
+Pass them as named tuples, for example `docx = (; base_font_size = 12)` or `table_one = (; numeric_default = ...)`:
+
+```@example defaults
+using Statistics
+
+SummaryTables.with_defaults(table_one = (; numeric_default = [mean, std])) do
+    table_one((; a = [1.0, 2.0, 3.0, 4.0]))
+end
+```
+
+### `docx`
+
+Font sizes in SummaryTables are relative, so a table follows whatever body font size the surrounding document or style sheet sets.
+That works in HTML, LaTeX and typst, which all have relative font metrics, but not in Word, which has none.
+The docx renderer therefore resolves every relative size to an absolute one at render time, and it needs to know the body font size to resolve them against.
+
+- `base_font_size = 10.0`: Font size in points of the body text of the Word document the table is embedded in. Set this to match your document, then relative settings like [`footnote_size`](@ref "Keyword: `footnote_size`"), [`indent`](@ref "Keyword: `indent`") and `Styled`'s `size` come out at the intended size in the docx output as well. This setting has no effect on the other renderers, which emit relative units and let the surrounding document resolve them.
+
+Unlike the settings that a `Table` resolves when it is constructed, `base_font_size` is read while the table is rendered, so it has to be in scope around the rendering call and not only around the table construction:
+
+```julia
+node = SummaryTables.with_defaults(docx = (; base_font_size = 12)) do
+    SummaryTables.to_docx(table)
+end
+```

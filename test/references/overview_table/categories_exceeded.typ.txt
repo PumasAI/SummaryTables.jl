@@ -3,6 +3,7 @@
     rows: 2,
     columns: 7,
     column-gutter: 0.25em,
+    row-gutter: (0.6em,),
     align: (left, left, left, left, left, left, left),
     stroke: none,
     table.header(

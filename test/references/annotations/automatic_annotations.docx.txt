@@ -313,12 +313,14 @@
             <w:pPr/>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>1</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -330,17 +332,21 @@
               <w:t>Note 1</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>2</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>
@@ -352,17 +358,21 @@
               <w:t>Note 2</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>3</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>

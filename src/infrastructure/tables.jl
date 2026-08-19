@@ -3,11 +3,14 @@ struct Table
     header::Union{Nothing, Int}
     footer::Union{Nothing, Int}
     footnotes::Vector{Any}
-    rowgaps::Vector{Pair{Int,Float64}}
-    colgaps::Vector{Pair{Int,Float64}}
+    rowgaps::Vector{Pair{Int,Length}}
+    colgaps::Vector{Pair{Int,Length}}
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
+    footnote_size::Union{Nothing,Float64}
+    footnote_halign::Symbol
+    footnote_line_height::Union{Nothing,Float64}
 end
 
 function Table(cells, header, footer;
@@ -17,14 +20,51 @@ function Table(cells, header, footer;
         number_format = default,
         footnotes = [],
         postprocess = [],
-        rowgaps = Pair{Int,Float64}[],
-        colgaps = Pair{Int,Float64}[],
+        rowgaps = Pair{Int,Length}[],
+        colgaps = Pair{Int,Length}[],
         linebreak_footnotes = default,
+        footnote_size = default,
+        footnote_halign = default,
+        footnote_line_height = default,
     )
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes)
+    _footnote_size = resolve_positive_number(fallback(footnote_size, defs.footnote_size), "footnote_size", "factor of the body font size")
+    _footnote_halign = resolve_footnote_halign(fallback(footnote_halign, defs.footnote_halign))
+    _footnote_line_height = resolve_positive_number(fallback(footnote_line_height, defs.footnote_line_height), "footnote_line_height", "factor of the footnote font size")
+    _rowgaps = resolve_gaps(rowgaps, "rowgaps")
+    _colgaps = resolve_gaps(colgaps, "colgaps")
+    Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, _footnote_size, _footnote_halign, _footnote_line_height)
+end
+
+resolve_gaps(gaps, name) = Pair{Int,Length}[index => resolve_gap(gap, name) for (index, gap) in gaps]
+resolve_gap(gap::Length, name) = gap
+function resolve_gap(gap::Real, name)
+    Base.depwarn(
+        "Passing a plain number as a `$name` value is deprecated because it is taken as an " *
+        "absolute size in points, which cannot follow the font size of the document the table " *
+        "is embedded in. Use `SummaryTables.Relative(factor)` for a size relative to the font " *
+        "size, or `SummaryTables.Points($gap)` to keep the absolute size.",
+        :Table,
+    )
+    return Points(gap)
+end
+resolve_gap(gap, name) = error("A `$name` value must be a `SummaryTables.Relative` or `SummaryTables.Points` length, got `$(repr(gap))`.")
+
+resolve_positive_number(::Nothing, name, unit) = nothing
+function resolve_positive_number(value, name, unit)
+    if !(value isa Real) || !isfinite(value) || value <= 0
+        error("`$name` must be a positive, finite $unit, or `nothing`, got `$(repr(value))`.")
+    end
+    return Float64(value)
+end
+
+function resolve_footnote_halign(halign)
+    if !(halign in (:left, :center, :right))
+        error("`footnote_halign` must be `:left`, `:center` or `:right`, got `$(repr(halign))`.")
+    end
+    return halign
 end
 
 function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
@@ -62,9 +102,12 @@ end
         number_format = NumberFormat(),
         footnotes = [],
         postprocess = [],
-        rowgaps = Pair{Int,Float64}[],
-        colgaps = Pair{Int,Float64}[],
+        rowgaps = Pair{Int,Length}[],
+        colgaps = Pair{Int,Length}[],
         linebreak_footnotes = true,
+        footnote_size = nothing,
+        footnote_halign = :left,
+        footnote_line_height = nothing,
     )
 
 Create a `Table` which can be rendered in multiple formats, such as HTML or LaTeX.
@@ -91,11 +134,30 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `postprocess = []`: A list of post-processors which will be applied left to right to the table before displaying the table.
    A post-processor can either work element-wise or on the whole table object. See the `postprocess_table` and
    `postprocess_cell` functions for defining custom postprocessors.
-- `rowgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the rows `index` and `index+1`.
-- `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the columns `index` and `index+1`.
+- `rowgaps = Pair{Int,Length}[]`: A list of pairs `index => gap`. For each pair, a visual gap
+    the size of `gap` is added between the rows `index` and `index+1`. Use
+    `SummaryTables.Relative(factor)` for a gap relative to the font size, which keeps its
+    proportion to the text when the surrounding document changes its font size, or
+    `SummaryTables.Points(size)` for a fixed size. Passing a plain number is deprecated and
+    taken as `Points`.
+- `colgaps = Pair{Int,Length}[]`: A list of pairs `index => gap`, like `rowgaps` but between
+    the columns `index` and `index+1`.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
+- `footnote_size = nothing`: Font size of the footnotes and annotations as a factor of the body font size,
+  so `footnote_size = 0.5` prints them at half the size of the table body. `nothing` keeps each renderer's
+  built-in size (0.8 in HTML and typst, `\\footnotesize` in LaTeX, 0.8 in docx). HTML, LaTeX and typst keep
+  the factor relative, so the footnotes follow whatever body size the surrounding document sets. Word has
+  no relative font metrics, so the docx renderer resolves the factor against the `base_font_size` docx
+  default, which should be set to the body font size of the document the table is embedded in.
+- `footnote_halign = :left`: Horizontal alignment of the footnotes and annotations, either `:left`,
+  `:center` or `:right`.
+- `footnote_line_height = nothing`: Baseline-to-baseline distance of the footnote lines as a factor of
+  the footnote font size, so `2` gives double spacing. `nothing` keeps each renderer's built-in line
+  spacing. Only LaTeX with a `footnote_size` set applies the factor exactly. Typst has no line height
+  setting, so the factor becomes a `par` leading via an assumed cap height and therefore cannot go
+  tighter than that cap height, docx has none either, so it applies to the line breaks between
+  footnotes but neither within a wrapped one nor to the last one, and LaTeX without a `footnote_size`
+  scales `\\footnotesize`, whose own line spacing is close to but not exactly the assumed factor.
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 
@@ -247,7 +309,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes, ct.footnote_size, ct.footnote_halign, ct.footnote_line_height)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)
@@ -310,7 +372,7 @@ end
 
 recursive_replace(value::Concat, f, with) = Concat(map(x -> recursive_replace(x, f, with), value.args)...)
 recursive_replace(value::Multiline, f, with) = Multiline(map(x -> recursive_replace(x, f, with), value.values)...)
-recursive_replace(x::Styled, f, with) = Styled(recursive_replace(x.value, f, with), x.color, x.bold, x.italic, x.underline)
+recursive_replace(x::Styled, f, with) = Styled(recursive_replace(x.value, f, with), x.color, x.bold, x.italic, x.underline, x.size)
 recursive_replace(x::Superscript, f, with) = Superscript(recursive_replace(x.super, f, with))
 recursive_replace(x::Subscript, f, with) = Subscript(recursive_replace(x.sub, f, with))
 function recursive_replace(x, f, with)
@@ -332,7 +394,7 @@ apply_format(x::FormattedFloat, fmt::NumberFormat, floats_only::Bool) = Formatte
 apply_format(x::Concat, fmt::NumberFormat, floats_only::Bool) = Concat(map(arg -> apply_format(arg, fmt, floats_only), x.args)...)
 apply_format(x::Multiline, fmt::NumberFormat, floats_only::Bool) = Multiline(map(arg -> apply_format(arg, fmt, floats_only), x.values)...)
 apply_format(x::Annotated, fmt::NumberFormat, floats_only::Bool) = Annotated(apply_format(x.value, fmt, floats_only), x.annotation, x.label)
-apply_format(x::Styled, fmt::NumberFormat, floats_only::Bool) = Styled(apply_format(x.value, fmt, floats_only), x.color, x.bold, x.italic, x.underline)
+apply_format(x::Styled, fmt::NumberFormat, floats_only::Bool) = Styled(apply_format(x.value, fmt, floats_only), x.color, x.bold, x.italic, x.underline, x.size)
 apply_format(x::Superscript, fmt::NumberFormat, floats_only::Bool) = Superscript(apply_format(x.super, fmt, floats_only))
 apply_format(x::Subscript, fmt::NumberFormat, floats_only::Bool) = Subscript(apply_format(x.sub, fmt, floats_only))
 

@@ -14,11 +14,11 @@
  & \textbf{Total} \\
 \midrule
 \textbf{value1} &  \\
-\hspace{12.0pt}mean & 4.5 \\
-\hspace{12.0pt}SD & 2.45 \\
+\hspace{1.2em}mean & 4.5 \\
+\hspace{1.2em}SD & 2.45 \\
 \textbf{value1} &  \\
-\hspace{12.0pt}Mean & 4.5 \\
-\hspace{12.0pt}SD & 2.45 \\
+\hspace{1.2em}Mean & 4.5 \\
+\hspace{1.2em}SD & 2.45 \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

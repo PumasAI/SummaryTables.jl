@@ -37,28 +37,33 @@ as_latex(object) = AsMIME{MIME"text/latex"}(object)
 as_docx(object) = nothing
 as_typst(object) = AsMIME{MIME"text/typst"}(object)
 
+# the docx output as the concatenated contents of the files in the zip archive
+function docx_string(table)
+    return mktempdir() do dir
+        tablenode = to_docx(table)
+        doc = W.Document(
+            W.Body([
+                W.Section([tablenode])
+            ]),
+            W.Styles([])
+        )
+        docfile = joinpath(dir, "test.docx")
+        W.save(docfile, doc)
+        buf = IOBuffer()
+        r = ZipFile.Reader(docfile)
+        for f in r.files
+            println(buf, "#"^30, " ", replace(f.name, "\\" => "/"), " ", "#"^30)
+            write(buf, read(f, String))
+        end
+        close(r)
+        String(take!(buf))
+    end
+end
+
 function run_reftest(table, path, func)
     path_full = joinpath(@__DIR__, path * extension(func))
     if func === as_docx
-        s = @test_nowarn mktempdir() do dir
-            tablenode = to_docx(table)
-            doc = W.Document(
-                W.Body([
-                    W.Section([tablenode])
-                ]),
-                W.Styles([])
-            )
-            docfile = joinpath(dir, "test.docx")
-            W.save(docfile, doc)
-            buf = IOBuffer()
-            r = ZipFile.Reader(docfile)
-            for f in r.files
-                println(buf, "#"^30, " ", replace(f.name, "\\" => "/"), " ", "#"^30)
-                write(buf, read(f, String))
-            end
-            close(r)
-            String(take!(buf))
-        end
+        s = @test_nowarn docx_string(table)
         @test_reference path_full s
     else
         @test_reference path_full func(table)
@@ -639,6 +644,37 @@ end
             end
         end
 
+        @testset "footnote size, alignment and line height" begin
+            footnote_table(; kwargs...) = Table(
+                [
+                    SpannedCell(1, 1, Annotated("Cell 1", "Note 1")),
+                    SpannedCell(1, 2, "Cell 2"),
+                ];
+                footnotes = ["First footnote.", "Second footnote."],
+                kwargs...,
+            )
+
+            reftest(footnote_table(footnote_size = 0.5), "references/manual_footnotes/footnote_size_factor")
+
+            for footnote_halign in [:center, :right]
+                reftest(footnote_table(; footnote_halign), "references/manual_footnotes/footnote_halign_$footnote_halign")
+            end
+
+            reftest(footnote_table(footnote_line_height = 2), "references/manual_footnotes/footnote_line_height_loose")
+
+            t = SummaryTables.with_defaults(footnote_size = 0.5, footnote_halign = :center, footnote_line_height = 1.5) do
+                footnote_table()
+            end
+            reftest(t, "references/manual_footnotes/footnote_style_defaults")
+
+            # only the docx output differs from the reference above. The scope has to cover the
+            # reftest, not just the table, because docx reads `base_font_size` while rendering.
+            SummaryTables.with_defaults(docx = (; base_font_size = 20)) do
+                reftest(footnote_table(footnote_size = 0.5),
+                    "references/manual_footnotes/footnote_size_factor_base_font_size")
+            end
+        end
+
         @testset "Replace" begin
             t = Table(
                 [
@@ -826,22 +862,28 @@ end
 
         @testset "Row and column gaps" begin
             if func !== as_docx # TODO needs logic rework for this backend
-                t = Table([SpannedCell(1, 1, "Row 1")], rowgaps = [1 => 5.0])
+                gap = SummaryTables.Points(5.0)
+                t = Table([SpannedCell(1, 1, "Row 1")], rowgaps = [1 => gap])
                 @test_throws_message "No row gaps allowed for a table with one row" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Column 1")], colgaps = [1 => 5.0])
+                t = Table([SpannedCell(1, 1, "Column 1")], colgaps = [1 => gap])
                 @test_throws_message "No column gaps allowed for a table with one column" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [1 => 5.0, 2 => 5.0])
+                t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [1 => gap, 2 => gap])
                 @test_throws_message "A row gap index of 2 is invalid for a table with 2 rows" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [1 => 5.0, 2 => 5.0])
+                t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [1 => gap, 2 => gap])
                 @test_throws_message "A column gap index of 2 is invalid for a table with 2 columns" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [0 => 5.0])
+                t = Table([SpannedCell(1, 1, "Row 1"), SpannedCell(2, 1, "Row 2")], rowgaps = [0 => gap])
                 @test_throws_message "A row gap index of 0 is invalid, must be at least 1" show(devnull, func(t))
-                t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [0 => 5.0])
+                t = Table([SpannedCell(1, 1, "Column 1"), SpannedCell(1, 2, "Column 2")], colgaps = [0 => gap])
                 @test_throws_message "A column gap index of 0 is invalid, must be at least 1" show(devnull, func(t))
             end
-            t = Table([SpannedCell(i, j, "$i, $j") for i in 1:4 for j in 1:4], rowgaps = [1 => 4.0, 2 => 8.0], colgaps = [2 => 4.0, 3 => 8.0])
+            # relative gaps in one reference and absolute ones in the other, so both units
+            # are covered by the rendered output
+            t = Table([SpannedCell(i, j, "$i, $j") for i in 1:4 for j in 1:4],
+                rowgaps = [1 => SummaryTables.Relative(0.4), 2 => SummaryTables.Relative(0.8)],
+                colgaps = [2 => SummaryTables.Relative(0.4), 3 => SummaryTables.Relative(0.8)])
             reftest(t, "references/row_and_column_gaps/singlecell")
-            t = Table([SpannedCell(2:4, 1, "Spanned rows"), SpannedCell(1, 2:4, "Spanned columns")], rowgaps = [1 => 4.0], colgaps = [2 => 4.0])
+            t = Table([SpannedCell(2:4, 1, "Spanned rows"), SpannedCell(1, 2:4, "Spanned columns")],
+                rowgaps = [1 => SummaryTables.Points(4.0)], colgaps = [2 => SummaryTables.Points(4.0)])
             reftest(t, "references/row_and_column_gaps/spanned_cells")
         end
 
@@ -865,6 +907,14 @@ end
                 ]
             )
             reftest(tbl, "references/styled/example")
+
+            sized = Table(
+                [
+                    Cell(Concat("Normal, ", Styled("small", size = 0.7), ", ", Styled("large", size = 1.5)))  Cell(Styled("Large and bold", size = 1.5, bold = true, color = "#FF0000"))
+                ];
+                footnotes = [Styled("This footnote should be larger than the other footnote text.", size = 1.5)],
+            )
+            reftest(sized, "references/styled/size")
         end
 
         @testset "annotation label style" begin
@@ -1196,6 +1246,200 @@ end
     t = table_one((; a = 1:3, b = ["A", "B", "C"]))
     qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
     @test qnr == repr("text/typst", t)
+end
+
+@testset "footnote style settings validation" begin
+    cells = [Cell("Cell 1") Cell("Cell 2")]
+    @test Table(cells).footnote_size === nothing
+    @test Table(cells).footnote_halign === :left
+    @test Table(cells).footnote_line_height === nothing
+    @test Table(cells; footnote_size = 0.5).footnote_size === 0.5
+    @test Table(cells; footnote_line_height = 2).footnote_line_height === 2.0
+    @test Styled("x").size === nothing
+    @test Styled("x", size = 1.5).size === 1.5
+
+    for name in [:footnote_size, :footnote_line_height]
+        for bad in [0, -0.5, Inf, "large"]
+            @test_throws_message "must be a positive, finite" Table(cells; (name => bad,)...)
+        end
+    end
+    @test_throws_message "must be a positive, finite" Styled("x", size = 0)
+    @test_throws_message "must be `:left`, `:center` or `:right`" Table(cells; footnote_halign = :middle)
+
+    # the global defaults validate on assignment too, not just at table construction
+    for name in [:footnote_size, :footnote_line_height]
+        for bad in [0, -0.5, Inf, "large"]
+            @test_throws_message "must be a positive, finite" SummaryTables.Defaults(; (name => bad,)...)
+            @test_throws_message "must be a positive, finite" SummaryTables.with_defaults(() -> nothing; (name => bad,)...)
+        end
+    end
+    @test_throws_message "must be `:left`, `:center` or `:right`" SummaryTables.Defaults(footnote_halign = :middle)
+    @test_throws_message "must be `:left`, `:center` or `:right`" SummaryTables.with_defaults(() -> nothing, footnote_halign = :middle)
+
+    t = Table(cells; footnotes = ["A footnote."])
+    for mime in [MIME"text/html"(), MIME"text/latex"(), MIME"text/typst"()]
+        @test repr(mime, t) == repr(mime, Table(cells; footnotes = ["A footnote."], footnote_halign = :left))
+    end
+end
+
+@testset "relative font sizes" begin
+    Relative, Points = SummaryTables.Relative, SummaryTables.Points
+    cells = [Cell(Styled("Cell 1", size = 1.5)) Cell("Cell 2")]
+    t = Table(cells; footnotes = ["A footnote."], footnote_size = 0.5)
+
+    @testset "base_font_size validation" begin
+        @test SummaryTables.DocxDefaults().base_font_size === 10.0
+        @test SummaryTables.DocxDefaults(base_font_size = 12).base_font_size === 12.0
+        for bad in [0, -0.5, Inf, "large"]
+            @test_throws_message "must be a positive, finite" SummaryTables.DocxDefaults(base_font_size = bad)
+            @test_throws_message "must be a positive, finite" SummaryTables.Defaults(docx = (; base_font_size = bad))
+        end
+    end
+
+    @testset "relative units in $mime" for mime in [MIME"text/html"(), MIME"text/latex"(), MIME"text/typst"()]
+        str = repr(mime, t)
+        # no absolute font size ends up in the output, the surrounding document resolves the factors
+        @test !occursin(r"font-size:[\d.]+pt", str)
+        @test !occursin(r"fontsize\{[\d.]+pt\}", str)
+        @test !occursin(r"text\(size: [\d.]+pt\)", str)
+        # and `base_font_size` is a docx-only setting, so it must not change their output
+        @test SummaryTables.with_defaults(docx = (; base_font_size = 20)) do
+            repr(mime, t)
+        end == str
+    end
+
+    @testset "indent" begin
+        @test SummaryTables.CellStyle().indent === 0.0
+        @test SummaryTables.CellStyle(indent = 1.2).indent === 1.2
+        # the deprecated absolute indentation is kept separately so it keeps working unchanged
+        deprecated = @test_deprecated SummaryTables.CellStyle(indent_pt = 12)
+        @test deprecated.indent === 0.0
+        @test deprecated.indent_pt === 12.0
+        @test (@test_deprecated SummaryTables.CellStyle(deprecated; indent_pt = 6)).indent_pt === 6.0
+        # `nothing` means "no absolute indentation" in the copy constructor as well
+        @test SummaryTables.CellStyle(deprecated; indent_pt = nothing).indent_pt === 0.0
+
+        indented = Table([Cell("A", indent = 1.2) Cell("B")])
+        @test occursin("padding-left:1.2em;", repr(MIME"text/html"(), indented))
+        @test occursin("\\hspace{1.2em}", repr(MIME"text/latex"(), indented))
+        @test occursin("#h(1.2em)", repr(MIME"text/typst"(), indented))
+
+        # a column gap is still absolute, so HTML has to combine the two units
+        gapped = Table([Cell("A") Cell("B", indent = 1.0)]; colgaps = [1 => Points(8)])
+        @test occursin("padding-left:calc(1.0em + 4.0pt);", repr(MIME"text/html"(), gapped))
+
+        docx_indent(style) = SummaryTables.docx_points(SummaryTables.cell_indent(style))
+        for base in [10.0, 20.0]
+            SummaryTables.with_defaults(docx = (; base_font_size = base)) do
+                @test docx_indent(SummaryTables.CellStyle(indent = 1.2)) == 1.2 * base
+                # the absolute part does not scale with the base font size
+                @test docx_indent(deprecated) == 12.0
+            end
+        end
+    end
+
+    @testset "gap lengths" begin
+        @test Relative(0.6) === SummaryTables.Length(0.6, 0.0)
+        @test Points(6) === SummaryTables.Length(0.0, 6.0)
+        @test 0.5 * Relative(0.6) === Relative(0.3)
+        @test Relative(0.6) + Points(3) === SummaryTables.Length(0.6, 3.0)
+        @test repr(Relative(0.6)) == "Relative(0.6)"
+        @test repr(Points(6)) == "Points(6.0)"
+        @test repr(Relative(0.6) + Points(3)) == "Relative(0.6) + Points(3.0)"
+        @test (1:2 .=> Relative(0.6)) == [1 => Relative(0.6), 2 => Relative(0.6)]
+
+        for bad in [-0.5, Inf, "big"]
+            @test_throws_message "finite, non-negative number" Relative(bad)
+            @test_throws_message "finite, non-negative number" Points(bad)
+        end
+
+        cells4 = [Cell("A") Cell("B"); Cell("C") Cell("D")]
+        @test Table(cells4; rowgaps = [1 => Relative(0.6)]).rowgaps == [1 => Relative(0.6)]
+        @test (@test_deprecated Table(cells4; rowgaps = [1 => 8])).rowgaps == [1 => Points(8)]
+        @test (@test_deprecated Table(cells4; colgaps = [1 => 8])).colgaps == [1 => Points(8)]
+        @test_throws_message "must be a `SummaryTables.Relative` or `SummaryTables.Points`" Table(cells4; rowgaps = [1 => "big"])
+
+        rel = Table(cells4; rowgaps = [1 => Relative(0.6)], colgaps = [1 => Relative(0.8)])
+        abs = Table(cells4; rowgaps = [1 => Points(6)], colgaps = [1 => Points(8)])
+        @test occursin("padding-bottom: 0.3em;", repr(MIME"text/html"(), rel))
+        @test occursin("padding-right:0.4em;", repr(MIME"text/html"(), rel))
+        @test occursin("padding-bottom: 3.0pt;", repr(MIME"text/html"(), abs))
+        @test occursin("\\[0.6em]", repr(MIME"text/latex"(), rel))
+        @test occursin("\\[6.0pt]", repr(MIME"text/latex"(), abs))
+        @test occursin("@{\\hskip 0.8em}", repr(MIME"text/latex"(), rel))
+        @test occursin("@{\\hskip 8.0pt}", repr(MIME"text/latex"(), abs))
+
+        # typst used to build the gap lookups and then never read them, so gaps have to
+        # actually reach its output
+        nogaps = Table(cells4)
+        @test repr(MIME"text/typst"(), rel) != repr(MIME"text/typst"(), nogaps)
+        @test occursin("row-gutter: (0.6em,)", repr(MIME"text/typst"(), rel))
+        # the base column gutter and a relative column gap collapse into one em value
+        @test occursin("column-gutter: (1.05em,)", repr(MIME"text/typst"(), rel))
+        @test occursin("row-gutter: (6.0pt,)", repr(MIME"text/typst"(), abs))
+        # an absolute column gap cannot collapse into the relative base gutter
+        @test occursin("column-gutter: (0.25em + 8.0pt,)", repr(MIME"text/typst"(), abs))
+        @test occursin("column-gutter: 0.25em,", repr(MIME"text/typst"(), nogaps))
+        @test !occursin("row-gutter", repr(MIME"text/typst"(), nogaps))
+
+        # a zero length prints in the relative unit, the nonzero ones are unaffected
+        for f in [SummaryTables.css_length, SummaryTables.latex_length, SummaryTables.typst_length]
+            @test f(zero(SummaryTables.Length)) == "0.0em"
+            @test f(Relative(0.6)) == "0.6em"
+            @test f(Points(6)) == "6.0pt"
+        end
+
+        mixed = Relative(0.6) + Points(3)
+        @test SummaryTables.css_length(mixed) == "calc(0.6em + 3.0pt)"
+        @test SummaryTables.latex_length(mixed) == "\\dimexpr 0.6em+3.0pt\\relax"
+        @test SummaryTables.typst_length(mixed) == "0.6em + 3.0pt"
+
+        # only the relative part follows the docx base font size
+        for base in [10.0, 20.0]
+            SummaryTables.with_defaults(docx = (; base_font_size = base)) do
+                @test SummaryTables.docx_points(Relative(0.6)) == 0.6 * base
+                @test SummaryTables.docx_points(Points(6)) == 6.0
+            end
+        end
+
+        @test SummaryTables.DEFAULT_ROWGAP_FACTOR == 0.6
+    end
+
+    @testset "footnote_line_height at the built-in line height is a docx no-op" begin
+        # the line-break runs stand in for the line spacing docx cannot set
+        footnoted(; kwargs...) = Table(cells; footnotes = ["A footnote.", "Another footnote."], kwargs...)
+        @test docx_string(footnoted(footnote_line_height = SummaryTables.DEFAULT_LINE_HEIGHT)) ==
+            docx_string(footnoted())
+        @test docx_string(footnoted(footnote_line_height = 2)) != docx_string(footnoted())
+    end
+
+    @testset "base_font_size is read while rendering" begin
+        default_output = docx_string(t)
+        @test SummaryTables.with_defaults(docx = (; base_font_size = 20)) do
+            docx_string(t)
+        end != default_output
+        @test docx_string(t) == default_output
+    end
+
+    @testset "docx resolves factors against base_font_size" begin
+        # sizes carry their unit in the type, `RunProperties` normalizes them to half-points
+        halfpoints(size) = W.RunProperties(; size).size.value
+
+        for base in [10.0, 20.0]
+            SummaryTables.with_defaults(docx = (; base_font_size = base)) do
+                @test halfpoints(SummaryTables.docx_base_fontsize()) == 2 * base
+                # footnote_size = 0.5, so half the body size
+                @test halfpoints(SummaryTables.docx_footnote_fontsize(t)) == base
+                # the built-in footnote size is a factor too, not a hardcoded point size
+                @test halfpoints(SummaryTables.docx_footnote_fontsize(Table(cells))) ==
+                    SummaryTables.DEFAULT_FOOTNOTE_SIZE * 2 * base
+                # a `Styled` size resolves against the enclosing run, or the base size if unset
+                @test halfpoints(SummaryTables.docx_enclosing_fontsize(W.RunProperties())) == 2 * base
+                @test halfpoints(SummaryTables.docx_enclosing_fontsize(
+                    W.RunProperties(size = 8 * W.pt))) == 16
+            end
+        end
+    end
 end
 
 @testset "Defaults" begin

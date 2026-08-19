@@ -16,13 +16,13 @@
  &  & c & d \\
 \textbf{group1} & \textbf{group2} & \multicolumn{2}{c}{\textbf{value1}} \\
 \midrule
-a & e & 1 & 3 \\[6.0pt]
- & \textbf{mean} & 1 & 3 \\[6.0pt]
-a & f & 2 & 4 \\[6.0pt]
- & \textbf{mean} & 2 & 4 \\[6.0pt]
-b & e & 5 & 7 \\[6.0pt]
- & \textbf{mean} & 5 & 7 \\[6.0pt]
-b & f & 6 & 8 \\[6.0pt]
+a & e & 1 & 3 \\[0.6em]
+ & \textbf{mean} & 1 & 3 \\[0.6em]
+a & f & 2 & 4 \\[0.6em]
+ & \textbf{mean} & 2 & 4 \\[0.6em]
+b & e & 5 & 7 \\[0.6em]
+ & \textbf{mean} & 5 & 7 \\[0.6em]
+b & f & 6 & 8 \\[0.6em]
  & \textbf{mean} & 6 & 8 \\
 \bottomrule
 \end{tabular}

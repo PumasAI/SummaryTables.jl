@@ -190,6 +190,57 @@ end
 natural_lt(x::AbstractString, y::AbstractString) = NaturalSort.natural(x, y)
 natural_lt(x, y) = isless(x, y)
 
+const DEFAULT_FOOTNOTE_SIZE = 0.8
+const DEFAULT_LINE_HEIGHT = 1.2
+
+footnote_size_factor(ct::Table) = something(ct.footnote_size, DEFAULT_FOOTNOTE_SIZE)
+
+footnote_font_size(ct::Table) = "$(footnote_size_factor(ct))em"
+
+round_factor(x) = round(x; digits = 4)
+
+# the relative branch comes first so a zero length prints as `0em` and not as a stray `pt`
+function css_length(l::Length)
+    iszero(l.pt) && return "$(round_factor(l.em))em"
+    iszero(l.em) && return "$(l.pt)pt"
+    return "calc($(round_factor(l.em))em + $(l.pt)pt)"
+end
+
+function latex_length(l::Length)
+    iszero(l.pt) && return "$(round_factor(l.em))em"
+    iszero(l.em) && return "$(l.pt)pt"
+    return "\\dimexpr $(round_factor(l.em))em+$(l.pt)pt\\relax"
+end
+
+function typst_length(l::Length)
+    iszero(l.pt) && return "$(round_factor(l.em))em"
+    iszero(l.em) && return "$(l.pt)pt"
+    return "$(round_factor(l.em))em + $(l.pt)pt"
+end
+
+cell_indent(st::CellStyle) = Length(st.indent, st.indent_pt)
+
+# typst spaces columns apart by this much even without a column gap
+const TYPST_COLUMN_GUTTER = Relative(0.25)
+
+# a typst array needs the trailing comma, otherwise a single entry is just a parenthesized length
+typst_length_array(lengths) = "(" * join((typst_length(l) for l in lengths), ", ") * ",)"
+
+gap_lengths(gaps, ntracks) = Length[get(gaps, i, zero(Length)) for i in 1:(ntracks - 1)]
+
+function typst_column_gutter(colgaps, ncols)
+    gaps = gap_lengths(colgaps, ncols)
+    all(iszero, gaps) && return typst_length(TYPST_COLUMN_GUTTER)
+    return typst_length_array(TYPST_COLUMN_GUTTER + gap for gap in gaps)
+end
+
+# rows have no gutter by default, so `nothing` means the parameter can be left out entirely
+function typst_row_gutter(rowgaps, nrows)
+    gaps = gap_lengths(rowgaps, nrows)
+    all(iszero, gaps) && return nothing
+    return typst_length_array(gaps)
+end
+
 function validate_rowgaps(rowgaps, nrows)
     nrows == 1 && !isempty(rowgaps) && error("No row gaps allowed for a table with one row.")
     for (m, _) in rowgaps

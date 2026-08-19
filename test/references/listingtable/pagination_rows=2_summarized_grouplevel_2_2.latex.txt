@@ -16,7 +16,7 @@
  &  & c & d \\
 \textbf{group1} & \textbf{group2} & \multicolumn{2}{c}{\textbf{value1}} \\
 \midrule
-a & f & 2 & 4 \\[6.0pt]
+a & f & 2 & 4 \\[0.6em]
  & \textbf{mean} & 2 & 4 \\
  & \textbf{std} & NaN & NaN \\
 \bottomrule

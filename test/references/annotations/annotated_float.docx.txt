@@ -247,12 +247,14 @@
             <w:pPr/>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t>A</w:t>
             </w:r>
             <w:r>
               <w:rPr>
+                <w:sz w:val="16"/>
                 <w:vertAlign w:val="superscript"/>
               </w:rPr>
               <w:t xml:space="preserve"> </w:t>

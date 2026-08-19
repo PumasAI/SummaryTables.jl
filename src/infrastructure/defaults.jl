@@ -15,6 +15,16 @@ Base.@kwdef struct TableOneDefaults <: AbstractDefaults
 end
 
 "" # otherwise field docstrings are not parsed
+Base.@kwdef struct DocxDefaults <: AbstractDefaults
+    "Font size in points of the body text of the Word document the table is embedded in. Word has no relative font metrics, so relative sizes such as `footnote_size` are resolved against this value when rendering to docx, while the other renderers emit relative units and let the surrounding document resolve them."
+    base_font_size::Float64 = 10.0
+
+    function DocxDefaults(base_font_size)
+        return new(resolve_positive_number(base_font_size, "base_font_size", "font size in points"))
+    end
+end
+
+"" # otherwise field docstrings are not parsed
 Base.@kwdef struct Defaults <: AbstractDefaults
     "Rounding mode for floats, can be `:auto`, `:digits` or `:sigdigits`. Use the `mode` setting of `number_format` instead, which is the only way to combine it with the other formatting settings."
     round_mode::Symbol = :auto
@@ -26,12 +36,32 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     number_format::Union{Default,Nothing,NumberFormat} = default
     "If `true`, each footnote is displayed on a separate line."
     linebreak_footnotes::Bool = true
+    "Font size of footnotes and annotations as a factor of the table's body font size, so `0.5` is half the body size. `nothing` keeps each renderer's built-in footnote size."
+    footnote_size::Union{Nothing,Float64} = nothing
+    "Horizontal alignment of the footnotes, either `:left`, `:center` or `:right`."
+    footnote_halign::Symbol = :left
+    "Baseline-to-baseline distance of the footnote lines as a factor of the footnote font size. `nothing` keeps each renderer's built-in line spacing."
+    footnote_line_height::Union{Nothing,Float64} = nothing
     "An indexable collection or a `Symbol` that specifies a predefined collection which contains annotation labels. Predefined variants are `:numbers`, `:letters_lower`, `:letters_upper`, `:roman_lower` and `:roman_upper`."
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
+    "Defaults for the docx renderer, which needs absolute font metrics because Word has no relative ones."
+    docx::DocxDefaults = DocxDefaults()
     "Defaults for the `table_one` function"
     table_one::TableOneDefaults = TableOneDefaults()
+
+    function Defaults(round_mode, round_digits, trailing_zeros, number_format,
+            linebreak_footnotes, footnote_size, footnote_halign, footnote_line_height,
+            annotation_labels, label_key, docx, table_one)
+        # validated here and not only in `Table` so a bad default is reported where it is set
+        return new(round_mode, round_digits, trailing_zeros, number_format,
+            linebreak_footnotes,
+            resolve_positive_number(footnote_size, "footnote_size", "factor of the body font size"),
+            resolve_footnote_halign(footnote_halign),
+            resolve_positive_number(footnote_line_height, "footnote_line_height", "factor of the footnote font size"),
+            annotation_labels, label_key, docx, table_one)
+    end
 end
 
 # for giving defaults in a nested way like `with_defaults(; table_one = (; ...))`

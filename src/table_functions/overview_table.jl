@@ -64,7 +64,7 @@ function _overview_table(df::DataFrames.DataFrame; max_categories = 10, label_me
         ]
     )
 
-    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> DEFAULT_ROWGAP, footnotes)
+    Table([headers'; body]; header = 1, rowgaps = (1:length(columns)) .=> Relative(DEFAULT_ROWGAP_FACTOR), footnotes)
 end
 
 function _stats_values_freqs_graph_continuous(column::AbstractVector)

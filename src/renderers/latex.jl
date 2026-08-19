@@ -1,3 +1,9 @@
+# `em` in a TeX dimension is the quad of the current font, which for text fonts equals its design
+# size, so `\fontsize` in `em` sizes relative to the surrounding font like it does in HTML and typst
+function latex_relative_fontsize(factor::Real, line_height::Real)
+    return "\\fontsize{$(round_factor(factor))em}{$(round_factor(factor * line_height))em}\\selectfont"
+end
+
 function Base.show(io::IO, ::MIME"text/latex", ct::Table)
     ct = postprocess(ct)
     
@@ -21,7 +27,7 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
                 al === :left ? 'l' : error("Invalid align $al")
             print(iob, char)
             if haskey(colgaps, icol)
-                print(iob, "@{\\hskip $(colgaps[icol])pt}")
+                print(iob, "@{\\hskip $(latex_length(colgaps[icol]))}")
             end
         end
         String(take!(iob))
@@ -95,7 +101,7 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
 
         print(io, " \\\\")
         if haskey(rowgaps, row)
-            print(io, "[$(rowgaps[row])pt]")
+            print(io, "[$(latex_length(rowgaps[row]))]")
         end
         println(io)
         # draw any bottom borders that have been registered to be drawn below this row
@@ -119,7 +125,21 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
     """)
     if !isempty(annotations) || !isempty(ct.footnotes)
         println(io, "\\begin{tablenotes}[flushleft$(ct.linebreak_footnotes ? "" : ",para")]")
-        println(io, raw"\footnotesize")
+        line_height = something(ct.footnote_line_height, DEFAULT_LINE_HEIGHT)
+        if ct.footnote_size === nothing
+            println(io, raw"\footnotesize")
+            # \linespread scales the baseline skip \footnotesize picked, which the document class
+            # sets to roughly `DEFAULT_LINE_HEIGHT` times the font size
+            ct.footnote_line_height === nothing ||
+                println(io, "\\linespread{$(round_factor(line_height / DEFAULT_LINE_HEIGHT))}\\selectfont")
+        else
+            println(io, latex_relative_fontsize(ct.footnote_size, line_height))
+        end
+        if ct.footnote_halign === :center
+            println(io, raw"\centering")
+        elseif ct.footnote_halign === :right
+            println(io, raw"\raggedleft")
+        end
         for (annotation, label) in annotations
             if label !== NoLabel()
                 print(io, raw"\item[")
@@ -174,7 +194,9 @@ function print_latex_cell(io, cell::SpannedCell)
     cell.value === nothing && return
 
     st = cell.style
-    st.indent_pt > 0 && print(io, "\\hspace{$(st.indent_pt)pt}")
+    let indent = cell_indent(st)
+        iszero(indent) || print(io, "\\hspace{$(latex_length(indent))}")
+    end
     st.bold && print(io, "\\textbf{")
     st.italic && print(io, "\\textit{")
     st.underline && print(io, "\\underline{")
@@ -227,7 +249,11 @@ function _showas(io::IO, ::MIME"text/latex", s::Styled)
     if s.color !== nothing
         print(io, "\\textcolor[RGB]{$(join(round.(Int, s.color.rgb .* 255), ","))}{")
     end
+    if s.size !== nothing
+        print(io, "{", latex_relative_fontsize(s.size, DEFAULT_LINE_HEIGHT), " ")
+    end
     _showas(io, MIME"text/latex"(), s.value)
+    s.size !== nothing && print(io, "}")
     s.color !== nothing && print(io, "}")
     s.underline === true && print(io, "}")
     s.italic === true && print(io, "}")

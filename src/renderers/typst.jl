@@ -1,3 +1,7 @@
+# typst spaces lines with `par` leading, the gap from one line's cap height to the next line's
+# baseline, so a line height turns into a leading by subtracting an assumed cap height
+const TYPST_CAP_HEIGHT = 0.7
+
 Base.show(io::IO, ::MIME"QuartoNotebookRunner/typst", t::Table) = show(io, MIME"text/typst"(), t)
 
 function Base.show(io::IO, M::MIME"text/typst", ct::Table)
@@ -21,7 +25,11 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     #table(
         rows: $(size(matrix, 1)),
         columns: $(size(matrix, 2)),
-        column-gutter: 0.25em,
+        column-gutter: $(typst_column_gutter(colgaps, size(matrix, 2))),
+    """)
+    row_gutter = typst_row_gutter(rowgaps, size(matrix, 1))
+    row_gutter === nothing || println(io, "    row-gutter: $row_gutter,")
+    print(io, """
         align: ($(join(column_alignments, ", "))),
         stroke: none,
     """)
@@ -78,7 +86,9 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
                     cell.style.bold && print(io, "*")
                     cell.style.italic && print(io, "_")
                     cell.style.underline && print(io, "#underline[")
-                    cell.style.indent_pt > 0 && print(io, "#h($(cell.style.indent_pt)pt)")
+                    let indent = cell_indent(cell.style)
+                        iszero(indent) || print(io, "#h($(typst_length(indent)))")
+                    end
                     _showas(io, M, cell.value)
                     cell.style.underline && print(io, "]")
                     cell.style.italic && print(io, "_")
@@ -100,10 +110,16 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     println(io, "    table.hline(y: $(size(matrix, 1)), stroke: 1pt),")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        align = _align(CellStyle(halign = :left), 1)
+        align = _align(CellStyle(halign = ct.footnote_halign), 1)
         colspan = "colspan: $(size(matrix, 2))"
         options = join(filter(!isempty, [align, colspan]), ", ")
-        print(io, "    table.cell($options)[#text(size: 0.8em)[")
+        print(io, "    table.cell($options)[#text(size: $(footnote_font_size(ct)))[")
+
+        if ct.footnote_line_height !== nothing
+            leading = max(0, ct.footnote_line_height - TYPST_CAP_HEIGHT)
+            # the semicolon is required when content follows the set rule without a line break
+            print(io, "#set par(leading: $(round_factor(leading))em);")
+        end
 
         if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
             print(io, "\n        ")
@@ -177,7 +193,9 @@ function _showas(io::IO, M::MIME"text/typst", s::Styled)
     if s.color !== nothing
         print(io, "#text(fill: rgb($(join(round.(Int, s.color.rgb .* 255), ","))))[")
     end
+    s.size !== nothing && print(io, "#text(size: $(s.size)em)[")
     _showas(io, M, s.value)
+    s.size !== nothing && print(io, "]")
     s.color !== nothing && print(io, "]")
     s.underline === true && print(io, "]")
     s.italic === true && print(io, "_")

@@ -14,12 +14,12 @@
  & \textbf{Total} \\
 \midrule
 \textbf{value1} &  \\
-\hspace{12.0pt}mean & 4.5 \\
-\hspace{12.0pt}std & 2.45 \\
-\hspace{12.0pt}min & 1 \\
+\hspace{1.2em}mean & 4.5 \\
+\hspace{1.2em}std & 2.45 \\
+\hspace{1.2em}min & 1 \\
 \textbf{group1} &  \\
-\hspace{12.0pt}a & 4 (50\%) \\
-\hspace{12.0pt}b & 4 (50\%) \\
+\hspace{1.2em}a & 4 (50\%) \\
+\hspace{1.2em}b & 4 (50\%) \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}

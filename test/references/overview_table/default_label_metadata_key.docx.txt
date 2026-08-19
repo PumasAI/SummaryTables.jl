@@ -998,7 +998,9 @@
               <w:t>Dimensions: 3 x 2</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>

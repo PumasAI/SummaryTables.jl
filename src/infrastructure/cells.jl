@@ -5,7 +5,7 @@
         underline::Bool = false,
         halign::Symbol = :center,
         valign::Symbol = :top,
-        indent_pt::Float64 = 0.0,
+        indent::Float64 = 0.0,
         border_bottom::Bool = false,
         merge::Bool = false,
         mergegroup::UInt8 = 0,
@@ -20,27 +20,62 @@ Keyword arguments:
 - `underline` underlines text if `true`.
 - `halign` determines the horizontal alignment within the cell, either `:left`, `:center` or `:right`.
 - `valign` determines the vertical alignment within the cell, either `:top`, `:center` or `:bottom`.
-- `indent_pt` adds left indentation in points to the cell text.
+- `indent` adds left indentation to the cell text as a factor of the font size, so `indent = 1.5` indents by one and a half times the font size. HTML, LaTeX and typst keep the factor relative so the indentation follows the surrounding font size, while docx resolves it against the `base_font_size` docx default.
 - `border_bottom` adds a bottom border to the cell if `true`.
 - `merge` causes adjacent cells which are `==` equal to be rendered as a single merged cell.
 - `mergegroup` is a number that can be used to differentiate between two otherwise equal adjacent groups of cells that should not be merged together.
+
+The deprecated `indent_pt` keyword indents by an absolute number of points instead, which does not adjust to the font size of the surrounding document. Use `indent` instead.
 """
-Base.@kwdef struct CellStyle
-    indent_pt::Float64 = 0.0
-    bold::Bool = false
-    italic::Bool = false
-    underline::Bool = false
-    border_bottom::Bool = false
-    halign::Symbol = :center
-    valign::Symbol = :top
-    merge::Bool = false
-    mergegroup::UInt8 = 0
+struct CellStyle
+    indent::Float64
+    indent_pt::Float64
+    bold::Bool
+    italic::Bool
+    underline::Bool
+    border_bottom::Bool
+    halign::Symbol
+    valign::Symbol
+    merge::Bool
+    mergegroup::UInt8
+end
+
+function _deprecate_indent_pt(indent_pt, caller::Symbol)
+    indent_pt === nothing && return 0.0
+    Base.depwarn(
+        "`indent_pt` is deprecated because an absolute indentation in points cannot follow the " *
+        "font size of the document the table is embedded in. Use `indent` instead, which is a " *
+        "factor of the font size, so `indent = 1.2` indents by 1.2 times the font size.",
+        caller,
+    )
+    return Float64(indent_pt)
+end
+
+function CellStyle(;
+        indent = 0.0,
+        indent_pt = nothing,
+        bold = false,
+        italic = false,
+        underline = false,
+        border_bottom = false,
+        halign = :center,
+        valign = :top,
+        merge = false,
+        mergegroup = 0,
+    )
+    return CellStyle(indent, _deprecate_indent_pt(indent_pt, :CellStyle), bold, italic,
+        underline, border_bottom, halign, valign, merge, mergegroup)
 end
 
 @eval function CellStyle(c::CellStyle; kwargs...)
+    settings = values(kwargs)
+    # the keyword constructor's deprecation path, which also maps `nothing` to the default
+    if haskey(settings, :indent_pt)
+        settings = merge(settings, (; indent_pt = _deprecate_indent_pt(settings.indent_pt, :CellStyle)))
+    end
     Base.Cartesian.@ncall $(length(fieldnames(CellStyle))) CellStyle i -> begin
         name = $(fieldnames(CellStyle))[i]
-        get(kwargs, name, getfield(c, name))
+        get(settings, name, getfield(c, name))
     end
 end
 
@@ -71,7 +106,7 @@ const CellList = Vector{SpannedCell}
 
 """
     Cell(value, style::CellStyle)
-    Cell(value; [bold, italic, underline, halign, valign, border_bottom, indent_pt, merge, mergegroup])
+    Cell(value; [bold, italic, underline, halign, valign, border_bottom, indent, merge, mergegroup])
 
 Construct a `Cell` with value `value` and `CellStyle` `style`, which can also be created implicitly with keyword arguments.
 For explanations of the styling options, refer to `CellStyle`.

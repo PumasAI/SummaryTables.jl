@@ -1,6 +1,22 @@
 const DOCX_OUTER_RULE_SIZE = 8 * WriteDocx.eighthpt
 const DOCX_INNER_RULE_SIZE = 4 * WriteDocx.eighthpt
-const DOCX_ANNOTATION_FONTSIZE = 8 * WriteDocx.pt
+# Word has no relative font metrics, so relative sizes are resolved against this at render time
+docx_base_fontsize() = defaults().docx.base_font_size * WriteDocx.pt
+
+# an unset size means the run inherits the document's base font size
+docx_enclosing_fontsize(props::WriteDocx.RunProperties) =
+    props.size === nothing ? docx_base_fontsize() : props.size
+
+docx_footnote_fontsize(ct::Table) = footnote_size_factor(ct) * docx_base_fontsize()
+
+docx_points(l::Length, base_font_size::Real) = l.em * base_font_size + l.pt
+docx_points(l::Length) = docx_points(l, defaults().docx.base_font_size)
+
+docx_justification(halign::Symbol) =
+    halign === :left ? WriteDocx.Justification.start :
+    halign === :center ? WriteDocx.Justification.center :
+    halign === :right ? WriteDocx.Justification.stop :
+    error("Unhandled halign $(halign)")
 
 """
     to_docx(ct::Table)
@@ -46,8 +62,10 @@ function to_docx(ct::Table)
     validate_colgaps(ct.colgaps, size(matrix, 2))
     rowgaps = Dict(ct.rowgaps)
     colgaps = Dict(ct.colgaps)
+    # read once so the whole table resolves against the same size
+    base_font_size = defaults().docx.base_font_size
 
-    for row in 1:size(matrix, 1)        
+    for row in 1:size(matrix, 1)
         rowcells = WriteDocx.TableCell[]
 
         for col in 1:size(matrix, 2)
@@ -66,7 +84,7 @@ function to_docx(ct::Table)
                 if !is_firstcol
                     continue
                 end
-                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps))
+                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps, base_font_size))
                 running_index = index
             
             end
@@ -83,22 +101,34 @@ function to_docx(ct::Table)
     separator_element = ct.linebreak_footnotes ? WriteDocx.Break() : WriteDocx.Text("    ")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
+        footnote_fontsize = docx_footnote_fontsize(ct)
+        footnote_props = WriteDocx.RunProperties(size = footnote_fontsize)
+        label_props = WriteDocx.RunProperties(
+            valign = WriteDocx.VerticalAlignment.superscript,
+            size = footnote_fontsize,
+        )
+        # Word takes a line's height from the largest font on it and WriteDocx cannot set line
+        # spacing, so the run ending a line carries the line height
+        separator_size = ct.footnote_line_height === nothing || !ct.linebreak_footnotes ?
+            footnote_fontsize :
+            (ct.footnote_line_height / DEFAULT_LINE_HEIGHT) * footnote_fontsize
+        separator_props = WriteDocx.RunProperties(size = separator_size)
         elements = []
         for (i, (annotation, label)) in enumerate(annotations)
-            i > 1 && push!(elements, WriteDocx.Run([separator_element]))
+            i > 1 && push!(elements, WriteDocx.Run([separator_element], separator_props))
             if label !== NoLabel()
-                append!(elements, to_runs(label, WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
-                push!(elements, WriteDocx.Run([WriteDocx.Text(" ")],
-                    WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
+                append!(elements, to_runs(label, label_props))
+                push!(elements, WriteDocx.Run([WriteDocx.Text(" ")], label_props))
             end
-            append!(elements, to_runs(annotation, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            append!(elements, to_runs(annotation, footnote_props))
         end
         for (i, footnote) in enumerate(ct.footnotes)
-            (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element]))
-            append!(elements, to_runs(footnote, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element], separator_props))
+            append!(elements, to_runs(footnote, footnote_props))
         end
+        footnote_justification = ct.footnote_halign === :left ? nothing : docx_justification(ct.footnote_halign)
         annotation_row = WriteDocx.TableRow([WriteDocx.TableCell(
-            [WriteDocx.Paragraph(elements)],
+            [WriteDocx.Paragraph(elements, WriteDocx.ParagraphProperties(justification = footnote_justification))],
             WriteDocx.TableCellProperties(gridspan = size(matrix, 2))
         )])
         push!(tablerows, annotation_row)
@@ -125,12 +155,7 @@ function to_docx(ct::Table)
 end
 
 function paragraph_and_run_properties(st::CellStyle)
-    para = WriteDocx.ParagraphProperties(
-        justification = st.halign === :center ? WriteDocx.Justification.center :
-            st.halign === :left ? WriteDocx.Justification.start :
-            st.halign === :right ? WriteDocx.Justification.stop :
-            error("Unhandled halign $(st.halign)"),
-    )
+    para = WriteDocx.ParagraphProperties(justification = docx_justification(st.halign))
     run = WriteDocx.RunProperties(
         bold = st.bold ? true : nothing, # TODO: fix bug in WriteDocx?
         italic = st.italic ? true : nothing, # TODO: fix bug in WriteDocx?
@@ -142,7 +167,7 @@ function hardcoded_styles(class::Nothing)
     WriteDocx.ParagraphProperties(), (;)
 end
 
-function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, rowgaps, colgaps)
+function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, rowgaps, colgaps, base_font_size)
     cs = cell.style
 
     pt = WriteDocx.pt
@@ -155,29 +180,30 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
             bottom_margin = nothing
         end
     else
-        bottom_margin = 0.5 * bottom_rowgap * pt
+        bottom_margin = 0.5 * docx_points(bottom_rowgap, base_font_size) * pt
     end
 
     top_rowgap = get(rowgaps, cell.span[1].start-1, nothing)
-    top_margin = top_rowgap === nothing ? nothing : 0.5 * top_rowgap * pt
+    top_margin = top_rowgap === nothing ? nothing : 0.5 * docx_points(top_rowgap, base_font_size) * pt
 
     left_colgap = get(colgaps, cell.span[2].start-1, nothing)
+    indent = docx_points(cell_indent(cs), base_font_size)
     if left_colgap === nothing
-        if cs.indent_pt != 0
-            left_margin = cs.indent_pt * pt
+        if indent != 0
+            left_margin = indent * pt
         else
             left_margin = nothing
         end
     else
-        if cs.indent_pt != 0
-            left_margin = (cs.indent_pt + 0.5 * left_colgap) * pt
+        if indent != 0
+            left_margin = (indent + 0.5 * docx_points(left_colgap, base_font_size)) * pt
         else
-            left_margin = 0.5 * left_colgap * pt
+            left_margin = 0.5 * docx_points(left_colgap, base_font_size) * pt
         end
     end
 
     right_colgap = get(colgaps, cell.span[2].stop, nothing)
-    right_margin = right_colgap === nothing ? nothing : 0.5 * right_colgap * pt
+    right_margin = right_colgap === nothing ? nothing : 0.5 * docx_points(right_colgap, base_font_size) * pt
 
     left_end = col == cell.span[2].start
     right_end = col == cell.span[2].stop
@@ -219,7 +245,7 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
     )
 end
 
-function docx_cell(row, col, cell, rowgaps, colgaps)    
+function docx_cell(row, col, cell, rowgaps, colgaps, base_font_size)
     ncols = length(cell.span[2])
     is_firstrow = row == cell.span[1].start
     is_firstcol = col == cell.span[2].start
@@ -237,7 +263,7 @@ function docx_cell(row, col, cell, rowgaps, colgaps)
     else
         [WriteDocx.Run([WriteDocx.Text("")], runproperties)]
     end
-    cellprops = cell_properties(cell, row, col, vertical_merge, gridspan, rowgaps, colgaps)
+    cellprops = cell_properties(cell, row, col, vertical_merge, gridspan, rowgaps, colgaps, base_font_size)
 
     WriteDocx.TableCell([
         WriteDocx.Paragraph(runs, paraproperties),
@@ -303,7 +329,8 @@ _rgb_to_hex(rgb) = join(string.(round.(Int, rgb .* 255); base = 16, pad = 2))
 
 function to_runs(s::Styled, props::WriteDocx.RunProperties)
     # TODO: add underline once WriteDocx fixes support for it
-    props = merge_props(props, WriteDocx.RunProperties(; s.bold, s.italic, color = s.color === nothing ? nothing : WriteDocx.HexColor(_rgb_to_hex(s.color.rgb))))
+    size = s.size === nothing ? nothing : s.size * docx_enclosing_fontsize(props)
+    props = merge_props(props, WriteDocx.RunProperties(; s.bold, s.italic, size, color = s.color === nothing ? nothing : WriteDocx.HexColor(_rgb_to_hex(s.color.rgb))))
     return to_runs(s.value, props)
 end
 
