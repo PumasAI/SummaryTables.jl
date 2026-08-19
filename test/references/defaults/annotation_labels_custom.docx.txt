@@ -308,7 +308,9 @@
               <w:t>annotation 1A</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -332,7 +334,9 @@
               <w:t>annotation 1B</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>

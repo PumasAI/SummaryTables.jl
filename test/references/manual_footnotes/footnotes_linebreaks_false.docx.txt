@@ -261,7 +261,9 @@
               <w:t>First footnote.</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:t xml:space="preserve">    </w:t>
             </w:r>
             <w:r>

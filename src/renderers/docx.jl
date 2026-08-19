@@ -9,8 +9,8 @@ docx_enclosing_fontsize(props::WriteDocx.RunProperties) =
 
 docx_footnote_fontsize(ct::Table) = footnote_size_factor(ct) * docx_base_fontsize()
 
-# a length in points, the relative part resolved against the base font size
-docx_points(l::Length) = l.em * defaults().docx.base_font_size + l.pt
+docx_points(l::Length, base_font_size::Real) = l.em * base_font_size + l.pt
+docx_points(l::Length) = docx_points(l, defaults().docx.base_font_size)
 
 docx_justification(halign::Symbol) =
     halign === :left ? WriteDocx.Justification.start :
@@ -62,8 +62,10 @@ function to_docx(ct::Table)
     validate_colgaps(ct.colgaps, size(matrix, 2))
     rowgaps = Dict(ct.rowgaps)
     colgaps = Dict(ct.colgaps)
+    # read once so the whole table resolves against the same size
+    base_font_size = defaults().docx.base_font_size
 
-    for row in 1:size(matrix, 1)        
+    for row in 1:size(matrix, 1)
         rowcells = WriteDocx.TableCell[]
 
         for col in 1:size(matrix, 2)
@@ -82,7 +84,7 @@ function to_docx(ct::Table)
                 if !is_firstcol
                     continue
                 end
-                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps))
+                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps, base_font_size))
                 running_index = index
             
             end
@@ -106,10 +108,11 @@ function to_docx(ct::Table)
             size = footnote_fontsize,
         )
         # Word takes a line's height from the largest font on it and WriteDocx cannot set line
-        # spacing, so the break ending a line carries the line height
-        separator_props = ct.footnote_line_height === nothing || !ct.linebreak_footnotes ?
-            WriteDocx.RunProperties() :
-            WriteDocx.RunProperties(size = (ct.footnote_line_height / DEFAULT_LINE_HEIGHT) * footnote_fontsize)
+        # spacing, so the run ending a line carries the line height
+        separator_size = ct.footnote_line_height === nothing || !ct.linebreak_footnotes ?
+            footnote_fontsize :
+            (ct.footnote_line_height / DEFAULT_LINE_HEIGHT) * footnote_fontsize
+        separator_props = WriteDocx.RunProperties(size = separator_size)
         elements = []
         for (i, (annotation, label)) in enumerate(annotations)
             i > 1 && push!(elements, WriteDocx.Run([separator_element], separator_props))
@@ -164,7 +167,7 @@ function hardcoded_styles(class::Nothing)
     WriteDocx.ParagraphProperties(), (;)
 end
 
-function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, rowgaps, colgaps)
+function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, rowgaps, colgaps, base_font_size)
     cs = cell.style
 
     pt = WriteDocx.pt
@@ -177,14 +180,14 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
             bottom_margin = nothing
         end
     else
-        bottom_margin = 0.5 * docx_points(bottom_rowgap) * pt
+        bottom_margin = 0.5 * docx_points(bottom_rowgap, base_font_size) * pt
     end
 
     top_rowgap = get(rowgaps, cell.span[1].start-1, nothing)
-    top_margin = top_rowgap === nothing ? nothing : 0.5 * docx_points(top_rowgap) * pt
+    top_margin = top_rowgap === nothing ? nothing : 0.5 * docx_points(top_rowgap, base_font_size) * pt
 
     left_colgap = get(colgaps, cell.span[2].start-1, nothing)
-    indent = docx_points(cell_indent(cs))
+    indent = docx_points(cell_indent(cs), base_font_size)
     if left_colgap === nothing
         if indent != 0
             left_margin = indent * pt
@@ -193,14 +196,14 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
         end
     else
         if indent != 0
-            left_margin = (indent + 0.5 * docx_points(left_colgap)) * pt
+            left_margin = (indent + 0.5 * docx_points(left_colgap, base_font_size)) * pt
         else
-            left_margin = 0.5 * docx_points(left_colgap) * pt
+            left_margin = 0.5 * docx_points(left_colgap, base_font_size) * pt
         end
     end
 
     right_colgap = get(colgaps, cell.span[2].stop, nothing)
-    right_margin = right_colgap === nothing ? nothing : 0.5 * docx_points(right_colgap) * pt
+    right_margin = right_colgap === nothing ? nothing : 0.5 * docx_points(right_colgap, base_font_size) * pt
 
     left_end = col == cell.span[2].start
     right_end = col == cell.span[2].stop
@@ -242,7 +245,7 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
     )
 end
 
-function docx_cell(row, col, cell, rowgaps, colgaps)    
+function docx_cell(row, col, cell, rowgaps, colgaps, base_font_size)
     ncols = length(cell.span[2])
     is_firstrow = row == cell.span[1].start
     is_firstcol = col == cell.span[2].start
@@ -260,7 +263,7 @@ function docx_cell(row, col, cell, rowgaps, colgaps)
     else
         [WriteDocx.Run([WriteDocx.Text("")], runproperties)]
     end
-    cellprops = cell_properties(cell, row, col, vertical_merge, gridspan, rowgaps, colgaps)
+    cellprops = cell_properties(cell, row, col, vertical_merge, gridspan, rowgaps, colgaps, base_font_size)
 
     WriteDocx.TableCell([
         WriteDocx.Paragraph(runs, paraproperties),

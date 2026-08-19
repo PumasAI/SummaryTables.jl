@@ -199,21 +199,22 @@ footnote_font_size(ct::Table) = "$(footnote_size_factor(ct))em"
 
 round_factor(x) = round(x; digits = 4)
 
+# the relative branch comes first so a zero length prints as `0em` and not as a stray `pt`
 function css_length(l::Length)
-    iszero(l.em) && return "$(l.pt)pt"
     iszero(l.pt) && return "$(round_factor(l.em))em"
+    iszero(l.em) && return "$(l.pt)pt"
     return "calc($(round_factor(l.em))em + $(l.pt)pt)"
 end
 
 function latex_length(l::Length)
-    iszero(l.em) && return "$(l.pt)pt"
     iszero(l.pt) && return "$(round_factor(l.em))em"
+    iszero(l.em) && return "$(l.pt)pt"
     return "\\dimexpr $(round_factor(l.em))em+$(l.pt)pt\\relax"
 end
 
 function typst_length(l::Length)
-    iszero(l.em) && return "$(l.pt)pt"
     iszero(l.pt) && return "$(round_factor(l.em))em"
+    iszero(l.em) && return "$(l.pt)pt"
     return "$(round_factor(l.em))em + $(l.pt)pt"
 end
 
@@ -227,7 +228,6 @@ typst_length_array(lengths) = "(" * join((typst_length(l) for l in lengths), ", 
 
 gap_lengths(gaps, ntracks) = Length[get(gaps, i, zero(Length)) for i in 1:(ntracks - 1)]
 
-# column gaps add to the gutter typst already puts between all columns
 function typst_column_gutter(colgaps, ncols)
     gaps = gap_lengths(colgaps, ncols)
     all(iszero, gaps) && return typst_length(TYPST_COLUMN_GUTTER)

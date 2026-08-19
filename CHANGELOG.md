@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.7.0 - 2026-08-17
+## 3.7.0 - 2026-08-19
 
 - Added the `footnote_size`, `footnote_halign` and `footnote_line_height` settings to `Table` and to the global defaults. `footnote_size` sets the footnote font size as a factor of the table's body font size, so `footnote_size = 0.5` prints footnotes at half the body size instead of at each renderer's built-in size [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
 - Added the `size` keyword to `Styled`, which sets the font size of a single value as a factor of the surrounding font size, so `size = 2` renders it at twice the size of the text around it [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
@@ -10,7 +10,7 @@
 - `rowgaps` and `colgaps` now take sizes built with `SummaryTables.Relative(factor)`, a factor of the font size, or `SummaryTables.Points(size)` for a fixed size. Passing a plain number still works but is deprecated and taken as `Points`, so existing layouts are unchanged until they are migrated. `8.0` at a 10pt body font size becomes `Relative(0.8)` [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
   - The row gaps that `overview_table` and `listingtable` add are now relative, which changes nothing at the previously assumed 10pt body font size but keeps the gaps in proportion at other font sizes.
 - Fixed the typst renderer ignoring `rowgaps` and `colgaps`, so tables that ask for row or column gaps now get them in typst as well. Tables without gaps are unaffected, but `overview_table` and `listingtable` output gains the row gaps it already had in the other renderers [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
-- Fixed the superscript annotation labels in docx footnotes rendering at Word's default font size instead of the footnote font size, which also made them override `footnote_line_height` on the first footnote line [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
+- Fixed the docx footnote row taking its line height from Word's default font size instead of the footnote font size, because neither the superscript annotation labels nor the runs carrying the line breaks were sized. This also made the labels override `footnote_line_height` on the first footnote line [#154](https://github.com/PumasAI/SummaryTables.jl/pull/154).
 
 ## 3.6.1 - 2026-08-07
 
