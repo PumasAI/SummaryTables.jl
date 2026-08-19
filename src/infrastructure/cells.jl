@@ -68,10 +68,14 @@ function CellStyle(;
 end
 
 @eval function CellStyle(c::CellStyle; kwargs...)
-    haskey(kwargs, :indent_pt) && _deprecate_indent_pt(kwargs[:indent_pt], :CellStyle)
+    settings = values(kwargs)
+    # the keyword constructor's deprecation path, which also maps `nothing` to the default
+    if haskey(settings, :indent_pt)
+        settings = merge(settings, (; indent_pt = _deprecate_indent_pt(settings.indent_pt, :CellStyle)))
+    end
     Base.Cartesian.@ncall $(length(fieldnames(CellStyle))) CellStyle i -> begin
         name = $(fieldnames(CellStyle))[i]
-        get(kwargs, name, getfield(c, name))
+        get(settings, name, getfield(c, name))
     end
 end
 

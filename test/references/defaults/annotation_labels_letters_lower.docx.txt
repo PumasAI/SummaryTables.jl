@@ -506,7 +506,9 @@
               <w:t>annotation 1A</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -530,7 +532,9 @@
               <w:t>annotation 1B</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -554,7 +558,9 @@
               <w:t>annotation 1C</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -578,7 +584,9 @@
               <w:t>annotation 2A</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -602,7 +610,9 @@
               <w:t>annotation 2B</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -626,7 +636,9 @@
               <w:t>annotation 2C</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -650,7 +662,9 @@
               <w:t>annotation 3A</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -674,7 +688,9 @@
               <w:t>annotation 3B</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -698,7 +714,9 @@
               <w:t>annotation 3C</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -722,7 +740,9 @@
               <w:t>annotation 4A</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -746,7 +766,9 @@
               <w:t>annotation 4B</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="16"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>

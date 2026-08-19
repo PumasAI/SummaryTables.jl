@@ -50,6 +50,18 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     docx::DocxDefaults = DocxDefaults()
     "Defaults for the `table_one` function"
     table_one::TableOneDefaults = TableOneDefaults()
+
+    function Defaults(round_mode, round_digits, trailing_zeros, number_format,
+            linebreak_footnotes, footnote_size, footnote_halign, footnote_line_height,
+            annotation_labels, label_key, docx, table_one)
+        # validated here and not only in `Table` so a bad default is reported where it is set
+        return new(round_mode, round_digits, trailing_zeros, number_format,
+            linebreak_footnotes,
+            resolve_positive_number(footnote_size, "footnote_size", "factor of the body font size"),
+            resolve_footnote_halign(footnote_halign),
+            resolve_positive_number(footnote_line_height, "footnote_line_height", "factor of the footnote font size"),
+            annotation_labels, label_key, docx, table_one)
+    end
 end
 
 # for giving defaults in a nested way like `with_defaults(; table_one = (; ...))`

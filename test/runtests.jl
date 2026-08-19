@@ -1266,6 +1266,16 @@ end
     @test_throws_message "must be a positive, finite" Styled("x", size = 0)
     @test_throws_message "must be `:left`, `:center` or `:right`" Table(cells; footnote_halign = :middle)
 
+    # the global defaults validate on assignment too, not just at table construction
+    for name in [:footnote_size, :footnote_line_height]
+        for bad in [0, -0.5, Inf, "large"]
+            @test_throws_message "must be a positive, finite" SummaryTables.Defaults(; (name => bad,)...)
+            @test_throws_message "must be a positive, finite" SummaryTables.with_defaults(() -> nothing; (name => bad,)...)
+        end
+    end
+    @test_throws_message "must be `:left`, `:center` or `:right`" SummaryTables.Defaults(footnote_halign = :middle)
+    @test_throws_message "must be `:left`, `:center` or `:right`" SummaryTables.with_defaults(() -> nothing, footnote_halign = :middle)
+
     t = Table(cells; footnotes = ["A footnote."])
     for mime in [MIME"text/html"(), MIME"text/latex"(), MIME"text/typst"()]
         @test repr(mime, t) == repr(mime, Table(cells; footnotes = ["A footnote."], footnote_halign = :left))
@@ -1306,6 +1316,8 @@ end
         @test deprecated.indent === 0.0
         @test deprecated.indent_pt === 12.0
         @test (@test_deprecated SummaryTables.CellStyle(deprecated; indent_pt = 6)).indent_pt === 6.0
+        # `nothing` means "no absolute indentation" in the copy constructor as well
+        @test SummaryTables.CellStyle(deprecated; indent_pt = nothing).indent_pt === 0.0
 
         indented = Table([Cell("A", indent = 1.2) Cell("B")])
         @test occursin("padding-left:1.2em;", repr(MIME"text/html"(), indented))
@@ -1334,7 +1346,6 @@ end
         @test repr(Relative(0.6)) == "Relative(0.6)"
         @test repr(Points(6)) == "Points(6.0)"
         @test repr(Relative(0.6) + Points(3)) == "Relative(0.6) + Points(3.0)"
-        # a length is a scalar, so it broadcasts over gap indices
         @test (1:2 .=> Relative(0.6)) == [1 => Relative(0.6), 2 => Relative(0.6)]
 
         for bad in [-0.5, Inf, "big"]
@@ -1344,7 +1355,6 @@ end
 
         cells4 = [Cell("A") Cell("B"); Cell("C") Cell("D")]
         @test Table(cells4; rowgaps = [1 => Relative(0.6)]).rowgaps == [1 => Relative(0.6)]
-        # a plain number keeps the old absolute meaning, but warns
         @test (@test_deprecated Table(cells4; rowgaps = [1 => 8])).rowgaps == [1 => Points(8)]
         @test (@test_deprecated Table(cells4; colgaps = [1 => 8])).colgaps == [1 => Points(8)]
         @test_throws_message "must be a `SummaryTables.Relative` or `SummaryTables.Points`" Table(cells4; rowgaps = [1 => "big"])
@@ -1369,11 +1379,16 @@ end
         @test occursin("row-gutter: (6.0pt,)", repr(MIME"text/typst"(), abs))
         # an absolute column gap cannot collapse into the relative base gutter
         @test occursin("column-gutter: (0.25em + 8.0pt,)", repr(MIME"text/typst"(), abs))
-        # a table without gaps keeps the plain scalar gutter and no row gutter at all
         @test occursin("column-gutter: 0.25em,", repr(MIME"text/typst"(), nogaps))
         @test !occursin("row-gutter", repr(MIME"text/typst"(), nogaps))
 
-        # a mixed length has to be expressed as a sum in each renderer
+        # a zero length prints in the relative unit, the nonzero ones are unaffected
+        for f in [SummaryTables.css_length, SummaryTables.latex_length, SummaryTables.typst_length]
+            @test f(zero(SummaryTables.Length)) == "0.0em"
+            @test f(Relative(0.6)) == "0.6em"
+            @test f(Points(6)) == "6.0pt"
+        end
+
         mixed = Relative(0.6) + Points(3)
         @test SummaryTables.css_length(mixed) == "calc(0.6em + 3.0pt)"
         @test SummaryTables.latex_length(mixed) == "\\dimexpr 0.6em+3.0pt\\relax"
@@ -1387,17 +1402,22 @@ end
             end
         end
 
-        # the gaps `overview_table` and `listingtable` add are relative
         @test SummaryTables.DEFAULT_ROWGAP_FACTOR == 0.6
     end
 
+    @testset "footnote_line_height at the built-in line height is a docx no-op" begin
+        # the line-break runs stand in for the line spacing docx cannot set
+        footnoted(; kwargs...) = Table(cells; footnotes = ["A footnote.", "Another footnote."], kwargs...)
+        @test docx_string(footnoted(footnote_line_height = SummaryTables.DEFAULT_LINE_HEIGHT)) ==
+            docx_string(footnoted())
+        @test docx_string(footnoted(footnote_line_height = 2)) != docx_string(footnoted())
+    end
+
     @testset "base_font_size is read while rendering" begin
-        # the setting has to reach the renderer, not just the `Table` constructor
         default_output = docx_string(t)
         @test SummaryTables.with_defaults(docx = (; base_font_size = 20)) do
             docx_string(t)
         end != default_output
-        # and the change must not leak out of the scope
         @test docx_string(t) == default_output
     end
 

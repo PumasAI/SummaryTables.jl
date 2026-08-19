@@ -281,7 +281,9 @@
               <w:t>Note 1</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="20"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
@@ -291,7 +293,9 @@
               <w:t>First footnote.</w:t>
             </w:r>
             <w:r>
-              <w:rPr/>
+              <w:rPr>
+                <w:sz w:val="20"/>
+              </w:rPr>
               <w:br w:type="textWrapping"/>
             </w:r>
             <w:r>
