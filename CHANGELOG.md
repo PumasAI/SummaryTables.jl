@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added `pagination` support to `table_one`, using the same `Pagination`/`PaginatedTable` pattern `listingtable` already has [#147](https://github.com/PumasAI/SummaryTables.jl/pull/147).
+
 ## 3.6.1 - 2026-08-07
 
 - Fixed misalignment of `overview_table` category bars in HTML output when the environment overrides the table's line-height [#152](https://github.com/PumasAI/SummaryTables.jl/pull/152).
