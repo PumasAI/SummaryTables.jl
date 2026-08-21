@@ -9,17 +9,51 @@ struct SummaryTable
     gdf_summary::DataFrames.GroupedDataFrame
 end
 
+"""
+    SummaryPageMetadata
+
+Describes which row and column group sections of a full summary table are included in a given page,
+the summarytable counterpart of [`ListingPageMetadata`](@ref). Fields `rows::Vector{GroupKey}` and
+`cols::Vector{GroupKey}`; a vector is empty if the table was not paginated along that side.
+"""
+Base.@kwdef struct SummaryPageMetadata
+    rows::Vector{GroupKey} = []
+    cols::Vector{GroupKey} = []
+end
+
+function Base.show(io::IO, M::MIME"text/plain", p::SummaryPageMetadata)
+    indent = " " ^ get(io, :indent, 0)
+    println(io, indent, "SummaryPageMetadata")
+    print(io, indent, "  rows:")
+    isempty(p.rows) && print(io, " no pagination")
+    for r in p.rows
+        print(io, "\n    ", indent)
+        print(io, "[", join(("$key => $value" for (key, value) in r.entries), ", "), "]")
+    end
+    print(io, "\n", indent, "  cols:")
+    isempty(p.cols) && print(io, " no pagination")
+    for c in p.cols
+        print(io, "\n    ", indent)
+        print(io, "[", join(("$key => $value" for (key, value) in c.entries), ", "), "]")
+    end
+end
 
 """
-    summarytable(table, variable;
+    summarytable(table, variable, pagination = nothing;
         rows = [],
         cols = [],
         summary = [],
         variable_header = true,
+        sort = true,
         celltable_kws...
     )
 
 Create a summary table `Table` from `table`, which summarizes values from column `variable`.
+
+If a [`Pagination`](@ref) object is passed, the return type changes to [`PaginatedTable`](@ref) and the
+table is split into pages of at most `rows` row groups and `cols` column groups. Unlike `listingtable`,
+pages follow the same group order as the unpaginated table (natural-sorted when `sort = true`, the input
+order otherwise), so a single page reproduces the unpaginated table exactly.
 
 ## Arguments
 - `table`: Data source which must be convertible to a `DataFrames.DataFrame`.
@@ -62,11 +96,12 @@ summarytable(
 ```
 """
 function summarytable(
-    table, variable;
+    table, variable, pagination::Union{Nothing,Pagination} = nothing;
     rows = [],
     cols = [],
     summary = [],
     variable_header = true,
+    sort = true,
     celltable_kws...
 )
 
@@ -78,14 +113,60 @@ function summarytable(
     colgroups = make_groups(df, cols)
 
     rowsymbols = [r.symbol for r in rowgroups]
+    colsymbols = [c.symbol for c in colgroups]
     _summary = Summary(summary, rowsymbols)
 
     if isempty(_summary.analyses)
         throw(ArgumentError("No summary analyses defined."))
     end
 
-    _summarytable(df, var, rowgroups, colgroups, _summary; variable_header, celltable_kws...)
+    if pagination === nothing
+        return _summarytable(df, var, rowgroups, colgroups, _summary; variable_header, sort, celltable_kws...)
+    end
+
+    sd = setdiff(keys(pagination.options), [:rows, :cols])
+    if !isempty(sd)
+        throw(ArgumentError("`summarytable` only accepts `rows` and `cols` as pagination arguments. Found $(join(sd, ", ", " and "))"))
+    end
+    paginate_cols = get(pagination.options, :cols, nothing)
+    paginate_rows = get(pagination.options, :rows, nothing)
+
+    # The summary attaches to the row side, so only the row groupers above it (`groupindex`) page; every column
+    # grouper pages (summarytable has no column summary). Page boundaries follow the same order as the
+    # unpaginated table (natural-sorted when `sort`, input order otherwise), so a single page reproduces it exactly.
+    paginated_rowgroupers = rowsymbols[1:_summary.groupindex]
+    paginated_colgroupers = colsymbols
+
+    pages = Page{SummaryPageMetadata}[]
+    for (rowframe, rowkeys) in _summary_pages(df, paginated_rowgroupers, paginate_rows; sort)
+        for (page_df, colkeys) in _summary_pages(rowframe, paginated_colgroupers, paginate_cols; sort)
+            t = _summarytable(page_df, var, rowgroups, colgroups, _summary; variable_header, sort, celltable_kws...)
+            push!(pages, Page(SummaryPageMetadata(rows = _summary_page_keys(rowkeys), cols = _summary_page_keys(colkeys)), t))
+        end
+    end
+    return PaginatedTable(pages)
 end
+
+# Split `frame` into windows of at most `per` grouper-key combinations, one page per window. Page boundaries
+# follow natural-sorted group order when `sort`, input order otherwise, matching `_summarytable`'s own groupby
+# so a paginated call's page order agrees with the same call without pagination. No groupers, `per === nothing`,
+# or `per >= ncombinations` gives a single page equal to the unpaginated table. Returns `(frame, keys)` pairs;
+# `keys` is `nothing` when that side isn't paginated.
+function _summary_pages(frame, groupers, per; sort)
+    (isempty(groupers) || per === nothing) && return [(frame, nothing)]
+    keyrows = unique(frame[!, groupers])
+    sort && Base.sort!(keyrows, groupers, lt = natural_lt)
+    ncombinations = DataFrames.nrow(keyrows)
+    per >= ncombinations && return [(frame, keyrows)]
+    return [
+        (DataFrames.semijoin(frame, keyrows[collect(w), :]; on = groupers), keyrows[collect(w), :])
+        for w in Iterators.partition(1:ncombinations, per)
+    ]
+end
+
+_summary_page_keys(::Nothing) = GroupKey[]
+_summary_page_keys(keyrows::DataFrames.DataFrame) =
+    [GroupKey([col => row[col] for col in propertynames(keyrows)]) for row in DataFrames.eachrow(keyrows)]
 
 function _summarytable(
         df::DataFrames.DataFrame,
