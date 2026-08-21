@@ -15,6 +15,8 @@
   - `trailing_zeros = true` now pads numbers to the requested precision in the `:auto` and `:sigdigits` modes, for example `1.50` at 3 significant digits.
   - Trailing zeros are now also stripped from e-notation mantissas and negative numbers.
 - Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
+- Added a `full_width` option that fits a table to the full text width (Typst `fr` columns / Word's "AutoFit to window"), settable per table or globally with `defaults!` [#141](https://github.com/PumasAI/SummaryTables.jl/pull/141).
+- Bumped `WriteDocx` to 1.3; generated DOCX now sets the required `w:type="dxa"` on table cell spacing (rendered output is unchanged) [#141](https://github.com/PumasAI/SummaryTables.jl/pull/141).
 
 ## 3.5.1 - 2026-01-23
 

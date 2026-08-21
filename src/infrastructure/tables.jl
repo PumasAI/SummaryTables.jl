@@ -8,6 +8,7 @@ struct Table
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
+    full_width::Bool
 end
 
 function Table(cells, header, footer;
@@ -20,11 +21,13 @@ function Table(cells, header, footer;
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
         linebreak_footnotes = default,
+        full_width = default,
     )
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes)
+    _full_width = fallback(full_width, defs.full_width)
+    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes, _full_width)
 end
 
 function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
@@ -96,6 +99,8 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
     the size of `gap_pt` is added between the columns `index` and `index+1`.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
+- `full_width = false`: If `true`, the table renders at the full text width (Typst `fr` columns / Word
+    "AutoFit to window") instead of sized to content.
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 
@@ -247,7 +252,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes, ct.full_width)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)
