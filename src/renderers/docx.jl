@@ -246,6 +246,8 @@ end
 
 to_runs(x, props) = [WriteDocx.Run([WriteDocx.Text(docx_sprint(x))], props)]
 
+to_runs(r::FormattedFloat, props) = to_runs(formatted_value(r), props)
+
 function to_runs(c::Concat, props)
     runs = WriteDocx.Run[]
     for arg in c.args
@@ -309,6 +311,8 @@ docx_sprint(x) = sprint(x) do io, x
     _showas(io, MIME"text"(), x)
 end
 
+
+to_runs(c::CatFreqPlot, props::WriteDocx.RunProperties) = to_runs(RectPlot(c), props)
 
 function to_runs(r::RectPlot, props::WriteDocx.RunProperties)
     W = WriteDocx

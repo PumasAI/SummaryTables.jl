@@ -1,11 +1,23 @@
 # Changelog
 
-## Unreleased
+## 3.6.1 - 2026-08-07
 
+- Fixed misalignment of `overview_table` category bars in HTML output when the environment overrides the table's line-height [#152](https://github.com/PumasAI/SummaryTables.jl/pull/152).
+
+## 3.6.0 - 2026-08-06
+
+- The category bars in `overview_table`'s HTML, typst and latex output now line up with the corresponding text lines [#149](https://github.com/PumasAI/SummaryTables.jl/pull/149).
+- Added `NumberFormat` for formatting numbers per value, per column (`simple_table`), per variable (`listingtable`) or per table, with new settings for prefixes and suffixes, scaling, display limits like `<0.001`, magnitude suffixes like `5.4K` and exponent style [#139](https://github.com/PumasAI/SummaryTables.jl/pull/139).
+  - Exponential notation now renders like `1.5 × 10⁶` instead of `1.5e6` by default, which can be changed back with the `exponent_style = :e` setting.
+  - Added the `exponent_thresholds` setting which controls the range of base 10 exponents that are displayed without exponential notation.
+  - `round_mode = :sigdigits` now shows `1234` as `1.23 × 10³` instead of `1230` at 3 digits, so that every displayed digit is a significant one.
+  - `trailing_zeros` now defaults to `:auto`, which means `false` for `round_mode = :auto` and `true` for `:digits` and `:sigdigits`, so the exact modes display exactly the requested precision.
+  - `trailing_zeros = true` now pads numbers to the requested precision in the `:auto` and `:sigdigits` modes, for example `1.50` at 3 significant digits.
+  - Trailing zeros are now also stripped from e-notation mantissas and negative numbers.
 - Corrected the `annotation_labels` docstring which listed the nonexistent `:lowercase` and `:uppercase` variants instead of `:letters_lower` and `:letters_upper` [#137](https://github.com/PumasAI/SummaryTables.jl/pull/137).
 - Added optional pagination to `summarytable` via a `Pagination` argument, which returns a `PaginatedTable`, matching `listingtable` [#140](https://github.com/PumasAI/SummaryTables.jl/pull/140).
 
-## 3.5.1 - 2026-10-23
+## 3.5.1 - 2026-01-23
 
 - Corrected the docstring of `table_one` which erroneously listed `show_testnames` and not `show_tests` [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).
 - Fixed inconsistent classification of categorical data, now the rules are the same for `table_one` and `overview_table`. A numeric column is a column with some non-missing values, all of which are subtypes of `Real` but not `Bool`. All other columns are categorical [#126](https://github.com/PumasAI/SummaryTables.jl/pull/126).

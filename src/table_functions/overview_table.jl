@@ -118,17 +118,23 @@ struct RectPlot
     rects::Vector{Rect}
 end
 
-function cat_freq_plot(freqs, nvalid)
+struct CatFreqPlot
+    fractions::Vector{Float64}
+end
+
+cat_freq_plot(freqs, nvalid) = CatFreqPlot(freqs ./ nvalid)
+
+function RectPlot(c::CatFreqPlot)
     barheight = 12
     bargap = 3
     width = 100
     padding = 2
-    n = length(freqs)
+    n = length(c.fractions)
     RectPlot(
         (width + 2 * padding, barheight * n + (n - 1) * bargap + 2 * padding),
-        map(enumerate(reverse(freqs))) do (i, freq)
+        map(enumerate(reverse(c.fractions))) do (i, fraction)
             Rect(
-                (0, freq / nvalid * width) .+ padding,
+                (0, fraction * width) .+ padding,
                 ((i-1) * barheight + (i-1) * bargap, (i*barheight) + (i-1) * bargap) .+ padding,
             )
         end
