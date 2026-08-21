@@ -6,9 +6,7 @@ struct Table
     rowgaps::Vector{Pair{Int,Float64}}
     colgaps::Vector{Pair{Int,Float64}}
     postprocess::Vector{Any}
-    round_digits::Int
-    round_mode::Union{Nothing,Symbol}
-    trailing_zeros::Bool
+    number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
 end
 
@@ -16,6 +14,7 @@ function Table(cells, header, footer;
         round_digits = default,
         round_mode = default,
         trailing_zeros = default,
+        number_format = default,
         footnotes = [],
         postprocess = [],
         rowgaps = Pair{Int,Float64}[],
@@ -23,20 +22,44 @@ function Table(cells, header, footer;
         linebreak_footnotes = default,
     )
     defs = defaults()
-    _round_digits = fallback(round_digits, defs.round_digits)
-    _round_mode = fallback(round_mode, defs.round_mode)
-    _trailing_zeros = fallback(trailing_zeros, defs.trailing_zeros)
+    _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _round_digits, _round_mode, _trailing_zeros, _linebreak_footnotes)
+    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes)
+end
+
+function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
+    separate_kwargs_passed = !(round_digits isa Default) || !(round_mode isa Default) || !(trailing_zeros isa Default)
+    defaults_format = defs.number_format isa Default ?
+        NumberFormat(digits = defs.round_digits, mode = defs.round_mode, trailing_zeros = defs.trailing_zeros) :
+        defs.number_format
+    if !(number_format isa Default)
+        if separate_kwargs_passed
+            error("Cannot pass `number_format` together with any of `round_digits`, `round_mode` and `trailing_zeros`. Either use only `number_format` or only the separate keywords.")
+        end
+        if !(number_format isa Union{Nothing,NumberFormat})
+            error("`number_format` must be a `NumberFormat` or `nothing`, got a value of type `$(typeof(number_format))`.")
+        end
+        (number_format === nothing || defaults_format === nothing) && return number_format
+        return merge_formats(number_format, defaults_format)
+    end
+    if separate_kwargs_passed
+        !(round_mode isa Default) && round_mode === nothing && return nothing
+        separate_format = NumberFormat(
+            digits = round_digits isa Default ? nothing : round_digits,
+            mode = round_mode isa Default ? nothing : round_mode,
+            trailing_zeros = trailing_zeros isa Default ? nothing : trailing_zeros,
+        )
+        defaults_format === nothing && return separate_format
+        return merge_formats(separate_format, defaults_format)
+    end
+    return defaults_format
 end
 
 """
     function Table(cells;
         header = nothing,
         footer = nothing,
-        round_digits = 3,
-        round_mode = :auto,
-        trailing_zeros = false,
+        number_format = NumberFormat(),
         footnotes = [],
         postprocess = [],
         rowgaps = Pair{Int,Float64}[],
@@ -54,11 +77,17 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `footer`: The index of the first row of the footer, `nothing` if no footer is specified.
 - `footnotes`: A vector of objects printed as footnotes that are not derived from `Annotated`
   values and therefore don't get labels with counterparts inside the table.
-- `round_digits = 3`: Float values will be rounded to this precision before printing.
-- `round_mode = :auto`: How the float values are rounded, options are `:auto`, `:digits` or `:sigdigits`.
-  If `round_mode === nothing`, no rounding will be applied and `round_digits` and `trailing_zeros`
-  will have no effect.
-- `trailing_zeros = false`: Controls if float values keep trailing zeros, for example `4.0` vs `4`.
+- `number_format = NumberFormat()`: A `NumberFormat` that is applied to every floating point
+  number in the table which is not already wrapped in a more specific format. Settings that
+  are unset in cell-level formats are inherited from this format, and settings unset here are
+  inherited first from the global defaults and then from the package defaults. Refer to the
+  `NumberFormat` docstring for the available settings.
+  Passing `number_format = nothing` disables number formatting entirely, so floats
+  appear exactly the way Julia prints them, for example `1.0607182119320439e8`.
+  Instead of `number_format`, the number formatting settings `round_digits`, `round_mode` and
+  `trailing_zeros` may also be passed as separate keywords, matching the `digits`, `mode` and
+  `trailing_zeros` settings of `NumberFormat`, with `round_mode = nothing` disabling formatting.
+  Mixing the separate keywords with `number_format` is an error.
 - `postprocess = []`: A list of post-processors which will be applied left to right to the table before displaying the table.
    A post-processor can either work element-wise or on the whole table object. See the `postprocess_table` and
    `postprocess_cell` functions for defining custom postprocessors.
@@ -67,22 +96,6 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
     the size of `gap_pt` is added between the columns `index` and `index+1`.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
-
-## Round mode
-
-Consider the numbers `0.006789`, `23.4567`, `456.789` or `12345.0`.
-
-Here is how these numbers are formatted with the different available rounding modes:
-
-- `:auto` rounds to `n` significant digits but doesn't zero out additional digits before the comma unlike `:sigdigits`.
-  For example, `round_digits = 3` would result in `0.00679`, `23.5`, `457.0` or `12345.0`.
-  Numbers at orders of magnitude >= 6 or <= -5 are displayed in exponential notation as in Julia.
-- `:digits` rounds to `n` digits after the comma and shows possibly multiple trailing zeros.
-  For example, `round_digits = 3` would result in `0.007`, `23.457` or `456.789` or `12345.000`.
-  Numbers are never shown with exponential notation.
-- `:sigdigits` rounds to `n` significant digits and zeros out additional digits before the comma unlike `:auto`.
-  For example, `round_digits = 3` would result in `0.00679`, `23.5`, `457.0` or `12300.0`.
-  Numbers at orders of magnitude >= 6 or <= -5 are displayed in exponential notation as in Julia.
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 
@@ -234,7 +247,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.round_digits, ct.round_mode, ct.trailing_zeros, ct.linebreak_footnotes)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)
@@ -311,31 +324,29 @@ function recursive_replace(x, f, with)
 end
 
 
-struct Rounder
-    round_digits::Int
-    round_mode::Symbol
-    trailing_zeros::Bool
-end
+apply_format(x, fmt::NumberFormat, floats_only::Bool) = x
+apply_format(x::AbstractFloat, fmt::NumberFormat, floats_only::Bool) = FormattedFloat(Float64(x), fmt)
+apply_format(x::Integer, fmt::NumberFormat, floats_only::Bool) = floats_only ? x : FormattedFloat(Float64(x), fmt)
+apply_format(x::Bool, fmt::NumberFormat, floats_only::Bool) = x
+apply_format(x::FormattedFloat, fmt::NumberFormat, floats_only::Bool) = FormattedFloat(x.f, merge_formats(x.format, fmt))
+apply_format(x::Concat, fmt::NumberFormat, floats_only::Bool) = Concat(map(arg -> apply_format(arg, fmt, floats_only), x.args)...)
+apply_format(x::Multiline, fmt::NumberFormat, floats_only::Bool) = Multiline(map(arg -> apply_format(arg, fmt, floats_only), x.values)...)
+apply_format(x::Annotated, fmt::NumberFormat, floats_only::Bool) = Annotated(apply_format(x.value, fmt, floats_only), x.annotation, x.label)
+apply_format(x::Styled, fmt::NumberFormat, floats_only::Bool) = Styled(apply_format(x.value, fmt, floats_only), x.color, x.bold, x.italic, x.underline)
+apply_format(x::Superscript, fmt::NumberFormat, floats_only::Bool) = Superscript(apply_format(x.super, fmt, floats_only))
+apply_format(x::Subscript, fmt::NumberFormat, floats_only::Bool) = Subscript(apply_format(x.sub, fmt, floats_only))
 
-apply_rounder(x, r::Rounder) = x
-apply_rounder(x::AbstractFloat, r::Rounder) = RoundedFloat(x, r.round_digits, r.round_mode, r.trailing_zeros)
-apply_rounder(x::Concat, r::Rounder) = Concat(map(arg -> apply_rounder(arg, r), x.args)...)
-apply_rounder(x::Multiline, r::Rounder) = Multiline(map(arg -> apply_rounder(arg, r), x.values)...)
-apply_rounder(x::Annotated, r::Rounder) = Annotated(apply_rounder(x.value, r), x.annotation, x.label)
-apply_rounder(x::Styled, r::Rounder) = Styled(apply_rounder(x.value, r), x.color, x.bold, x.italic, x.underline)
-apply_rounder(x::Superscript, r::Rounder) = Superscript(apply_rounder(x.super, r))
-apply_rounder(x::Subscript, r::Rounder) = Subscript(apply_rounder(x.sub, r))
+(fmt::NumberFormat)(x) = apply_format(x, fmt, false)
 
-function postprocess_cell(cell::Cell, r::Rounder)
-    Cell(apply_rounder(cell.value, r), cell.style)
+function postprocess_cell(cell::Cell, fmt::NumberFormat)
+    Cell(apply_format(cell.value, fmt, true), cell.style)
 end
 
 function postprocess(ct::Table)
-    # every table has float rounding / formatting applied as the very last step
+    # every table has float formatting applied as the very last step
     pp = ct.postprocess
-    if ct.round_mode !== nothing
-        rounder = Rounder(ct.round_digits, ct.round_mode, ct.trailing_zeros)
-        pp = [ct.postprocess; rounder]
+    if ct.number_format !== nothing
+        pp = [ct.postprocess; ct.number_format]
     end
     return postprocess_table(ct, pp)
 end

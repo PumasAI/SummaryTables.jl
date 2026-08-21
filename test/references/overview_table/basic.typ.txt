@@ -27,7 +27,7 @@
     table.cell(align: horizon)[#"categorical" #linebreak() #"[String?]"],
     table.cell(align: horizon)[#"1. "#"C" #linebreak() #"2. "#"A" #linebreak() #"3. "#"B"],
     table.cell(align: horizon)[#"40"#" ("#"40"#"%)" #linebreak() #"35"#" ("#"35"#"%)" #linebreak() #"25"#" ("#"25"#"%)"],
-    table.cell(align: horizon)[#image.decode("<svg width='104.0' height='46.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104.0 46.0'><rect x='2.0' y='32.0' width='25.0' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='17.0' width='35.0' height='12.0' fill='lightgray' stroke='gray'/><rect x='2.0' y='2.0' width='40.0' height='12.0' fill='lightgray' stroke='gray'/></svg>")],
+    table.cell(align: horizon)[#box(width: 0pt, hide[1])#box(rect(width: 2.5em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 2.188em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 1.562em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080")))],
     table.cell(align: horizon)[#"100" #linebreak() #"("#"99"#"%)"],
     table.cell(align: horizon)[#"1" #linebreak() #"("#"1"#"%)"],
     table.hline(y: 3, stroke: 1pt),

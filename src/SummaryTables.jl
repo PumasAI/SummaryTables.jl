@@ -45,6 +45,7 @@ export Table
 export Annotated
 export Concat
 export Multiline
+export NumberFormat
 export Pagination
 export ReplaceMissing
 export Replace
