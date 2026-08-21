@@ -9,8 +9,16 @@ cp(
 
 is_ci() = get(ENV, "CI", "false") == "true"
 
+DocMeta.setdocmeta!(
+    SummaryTables,
+    :DocTestSetup,
+    :(using SummaryTables);
+    recursive = true,
+)
+
 makedocs(
     sitename = "SummaryTables.jl",
+    modules = [SummaryTables],
     format = DocumenterVitepress.MarkdownVitepress(;
         repo = "https://github.com/PumasAI/SummaryTables.jl",
     ),

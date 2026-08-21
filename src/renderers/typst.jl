@@ -214,6 +214,19 @@ function _str_typst_escaped(s::AbstractString)
     return sprint(_str_typst_escaped, s, sizehint=lastindex(s))
 end
 
+# one bar per text line, so the bars align with the corresponding category lines of the
+# neighboring cells; each line needs the invisible zero-width text anchor because it forces
+# the exact line box of a text line (which spans cap-height to baseline by default), while the
+# bar rect must stay below that so it doesn't inflate the line box, with its visual height
+# increased via outset which doesn't affect layout
+function _showas(io::IO, ::MIME"text/typst", c::CatFreqPlot)
+    for (i, fraction) in enumerate(c.fractions)
+        i > 1 && print(io, " #linebreak() ")
+        width = round(fraction * 6.25, digits = 3)
+        print(io, "#box(width: 0pt, hide[1])#box(rect(width: $(width)em, height: 0.6em, outset: (y: 0.1em), fill: rgb(\"#d3d3d3\"), stroke: 0.75pt + rgb(\"#808080\")))")
+    end
+end
+
 function _showas(io::IO, ::MIME"text/typst", r::RectPlot)
     print(io, "#image.decode(\"")
     show(io, MIME"image/svg+xml"(), r)

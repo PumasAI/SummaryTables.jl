@@ -108,7 +108,7 @@ function to_docx(ct::Table)
         WriteDocx.TableProperties(
             # Opt-in full width (`full_width` default): Word "AutoFit to window" spreads columns proportionally
             # across the text column. Unset otherwise, so every other consumer keeps content-sized tables.
-            width = ct.full_width ? WriteDocx.TableWidth(pct = 100) : nothing,
+            width = ct.full_width ? 100 * WriteDocx.percent : nothing,
             margins = WriteDocx.TableLevelCellMargins(
                 # Word already has relatively broadly spaced tables,
                 # so we keep margins to a minimum. A little bit on the left
@@ -249,6 +249,8 @@ end
 
 to_runs(x, props) = [WriteDocx.Run([WriteDocx.Text(docx_sprint(x))], props)]
 
+to_runs(r::FormattedFloat, props) = to_runs(formatted_value(r), props)
+
 function to_runs(c::Concat, props)
     runs = WriteDocx.Run[]
     for arg in c.args
@@ -312,6 +314,8 @@ docx_sprint(x) = sprint(x) do io, x
     _showas(io, MIME"text"(), x)
 end
 
+
+to_runs(c::CatFreqPlot, props::WriteDocx.RunProperties) = to_runs(RectPlot(c), props)
 
 function to_runs(r::RectPlot, props::WriteDocx.RunProperties)
     W = WriteDocx

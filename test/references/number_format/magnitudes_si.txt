@@ -1,0 +1,42 @@
+<table id="st-b562dde5">
+    <style>
+        #st-b562dde5 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-b562dde5 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-b562dde5 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-b562dde5 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-b562dde5 sub {
+            line-height: 0;
+        }
+        #st-b562dde5 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">5.432 kB</td>
+        <td style="text-align:center;">1.23 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">1 MB</td>
+        <td style="text-align:center;">0.75 B</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+</table>
