@@ -1,3 +1,5 @@
+const HTML_LINE_HEIGHT = "1.2em"
+
 Base.show(io::IO, ::MIME"juliavscode/html", ct::Table) = show(io, MIME"text/html"(), ct)
 
 function Base.show(io::IO, ::MIME"text/html", ct::Table)
@@ -26,7 +28,7 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
                 padding: 0.25rem;
                 border-collapse: separate;
                 border-spacing: 0.85em 0.2em;
-                line-height: 1.2em;
+                line-height: $(HTML_LINE_HEIGHT);
             }
             #st-$(hash_placeholder) tr {
                 background-color: transparent;
@@ -316,4 +318,19 @@ end
 
 function _showas(io::IO, ::MIME"text/html", r::RectPlot)
     show(io, MIME"image/svg+xml"(), r)
+end
+
+# each bar occupies one line box of the table's line-height, so the bars
+# align with the corresponding text lines of the neighboring cells; 1lh tracks
+# the line-height even if the environment overrides it, with a static fallback
+# for browsers that don't support the unit
+function _showas(io::IO, ::MIME"text/html", c::CatFreqPlot)
+    print(io, "<div style=\"width:6.25em;\">")
+    for fraction in c.fractions
+        width_percent = round(fraction * 100, digits = 2)
+        print(io, "<div style=\"height:$(HTML_LINE_HEIGHT);height:1lh;display:flex;align-items:center;\">")
+        print(io, "<div style=\"width:$(width_percent)%;height:0.75em;background-color:lightgray;border:1px solid gray;box-sizing:border-box;\"></div>")
+        print(io, "</div>")
+    end
+    print(io, "</div>")
 end

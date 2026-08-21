@@ -8,25 +8,135 @@ function _showas(io::IO, mime::MIME, value)
     fn(io::IO, ::MIME, value) = print(io, value)
     return showable(mime, value) ? show(io, mime, value) : fn(io, mime, value)
 end
-function _showas(io::IO, m::MIME, r::RoundedFloat)
+_showas(io::IO, m::MIME, r::FormattedFloat) = _showas(io, m, formatted_value(r))
+
+function formatted_value(r::FormattedFloat)
+    fmt = merge_formats(r.format, DEFAULT_NUMBER_FORMAT)
     f = r.f
-    mode = r.round_mode
-    digits = r.round_digits
-    s = if mode === :auto
-        string(auto_round(f, target_digits = digits))
-    elseif mode === :sigdigits
-        string(round(f, sigdigits = digits))
-    elseif mode === :digits
-        fmt = Printf.Format("%.$(digits)f")
-        Printf.format(fmt, f)
-    else
-        error("Unknown round mode $mode")
+    if !isfinite(f)
+        return string(fmt.prefix, f, fmt.suffix)
     end
-    if !r.trailing_zeros
-        s = replace(s, r"^(\d+)$|^(\d+)\.0*$|^(\d+\.[1-9]*?)0*$" => s"\1\2\3")
+    x = f * fmt.scale
+    comparator = ""
+    if x < fmt.lower_limit
+        x = fmt.lower_limit
+        comparator = "<"
+    elseif x > fmt.upper_limit
+        x = fmt.upper_limit
+        comparator = ">"
     end
-    _showas(io, m, s)
+    magnitude = ""
+    magnitudes = magnitude_strings(fmt.magnitudes)
+    if magnitudes !== nothing
+        x, magnitude = scale_to_magnitude(x, magnitudes, fmt)
+    end
+    mantissa, exponent = format_mantissa_exponent(x, fmt)
+    if exponent === nothing
+        return string(fmt.prefix, comparator, mantissa, magnitude, fmt.suffix)
+    elseif fmt.exponent_style === :x10
+        return Concat(
+            string(fmt.prefix, comparator, mantissa, " × 10"),
+            Superscript(string(exponent)),
+            string(magnitude, fmt.suffix),
+        )
+    end
+    return string(fmt.prefix, comparator, mantissa, "e", exponent, magnitude, fmt.suffix)
 end
+
+function format_mantissa_exponent(x::Float64, fmt::NumberFormat)
+    digits = fmt.digits
+    trailing_zeros = resolve_trailing_zeros(fmt.trailing_zeros, fmt.mode)
+    fmt.mode === :digits && return (fixed_string(x, digits, trailing_zeros), nothing)
+    digits < 1 && throw(ArgumentError("digits must be 1 or more for mode $(repr(fmt.mode)), got $digits."))
+    iszero(x) && return (fixed_string(x, digits - 1, trailing_zeros), nothing)
+
+    rounded = Printf.format(Printf.Format("%.$(digits - 1)e"), x)
+    i_e = findfirst('e', rounded)
+    exponent = parse(Int, rounded[nextind(rounded, i_e):end])
+    significant = parse(Float64, rounded)
+
+    decimals = max(0, digits - 1 - exponent)
+    plain = fmt.mode === :sigdigits ? significant : round(x, digits = decimals)
+    mantissa = rounded[1:prevind(rounded, i_e)]
+    if use_exponent(plain, fmt)
+        return (trailing_zeros ? mantissa : strip_trailing_zeros(mantissa), exponent)
+    end
+    if fmt.mode === :sigdigits && decimals == 0
+        # the placeholder zeros are appended rather than printed from `plain`, whose
+        # exact decimal expansion is not all zeros once it exceeds 2^53
+        return (string(replace(mantissa, "." => ""), "0"^(exponent - digits + 1)), nothing)
+    end
+    return (fixed_string(plain, decimals, trailing_zeros), nothing)
+end
+
+resolve_trailing_zeros(trailing_zeros::Bool, mode::Symbol) = trailing_zeros
+resolve_trailing_zeros(::Symbol, mode::Symbol) = mode !== :auto
+
+resolve_exponent_thresholds(thresholds::Tuple, mode::Symbol) = thresholds
+resolve_exponent_thresholds(::Symbol, mode::Symbol) = mode === :sigdigits ? (-1, :digits) : (-4, 6)
+
+function use_exponent(x::Float64, fmt::NumberFormat)
+    lower, upper = resolve_exponent_thresholds(fmt.exponent_thresholds, fmt.mode)
+    exponent = floor(Int, log10(abs(x)))
+    below = lower !== nothing && exponent < lower
+    above = upper !== nothing && exponent >= (upper === :digits ? fmt.digits : upper)
+    return below || above
+end
+
+function fixed_string(x::Float64, decimals::Int, trailing_zeros::Bool)
+    s = Printf.format(Printf.Format("%.$(decimals)f"), x)
+    trailing_zeros || (s = strip_trailing_zeros(s))
+    return replace(s, r"^-(0(\.0*)?)$" => s"\1")
+end
+
+function strip_trailing_zeros(s::String)
+    occursin('.', s) || return s
+    s = replace(s, r"(\.\d*?)0+$" => s"\1")
+    return replace(s, r"\.$" => "")
+end
+
+magnitude_strings(s::Symbol) = s === :none ? nothing : s === :financial ? MAGNITUDES_FINANCIAL : MAGNITUDES_SI
+magnitude_strings(v::Vector{String}) = v
+
+function scale_to_magnitude(x::Float64, magnitudes::Vector{String}, fmt::NumberFormat)
+    for i in 1:length(magnitudes)
+        mantissa = x / 1000.0 ^ (i - 1)
+        if abs(round_mantissa(mantissa, fmt)) < 1000
+            return mantissa, magnitudes[i]
+        end
+    end
+    return x, magnitudes[1]
+end
+
+round_mantissa(x::Float64, fmt::NumberFormat) =
+    fmt.mode === :digits ? round(x, digits = fmt.digits) :
+    fmt.mode === :sigdigits ? round(x, sigdigits = fmt.digits) :
+    auto_round(x, target_digits = fmt.digits)
+Base.show(io::IO, f::FormattedFloat) = _showas(io, MIME"text"(), f)
+
+const SUPERSCRIPT_CHARS = Dict(
+    '0' => '⁰', '1' => '¹', '2' => '²', '3' => '³', '4' => '⁴',
+    '5' => '⁵', '6' => '⁶', '7' => '⁷', '8' => '⁸', '9' => '⁹',
+    '+' => '⁺', '-' => '⁻',
+)
+const SUBSCRIPT_CHARS = Dict(
+    '0' => '₀', '1' => '₁', '2' => '₂', '3' => '₃', '4' => '₄',
+    '5' => '₅', '6' => '₆', '7' => '₇', '8' => '₈', '9' => '₉',
+    '+' => '₊', '-' => '₋',
+)
+
+function print_script_fallback(io::IO, m::MIME, value, chars::Dict{Char,Char}, ascii_marker::Char)
+    s = sprint(io -> _showas(io, m, value))
+    if all(c -> haskey(chars, c), s)
+        print(io, map(c -> chars[c], s))
+    else
+        print(io, ascii_marker, s)
+    end
+end
+
+_showas(io::IO, m::MIME, s::Superscript) = print_script_fallback(io, m, s.super, SUPERSCRIPT_CHARS, '^')
+_showas(io::IO, m::MIME, s::Subscript) = print_script_fallback(io, m, s.sub, SUBSCRIPT_CHARS, '_')
+
 _showas(io::IO, m::MIME, c::CategoricalValue) = _showas(io, m, CategoricalArrays.DataAPI.unwrap(c))
 
 function _showas(io::IO, m::MIME, c::Concat)
@@ -45,7 +155,7 @@ For example, with 3 target digits, desirable numbers would be 123.0, 12.3, 1.23,
 0.123, 0.0123 etc. Numbers larger than the number of digits are only rounded to the next integer
 (compare with `round(1234, sigdigits = 3)` which rounds to `1230.0`).
 Numbers are rounded to `target_digits` significant digits when the floored base 10
-exponent is -5 and lower or 6 and higher, as these numbers print with `e` notation by default in Julia.
+exponent is -5 and lower or 6 and higher.
 
 ```
 auto_round(        1234567, target_digits = 4) = 1.235e6
@@ -73,7 +183,6 @@ function auto_round(number; target_digits::Int)
     if -5 < oom < 6
         round(number, digits = ndigits)
     else
-        # this relies on Base printing e notation >= 6 and <= -5
         round(number, sigdigits = target_digits)
     end
 end
