@@ -6,19 +6,21 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{7}{lcccccc}}
-\toprule
- &  & \multicolumn{2}{c}{\textbf{group1}} &  &  &  \\
-\cmidrule{3-4}
- & \textbf{Total} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\
-\midrule
-\textbf{value1} &  &  &  & 0.005 & UnequalVarianceTTest & (-6.234, -1.766) \\
-\hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\
-\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] &  &  &  \\
-\bottomrule
+\begin{tabular}{lcccccc}
+\toprule[0.1em]
+ &  & \multicolumn{2}{c}{\textbf{group1}} &  &  &  \\[0.2em]
+\cmidrule[0.075em]{3-4}
+ & \textbf{Total} & a & b & \textbf{P-Value} & \textbf{Test} & \textbf{CI} \\[0.2em]
+\midrule[0.075em]
+\textbf{value1} &  &  &  & 0.005 & UnequalVarianceTTest & (-6.234, -1.766) \\[0.2em]
+\hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 2.5 (1.29) & 6.5 (1.29) &  &  &  \\[0.2em]
+\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] &  &  &  \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

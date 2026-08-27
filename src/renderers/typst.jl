@@ -2,6 +2,7 @@ Base.show(io::IO, ::MIME"QuartoNotebookRunner/typst", t::Table) = show(io, MIME"
 
 function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     ct = postprocess(ct)
+    style = ct.style
 
     cells = sort(to_spanned_cells(ct.cells), by = x -> (x.span[1].start, x.span[2].start))
 
@@ -16,12 +17,16 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     rowgaps = Dict(ct.rowgaps)
     colgaps = Dict(ct.colgaps)
     
+    # text edges are set to the full line box so that row padding measures
+    # the space between line boxes, as it does in the other backends
     print(io, """
 
-    #table(
+    #{
+    set text(top-edge: "ascender", bottom-edge: "descender")
+    table(
         rows: $(size(matrix, 1)),
         columns: $(size(matrix, 2)),
-        column-gutter: 0.25em,
+        inset: (x: $(length_string(style.column_padding / 2)), y: $(length_string(style.row_padding / 2))),
         align: ($(join(column_alignments, ", "))),
         stroke: none,
     """)
@@ -51,12 +56,12 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         print(io, "    table.header(\n    ")
     end
 
-    println(io, "    table.hline(y: 0, stroke: 1pt),")
+    println(io, "    table.hline(y: 0, stroke: $(length_string(style.outer_rule_width))),")
 
     for row in 1:size(matrix, 1)
         level = (ct.header !== nothing && row <= ct.header) ? 2 : 1
         if row == ct.footer
-            indentprintln(level, "table.hline(y: $(row-1), stroke: 0.75pt),")
+            indentprintln(level, "table.hline(y: $(row-1), stroke: $(length_string(style.inner_rule_width))),")
         end
         for col in 1:size(matrix, 2)
             index = matrix[row, col]
@@ -86,24 +91,24 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
                     print(io, "],\n")
                 end
                 if cell.style.border_bottom
-                    indentprintln(level, "table.hline(y: $(row), start: $(cell.span[2].start-1), end: $(cell.span[2].stop), stroke: 0.75pt),")
+                    indentprintln(level, "table.hline(y: $(row), start: $(cell.span[2].start-1), end: $(cell.span[2].stop), stroke: $(length_string(style.cell_rule_width))),")
                 end
                 running_index = index
             end
         end
         if row == ct.header
-            indentprintln(level, "table.hline(y: $(row), stroke: 0.75pt),")
+            indentprintln(level, "table.hline(y: $(row), stroke: $(length_string(style.inner_rule_width))),")
             indentprintln(level-1, "),")
         end
     end
 
-    println(io, "    table.hline(y: $(size(matrix, 1)), stroke: 1pt),")
+    println(io, "    table.hline(y: $(size(matrix, 1)), stroke: $(length_string(style.outer_rule_width))),")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        align = _align(CellStyle(halign = :left), 1)
+        align = _align(CellStyle(halign = style.footnote_halign), 1)
         colspan = "colspan: $(size(matrix, 2))"
         options = join(filter(!isempty, [align, colspan]), ", ")
-        print(io, "    table.cell($options)[#text(size: 0.8em)[")
+        print(io, "    table.cell($options)[#text(size: $(length_string(style.footnote_size)))[")
 
         if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
             print(io, "\n        ")
@@ -132,6 +137,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     end
 
     println(io, ")") # table()
+    println(io, "}")
     return
 end
 

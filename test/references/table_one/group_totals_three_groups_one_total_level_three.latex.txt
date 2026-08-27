@@ -6,29 +6,31 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{14}{lccccccccccccc}}
-\toprule
- &  & \multicolumn{12}{c}{\textbf{group1}} \\
-\cmidrule{3-14}
- &  & \multicolumn{6}{c}{\begin{tabular}{@{}c@{}}a \\ (n=4)\end{tabular}} & \multicolumn{6}{c}{\begin{tabular}{@{}c@{}}b \\ (n=4)\end{tabular}} \\
- &  & \multicolumn{6}{c}{\textbf{group2}} & \multicolumn{6}{c}{\textbf{group2}} \\
-\cmidrule{3-8}\cmidrule{9-14}
- &  & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} \\
- &  & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} \\
-\cmidrule{3-5}\cmidrule{6-8}\cmidrule{9-11}\cmidrule{12-14}
- & \textbf{\begin{tabular}{@{}c@{}}Total \\ (n=8)\end{tabular}} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} \\
-\midrule
-\textbf{value1} &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 1 (NaN) & 3 (NaN) & 2 (1.41) & 2 (NaN) & 4 (NaN) & 3 (1.41) & 5 (NaN) & 7 (NaN) & 6 (1.41) & 6 (NaN) & 8 (NaN) & 7 (1.41) \\
-\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 1 \char`[1, 1] & 3 \char`[3, 3] & 2 \char`[1, 3] & 2 \char`[2, 2] & 4 \char`[4, 4] & 3 \char`[2, 4] & 5 \char`[5, 5] & 7 \char`[7, 7] & 6 \char`[5, 7] & 6 \char`[6, 6] & 8 \char`[8, 8] & 7 \char`[6, 8] \\
-\textbf{value2} &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\hspace{12.0pt}a & 3 (37.5\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\
-\hspace{12.0pt}b & 3 (37.5\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) \\
-\hspace{12.0pt}c & 2 (25\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) \\
-\bottomrule
+\begin{tabular}{lccccccccccccc}
+\toprule[0.1em]
+ &  & \multicolumn{12}{c}{\textbf{group1}} \\[0.2em]
+\cmidrule[0.075em]{3-14}
+ &  & \multicolumn{6}{c}{\begin{tabular}{@{}c@{}}a \\ (n=4)\end{tabular}} & \multicolumn{6}{c}{\begin{tabular}{@{}c@{}}b \\ (n=4)\end{tabular}} \\[0.2em]
+ &  & \multicolumn{6}{c}{\textbf{group2}} & \multicolumn{6}{c}{\textbf{group2}} \\[0.2em]
+\cmidrule[0.075em]{3-8}\cmidrule[0.075em]{9-14}
+ &  & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}e \\ (n=2)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}{@{}c@{}}f \\ (n=2)\end{tabular}} \\[0.2em]
+ &  & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} & \multicolumn{3}{c}{\textbf{group3}} \\[0.2em]
+\cmidrule[0.075em]{3-5}\cmidrule[0.075em]{6-8}\cmidrule[0.075em]{9-11}\cmidrule[0.075em]{12-14}
+ & \textbf{\begin{tabular}{@{}c@{}}Total \\ (n=8)\end{tabular}} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} & \begin{tabular}{@{}c@{}}c \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}d \\ (n=1)\end{tabular} & \begin{tabular}{@{}c@{}}Total \\ (n=2)\end{tabular} \\[0.2em]
+\midrule[0.075em]
+\textbf{value1} &  &  &  &  &  &  &  &  &  &  &  &  &  \\[0.2em]
+\hspace{12.0pt}Mean (SD) & 4.5 (2.45) & 1 (NaN) & 3 (NaN) & 2 (1.41) & 2 (NaN) & 4 (NaN) & 3 (1.41) & 5 (NaN) & 7 (NaN) & 6 (1.41) & 6 (NaN) & 8 (NaN) & 7 (1.41) \\[0.2em]
+\hspace{12.0pt}Median \char`[Min, Max] & 4.5 \char`[1, 8] & 1 \char`[1, 1] & 3 \char`[3, 3] & 2 \char`[1, 3] & 2 \char`[2, 2] & 4 \char`[4, 4] & 3 \char`[2, 4] & 5 \char`[5, 5] & 7 \char`[7, 7] & 6 \char`[5, 7] & 6 \char`[6, 6] & 8 \char`[8, 8] & 7 \char`[6, 8] \\[0.2em]
+\textbf{value2} &  &  &  &  &  &  &  &  &  &  &  &  &  \\[0.2em]
+\hspace{12.0pt}a & 3 (37.5\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\[0.2em]
+\hspace{12.0pt}b & 3 (37.5\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) \\[0.2em]
+\hspace{12.0pt}c & 2 (25\%) & 0 (0\%) & 1 (100\%) & 1 (50\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) & 1 (100\%) & 0 (0\%) & 1 (50\%) \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

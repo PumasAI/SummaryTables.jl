@@ -1,23 +1,25 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 10,
     columns: 5,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, left, left, center, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [],
         [],
         table.cell(colspan: 2)[*#"Group 3"*],
-        table.hline(y: 1, start: 3, end: 5, stroke: 0.75pt),
+        table.hline(y: 1, start: 3, end: 5, stroke: 0.075em),
         [*#"Group 1"*],
         [*#"group2"*],
         [],
         [#"c"],
         [#"d"],
-        table.hline(y: 2, stroke: 0.75pt),
+        table.hline(y: 2, stroke: 0.075em),
     ),
     table.cell(rowspan: 4)[#"a"],
     table.cell(rowspan: 2)[#"e"],
@@ -49,5 +51,6 @@
     [*#"std"*],
     [#"NaN"],
     [#"NaN"],
-    table.hline(y: 10, stroke: 1pt),
+    table.hline(y: 10, stroke: 0.1em),
 )
+}

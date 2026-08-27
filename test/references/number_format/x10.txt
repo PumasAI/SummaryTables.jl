@@ -1,6 +1,6 @@
-<table id="st-0d517dee">
+<table id="st-362f0c31">
     <style>
-        #st-0d517dee {
+        #st-362f0c31 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,28 +8,28 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-0d517dee tr {
+        #st-362f0c31 tr {
             background-color: transparent;
             border: none;
         }
-        #st-0d517dee tr td {
+        #st-362f0c31 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-0d517dee br {
+        #st-362f0c31 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-0d517dee sub {
+        #st-362f0c31 sub {
             line-height: 0;
         }
-        #st-0d517dee sup {
+        #st-362f0c31 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;">1.5 × 10<sup>18</sup></td>
         <td style="text-align:center;">0.5</td>
@@ -38,5 +38,5 @@
         <td style="text-align:center;">2.34 × 10<sup>-7</sup></td>
         <td style="text-align:center;">1</td>
     </tr>
-    <tr><td colspan="2" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="2" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
 </table>

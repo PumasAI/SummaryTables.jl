@@ -1,21 +1,23 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 15,
     columns: 4,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center, center, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [],
         table.cell(colspan: 2)[*#"group1"*],
-        table.hline(y: 1, start: 2, end: 4, stroke: 0.75pt),
+        table.hline(y: 1, start: 2, end: 4, stroke: 0.075em),
         [],
         [*#"Total"*],
         [#"a"],
         [#"b"],
-        table.hline(y: 2, stroke: 0.75pt),
+        table.hline(y: 2, stroke: 0.075em),
     ),
     [*#"value1"*],
     [],
@@ -69,5 +71,6 @@
     [#"4"#" ("#"50"#"%)"],
     [#"2"#" ("#"50"#"%)"],
     [#"2"#" ("#"50"#"%)"],
-    table.hline(y: 15, stroke: 1pt),
+    table.hline(y: 15, stroke: 0.1em),
 )
+}

@@ -1,12 +1,14 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 7,
     columns: 9,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center, right, center, right, center, right, center, right),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [*#"group1"*],
         [],
@@ -52,7 +54,7 @@
         [*#"mean"*],
         [*#"value1"*],
         [*#"mean"*],
-        table.hline(y: 5, stroke: 0.75pt),
+        table.hline(y: 5, stroke: 0.075em),
     ),
     [#"c"],
     [#"1"],
@@ -72,5 +74,6 @@
     [#"7"],
     [#"8"],
     [#"8"],
-    table.hline(y: 7, stroke: 1pt),
+    table.hline(y: 7, stroke: 0.1em),
 )
+}

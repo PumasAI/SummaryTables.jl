@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\begin{document}
+\begin{table}[!ht]
+\setlength\tabcolsep{1em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.5em}
+\centering
+\begin{threeparttable}
+\begin{tabular}{cc}
+\toprule[2pt]
+\multicolumn{2}{c}{Header} \\[0.5em]
+\cmidrule[1pt]{1-2}
+\midrule[0.2em]
+Body 1 & Body 2 \\[0.5em]
+Body 3 & Body 4 \\[0.5em]
+\bottomrule[2pt]
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\fontsize{12pt}{14.399999999999999pt}\selectfont
+\raggedleft
+\item[]A footnote.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}

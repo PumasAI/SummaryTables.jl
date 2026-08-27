@@ -6,20 +6,22 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{llcc}}
-\toprule
- &  & \multicolumn{2}{c}{\textbf{group3}} \\
-\cmidrule{3-4}
- &  & c & d \\
-\textbf{group1} & \textbf{group2} & \multicolumn{2}{c}{\textbf{value1}} \\
-\midrule
-a & e & 1 & 3 \\[6.0pt]
- & \textbf{mean} & 1 & 3 \\
- & \textbf{std} & NaN & NaN \\
-\bottomrule
+\begin{tabular}{llcc}
+\toprule[0.1em]
+ &  & \multicolumn{2}{c}{\textbf{group3}} \\[0.2em]
+\cmidrule[0.075em]{3-4}
+ &  & c & d \\[0.2em]
+\textbf{group1} & \textbf{group2} & \multicolumn{2}{c}{\textbf{value1}} \\[0.2em]
+\midrule[0.075em]
+a & e & 1 & 3 \\[\dimexpr 0.2em + 6.0pt\relax]
+ & \textbf{mean} & 1 & 3 \\[0.2em]
+ & \textbf{std} & NaN & NaN \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

@@ -4,6 +4,7 @@ Base.show(io::IO, ::MIME"juliavscode/html", ct::Table) = show(io, MIME"text/html
 
 function Base.show(io::IO, ::MIME"text/html", ct::Table)
     ct = postprocess(ct)
+    style = ct.style
 
     cells = sort(to_spanned_cells(ct.cells), by = x -> (x.span[1].start, x.span[2].start))
 
@@ -27,7 +28,7 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
                 margin: 0 auto;
                 padding: 0.25rem;
                 border-collapse: separate;
-                border-spacing: 0.85em 0.2em;
+                border-spacing: $(length_string(style.column_padding)) $(length_string(style.row_padding));
                 line-height: $(HTML_LINE_HEIGHT);
             }
             #st-$(hash_placeholder) tr {
@@ -53,7 +54,7 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
         </style>
     """)
     # border-collapse requires a separate row/cell to insert a border, it can't be put on <tfoot>
-    println(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom: 1.5px solid currentColor; padding: 0\"></td></tr>")
+    println(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom: $(length_string(style.outer_rule_width)) solid currentColor; padding: 0\"></td></tr>")
 
     validate_rowgaps(ct.rowgaps, size(matrix, 1))
     validate_colgaps(ct.colgaps, size(matrix, 2))
@@ -65,14 +66,14 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
         if row == ct.footer
             print(_io, "    <tfoot>\n")
             # border-collapse requires a separate row/cell to insert a border, it can't be put on <tfoot>
-            print(_io, "        <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom:1px solid currentColor;padding:0\"></td></tr>")
+            print(_io, "        <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom:$(length_string(style.inner_rule_width)) solid currentColor;padding:0\"></td></tr>")
         end
         print(_io, "    <tr>\n")
         for col in 1:size(matrix, 2)
             index = matrix[row, col]
             if index > running_index
                 print(_io, "        ")
-                print_html_cell(_io, cells[index], rowgaps, colgaps)
+                print_html_cell(_io, cells[index], rowgaps, colgaps, style)
                 running_index = index
                 print(_io, "\n")
             elseif index == 0
@@ -84,15 +85,15 @@ function Base.show(io::IO, ::MIME"text/html", ct::Table)
         print(_io, "    </tr>\n")
         if row == ct.header
             # border-collapse requires a separate row/cell to insert a border, it can't be put on <thead>
-            print(_io, "        <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom:1px solid currentColor;padding:0\"></td></tr>")
+            print(_io, "        <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom:$(length_string(style.inner_rule_width)) solid currentColor;padding:0\"></td></tr>")
         end
     end
 
     # border-collapse requires a separate row/cell to insert a border, it can't be put on <tfoot>
-    println(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom: 1.5px solid currentColor; padding: 0\"></td></tr>")
+    println(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"border-bottom: $(length_string(style.outer_rule_width)) solid currentColor; padding: 0\"></td></tr>")
 
     if !isempty(annotations) || !isempty(ct.footnotes)
-        print(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"font-size: 0.8em;\">")
+        print(_io, "    <tr><td colspan=\"$(size(matrix, 2))\" style=\"font-size: $(length_string(style.footnote_size));text-align:$(style.footnote_halign);\">")
         for (i, (annotation, label)) in enumerate(annotations)
             if i > 1
                 if ct.linebreak_footnotes
@@ -181,7 +182,7 @@ function _showas(io::IO, M::MIME"text/html", s::Styled)
     print(io, "</span>")
 end
 
-function print_html_cell(io, cell::SpannedCell, rowgaps, colgaps)
+function print_html_cell(io, cell::SpannedCell, rowgaps, colgaps, style)
     print(io, "<td")
     nrows, ncols = map(length, cell.span)
     if nrows > 1
@@ -210,7 +211,7 @@ function print_html_cell(io, cell::SpannedCell, rowgaps, colgaps)
         print(io, "padding-right:$(padding_right/2)pt;")
     end
     if cell.style.border_bottom
-        print(io, "border-bottom:1px solid currentColor; ")
+        print(io, "border-bottom:$(length_string(style.cell_rule_width)) solid currentColor; ")
     end
     padding_bottom = get(rowgaps, cell.span[1].stop, nothing)
     if padding_bottom !== nothing

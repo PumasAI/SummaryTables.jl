@@ -6,14 +6,16 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
-\toprule
-A\tnote{1} & B\tnote{2} \\
-C\tnote{3} & D\tnote{1} \\
-\bottomrule
+\begin{tabular}{cc}
+\toprule[0.1em]
+A\tnote{1} & B\tnote{2} \\[0.2em]
+C\tnote{3} & D\tnote{1} \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize

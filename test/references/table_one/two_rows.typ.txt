@@ -1,15 +1,17 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 8,
     columns: 2,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [*#"Total"*],
-        table.hline(y: 1, stroke: 0.75pt),
+        table.hline(y: 1, stroke: 0.075em),
     ),
     [*#"value1"*],
     [],
@@ -25,5 +27,6 @@
     [#"3"#" ("#"37.5"#"%)"],
     [#h(12.0pt)#"c"],
     [#"2"#" ("#"25"#"%)"],
-    table.hline(y: 8, stroke: 1pt),
+    table.hline(y: 8, stroke: 0.1em),
 )
+}

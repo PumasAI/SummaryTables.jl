@@ -52,10 +52,13 @@ export Replace
 export Superscript
 export Subscript
 export Styled
+@public DocxDefaults
+@public Em, Pt, em, pt
 
 @public defaults!
 @public with_defaults
 
+include("infrastructure/units.jl")
 include("infrastructure/cells.jl")
 include("infrastructure/special_cell_values.jl")
 include("infrastructure/tables.jl")

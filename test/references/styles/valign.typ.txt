@@ -1,16 +1,19 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 3,
     columns: 4,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (center, center, center, center),
     stroke: none,
-    table.hline(y: 0, stroke: 1pt),
+    table.hline(y: 0, stroke: 0.1em),
     [#"Row 1"],
     table.cell(rowspan: 3)[#"top"],
     table.cell(rowspan: 3, align: horizon)[#"center"],
     table.cell(rowspan: 3, align: bottom)[#"bottom"],
     [#"Row 2"],
     [#"Row 3"],
-    table.hline(y: 3, stroke: 1pt),
+    table.hline(y: 3, stroke: 0.1em),
 )
+}

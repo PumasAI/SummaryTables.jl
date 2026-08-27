@@ -6,23 +6,25 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{llcc}}
-\toprule
- &  & \multicolumn{2}{c}{\textbf{Group 3}} \\
-\cmidrule{3-4}
- &  & c & d \\
-\textbf{Group 1} & \textbf{Group 2} & \multicolumn{2}{c}{\textbf{Value 1}} \\
-\midrule
-\multirow[t]{2}{*}{a} & e & 1 & 3 \\
- & f & 2 & 4 \\
-\multirow[t]{2}{*}{b} & e & 5 & 7 \\
- & f & 6 & 8 \\[6.0pt]
- & \textbf{Mean} & 3.5 & 5.5 \\
- & \textbf{Minimum} & 1 & 3 \\
-\bottomrule
+\begin{tabular}{llcc}
+\toprule[0.1em]
+ &  & \multicolumn{2}{c}{\textbf{Group 3}} \\[0.2em]
+\cmidrule[0.075em]{3-4}
+ &  & c & d \\[0.2em]
+\textbf{Group 1} & \textbf{Group 2} & \multicolumn{2}{c}{\textbf{Value 1}} \\[0.2em]
+\midrule[0.075em]
+\multirow[t]{2}{*}{a} & e & 1 & 3 \\[0.2em]
+ & f & 2 & 4 \\[0.2em]
+\multirow[t]{2}{*}{b} & e & 5 & 7 \\[0.2em]
+ & f & 6 & 8 \\[\dimexpr 0.2em + 6.0pt\relax]
+ & \textbf{Mean} & 3.5 & 5.5 \\[0.2em]
+ & \textbf{Minimum} & 1 & 3 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

@@ -6,15 +6,17 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{cccc}}
-\toprule
-Row 1 & \multirow[t]{3}{*}{top} & \multirow[c]{3}{*}{center} & \multirow[b]{3}{*}{bottom} \\
-Row 2 &  &  &  \\
-Row 3 &  &  &  \\
-\bottomrule
+\begin{tabular}{cccc}
+\toprule[0.1em]
+Row 1 & \multirow[t]{3}{*}{top} & \multirow[c]{3}{*}{center} & \multirow[b]{3}{*}{bottom} \\[0.2em]
+Row 2 &  &  &  \\[0.2em]
+Row 3 &  &  &  \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

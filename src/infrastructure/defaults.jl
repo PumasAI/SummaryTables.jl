@@ -1,11 +1,3 @@
-abstract type AbstractDefaults end
-
-struct Default end
-const default = Default()
-
-fallback(value::Default, default) = default
-fallback(value, default) = value
-
 "" # otherwise field docstrings are not parsed
 Base.@kwdef struct TableOneDefaults <: AbstractDefaults
     "Function f(col) that returns an analysis function for categorical columns."
@@ -30,6 +22,22 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
+    "Width of the rules above and below the table, as an `Em` or `Pt` length."
+    outer_rule_width::Length = 0.1em
+    "Width of the rules below the header and above the footer, as an `Em` or `Pt` length."
+    inner_rule_width::Length = 0.075em
+    "Width of the rules drawn for cells with `border_bottom = true`, as an `Em` or `Pt` length."
+    cell_rule_width::Length = 0.075em
+    "Horizontal space between adjacent columns, as an `Em` or `Pt` length."
+    column_padding::Length = 0.85em
+    "Vertical space between adjacent rows, as an `Em` or `Pt` length."
+    row_padding::Length = 0.2em
+    "Font size of footnotes and annotations, as an `Em` or `Pt` length."
+    footnote_size::Length = 0.8em
+    "Horizontal alignment of the footnotes, either `:left`, `:center` or `:right`."
+    footnote_halign::Symbol = :left
+    "Defaults for Word-specific rendering options."
+    docx::DocxDefaults = DocxDefaults()
     "Defaults for the `table_one` function"
     table_one::TableOneDefaults = TableOneDefaults()
 end
