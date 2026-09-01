@@ -15,9 +15,9 @@ table(
     ),
     [*#"value1"*],
     [],
-    [#h(12.0pt)#"Mean (SD)"],
+    [#h(12pt)#"Mean (SD)"],
     [#"4.5"#" ("#"2.45"#")"],
-    [#h(12.0pt)#"Median [Min, Max]"],
+    [#h(12pt)#"Median [Min, Max]"],
     [#"4.5"#" ["#"1"#", "#"8"#"]"],
     table.hline(y: 4, stroke: 0.1em),
 )

@@ -18,8 +18,8 @@
  & \textbf{Total} & T\textsubscript{max} & C\textsuperscript{max} & \begin{tabular}{@{}c@{}}One Line \\ Another Line\end{tabular} \\[0.2em]
 \midrule[0.075em]
 \textbf{value} &  &  &  &  \\[0.2em]
-\hspace{12.0pt}Mean (SD) & 6.5 (3.61) & 2.5 (1.29) & 6.5 (1.29) & 10.5 (1.29) \\[0.2em]
-\hspace{12.0pt}Median \char`[Min, Max] & 6.5 \char`[1, 12] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] & 10.5 \char`[9, 12] \\[0.2em]
+\hspace{12pt}Mean (SD) & 6.5 (3.61) & 2.5 (1.29) & 6.5 (1.29) & 10.5 (1.29) \\[0.2em]
+\hspace{12pt}Median \char`[Min, Max] & 6.5 \char`[1, 12] & 2.5 \char`[1, 4] & 6.5 \char`[5, 8] & 10.5 \char`[9, 12] \\[0.2em]
 \bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}

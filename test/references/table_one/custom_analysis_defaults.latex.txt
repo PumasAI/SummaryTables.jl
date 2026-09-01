@@ -16,9 +16,9 @@
  & \textbf{Total} \\[0.2em]
 \midrule[0.075em]
 \textbf{value1} &  \\[0.2em]
-\hspace{12.0pt}Mean & 4.5 \\[0.2em]
+\hspace{12pt}Mean & 4.5 \\[0.2em]
 \textbf{group1} &  \\[0.2em]
-\hspace{12.0pt}N Unique & 2 \\[0.2em]
+\hspace{12pt}N Unique & 2 \\[0.2em]
 \bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}

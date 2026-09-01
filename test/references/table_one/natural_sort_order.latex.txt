@@ -18,8 +18,8 @@
  & \textbf{Total} & 1 mg & 5 mg & 10 mg & 50 mg \\[0.2em]
 \midrule[0.075em]
 \textbf{value} &  &  &  &  &  \\[0.2em]
-\hspace{12.0pt}Mean (SD) & 3 (1.41) & 2.67 (2.08) & 2.67 (1.53) & 4.33 (0.577) & 2.33 (0.577) \\[0.2em]
-\hspace{12.0pt}Median \char`[Min, Max] & 3 \char`[1, 5] & 2 \char`[1, 5] & 3 \char`[1, 4] & 4 \char`[4, 5] & 2 \char`[2, 3] \\[0.2em]
+\hspace{12pt}Mean (SD) & 3 (1.41) & 2.67 (2.08) & 2.67 (1.53) & 4.33 (0.577) & 2.33 (0.577) \\[0.2em]
+\hspace{12pt}Median \char`[Min, Max] & 3 \char`[1, 5] & 2 \char`[1, 5] & 3 \char`[1, 4] & 4 \char`[4, 5] & 2 \char`[2, 3] \\[0.2em]
 \bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}

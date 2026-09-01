@@ -13,9 +13,9 @@
 \begin{threeparttable}
 \begin{tabular}{lllllll}
 \toprule[0.1em]
-\textbf{No} & \textbf{Variable} & \textbf{Stats / Values} & \textbf{Freqs (\% of Valid)} & \textbf{Graph} & \textbf{Valid} & \textbf{Missing} \\[\dimexpr 0.2em + 6.0pt\relax]
+\textbf{No} & \textbf{Variable} & \textbf{Stats / Values} & \textbf{Freqs (\% of Valid)} & \textbf{Graph} & \textbf{Valid} & \textbf{Missing} \\[\dimexpr 0.2em + 6pt\relax]
 \midrule[0.075em]
-1 & \begin{tabular}{@{}l@{}}floatmissing \\ \char`[Float64?]\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}l@{}}3 \\ (100\%)\end{tabular} \\[\dimexpr 0.2em + 6.0pt\relax]
+1 & \begin{tabular}{@{}l@{}}floatmissing \\ \char`[Float64?]\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}l@{}}3 \\ (100\%)\end{tabular} \\[\dimexpr 0.2em + 6pt\relax]
 2 & \begin{tabular}{@{}l@{}}justmissing \\ \char`[Missing]\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}\end{tabular} & \begin{tabular}{@{}l@{}}0 \\ (0\%)\end{tabular} & \begin{tabular}{@{}l@{}}3 \\ (100\%)\end{tabular} \\[0.2em]
 \bottomrule[0.1em]
 \end{tabular}

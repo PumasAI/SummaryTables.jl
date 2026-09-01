@@ -11,9 +11,9 @@
 \setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{cc@{\hskip \dimexpr 2\tabcolsep+4.0pt\relax}cc}
+\begin{tabular}{cc@{\hskip \dimexpr 2\tabcolsep+4pt\relax}cc}
 \toprule[0.1em]
- & \multicolumn{3}{c}{Spanned columns} \\[\dimexpr 0.2em + 4.0pt\relax]
+ & \multicolumn{3}{c}{Spanned columns} \\[\dimexpr 0.2em + 4pt\relax]
 \multirow[t]{3}{*}{Spanned rows} &  &  &  \\[0.2em]
  &  &  &  \\[0.2em]
  &  &  &  \\[0.2em]

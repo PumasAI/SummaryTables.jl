@@ -18,9 +18,9 @@
  & \textbf{Total} & 1 & 2 \\[0.2em]
 \midrule[0.075em]
 \textbf{empty} &  &  &  \\[0.2em]
-\hspace{12.0pt}Mean (SD) & 2 (1) & NC & 2 (1) \\[0.2em]
-\hspace{12.0pt}Median \char`[Min, Max] & 2 \char`[1, 3] & NC & 2 \char`[1, 3] \\[0.2em]
-\hspace{12.0pt}Missing & 3 (50\%) & 3 (100\%) & 0 (0\%) \\[0.2em]
+\hspace{12pt}Mean (SD) & 2 (1) & NC & 2 (1) \\[0.2em]
+\hspace{12pt}Median \char`[Min, Max] & 2 \char`[1, 3] & NC & 2 \char`[1, 3] \\[0.2em]
+\hspace{12pt}Missing & 3 (50\%) & 3 (100\%) & 0 (0\%) \\[0.2em]
 \bottomrule[0.1em]
 \end{tabular}
 \begin{tablenotes}[flushleft]

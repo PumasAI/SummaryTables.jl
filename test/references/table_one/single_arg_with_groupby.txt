@@ -1,6 +1,6 @@
-<table id="st-a9180e5f">
+<table id="st-4a1e1ed5">
     <style>
-        #st-a9180e5f {
+        #st-4a1e1ed5 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-a9180e5f tr {
+        #st-4a1e1ed5 tr {
             background-color: transparent;
             border: none;
         }
-        #st-a9180e5f tr td {
+        #st-4a1e1ed5 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-a9180e5f br {
+        #st-4a1e1ed5 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-a9180e5f sub {
+        #st-4a1e1ed5 sub {
             line-height: 0;
         }
-        #st-a9180e5f sup {
+        #st-4a1e1ed5 sup {
             line-height: 0;
         }
     </style>
@@ -48,13 +48,13 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="padding-left:12pt;text-align:left;">Mean (SD)</td>
         <td style="text-align:center;">4.5 (2.45)</td>
         <td style="text-align:center;">2.5 (1.29)</td>
         <td style="text-align:center;">6.5 (1.29)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="padding-left:12pt;text-align:left;">Median [Min, Max]</td>
         <td style="text-align:center;">4.5 [1, 8]</td>
         <td style="text-align:center;">2.5 [1, 4]</td>
         <td style="text-align:center;">6.5 [5, 8]</td>
@@ -66,19 +66,19 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">a</td>
+        <td style="padding-left:12pt;text-align:left;">a</td>
         <td style="text-align:center;">3 (37.5%)</td>
         <td style="text-align:center;">2 (50%)</td>
         <td style="text-align:center;">1 (25%)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">b</td>
+        <td style="padding-left:12pt;text-align:left;">b</td>
         <td style="text-align:center;">3 (37.5%)</td>
         <td style="text-align:center;">1 (25%)</td>
         <td style="text-align:center;">2 (50%)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">c</td>
+        <td style="padding-left:12pt;text-align:left;">c</td>
         <td style="text-align:center;">2 (25%)</td>
         <td style="text-align:center;">1 (25%)</td>
         <td style="text-align:center;">1 (25%)</td>
@@ -90,13 +90,13 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">c</td>
+        <td style="padding-left:12pt;text-align:left;">c</td>
         <td style="text-align:center;">4 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">d</td>
+        <td style="padding-left:12pt;text-align:left;">d</td>
         <td style="text-align:center;">4 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
@@ -108,13 +108,13 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">e</td>
+        <td style="padding-left:12pt;text-align:left;">e</td>
         <td style="text-align:center;">4 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">f</td>
+        <td style="padding-left:12pt;text-align:left;">f</td>
         <td style="text-align:center;">4 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>
         <td style="text-align:center;">2 (50%)</td>

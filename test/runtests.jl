@@ -1243,6 +1243,23 @@ end
     @test Table(cells).style.footnote_halign == :left
 end
 
+@testset "indent and gaps as lengths" begin
+    @test CellStyle(indent = 1.5em).indent == Em(1.5)
+    @test CellStyle(indent = 12pt).indent == Pt(12.0)
+    @test CellStyle().indent == Em(0.0)
+    @test CellStyle(indent_pt = 8).indent == Pt(8.0) # deprecated, maps to points
+    @test_throws "Cannot set both" CellStyle(indent = 1em, indent_pt = 8)
+    @test CellStyle(CellStyle(indent = 3pt); bold = true).indent == Pt(3.0)
+
+    cells = [SpannedCell(i, j, "$i") for i in 1:2 for j in 1:2]
+    t = Table(cells; rowgaps = [1 => 0.5em], colgaps = [1 => 4.0])
+    @test t.rowgaps == [1 => Em(0.5)]
+    @test t.colgaps == [1 => Pt(4.0)] # bare number interpreted as points
+
+    ct = Table([SpannedCell(1, 1, "A"), SpannedCell(1, 2, "B", CellStyle(indent = 1.5em))]; colgaps = [1 => 6pt])
+    @test occursin("padding-left:calc(3pt + 1.5em);", sprint(show, MIME"text/html"(), ct))
+end
+
 @testset "DocxDefaults base_fontsize" begin
     t = Table([SpannedCell(1, 1, "A", CellStyle(border_bottom = true)), SpannedCell(2, 1, "B")], 1, nothing)
     xml(node) = string(WriteDocx.to_xml(node))

@@ -15,11 +15,11 @@ table(
     ),
     [*#"value1"*],
     [],
-    [#h(12.0pt)#"Mean"],
+    [#h(12pt)#"Mean"],
     [#"4.5"],
     [*#"group1"*],
     [],
-    [#h(12.0pt)#"N Unique"],
+    [#h(12pt)#"N Unique"],
     [#"2"],
     table.hline(y: 5, stroke: 0.1em),
 )

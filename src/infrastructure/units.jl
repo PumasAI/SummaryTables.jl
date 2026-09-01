@@ -29,6 +29,13 @@ Base.:*(x::Real, u::Pt) = Pt(x * u.value)
 Base.:/(l::Em, x::Real) = Em(l.value / x)
 Base.:/(l::Pt, x::Real) = Pt(l.value / x)
 
+Base.iszero(l::Em) = iszero(l.value)
+Base.iszero(l::Pt) = iszero(l.value)
+
+# bare numbers passed where a length is expected are interpreted as points
+to_length(l::Length) = l
+to_length(x::Real) = x * pt
+
 length_string(l::Em) = string(shortest_float_repr(l.value), "em")
 length_string(l::Pt) = string(shortest_float_repr(l.value), "pt")
 

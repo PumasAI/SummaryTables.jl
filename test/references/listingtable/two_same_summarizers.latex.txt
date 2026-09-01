@@ -26,7 +26,7 @@
 \multirow[t]{2}{*}{50} & 5 mg & 3 & 3 & 3 \\[0.2em]
  & 10 mg & 4 & 4 & 4 \\[0.2em]
 \multirow[t]{2}{*}{80} & 5 mg & 1 & 1 & 1 \\[0.2em]
- & 10 mg & 4 & 4 & 4 \\[\dimexpr 0.2em + 6.0pt\relax]
+ & 10 mg & 4 & 4 & 4 \\[\dimexpr 0.2em + 6pt\relax]
  & \textbf{mean} & 3 &  &  \\[0.2em]
  & \textbf{mean} & 3 &  &  \\[0.2em]
 \bottomrule[0.1em]

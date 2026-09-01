@@ -1,6 +1,6 @@
-<table id="st-68724048">
+<table id="st-58866ab7">
     <style>
-        #st-68724048 {
+        #st-58866ab7 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,24 +8,24 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-68724048 tr {
+        #st-58866ab7 tr {
             background-color: transparent;
             border: none;
         }
-        #st-68724048 tr td {
+        #st-58866ab7 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-68724048 br {
+        #st-58866ab7 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-68724048 sub {
+        #st-58866ab7 sub {
             line-height: 0;
         }
-        #st-68724048 sup {
+        #st-58866ab7 sup {
             line-height: 0;
         }
     </style>
@@ -39,11 +39,11 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">Mean (SD)</td>
+        <td style="padding-left:12pt;text-align:left;">Mean (SD)</td>
         <td style="text-align:center;">4.5 (2.45)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">Median [Min, Max]</td>
+        <td style="padding-left:12pt;text-align:left;">Median [Min, Max]</td>
         <td style="text-align:center;">4.5 [1, 8]</td>
     </tr>
     <tr>
@@ -51,15 +51,15 @@
         <td style="text-align:center;"></td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">a</td>
+        <td style="padding-left:12pt;text-align:left;">a</td>
         <td style="text-align:center;">3 (37.5%)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">b</td>
+        <td style="padding-left:12pt;text-align:left;">b</td>
         <td style="text-align:center;">3 (37.5%)</td>
     </tr>
     <tr>
-        <td style="padding-left:12.0pt;text-align:left;">c</td>
+        <td style="padding-left:12pt;text-align:left;">c</td>
         <td style="text-align:center;">2 (25%)</td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>

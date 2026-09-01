@@ -46,7 +46,7 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
             print(iob, char)
             if haskey(colgaps, icol)
                 # @{} suppresses the 2 * tabcolsep at this column boundary, so it is re-added
-                print(iob, "@{\\hskip \\dimexpr 2\\tabcolsep+$(colgaps[icol])pt\\relax}")
+                print(iob, "@{\\hskip \\dimexpr 2\\tabcolsep+$(length_string(colgaps[icol]))\\relax}")
             end
         end
         String(take!(iob))
@@ -122,7 +122,7 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
 
         print(io, " \\\\")
         if haskey(rowgaps, row)
-            print(io, "[\\dimexpr $(length_string(style.row_padding)) + $(rowgaps[row])pt\\relax]")
+            print(io, "[\\dimexpr $(length_string(style.row_padding)) + $(length_string(rowgaps[row]))\\relax]")
         else
             print(io, "[$(length_string(style.row_padding))]")
         end
@@ -208,7 +208,7 @@ function print_latex_cell(io, cell::SpannedCell)
     cell.value === nothing && return
 
     st = cell.style
-    st.indent_pt > 0 && print(io, "\\hspace{$(st.indent_pt)pt}")
+    iszero(st.indent) || print(io, "\\hspace{$(length_string(st.indent))}")
     st.bold && print(io, "\\textbf{")
     st.italic && print(io, "\\textit{")
     st.underline && print(io, "\\underline{")

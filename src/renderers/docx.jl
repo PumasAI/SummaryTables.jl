@@ -4,6 +4,7 @@ docx_rule_size(l::Length, base_fontsize) =
 
 # the table's font-relative lengths resolved to absolute Word measures for one export
 Base.@kwdef struct DocxMeasures
+    base_fontsize::Float64
     outer_rule_size
     inner_rule_size
     cell_rule_size
@@ -14,6 +15,7 @@ end
 
 function DocxMeasures(style::TableStyle, base_fontsize::Real)
     DocxMeasures(
+        base_fontsize = base_fontsize,
         outer_rule_size = docx_rule_size(style.outer_rule_width, base_fontsize),
         inner_rule_size = docx_rule_size(style.inner_rule_width, base_fontsize),
         cell_rule_size = docx_rule_size(style.cell_rule_width, base_fontsize),
@@ -180,6 +182,9 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
     cs = cell.style
 
     pt = WriteDocx.pt
+    bf = measures.base_fontsize
+    gap_pt(gap) = 0.5 * resolve_pt(gap, bf)
+    indent_pt = resolve_pt(cs.indent, bf)
 
     bottom_rowgap = get(rowgaps, cell.span[1].stop, nothing)
     if bottom_rowgap === nothing
@@ -189,29 +194,29 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
             bottom_margin = nothing
         end
     else
-        bottom_margin = 0.5 * bottom_rowgap * pt
+        bottom_margin = gap_pt(bottom_rowgap) * pt
     end
 
     top_rowgap = get(rowgaps, cell.span[1].start-1, nothing)
-    top_margin = top_rowgap === nothing ? nothing : 0.5 * top_rowgap * pt
+    top_margin = top_rowgap === nothing ? nothing : gap_pt(top_rowgap) * pt
 
     left_colgap = get(colgaps, cell.span[2].start-1, nothing)
     if left_colgap === nothing
-        if cs.indent_pt != 0
-            left_margin = cs.indent_pt * pt
+        if !iszero(cs.indent)
+            left_margin = indent_pt * pt
         else
             left_margin = nothing
         end
     else
-        if cs.indent_pt != 0
-            left_margin = (cs.indent_pt + 0.5 * left_colgap) * pt
+        if !iszero(cs.indent)
+            left_margin = (indent_pt + gap_pt(left_colgap)) * pt
         else
-            left_margin = 0.5 * left_colgap * pt
+            left_margin = gap_pt(left_colgap) * pt
         end
     end
 
     right_colgap = get(colgaps, cell.span[2].stop, nothing)
-    right_margin = right_colgap === nothing ? nothing : 0.5 * right_colgap * pt
+    right_margin = right_colgap === nothing ? nothing : gap_pt(right_colgap) * pt
 
     left_end = col == cell.span[2].start
     right_end = col == cell.span[2].stop

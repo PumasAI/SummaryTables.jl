@@ -202,26 +202,29 @@ function print_html_cell(io, cell::SpannedCell, rowgaps, colgaps, style)
         print(io, "text-decoration:underline;")
     end
     padding_left = get(colgaps, cell.span[2].start-1, nothing)
-    if cell.style.indent_pt != 0 || padding_left !== nothing
-        pl = something(padding_left, 0.0) / 2 + cell.style.indent_pt
-        print(io, "padding-left:$(pl)pt;")
+    left_terms = String[]
+    padding_left === nothing || push!(left_terms, length_string(padding_left / 2))
+    iszero(cell.style.indent) || push!(left_terms, length_string(cell.style.indent))
+    if !isempty(left_terms)
+        pl = length(left_terms) == 1 ? left_terms[1] : "calc($(join(left_terms, " + ")))"
+        print(io, "padding-left:$(pl);")
     end
     padding_right = get(colgaps, cell.span[2].stop, nothing)
     if padding_right !== nothing
-        print(io, "padding-right:$(padding_right/2)pt;")
+        print(io, "padding-right:$(length_string(padding_right/2));")
     end
     if cell.style.border_bottom
         print(io, "border-bottom:$(length_string(style.cell_rule_width)) solid currentColor; ")
     end
     padding_bottom = get(rowgaps, cell.span[1].stop, nothing)
     if padding_bottom !== nothing
-        print(io, "padding-bottom: $(padding_bottom/2)pt;")
+        print(io, "padding-bottom: $(length_string(padding_bottom/2));")
     elseif cell.style.border_bottom
         print(io, "padding-bottom: 0.25em;") # needed to make border bottoms look less cramped
     end
     padding_top = get(rowgaps, cell.span[1].start-1, nothing)
     if padding_top !== nothing
-        print(io, "padding-top: $(padding_top/2)pt;")
+        print(io, "padding-top: $(length_string(padding_top/2));")
     end
     if cell.style.valign ∉ (:top, :center, :bottom)
         error("Invalid valign $(repr(cell.style.valign)). Options are :top, :center, :bottom.")

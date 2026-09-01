@@ -3,8 +3,8 @@ struct Table
     header::Union{Nothing, Int}
     footer::Union{Nothing, Int}
     footnotes::Vector{Any}
-    rowgaps::Vector{Pair{Int,Float64}}
-    colgaps::Vector{Pair{Int,Float64}}
+    rowgaps::Vector{Pair{Int,Length}}
+    colgaps::Vector{Pair{Int,Length}}
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
@@ -41,7 +41,9 @@ function Table(cells, header, footer;
         footnote_size = fallback(footnote_size, defs.footnote_size),
         footnote_halign = fallback(footnote_halign, defs.footnote_halign),
     )
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes, style)
+    _rowgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in rowgaps]
+    _colgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in colgaps]
+    Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, style)
 end
 
 function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
@@ -115,10 +117,12 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `postprocess = []`: A list of post-processors which will be applied left to right to the table before displaying the table.
    A post-processor can either work element-wise or on the whole table object. See the `postprocess_table` and
    `postprocess_cell` functions for defining custom postprocessors.
-- `rowgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the rows `index` and `index+1`.
-- `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the columns `index` and `index+1`.
+- `rowgaps = []`: A list of pairs `index => gap`. For each pair, a visual gap of size `gap` is
+    added between the rows `index` and `index+1`. Each `gap` is an `Em` or `Pt` length, or a bare
+    number interpreted as points.
+- `colgaps = []`: A list of pairs `index => gap`. For each pair, a visual gap of size `gap` is
+    added between the columns `index` and `index+1`. Each `gap` is an `Em` or `Pt` length, or a bare
+    number interpreted as points.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
 - `outer_rule_width = 0.1em`: Width of the rules above and below the table.
 - `inner_rule_width = 0.075em`: Width of the rules below the header and above the footer.
