@@ -1,5 +1,5 @@
 using SummaryTables
-using SummaryTables: Table, SpannedCell, to_docx, CellStyle
+using SummaryTables: Table, SpannedCell, to_docx, CellStyle, DocxDefaults, Em, Pt, em, pt
 using SummaryTables: WriteDocx
 using SummaryTables: SortingError
 const W = WriteDocx
@@ -845,6 +845,27 @@ end
             reftest(t, "references/row_and_column_gaps/spanned_cells")
         end
 
+        @testset "table style" begin
+            cells = [
+                SpannedCell(1, 1:2, "Header", CellStyle(border_bottom = true)),
+                SpannedCell(2, 1, "Body 1"),
+                SpannedCell(2, 2, "Body 2"),
+                SpannedCell(3, 1, "Body 3"),
+                SpannedCell(3, 2, "Body 4"),
+            ]
+            t = Table(cells, 1, nothing;
+                footnotes = ["A footnote."],
+                outer_rule_width = 2pt,
+                inner_rule_width = 0.2em,
+                cell_rule_width = 1pt,
+                column_padding = 2em,
+                row_padding = 0.5em,
+                footnote_size = 12pt,
+                footnote_halign = :right,
+            )
+            reftest(t, "references/table_style/custom")
+        end
+
         @testset "Styled" begin
             conc = Cell(
                 Annotated(
@@ -1196,6 +1217,63 @@ end
     t = table_one((; a = 1:3, b = ["A", "B", "C"]))
     qnr = String(repr("QuartoNotebookRunner/typst", t)) # `repr` returns binary if `istextmime(mime)` is not overloaded
     @test qnr == repr("text/typst", t)
+end
+
+@testset "Length units" begin
+    @test 0.8em == Em(0.8)
+    @test 12pt == Pt(12.0)
+    @test 3em / 2 == Em(1.5)
+    @test 3pt / 2 == Pt(1.5)
+    @test SummaryTables.length_string(0.8em) == "0.8em"
+    @test SummaryTables.length_string(1.0em) == "1em"
+    @test SummaryTables.length_string(2.5pt) == "2.5pt"
+    @test SummaryTables.resolve_pt(0.8em, 12) ≈ 9.6
+    @test SummaryTables.resolve_pt(9pt, 12) == 9.0
+end
+
+@testset "table style settings" begin
+    cells = [SpannedCell(1, 1, "A")]
+    @test Table(cells; footnote_size = 12pt).style.footnote_size == 12pt
+    @test Table(cells; footnote_halign = :right).style.footnote_halign == :right
+    @test Table(cells; column_padding = 2em).style.column_padding == 2em
+    # unset settings fall back to the global defaults
+    t = SummaryTables.with_defaults(() -> Table(cells), footnote_halign = :right, footnote_size = 9pt)
+    @test t.style.footnote_halign == :right
+    @test t.style.footnote_size == 9pt
+    @test Table(cells).style.footnote_halign == :left
+end
+
+@testset "indent and gaps as lengths" begin
+    @test CellStyle(indent = 1.5em).indent == Em(1.5)
+    @test CellStyle(indent = 12pt).indent == Pt(12.0)
+    @test CellStyle().indent == Em(0.0)
+    @test CellStyle(indent_pt = 8).indent == Pt(8.0) # deprecated, maps to points
+    @test_throws "Cannot set both" CellStyle(indent = 1em, indent_pt = 8)
+    @test CellStyle(CellStyle(indent = 3pt); bold = true).indent == Pt(3.0)
+
+    cells = [SpannedCell(i, j, "$i") for i in 1:2 for j in 1:2]
+    t = Table(cells; rowgaps = [1 => 0.5em], colgaps = [1 => 4.0])
+    @test t.rowgaps == [1 => Em(0.5)]
+    @test t.colgaps == [1 => Pt(4.0)] # bare number interpreted as points
+
+    ct = Table([SpannedCell(1, 1, "A"), SpannedCell(1, 2, "B", CellStyle(indent = 1.5em))]; colgaps = [1 => 6pt])
+    @test occursin("padding-left:calc(3pt + 1.5em);", sprint(show, MIME"text/html"(), ct))
+end
+
+@testset "DocxDefaults base_fontsize" begin
+    t = Table([SpannedCell(1, 1, "A", CellStyle(border_bottom = true)), SpannedCell(2, 1, "B")], 1, nothing)
+    xml(node) = string(WriteDocx.to_xml(node))
+    default_xml = xml(to_docx(t))
+    @test occursin("w:sz=\"6\"", default_xml) # 0.075em cell rule at 10pt base in eighth-points
+    @test occursin("w:sz=\"8\"", default_xml) # 0.1em outer rule
+    large_xml = xml(to_docx(t, DocxDefaults(base_fontsize = 20pt)))
+    @test occursin("w:sz=\"12\"", large_xml)
+    @test occursin("w:sz=\"16\"", large_xml)
+    # unset base_fontsize falls back to the global docx theme, also via the NamedTuple form
+    themed_xml = SummaryTables.with_defaults(() -> xml(to_docx(t)); docx = (; base_fontsize = 20pt))
+    @test occursin("w:sz=\"12\"", themed_xml)
+    @test occursin("w:sz=\"16\"", themed_xml)
+    @test_throws "must be a `Pt` length" DocxDefaults(base_fontsize = 20)
 end
 
 @testset "Defaults" begin

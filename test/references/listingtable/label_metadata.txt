@@ -1,6 +1,6 @@
-<table id="st-df2897c9">
+<table id="st-f7af4df1">
     <style>
-        #st-df2897c9 {
+        #st-f7af4df1 {
             border: none;
             margin: 0 auto;
             padding: 0.25rem;
@@ -8,31 +8,31 @@
             border-spacing: 0.85em 0.2em;
             line-height: 1.2em;
         }
-        #st-df2897c9 tr {
+        #st-f7af4df1 tr {
             background-color: transparent;
             border: none;
         }
-        #st-df2897c9 tr td {
+        #st-f7af4df1 tr td {
             vertical-align: top;
             padding: 0;
             border: none;
             background-color: transparent;
         }
-        #st-df2897c9 br {
+        #st-f7af4df1 br {
             line-height: 0em;
             margin: 0;
         }
-        #st-df2897c9 sub {
+        #st-f7af4df1 sub {
             line-height: 0;
         }
-        #st-df2897c9 sup {
+        #st-f7af4df1 sup {
             line-height: 0;
         }
     </style>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
     <tr>
         <td style="text-align:center;"></td>
-        <td colspan="2" style="font-weight:bold;border-bottom:1px solid currentColor; padding-bottom: 0.25em;text-align:center;">Value B</td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Value B</td>
     </tr>
     <tr>
         <td style="text-align:center;"></td>
@@ -43,7 +43,7 @@
         <td style="font-weight:bold;text-align:left;">Group C</td>
         <td colspan="2" style="font-weight:bold;text-align:center;">Value A</td>
     </tr>
-        <tr><td colspan="3" style="border-bottom:1px solid currentColor;padding:0"></td></tr>    <tr>
+        <tr><td colspan="3" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
         <td style="text-align:left;">x</td>
         <td style="text-align:center;">1</td>
         <td style="text-align:center;">2</td>
@@ -53,5 +53,5 @@
         <td style="text-align:center;">3</td>
         <td style="text-align:center;">4</td>
     </tr>
-    <tr><td colspan="3" style="border-bottom: 1.5px solid currentColor; padding: 0"></td></tr>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
 </table>

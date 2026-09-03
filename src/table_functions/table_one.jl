@@ -541,7 +541,7 @@ tableone_column_header_spanned() = CellStyle(halign = :center, bold = true, bord
 tableone_column_header_key() = CellStyle(; halign = :center)
 tableone_variable_header() = CellStyle(bold = true, halign = :left)
 tableone_body() = CellStyle()
-tableone_analysis_name() = CellStyle(indent_pt = 12, halign = :left)
+tableone_analysis_name() = CellStyle(indent = 12pt, halign = :left)
 
 formatted(f::Function, s::String) = formatted((f), s)
 function formatted(fs::Tuple, s::String)

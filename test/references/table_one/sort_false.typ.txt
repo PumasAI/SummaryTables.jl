@@ -1,37 +1,40 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 5,
     columns: 5,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center, center, center, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [],
         table.cell(colspan: 3)[*#"parameters"*],
-        table.hline(y: 1, start: 2, end: 5, stroke: 0.75pt),
+        table.hline(y: 1, start: 2, end: 5, stroke: 0.075em),
         [],
         [*#"Total"*],
         [#"T"#sub[#"max"]],
         [#"C"#super[#"max"]],
         [#"One Line" #linebreak() #"Another Line"],
-        table.hline(y: 2, stroke: 0.75pt),
+        table.hline(y: 2, stroke: 0.075em),
     ),
     [*#"value"*],
     [],
     [],
     [],
     [],
-    [#h(12.0pt)#"Mean (SD)"],
+    [#h(12pt)#"Mean (SD)"],
     [#"6.5"#" ("#"3.61"#")"],
     [#"2.5"#" ("#"1.29"#")"],
     [#"6.5"#" ("#"1.29"#")"],
     [#"10.5"#" ("#"1.29"#")"],
-    [#h(12.0pt)#"Median [Min, Max]"],
+    [#h(12pt)#"Median [Min, Max]"],
     [#"6.5"#" ["#"1"#", "#"12"#"]"],
     [#"2.5"#" ["#"1"#", "#"4"#"]"],
     [#"6.5"#" ["#"5"#", "#"8"#"]"],
     [#"10.5"#" ["#"9"#", "#"12"#"]"],
-    table.hline(y: 5, stroke: 1pt),
+    table.hline(y: 5, stroke: 0.1em),
 )
+}

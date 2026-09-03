@@ -1,0 +1,25 @@
+
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
+    rows: 3,
+    columns: 2,
+    inset: (x: 1em, y: 0.25em),
+    align: (center, center),
+    stroke: none,
+    table.header(
+        table.hline(y: 0, stroke: 2pt),
+        table.cell(colspan: 2)[#"Header"],
+        table.hline(y: 1, start: 0, end: 2, stroke: 1pt),
+        table.hline(y: 1, stroke: 0.2em),
+    ),
+    [#"Body 1"],
+    [#"Body 2"],
+    [#"Body 3"],
+    [#"Body 4"],
+    table.hline(y: 3, stroke: 2pt),
+    table.cell(align: right, colspan: 2)[#text(size: 12pt)[
+        #"A footnote."
+    ]],
+)
+}

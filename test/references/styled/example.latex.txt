@@ -6,14 +6,16 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
-\toprule
-\textcolor[RGB]{255,0,0}{Red} and \textcolor[RGB]{0,0,255}{Blue}\tnote{\textbf{\textcolor[RGB]{255,170,0}{Orange}}} & \textbf{\textit{\underline{\textcolor[RGB]{0,204,0}{Green, bold, italic, underlined}}}} \\
-\textcolor[RGB]{0,0,255}{\textcolor[RGB]{255,0,0}{Nested red }and blue} & \textcolor[RGB]{171,205,239}{0.985} \\
-\bottomrule
+\begin{tabular}{cc}
+\toprule[0.1em]
+\textcolor[RGB]{255,0,0}{Red} and \textcolor[RGB]{0,0,255}{Blue}\tnote{\textbf{\textcolor[RGB]{255,170,0}{Orange}}} & \textbf{\textit{\underline{\textcolor[RGB]{0,204,0}{Green, bold, italic, underlined}}}} \\[0.2em]
+\textcolor[RGB]{0,0,255}{\textcolor[RGB]{255,0,0}{Nested red }and blue} & \textcolor[RGB]{171,205,239}{0.985} \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize

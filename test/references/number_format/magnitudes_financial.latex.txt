@@ -6,14 +6,16 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
-\toprule
-5.43K & 1.23M \\
-1M & 0.75 \\
-\bottomrule
+\begin{tabular}{cc}
+\toprule[0.1em]
+5.43K & 1.23M \\[0.2em]
+1M & 0.75 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

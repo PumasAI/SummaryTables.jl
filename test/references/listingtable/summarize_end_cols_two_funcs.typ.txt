@@ -1,15 +1,17 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 7,
     columns: 7,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center, center, center, center, right, right),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         table.cell(colspan: 4)[*#"group1"*],
-        table.hline(y: 1, start: 1, end: 5, stroke: 0.75pt),
+        table.hline(y: 1, start: 1, end: 5, stroke: 0.075em),
         [],
         [],
         [],
@@ -19,9 +21,9 @@
         [],
         [],
         table.cell(colspan: 2)[*#"group2"*],
-        table.hline(y: 3, start: 1, end: 3, stroke: 0.75pt),
+        table.hline(y: 3, start: 1, end: 3, stroke: 0.075em),
         table.cell(colspan: 2)[*#"group2"*],
-        table.hline(y: 3, start: 3, end: 5, stroke: 0.75pt),
+        table.hline(y: 3, start: 3, end: 5, stroke: 0.075em),
         [],
         [],
         [],
@@ -35,7 +37,7 @@
         table.cell(colspan: 4)[*#"value1"*],
         [*#"mean"*],
         [*#"std"*],
-        table.hline(y: 5, stroke: 0.75pt),
+        table.hline(y: 5, stroke: 0.075em),
     ),
     [#"c"],
     [#"1"],
@@ -51,5 +53,6 @@
     [#"8"],
     [#"5.5"],
     [#"2.38"],
-    table.hline(y: 7, stroke: 1pt),
+    table.hline(y: 7, stroke: 0.1em),
 )
+}

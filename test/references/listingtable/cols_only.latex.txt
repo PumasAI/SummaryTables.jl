@@ -6,24 +6,26 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{8}{cccccccc}}
-\toprule
-\multicolumn{8}{c}{\textbf{group1}} \\
-\cmidrule{1-8}
-\multicolumn{4}{c}{a} & \multicolumn{4}{c}{b} \\
-\multicolumn{4}{c}{\textbf{group2}} & \multicolumn{4}{c}{\textbf{group2}} \\
-\cmidrule{1-4}\cmidrule{5-8}
-\multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} & \multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} \\
-\multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} \\
-\cmidrule{1-2}\cmidrule{3-4}\cmidrule{5-6}\cmidrule{7-8}
-c & d & c & d & c & d & c & d \\
-\multicolumn{8}{c}{\textbf{value1}} \\
-\midrule
-1 & 3 & 2 & 4 & 5 & 7 & 6 & 8 \\
-\bottomrule
+\begin{tabular}{cccccccc}
+\toprule[0.1em]
+\multicolumn{8}{c}{\textbf{group1}} \\[0.2em]
+\cmidrule[0.075em]{1-8}
+\multicolumn{4}{c}{a} & \multicolumn{4}{c}{b} \\[0.2em]
+\multicolumn{4}{c}{\textbf{group2}} & \multicolumn{4}{c}{\textbf{group2}} \\[0.2em]
+\cmidrule[0.075em]{1-4}\cmidrule[0.075em]{5-8}
+\multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} & \multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} \\[0.2em]
+\multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} \\[0.2em]
+\cmidrule[0.075em]{1-2}\cmidrule[0.075em]{3-4}\cmidrule[0.075em]{5-6}\cmidrule[0.075em]{7-8}
+c & d & c & d & c & d & c & d \\[0.2em]
+\multicolumn{8}{c}{\textbf{value1}} \\[0.2em]
+\midrule[0.075em]
+1 & 3 & 2 & 4 & 5 & 7 & 6 & 8 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

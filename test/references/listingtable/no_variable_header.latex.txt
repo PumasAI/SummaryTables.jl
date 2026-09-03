@@ -6,21 +6,23 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{5}{lcccc}}
-\toprule
- & \multicolumn{4}{c}{\textbf{group2}} \\
-\cmidrule{2-5}
- & \multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} \\
- & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} \\
-\cmidrule{2-3}\cmidrule{4-5}
-\textbf{group1} & c & d & c & d \\
-\midrule
-a & 1 & 3 & 2 & 4 \\
-b & 5 & 7 & 6 & 8 \\
-\bottomrule
+\begin{tabular}{lcccc}
+\toprule[0.1em]
+ & \multicolumn{4}{c}{\textbf{group2}} \\[0.2em]
+\cmidrule[0.075em]{2-5}
+ & \multicolumn{2}{c}{e} & \multicolumn{2}{c}{f} \\[0.2em]
+ & \multicolumn{2}{c}{\textbf{group3}} & \multicolumn{2}{c}{\textbf{group3}} \\[0.2em]
+\cmidrule[0.075em]{2-3}\cmidrule[0.075em]{4-5}
+\textbf{group1} & c & d & c & d \\[0.2em]
+\midrule[0.075em]
+a & 1 & 3 & 2 & 4 \\[0.2em]
+b & 5 & 7 & 6 & 8 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

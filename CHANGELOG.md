@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added `Table` settings `outer_rule_width`, `inner_rule_width`, `cell_rule_width`, `column_padding`, `row_padding`, `footnote_size` and `footnote_halign` (also available as global defaults), using font-relative (`em`) or absolute (`pt`) lengths that render consistently across all backends; `to_docx` gained an optional `DocxDefaults` argument whose `base_fontsize` resolves relative lengths for Word [#155](https://github.com/PumasAI/SummaryTables.jl/pull/155).
+- The cell `indent` and the `rowgaps`/`colgaps` values now accept `em` and `pt` lengths (bare numbers still mean points); the `indent_pt` keyword is deprecated in favor of `indent` [#155](https://github.com/PumasAI/SummaryTables.jl/pull/155).
+
 ## 3.6.1 - 2026-08-07
 
 - Fixed misalignment of `overview_table` category bars in HTML output when the environment overrides the table's line-height [#152](https://github.com/PumasAI/SummaryTables.jl/pull/152).

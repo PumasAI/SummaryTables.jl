@@ -6,16 +6,18 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{cc@{\hskip 4.0pt}cc}}
-\toprule
- & \multicolumn{3}{c}{Spanned columns} \\[4.0pt]
-\multirow[t]{3}{*}{Spanned rows} &  &  &  \\
- &  &  &  \\
- &  &  &  \\
-\bottomrule
+\begin{tabular}{cc@{\hskip \dimexpr 2\tabcolsep+4pt\relax}cc}
+\toprule[0.1em]
+ & \multicolumn{3}{c}{Spanned columns} \\[\dimexpr 0.2em + 4pt\relax]
+\multirow[t]{3}{*}{Spanned rows} &  &  &  \\[0.2em]
+ &  &  &  \\[0.2em]
+ &  &  &  \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

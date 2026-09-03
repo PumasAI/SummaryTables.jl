@@ -1,17 +1,20 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 1,
     columns: 2,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (center, center),
     stroke: none,
-    table.hline(y: 0, stroke: 1pt),
+    table.hline(y: 0, stroke: 0.1em),
     [#"Cell 1"#super[#"1"]],
     [#"Cell 2"],
-    table.hline(y: 1, stroke: 1pt),
+    table.hline(y: 1, stroke: 0.1em),
     table.cell(align: left, colspan: 2)[#text(size: 0.8em)[
         #super[#"1"]#"Note 1"\
         #"First footnote."\
         #"Second footnote."
     ]],
 )
+}
