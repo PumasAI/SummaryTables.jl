@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.7.1 - 2026-09-04
+
+- Allowed `HypothesisTests` 0.12 [#158](https://github.com/PumasAI/SummaryTables.jl/pull/158).
+
 ## 3.7.0 - 2026-09-03
 
 - Added `Table` settings `outer_rule_width`, `inner_rule_width`, `cell_rule_width`, `column_padding`, `row_padding`, `footnote_size` and `footnote_halign` (also available as global defaults), using font-relative (`em`) or absolute (`pt`) lengths that render consistently across all backends; `to_docx` gained an optional `DocxDefaults` argument whose `base_fontsize` resolves relative lengths for Word [#155](https://github.com/PumasAI/SummaryTables.jl/pull/155).
