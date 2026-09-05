@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>CellStyle · SummaryTables.jl</title><meta name="title" content="CellStyle · SummaryTables.jl"/><meta property="og:title" content="CellStyle · SummaryTables.jl"/><meta property="twitter:title" content="CellStyle · SummaryTables.jl"/><meta name="description" content="Documentation for SummaryTables.jl."/><meta property="og:description" content="Documentation for SummaryTables.jl."/><meta property="twitter:description" content="Documentation for SummaryTables.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.png" alt="SummaryTables.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">SummaryTables.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">SummaryTables</a></li><li><a class="tocitem" href="../../output/">Output</a></li><li><span class="tocitem">Predefined Tables</span><ul><li><a class="tocitem" href="../../predefined_tables/listingtable/"><code>listingtable</code></a></li><li><a class="tocitem" href="../../predefined_tables/summarytable/"><code>summarytable</code></a></li><li><a class="tocitem" href="../../predefined_tables/table_one/"><code>table_one</code></a></li></ul></li><li><span class="tocitem">Custom Tables</span><ul><li><a class="tocitem" href="../table/"><code>Table</code></a></li><li><a class="tocitem" href="../cell/"><code>Cell</code></a></li><li class="is-active"><a class="tocitem" href><code>CellStyle</code></a><ul class="internal"><li><a class="tocitem" href="#Keyword:-bold"><span>Keyword: <code>bold</code></span></a></li><li><a class="tocitem" href="#Keyword:-italic"><span>Keyword: <code>italic</code></span></a></li><li><a class="tocitem" href="#Keyword:-underline"><span>Keyword: <code>underline</code></span></a></li><li><a class="tocitem" href="#Keyword:-halign"><span>Keyword: <code>halign</code></span></a></li><li><a class="tocitem" href="#Keyword:-valign"><span>Keyword: <code>valign</code></span></a></li><li><a class="tocitem" href="#Keyword:-indent_pt"><span>Keyword: <code>indent_pt</code></span></a></li><li><a class="tocitem" href="#Keyword:-border_bottom"><span>Keyword: <code>border_bottom</code></span></a></li><li><a class="tocitem" href="#Keyword:-merge"><span>Keyword: <code>merge</code></span></a></li><li><a class="tocitem" href="#Keyword:-mergegroup"><span>Keyword: <code>mergegroup</code></span></a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Custom Tables</a></li><li class="is-active"><a href><code>CellStyle</code></a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href><code>CellStyle</code></a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/PumasAI/SummaryTables.jl/blob/master/docs/src/custom_tables/cellstyle.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="CellStyle"><a class="docs-heading-anchor" href="#CellStyle"><code>CellStyle</code></a><a id="CellStyle-1"></a><a class="docs-heading-anchor-permalink" href="#CellStyle" title="Permalink"></a></h1><h2 id="Keyword:-bold"><a class="docs-heading-anchor" href="#Keyword:-bold">Keyword: <code>bold</code></a><a id="Keyword:-bold-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-bold" title="Permalink"></a></h2><p>Makes the text in the cell bold.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = reshape([
+    Cell(&quot;Some text in bold&quot;, bold = true),
+], :, 1)
+
+Table(cells)</code></pre><table class="st-31f7ed17">
+    <style>
+        .st-31f7ed17 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-31f7ed17 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-31f7ed17 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-31f7ed17 sub {
+            line-height: 0;
+        }
+
+        .st-31f7ed17 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-weight:bold;text-align:center;">Some text in bold</td>
+    </tr>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-italic"><a class="docs-heading-anchor" href="#Keyword:-italic">Keyword: <code>italic</code></a><a id="Keyword:-italic-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-italic" title="Permalink"></a></h2><p>Makes the text in the cell italic.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = reshape([
+    Cell(&quot;Some text in italic&quot;, italic = true),
+], :, 1)
+
+Table(cells)</code></pre><table class="st-b04c4b90">
+    <style>
+        .st-b04c4b90 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-b04c4b90 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-b04c4b90 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-b04c4b90 sub {
+            line-height: 0;
+        }
+
+        .st-b04c4b90 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="font-style:italic;text-align:center;">Some text in italic</td>
+    </tr>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-underline"><a class="docs-heading-anchor" href="#Keyword:-underline">Keyword: <code>underline</code></a><a id="Keyword:-underline-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-underline" title="Permalink"></a></h2><p>Underlines the text in the cell.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = reshape([
+    Cell(Multiline(&quot;Some&quot;, &quot;text&quot;, &quot;that is&quot;, &quot;underlined&quot;), underline = true),
+], :, 1)
+
+Table(cells)</code></pre><table class="st-7bd13067">
+    <style>
+        .st-7bd13067 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-7bd13067 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-7bd13067 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-7bd13067 sub {
+            line-height: 0;
+        }
+
+        .st-7bd13067 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-decoration:underline;text-align:center;">Some<br>text<br>that is<br>underlined</td>
+    </tr>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-halign"><a class="docs-heading-anchor" href="#Keyword:-halign">Keyword: <code>halign</code></a><a id="Keyword:-halign-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-halign" title="Permalink"></a></h2><p>Aligns the cell content horizontally either at the <code>:left</code>, the <code>:center</code> or the <code>:right</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = reshape([
+    Cell(&quot;A wide cell&quot;),
+    Cell(&quot;:left&quot;, halign = :left),
+    Cell(&quot;:center&quot;, halign = :center),
+    Cell(&quot;:right&quot;, halign = :right),
+], :, 1)
+
+Table(cells)</code></pre><table class="st-6ff5b8fb">
+    <style>
+        .st-6ff5b8fb {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-6ff5b8fb tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-6ff5b8fb br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-6ff5b8fb sub {
+            line-height: 0;
+        }
+
+        .st-6ff5b8fb sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A wide cell</td>
+    </tr>
+    <tr>
+        <td style="text-align:left;">:left</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">:center</td>
+    </tr>
+    <tr>
+        <td style="text-align:right;">:right</td>
+    </tr>
+    <tr><td colspan="1" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-valign"><a class="docs-heading-anchor" href="#Keyword:-valign">Keyword: <code>valign</code></a><a id="Keyword:-valign-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-valign" title="Permalink"></a></h2><p>Aligns the cell content vertically either at the <code>:top</code>, the <code>:center</code> or the <code>:bottom</code>.</p><pre><code class="language-julia hljs">using SummaryTables
+
+cells = reshape([
+    Cell(Multiline(&quot;A&quot;, &quot;tall&quot;, &quot;cell&quot;)),
+    Cell(&quot;:top&quot;, valign = :top),
+    Cell(&quot;:center&quot;, valign = :center),
+    Cell(&quot;:bottom&quot;, valign = :bottom),
+], 1, :)
+
+Table(cells)</code></pre><table class="st-9d7733ac">
+    <style>
+        .st-9d7733ac {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-9d7733ac tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-9d7733ac br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-9d7733ac sub {
+            line-height: 0;
+        }
+
+        .st-9d7733ac sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A<br>tall<br>cell</td>
+        <td style="text-align:center;">:top</td>
+        <td style="vertical-align:middle;text-align:center;">:center</td>
+        <td style="vertical-align:bottom;text-align:center;">:bottom</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-indent_pt"><a class="docs-heading-anchor" href="#Keyword:-indent_pt">Keyword: <code>indent_pt</code></a><a id="Keyword:-indent_pt-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-indent_pt" title="Permalink"></a></h2><p>Indents the content of the cell on the left by the given number of <code>pt</code> units. This can be used to give hierarchical structure to adjacent rows.</p><pre><code class="language-julia hljs">using SummaryTables
+
+C(value; kwargs...) = Cell(value; halign = :left, kwargs...)
+
+cells = [
+    C(&quot;Group A&quot;)  C(&quot;Group B&quot;)
+    C(&quot;Subgroup A&quot;, indent_pt = 6)  C(&quot;Subgroup B&quot;, indent_pt = 6)
+    C(&quot;Subgroup A&quot;, indent_pt = 6)  C(&quot;Subgroup B&quot;, indent_pt = 6)
+]
+
+Table(cells)</code></pre><table class="st-6572fb6c">
+    <style>
+        .st-6572fb6c {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-6572fb6c tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-6572fb6c br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-6572fb6c sub {
+            line-height: 0;
+        }
+
+        .st-6572fb6c sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:left;">Group A</td>
+        <td style="text-align:left;">Group B</td>
+    </tr>
+    <tr>
+        <td style="padding-left:6.0pt;text-align:left;">Subgroup A</td>
+        <td style="padding-left:6.0pt;text-align:left;">Subgroup B</td>
+    </tr>
+    <tr>
+        <td style="padding-left:6.0pt;text-align:left;">Subgroup A</td>
+        <td style="padding-left:6.0pt;text-align:left;">Subgroup B</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-border_bottom"><a class="docs-heading-anchor" href="#Keyword:-border_bottom">Keyword: <code>border_bottom</code></a><a id="Keyword:-border_bottom-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-border_bottom" title="Permalink"></a></h2><p>Adds a border at the bottom of the cell. This option is meant for horizontally merged cells functioning as subheaders.</p><pre><code class="language-julia hljs">using SummaryTables
+
+header_cell = Cell(&quot;header&quot;, border_bottom = true, merge = true)
+
+cells = [
+    header_cell   header_cell
+    Cell(&quot;body&quot;)  Cell(&quot;body&quot;)
+]
+Table(cells)</code></pre><table class="st-3068f706">
+    <style>
+        .st-3068f706 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-3068f706 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-3068f706 br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-3068f706 sub {
+            line-height: 0;
+        }
+
+        .st-3068f706 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td colspan="2" style="border-bottom:1px solid black; padding-bottom: 0.25em;text-align:center;">header</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">body</td>
+        <td style="text-align:center;">body</td>
+    </tr>
+    <tr><td colspan="2" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-merge"><a class="docs-heading-anchor" href="#Keyword:-merge">Keyword: <code>merge</code></a><a id="Keyword:-merge-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-merge" title="Permalink"></a></h2><p>All adjacent cells that are <code>==</code> equal to each other and have <code>merge = true</code> will be rendered as one merged cell.</p><pre><code class="language-julia hljs">using SummaryTables
+
+merged_cell = Cell(&quot;merged&quot;, valign = :center, merge = true)
+
+cells = [
+    Cell(&quot;A1&quot;)  Cell(&quot;B1&quot;)   Cell(&quot;C1&quot;)   Cell(&quot;D1&quot;)
+    Cell(&quot;A2&quot;)  merged_cell  merged_cell  Cell(&quot;D2&quot;)
+    Cell(&quot;A3&quot;)  merged_cell  merged_cell  Cell(&quot;D3&quot;)
+    Cell(&quot;A4&quot;)  Cell(&quot;B4&quot;)   Cell(&quot;C4&quot;)   Cell(&quot;D4&quot;)
+]
+Table(cells)</code></pre><table class="st-0a3d42bd">
+    <style>
+        .st-0a3d42bd {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-0a3d42bd tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-0a3d42bd br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-0a3d42bd sub {
+            line-height: 0;
+        }
+
+        .st-0a3d42bd sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td rowspan="2" colspan="2" style="vertical-align:middle;text-align:center;">merged</td>
+        <td style="text-align:center;">D2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">D3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table><h2 id="Keyword:-mergegroup"><a class="docs-heading-anchor" href="#Keyword:-mergegroup">Keyword: <code>mergegroup</code></a><a id="Keyword:-mergegroup-1"></a><a class="docs-heading-anchor-permalink" href="#Keyword:-mergegroup" title="Permalink"></a></h2><p>Because adjacent cells that are <code>==</code> equal to each other are merged when <code>merge = true</code> is set, you can optionally set the <code>mergegroup</code> keyword of adjacent cells to a different value to avoid merging them even if their values are otherwise equal.</p><pre><code class="language-julia hljs">using SummaryTables
+
+merged_cell_1 = Cell(&quot;merged&quot;, valign = :center, merge = true, mergegroup = 1)
+merged_cell_2 = Cell(&quot;merged&quot;, valign = :center, merge = true, mergegroup = 2)
+
+cells = [
+    Cell(&quot;A1&quot;)  Cell(&quot;B1&quot;)     Cell(&quot;C1&quot;)     Cell(&quot;D1&quot;)
+    Cell(&quot;A2&quot;)  merged_cell_1  merged_cell_2  Cell(&quot;D2&quot;)
+    Cell(&quot;A3&quot;)  merged_cell_1  merged_cell_2  Cell(&quot;D3&quot;)
+    Cell(&quot;A4&quot;)  Cell(&quot;B4&quot;)     Cell(&quot;C4&quot;)     Cell(&quot;D4&quot;)
+]
+Table(cells)</code></pre><table class="st-339da8ea">
+    <style>
+        .st-339da8ea {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+
+        .st-339da8ea tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+        }
+
+        .st-339da8ea br {
+            line-height: 0em;
+            margin: 0;
+        }
+
+        .st-339da8ea sub {
+            line-height: 0;
+        }
+
+        .st-339da8ea sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;">A1</td>
+        <td style="text-align:center;">B1</td>
+        <td style="text-align:center;">C1</td>
+        <td style="text-align:center;">D1</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A2</td>
+        <td rowspan="2" style="vertical-align:middle;text-align:center;">merged</td>
+        <td rowspan="2" style="vertical-align:middle;text-align:center;">merged</td>
+        <td style="text-align:center;">D2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A3</td>
+        <td style="text-align:center;">D3</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;">A4</td>
+        <td style="text-align:center;">B4</td>
+        <td style="text-align:center;">C4</td>
+        <td style="text-align:center;">D4</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 1.5px solid black; padding: 0"></td></tr>
+</table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../cell/">« <code>Cell</code></a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.3.0 on <span class="colophon-date" title="Tuesday 26 March 2024 08:18">Tuesday 26 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
