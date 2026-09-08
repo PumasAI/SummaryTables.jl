@@ -3,6 +3,7 @@
 ## Unreleased
 
 - `Table` now errors for `header` or `footer` indices that lie outside the table or overlap each other, instead of silently producing broken output [#160](https://github.com/PumasAI/SummaryTables.jl/pull/160).
+- Added `pagination` support to `table_one`, using the same `Pagination`/`PaginatedTable` pattern `listingtable` already has [#147](https://github.com/PumasAI/SummaryTables.jl/pull/147).
 
 ## 3.7.1 - 2026-09-04
 
