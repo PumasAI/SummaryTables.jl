@@ -3,11 +3,12 @@ struct Table
     header::Union{Nothing, Int}
     footer::Union{Nothing, Int}
     footnotes::Vector{Any}
-    rowgaps::Vector{Pair{Int,Float64}}
-    colgaps::Vector{Pair{Int,Float64}}
+    rowgaps::Vector{Pair{Int,Length}}
+    colgaps::Vector{Pair{Int,Length}}
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
+    style::TableStyle
 end
 
 function Table(cells, header, footer;
@@ -20,11 +21,42 @@ function Table(cells, header, footer;
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
         linebreak_footnotes = default,
+        outer_rule_width = default,
+        inner_rule_width = default,
+        cell_rule_width = default,
+        column_padding = default,
+        row_padding = default,
+        footnote_size = default,
+        footnote_halign = default,
     )
+    validate_header_footer(size(cells, 1), header, footer)
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
-    Table(cells, header, footer, footnotes, rowgaps, colgaps, postprocess, _number_format, _linebreak_footnotes)
+    style = TableStyle(
+        outer_rule_width = fallback(outer_rule_width, defs.outer_rule_width),
+        inner_rule_width = fallback(inner_rule_width, defs.inner_rule_width),
+        cell_rule_width = fallback(cell_rule_width, defs.cell_rule_width),
+        column_padding = fallback(column_padding, defs.column_padding),
+        row_padding = fallback(row_padding, defs.row_padding),
+        footnote_size = fallback(footnote_size, defs.footnote_size),
+        footnote_halign = fallback(footnote_halign, defs.footnote_halign),
+    )
+    _rowgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in rowgaps]
+    _colgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in colgaps]
+    Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, style)
+end
+
+function validate_header_footer(nrows, header, footer)
+    if header !== nothing && !(1 <= header <= nrows)
+        error("`header` must be the index of the last header row, between 1 and the number of rows ($nrows), or `nothing` if the table has no header. Got $header.")
+    end
+    if footer !== nothing && !(1 <= footer <= nrows)
+        error("`footer` must be the index of the first footer row, between 1 and the number of rows ($nrows), or `nothing` if the table has no footer. Got $footer.")
+    end
+    if header !== nothing && footer !== nothing && footer <= header
+        error("`footer` must be larger than `header`, otherwise header and footer overlap. Got header = $header and footer = $footer.")
+    end
 end
 
 function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
@@ -65,6 +97,13 @@ end
         rowgaps = Pair{Int,Float64}[],
         colgaps = Pair{Int,Float64}[],
         linebreak_footnotes = true,
+        outer_rule_width = 0.1em,
+        inner_rule_width = 0.075em,
+        cell_rule_width = 0.075em,
+        column_padding = 0.85em,
+        row_padding = 0.2em,
+        footnote_size = 0.8em,
+        footnote_halign = :left,
     )
 
 Create a `Table` which can be rendered in multiple formats, such as HTML or LaTeX.
@@ -74,7 +113,9 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 
 ## Keyword arguments
 - `header`: The index of the last row of the header, `nothing` if no header is specified.
+  Must be between 1 and the number of rows, and smaller than `footer`.
 - `footer`: The index of the first row of the footer, `nothing` if no footer is specified.
+  Must be between 1 and the number of rows, and larger than `header`.
 - `footnotes`: A vector of objects printed as footnotes that are not derived from `Annotated`
   values and therefore don't get labels with counterparts inside the table.
 - `number_format = NumberFormat()`: A `NumberFormat` that is applied to every floating point
@@ -91,11 +132,27 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 - `postprocess = []`: A list of post-processors which will be applied left to right to the table before displaying the table.
    A post-processor can either work element-wise or on the whole table object. See the `postprocess_table` and
    `postprocess_cell` functions for defining custom postprocessors.
-- `rowgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the rows `index` and `index+1`.
-- `colgaps = Pair{Int,Float64}[]`: A list of pairs `index => gap_pt`. For each pair, a visual gap
-    the size of `gap_pt` is added between the columns `index` and `index+1`.
+- `rowgaps = []`: A list of pairs `index => gap`. For each pair, a visual gap of size `gap` is
+    added between the rows `index` and `index+1`. Each `gap` is an `Em` or `Pt` length, or a bare
+    number interpreted as points.
+- `colgaps = []`: A list of pairs `index => gap`. For each pair, a visual gap of size `gap` is
+    added between the columns `index` and `index+1`. Each `gap` is an `Em` or `Pt` length, or a bare
+    number interpreted as points.
 - `linebreak_footnotes = true`: If `true`, each footnote and annotation starts on a separate line.
+- `outer_rule_width = 0.1em`: Width of the rules above and below the table.
+- `inner_rule_width = 0.075em`: Width of the rules below the header and above the footer.
+- `cell_rule_width = 0.075em`: Width of the rules drawn for cells with `border_bottom = true`.
+- `column_padding = 0.85em`: Horizontal space between adjacent columns.
+- `row_padding = 0.2em`: Vertical space between adjacent rows.
+- `footnote_size = 0.8em`: Font size of footnotes and annotations.
+- `footnote_halign = :left`: Horizontal alignment of the footnotes, either `:left`, `:center` or `:right`.
+
+  The rule width, padding and footnote size settings take an `Em` length relative to the current
+  font size, for example `0.8em`, or an absolute `Pt` length, for example `8pt`, and render
+  consistently across all backends. Because Word cannot express font-relative lengths, `Em`
+  values are converted to absolute points when exporting via `to_docx`, using its `DocxDefaults`
+  `base_fontsize`. Like the other settings, each of these is inherited from the global defaults
+  when left unset.
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 
@@ -247,7 +304,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes, ct.style)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)

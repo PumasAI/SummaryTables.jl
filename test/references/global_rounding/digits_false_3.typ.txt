@@ -1,16 +1,19 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 3,
     columns: 2,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (center, center),
     stroke: none,
-    table.hline(y: 0, stroke: 1pt),
+    table.hline(y: 0, stroke: 0.1em),
     [#"1.414"],
     [#"12352131"],
     [#"106071821.193"],
     [#"0.001"],
     [#"1.235"#" & "#"0.001"],
     [#"1.235" #linebreak() #"0.001"],
-    table.hline(y: 3, stroke: 1pt),
+    table.hline(y: 3, stroke: 0.1em),
 )
+}

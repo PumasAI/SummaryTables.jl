@@ -1,12 +1,14 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 2,
     columns: 7,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, left, left, left, left, left, left),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [*#"No"*],
         [*#"Variable"*],
         [*#"Stats / Values"*],
@@ -14,7 +16,7 @@
         [*#"Graph"*],
         [*#"Valid"*],
         [*#"Missing"*],
-        table.hline(y: 1, stroke: 0.75pt),
+        table.hline(y: 1, stroke: 0.075em),
     ),
     table.cell(align: horizon)[#"1"],
     table.cell(align: horizon)[#"categorical" #linebreak() #"[String]"],
@@ -23,9 +25,10 @@
     table.cell(align: horizon)[#box(width: 0pt, hide[1])#box(rect(width: 0.681em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.63em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.581em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.533em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.488em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.444em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.403em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.364em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.327em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 0.291em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 1.508em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080")))],
     table.cell(align: horizon)[#"6201" #linebreak() #"("#"100"#"%)"],
     table.cell(align: horizon)[#"0" #linebreak() #"("#"0"#"%)"],
-    table.hline(y: 2, stroke: 1pt),
+    table.hline(y: 2, stroke: 0.1em),
     table.cell(colspan: 7)[#text(size: 0.8em)[
         #"Dimensions: 6201 x 1"\
         #"Duplicate rows: 6175"
     ]],
 )
+}

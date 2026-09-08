@@ -1,19 +1,21 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 10,
     columns: 3,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (center, center, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [*#"value1"*],
         [*#"group3"*],
         [*#"group1"*],
         [_#"Sub1"_],
         [_#"Sub2"_],
         [_#"Sub3"_],
-        table.hline(y: 2, stroke: 0.75pt),
+        table.hline(y: 2, stroke: 0.075em),
     ),
     [#"1"],
     [#"c"],
@@ -39,5 +41,6 @@
     [#"8"],
     [#"d"],
     [#"b"],
-    table.hline(y: 10, stroke: 1pt),
+    table.hline(y: 10, stroke: 0.1em),
 )
+}

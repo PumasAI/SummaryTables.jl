@@ -1,11 +1,13 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 4,
     columns: 4,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (center, center, center, center),
     stroke: none,
-    table.hline(y: 0, stroke: 1pt),
+    table.hline(y: 0, stroke: 0.1em),
     [#"1, 1"],
     [#"1, 2"],
     [#"1, 3"],
@@ -22,5 +24,6 @@
     [#"4, 2"],
     [#"4, 3"],
     [#"4, 4"],
-    table.hline(y: 4, stroke: 1pt),
+    table.hline(y: 4, stroke: 0.1em),
 )
+}

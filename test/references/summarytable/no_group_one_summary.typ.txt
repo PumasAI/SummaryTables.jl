@@ -1,17 +1,20 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 2,
     columns: 2,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [*#"value1"*],
-        table.hline(y: 1, stroke: 0.75pt),
+        table.hline(y: 1, stroke: 0.075em),
     ),
     [*#"mean"*],
     [#"4.5"],
-    table.hline(y: 2, stroke: 1pt),
+    table.hline(y: 2, stroke: 0.1em),
 )
+}

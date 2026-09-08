@@ -124,8 +124,8 @@
   <w:style w:type="paragraph" w:styleId="Heading5">
     <w:pPr>
       <w:rPr>
-        <w:sz w:val="22"/>
         <w:i/>
+        <w:sz w:val="22"/>
       </w:rPr>
       <w:spacing w:before="120" w:after="80"/>
     </w:pPr>
@@ -144,8 +144,8 @@
   <w:style w:type="paragraph" w:styleId="Heading6">
     <w:pPr>
       <w:rPr>
-        <w:sz w:val="20"/>
         <w:i/>
+        <w:sz w:val="20"/>
       </w:rPr>
       <w:spacing w:before="120" w:after="80"/>
     </w:pPr>
@@ -169,13 +169,13 @@
   <w:body>
     <w:tbl>
       <w:tblPr>
+        <w:tblCellSpacing w:type="dxa" w:w="20"/>
         <w:tblCellMar>
-          <w:top w:w="0"/>
-          <w:bottom w:w="0"/>
-          <w:start w:w="30"/>
-          <w:end w:w="30"/>
+          <w:top w:w="20"/>
+          <w:bottom w:w="20"/>
+          <w:start w:w="85"/>
+          <w:end w:w="85"/>
         </w:tblCellMar>
-        <w:tblCellSpacing w:w="20"/>
       </w:tblPr>
       <w:tr>
         <w:trPr>
@@ -183,12 +183,12 @@
         </w:trPr>
         <w:tc>
           <w:tcPr>
+            <w:gridSpan w:val="4"/>
             <w:tcBorders>
               <w:bottom w:val="single" w:color="auto" w:sz="8"/>
               <w:end w:val="none" w:color="auto" w:sz="8"/>
               <w:start w:val="none" w:color="auto" w:sz="8"/>
             </w:tcBorders>
-            <w:gridSpan w:val="4"/>
             <w:hideMark/>
           </w:tcPr>
           <w:p>
@@ -224,12 +224,12 @@
         </w:tc>
         <w:tc>
           <w:tcPr>
-            <w:tcBorders>
-              <w:bottom w:val="single" w:color="auto" w:sz="4"/>
-              <w:end w:val="none" w:color="auto" w:sz="4"/>
-              <w:start w:val="none" w:color="auto" w:sz="4"/>
-            </w:tcBorders>
             <w:gridSpan w:val="2"/>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="6"/>
+              <w:end w:val="none" w:color="auto" w:sz="6"/>
+              <w:start w:val="none" w:color="auto" w:sz="6"/>
+            </w:tcBorders>
             <w:tcMar>
               <w:bottom w:w="40"/>
             </w:tcMar>
@@ -368,12 +368,12 @@
         </w:trPr>
         <w:tc>
           <w:tcPr>
-            <w:tcBorders>
-              <w:bottom w:val="single" w:color="auto" w:sz="4"/>
-              <w:end w:val="none" w:color="auto" w:sz="4"/>
-              <w:start w:val="none" w:color="auto" w:sz="4"/>
-            </w:tcBorders>
             <w:gridSpan w:val="4"/>
+            <w:tcBorders>
+              <w:bottom w:val="single" w:color="auto" w:sz="6"/>
+              <w:end w:val="none" w:color="auto" w:sz="6"/>
+              <w:start w:val="none" w:color="auto" w:sz="6"/>
+            </w:tcBorders>
             <w:hideMark/>
           </w:tcPr>
           <w:p>
@@ -586,12 +586,12 @@
         <w:trPr/>
         <w:tc>
           <w:tcPr>
+            <w:gridSpan w:val="4"/>
             <w:tcBorders>
               <w:bottom w:val="single" w:color="auto" w:sz="8"/>
               <w:end w:val="none" w:color="auto" w:sz="8"/>
               <w:start w:val="none" w:color="auto" w:sz="8"/>
             </w:tcBorders>
-            <w:gridSpan w:val="4"/>
             <w:hideMark/>
           </w:tcPr>
           <w:p>

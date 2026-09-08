@@ -76,24 +76,29 @@ cells = reshape([
 Table(cells)
 ```
 
-## Keyword: `indent_pt`
+## Keyword: `indent`
 
-Indents the content of the cell on the left by the given number of `pt` units.
+Indents the content of the cell on the left.
 This can be used to give hierarchical structure to adjacent rows.
+The indentation is given as an `Em` length relative to the font size, for example `1em`, or as an absolute `Pt` length, for example `6pt`.
+The `em` and `pt` unit constants are imported with `using SummaryTables: em, pt`.
 
 ```@example
 using SummaryTables
+using SummaryTables: em
 
 C(value; kwargs...) = Cell(value; halign = :left, kwargs...)
 
 cells = [
     C("Group A")  C("Group B")
-    C("Subgroup A", indent_pt = 6)  C("Subgroup B", indent_pt = 6)
-    C("Subgroup A", indent_pt = 6)  C("Subgroup B", indent_pt = 6)
+    C("Subgroup A", indent = 1em)  C("Subgroup B", indent = 1em)
+    C("Subgroup A", indent = 1em)  C("Subgroup B", indent = 1em)
 ]
 
 Table(cells)
 ```
+
+The deprecated `indent_pt` keyword sets the same indentation as a bare number in points.
 
 ## Keyword: `border_bottom`
 
