@@ -1323,3 +1323,16 @@ end
     
     @test_throws MethodError SummaryTables.defaults!(a = "a", b = "b")
 end
+
+@testset "header and footer validation" begin
+    cells = [Cell("a") Cell("b"); Cell(1) Cell(2); Cell(3) Cell(4)]
+    @test_throws "Got 0" Table(cells; header = 0)
+    @test_throws "Got -1" Table(cells; header = -1)
+    @test_throws "Got 4" Table(cells; header = 4)
+    @test_throws "Got 0" Table(cells; footer = 0)
+    @test_throws "Got 4" Table(cells; footer = 4)
+    @test_throws "header = 2 and footer = 2" Table(cells; header = 2, footer = 2)
+    @test_throws "header = 2 and footer = 1" Table(cells; header = 2, footer = 1)
+    @test Table(cells; header = 1, footer = 3) isa Table
+    @test Table(cells; header = 3) isa Table
+end

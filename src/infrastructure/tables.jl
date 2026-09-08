@@ -29,6 +29,7 @@ function Table(cells, header, footer;
         footnote_size = default,
         footnote_halign = default,
     )
+    validate_header_footer(size(cells, 1), header, footer)
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
@@ -44,6 +45,18 @@ function Table(cells, header, footer;
     _rowgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in rowgaps]
     _colgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in colgaps]
     Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, style)
+end
+
+function validate_header_footer(nrows, header, footer)
+    if header !== nothing && !(1 <= header <= nrows)
+        error("`header` must be the index of the last header row, between 1 and the number of rows ($nrows), or `nothing` if the table has no header. Got $header.")
+    end
+    if footer !== nothing && !(1 <= footer <= nrows)
+        error("`footer` must be the index of the first footer row, between 1 and the number of rows ($nrows), or `nothing` if the table has no footer. Got $footer.")
+    end
+    if header !== nothing && footer !== nothing && footer <= header
+        error("`footer` must be larger than `header`, otherwise header and footer overlap. Got header = $header and footer = $footer.")
+    end
 end
 
 function resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
@@ -100,7 +113,9 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
 
 ## Keyword arguments
 - `header`: The index of the last row of the header, `nothing` if no header is specified.
+  Must be between 1 and the number of rows, and smaller than `footer`.
 - `footer`: The index of the first row of the footer, `nothing` if no footer is specified.
+  Must be between 1 and the number of rows, and larger than `header`.
 - `footnotes`: A vector of objects printed as footnotes that are not derived from `Annotated`
   values and therefore don't get labels with counterparts inside the table.
 - `number_format = NumberFormat()`: A `NumberFormat` that is applied to every floating point
