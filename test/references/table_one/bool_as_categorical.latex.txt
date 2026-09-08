@@ -6,18 +6,20 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{lc}}
-\toprule
- & \textbf{Total} \\
-\midrule
-\textbf{bool} &  \\
-\hspace{12.0pt}false & 1 (20\%) \\
-\hspace{12.0pt}true & 3 (60\%) \\
-\hspace{12.0pt}Missing & 1 (20\%) \\
-\bottomrule
+\begin{tabular}{lc}
+\toprule[0.1em]
+ & \textbf{Total} \\[0.2em]
+\midrule[0.075em]
+\textbf{bool} &  \\[0.2em]
+\hspace{12pt}false & 1 (20\%) \\[0.2em]
+\hspace{12pt}true & 3 (60\%) \\[0.2em]
+\hspace{12pt}Missing & 1 (20\%) \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

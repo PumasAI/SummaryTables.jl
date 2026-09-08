@@ -1,5 +1,29 @@
+# factors are the sizes from size10.clo relative to \normalsize at 10pt
+const LATEX_FONTSIZE_COMMANDS = [
+    0.5 => raw"\tiny",
+    0.7 => raw"\scriptsize",
+    0.8 => raw"\footnotesize",
+    0.9 => raw"\small",
+    1.0 => raw"\normalsize",
+    1.2 => raw"\large",
+    1.44 => raw"\Large",
+    1.728 => raw"\LARGE",
+    2.074 => raw"\huge",
+    2.488 => raw"\Huge",
+]
+
+function latex_fontsize_command(l::Em)
+    _, i = findmin(((factor, _),) -> abs(factor - l.value), LATEX_FONTSIZE_COMMANDS)
+    return last(LATEX_FONTSIZE_COMMANDS[i])
+end
+
+function latex_fontsize_command(l::Pt)
+    return "\\fontsize{$(shortest_float_repr(l.value))pt}{$(shortest_float_repr(1.2 * l.value))pt}\\selectfont"
+end
+
 function Base.show(io::IO, ::MIME"text/latex", ct::Table)
     ct = postprocess(ct)
+    style = ct.style
     
     cells = sort(to_spanned_cells(ct.cells), by = x -> (x.span[1].start, x.span[2].start))
 
@@ -21,7 +45,8 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
                 al === :left ? 'l' : error("Invalid align $al")
             print(iob, char)
             if haskey(colgaps, icol)
-                print(iob, "@{\\hskip $(colgaps[icol])pt}")
+                # @{} suppresses the 2 * tabcolsep at this column boundary, so it is re-added
+                print(iob, "@{\\hskip \\dimexpr 2\\tabcolsep+$(length_string(colgaps[icol]))\\relax}")
             end
         end
         String(take!(iob))
@@ -29,11 +54,13 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
 
     print(io, """
     \\begin{table}[!ht]
-    \\setlength\\tabcolsep{0pt}
+    \\setlength\\tabcolsep{$(length_string(style.column_padding / 2))}
+    \\setlength\\aboverulesep{0pt}
+    \\setlength\\belowrulesep{$(length_string(style.row_padding))}
     \\centering
     \\begin{threeparttable}
-    \\begin{tabular}{@{\\extracolsep{2ex}}*{$(size(matrix, 2))}{$colspec}}
-    \\toprule
+    \\begin{tabular}{$colspec}
+    \\toprule[$(length_string(style.outer_rule_width))]
     """)
 
     running_index = 0
@@ -95,31 +122,38 @@ function Base.show(io::IO, ::MIME"text/latex", ct::Table)
 
         print(io, " \\\\")
         if haskey(rowgaps, row)
-            print(io, "[$(rowgaps[row])pt]")
+            print(io, "[\\dimexpr $(length_string(style.row_padding)) + $(length_string(rowgaps[row]))\\relax]")
+        else
+            print(io, "[$(length_string(style.row_padding))]")
         end
         println(io)
         # draw any bottom borders that have been registered to be drawn below this row
         if haskey(bottom_borders, row)
             for range in bottom_borders[row]
-                print(io, "\\cmidrule{$(range.start)-$(range.stop)}")
+                print(io, "\\cmidrule[$(length_string(style.cell_rule_width))]{$(range.start)-$(range.stop)}")
             end
             print(io, "\n")
         end
 
         if row == ct.header
-            print(io, "\\midrule\n")
+            print(io, "\\midrule[$(length_string(style.inner_rule_width))]\n")
         end
         if row + 1 == ct.footer
-            print(io, "\\midrule\n")
+            print(io, "\\midrule[$(length_string(style.inner_rule_width))]\n")
         end
     end
-    print(io, "\\bottomrule\n")
+    print(io, "\\bottomrule[$(length_string(style.outer_rule_width))]\n")
     print(io, raw"""
     \end{tabular}
     """)
     if !isempty(annotations) || !isempty(ct.footnotes)
         println(io, "\\begin{tablenotes}[flushleft$(ct.linebreak_footnotes ? "" : ",para")]")
-        println(io, raw"\footnotesize")
+        println(io, latex_fontsize_command(style.footnote_size))
+        halign_command = style.footnote_halign === :center ? raw"\centering" :
+            style.footnote_halign === :right ? raw"\raggedleft" :
+            style.footnote_halign === :left ? "" :
+            error("Unhandled footnote_halign $(style.footnote_halign)")
+        isempty(halign_command) || println(io, halign_command)
         for (annotation, label) in annotations
             if label !== NoLabel()
                 print(io, raw"\item[")
@@ -174,7 +208,7 @@ function print_latex_cell(io, cell::SpannedCell)
     cell.value === nothing && return
 
     st = cell.style
-    st.indent_pt > 0 && print(io, "\\hspace{$(st.indent_pt)pt}")
+    iszero(st.indent) || print(io, "\\hspace{$(length_string(st.indent))}")
     st.bold && print(io, "\\textbf{")
     st.italic && print(io, "\\textit{")
     st.underline && print(io, "\\underline{")

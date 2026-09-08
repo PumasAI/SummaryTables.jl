@@ -5,7 +5,7 @@
         underline::Bool = false,
         halign::Symbol = :center,
         valign::Symbol = :top,
-        indent_pt::Float64 = 0.0,
+        indent = 0em,
         border_bottom::Bool = false,
         merge::Bool = false,
         mergegroup::UInt8 = 0,
@@ -20,28 +20,74 @@ Keyword arguments:
 - `underline` underlines text if `true`.
 - `halign` determines the horizontal alignment within the cell, either `:left`, `:center` or `:right`.
 - `valign` determines the vertical alignment within the cell, either `:top`, `:center` or `:bottom`.
-- `indent_pt` adds left indentation in points to the cell text.
+- `indent` adds left indentation to the cell text, as an `Em` length relative to the font size, for example `1.5em`, or an absolute `Pt` length, for example `12pt`. The deprecated `indent_pt` keyword sets the same thing as a bare number in points.
 - `border_bottom` adds a bottom border to the cell if `true`.
 - `merge` causes adjacent cells which are `==` equal to be rendered as a single merged cell.
 - `mergegroup` is a number that can be used to differentiate between two otherwise equal adjacent groups of cells that should not be merged together.
 """
-Base.@kwdef struct CellStyle
-    indent_pt::Float64 = 0.0
-    bold::Bool = false
-    italic::Bool = false
-    underline::Bool = false
-    border_bottom::Bool = false
-    halign::Symbol = :center
-    valign::Symbol = :top
-    merge::Bool = false
-    mergegroup::UInt8 = 0
+struct CellStyle
+    indent::Length
+    bold::Bool
+    italic::Bool
+    underline::Bool
+    border_bottom::Bool
+    halign::Symbol
+    valign::Symbol
+    merge::Bool
+    mergegroup::UInt8
 end
 
-@eval function CellStyle(c::CellStyle; kwargs...)
-    Base.Cartesian.@ncall $(length(fieldnames(CellStyle))) CellStyle i -> begin
-        name = $(fieldnames(CellStyle))[i]
-        get(kwargs, name, getfield(c, name))
+function CellStyle(;
+        indent = nothing,
+        indent_pt = nothing,
+        bold = false,
+        italic = false,
+        underline = false,
+        border_bottom = false,
+        halign = :center,
+        valign = :top,
+        merge = false,
+        mergegroup = 0,
+    )
+    CellStyle(
+        resolve_indent(indent, indent_pt, Em(0.0)),
+        bold, italic, underline, border_bottom, halign, valign, merge, UInt8(mergegroup),
+    )
+end
+
+function CellStyle(c::CellStyle;
+        indent = nothing,
+        indent_pt = nothing,
+        bold = nothing,
+        italic = nothing,
+        underline = nothing,
+        border_bottom = nothing,
+        halign = nothing,
+        valign = nothing,
+        merge = nothing,
+        mergegroup = nothing,
+    )
+    keep(v, old) = v === nothing ? old : v
+    CellStyle(
+        resolve_indent(indent, indent_pt, c.indent),
+        keep(bold, c.bold),
+        keep(italic, c.italic),
+        keep(underline, c.underline),
+        keep(border_bottom, c.border_bottom),
+        keep(halign, c.halign),
+        keep(valign, c.valign),
+        keep(merge, c.merge),
+        keep(mergegroup === nothing ? nothing : UInt8(mergegroup), c.mergegroup),
+    )
+end
+
+function resolve_indent(indent, indent_pt, fallback)
+    if indent_pt !== nothing
+        indent === nothing || error("Cannot set both `indent` and the deprecated `indent_pt`. Use only `indent`.")
+        Base.depwarn("The `indent_pt` keyword is deprecated, use `indent = $(indent_pt)pt` instead (or an `Em` length like `1.5em`).", :CellStyle)
+        return indent_pt * pt
     end
+    indent === nothing ? fallback : indent
 end
 
 struct SpannedCell
@@ -71,7 +117,7 @@ const CellList = Vector{SpannedCell}
 
 """
     Cell(value, style::CellStyle)
-    Cell(value; [bold, italic, underline, halign, valign, border_bottom, indent_pt, merge, mergegroup])
+    Cell(value; [bold, italic, underline, halign, valign, border_bottom, indent, merge, mergegroup])
 
 Construct a `Cell` with value `value` and `CellStyle` `style`, which can also be created implicitly with keyword arguments.
 For explanations of the styling options, refer to `CellStyle`.

@@ -6,21 +6,23 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{3}{lcc}}
-\toprule
- & \multicolumn{2}{c}{\textbf{group1}} \\
-\cmidrule{2-3}
- & \multicolumn{2}{c}{b} \\
- & \multicolumn{2}{c}{\textbf{group2}} \\
-\cmidrule{2-3}
- & e & f \\
-\textbf{group3} & \multicolumn{2}{c}{\textbf{value1}} \\
-\midrule
-c & 5 & 6 \\
-\bottomrule
+\begin{tabular}{lcc}
+\toprule[0.1em]
+ & \multicolumn{2}{c}{\textbf{group1}} \\[0.2em]
+\cmidrule[0.075em]{2-3}
+ & \multicolumn{2}{c}{b} \\[0.2em]
+ & \multicolumn{2}{c}{\textbf{group2}} \\[0.2em]
+\cmidrule[0.075em]{2-3}
+ & e & f \\[0.2em]
+\textbf{group3} & \multicolumn{2}{c}{\textbf{value1}} \\[0.2em]
+\midrule[0.075em]
+c & 5 & 6 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

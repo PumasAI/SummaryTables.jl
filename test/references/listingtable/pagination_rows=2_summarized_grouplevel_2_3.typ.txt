@@ -1,16 +1,18 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 6,
     columns: 4,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, left, center, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [],
         table.cell(colspan: 2)[*#"group3"*],
-        table.hline(y: 1, start: 2, end: 4, stroke: 0.75pt),
+        table.hline(y: 1, start: 2, end: 4, stroke: 0.075em),
         [],
         [],
         [#"c"],
@@ -18,7 +20,7 @@
         [*#"group1"*],
         [*#"group2"*],
         table.cell(colspan: 2)[*#"value1"*],
-        table.hline(y: 3, stroke: 0.75pt),
+        table.hline(y: 3, stroke: 0.075em),
     ),
     [#"b"],
     [#"e"],
@@ -32,5 +34,6 @@
     [*#"std"*],
     [#"NaN"],
     [#"NaN"],
-    table.hline(y: 6, stroke: 1pt),
+    table.hline(y: 6, stroke: 0.1em),
 )
+}

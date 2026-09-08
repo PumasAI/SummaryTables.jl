@@ -1,17 +1,19 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 13,
     columns: 4,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, left, left, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [*#"id"*],
         [*#"dose"*],
         [],
         [*#"value"*],
-        table.hline(y: 1, stroke: 0.75pt),
+        table.hline(y: 1, stroke: 0.075em),
     ),
     table.cell(rowspan: 2)[#"1"],
     [#"1 mg"],
@@ -55,5 +57,6 @@
     [#"10 mg"],
     [*#"mean"*],
     [#"4"],
-    table.hline(y: 13, stroke: 1pt),
+    table.hline(y: 13, stroke: 0.1em),
 )
+}

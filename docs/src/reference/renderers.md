@@ -117,6 +117,17 @@ Download `example.docx`:
 <a href="../example.docx" download><img src="/assets/icon_docx.png" width="60" /></a>
 ```
 
+Because Word cannot express font-relative lengths, any `em` lengths in the table (rule widths, paddings, `footnote_size`, cell `indent`, row and column gaps) are converted to absolute points when exporting.
+The reference font size for this conversion is the surrounding document's font size, which defaults to `10pt` and can be set with the optional `DocxDefaults` argument of `to_docx`:
+
+```julia
+using SummaryTables: pt
+
+SummaryTables.to_docx(tbl, SummaryTables.DocxDefaults(base_fontsize = 12pt))
+```
+
+It can also be set globally with `SummaryTables.defaults!(docx = SummaryTables.DocxDefaults(base_fontsize = 12pt))`.
+
 ## Typst
 
 You can print [Typst](https://github.com/typst/typst) table code to any IO via `show(io, MIME"text/typst", table)`.

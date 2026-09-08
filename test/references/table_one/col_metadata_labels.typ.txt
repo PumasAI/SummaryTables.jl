@@ -1,27 +1,30 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 7,
     columns: 2,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, center),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [],
         [*#"Total"*],
-        table.hline(y: 1, stroke: 0.75pt),
+        table.hline(y: 1, stroke: 0.075em),
     ),
     [*#"Value A"*],
     [],
-    [#h(12.0pt)#"Mean (SD)"],
+    [#h(12pt)#"Mean (SD)"],
     [#"2.5"#" ("#"1.29"#")"],
-    [#h(12.0pt)#"Median [Min, Max]"],
+    [#h(12pt)#"Median [Min, Max]"],
     [#"2.5"#" ["#"1"#", "#"4"#"]"],
     [*#"Value B"*],
     [],
-    [#h(12.0pt)#"a"],
+    [#h(12pt)#"a"],
     [#"2"#" ("#"50"#"%)"],
-    [#h(12.0pt)#"b"],
+    [#h(12pt)#"b"],
     [#"2"#" ("#"50"#"%)"],
-    table.hline(y: 7, stroke: 1pt),
+    table.hline(y: 7, stroke: 0.1em),
 )
+}
