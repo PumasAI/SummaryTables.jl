@@ -1,16 +1,51 @@
-const DOCX_OUTER_RULE_SIZE = 8 * WriteDocx.eighthpt
-const DOCX_INNER_RULE_SIZE = 4 * WriteDocx.eighthpt
-const DOCX_ANNOTATION_FONTSIZE = 8 * WriteDocx.pt
+# Word border sizes have eighth-point granularity
+docx_rule_size(l::Length, base_fontsize) =
+    max(1, round(Int, resolve_pt(l, base_fontsize) * 8)) * WriteDocx.eighthpt
+
+# the table's font-relative lengths resolved to absolute Word measures for one export
+Base.@kwdef struct DocxMeasures
+    base_fontsize::Float64
+    outer_rule_size
+    inner_rule_size
+    cell_rule_size
+    column_padding_pt::Float64
+    row_padding_pt::Float64
+    footnote_size
+end
+
+function DocxMeasures(style::TableStyle, base_fontsize::Real)
+    DocxMeasures(
+        base_fontsize = base_fontsize,
+        outer_rule_size = docx_rule_size(style.outer_rule_width, base_fontsize),
+        inner_rule_size = docx_rule_size(style.inner_rule_width, base_fontsize),
+        cell_rule_size = docx_rule_size(style.cell_rule_width, base_fontsize),
+        column_padding_pt = resolve_pt(style.column_padding, base_fontsize),
+        row_padding_pt = resolve_pt(style.row_padding, base_fontsize),
+        footnote_size = resolve_pt(style.footnote_size, base_fontsize) * WriteDocx.pt,
+    )
+end
+
+function resolve_docx_base_fontsize(docx::DocxDefaults)
+    theme = defaults().docx
+    fallback(docx.base_fontsize, fallback(theme.base_fontsize, 10pt)).value
+end
 
 """
-    to_docx(ct::Table)
+    to_docx(ct::Table, docx::DocxDefaults = DocxDefaults())
 
 Creates a `WriteDocx.Table` node for `Table` `ct` which can be inserted into
 a `WriteDocx` document.
+
+The `docx` argument is a `DocxDefaults` that controls Word-specific rendering, in
+particular how the table's font-relative lengths are converted to absolute
+measures. Refer to the `DocxDefaults` docstring for the available options.
 """
-function to_docx(ct::Table)
+function to_docx(ct::Table, docx::DocxDefaults = DocxDefaults())
     ct = postprocess(ct)
-    
+    style = ct.style
+    base_fontsize = resolve_docx_base_fontsize(docx)
+    measures = DocxMeasures(style, base_fontsize)
+
     cells = sort(to_spanned_cells(ct.cells), by = x -> (x.span[1].start, x.span[2].start))
 
     cells, annotations = resolve_annotations(cells)
@@ -40,7 +75,7 @@ function to_docx(ct::Table)
         )
     end
 
-    push!(tablerows, full_width_border_row(DOCX_OUTER_RULE_SIZE; header = true))
+    push!(tablerows, full_width_border_row(measures.outer_rule_size; header = true))
 
     validate_rowgaps(ct.rowgaps, size(matrix, 1))
     validate_colgaps(ct.colgaps, size(matrix, 2))
@@ -66,7 +101,7 @@ function to_docx(ct::Table)
                 if !is_firstcol
                     continue
                 end
-                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps))
+                push!(rowcells, docx_cell(row, col, cell, rowgaps, colgaps, measures))
                 running_index = index
             
             end
@@ -74,11 +109,11 @@ function to_docx(ct::Table)
         push!(tablerows, WriteDocx.TableRow(rowcells, WriteDocx.TableRowProperties(; header = ct.header !== nothing && row <= ct.header)))
 
         if row == ct.header
-            push!(tablerows, full_width_border_row(DOCX_INNER_RULE_SIZE; header = true))
+            push!(tablerows, full_width_border_row(measures.inner_rule_size; header = true))
         end
     end
 
-    push!(tablerows, full_width_border_row(DOCX_OUTER_RULE_SIZE))
+    push!(tablerows, full_width_border_row(measures.outer_rule_size))
 
     separator_element = ct.linebreak_footnotes ? WriteDocx.Break() : WriteDocx.Text("    ")
 
@@ -91,14 +126,15 @@ function to_docx(ct::Table)
                 push!(elements, WriteDocx.Run([WriteDocx.Text(" ")],
                     WriteDocx.RunProperties(valign = WriteDocx.VerticalAlignment.superscript)))
             end
-            append!(elements, to_runs(annotation, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            append!(elements, to_runs(annotation, WriteDocx.RunProperties(size = measures.footnote_size)))
         end
         for (i, footnote) in enumerate(ct.footnotes)
             (!isempty(annotations) || i > 1) && push!(elements, WriteDocx.Run([separator_element]))
-            append!(elements, to_runs(footnote, WriteDocx.RunProperties(size = DOCX_ANNOTATION_FONTSIZE)))
+            append!(elements, to_runs(footnote, WriteDocx.RunProperties(size = measures.footnote_size)))
         end
+        footnote_para_props = WriteDocx.ParagraphProperties(justification = docx_justification(style.footnote_halign))
         annotation_row = WriteDocx.TableRow([WriteDocx.TableCell(
-            [WriteDocx.Paragraph(elements)],
+            [WriteDocx.Paragraph(elements, footnote_para_props)],
             WriteDocx.TableCellProperties(gridspan = size(matrix, 2))
         )])
         push!(tablerows, annotation_row)
@@ -107,13 +143,10 @@ function to_docx(ct::Table)
     tablenode = WriteDocx.Table(tablerows,
         WriteDocx.TableProperties(
             margins = WriteDocx.TableLevelCellMargins(
-                # Word already has relatively broadly spaced tables,
-                # so we keep margins to a minimum. A little bit on the left
-                # and right is needed to separate the columns from each other
-                top = WriteDocx.pt * 0,
-                bottom = WriteDocx.pt * 0,
-                start = WriteDocx.pt * 1.5,
-                stop = WriteDocx.pt * 1.5,
+                top = WriteDocx.pt * (0.5 * measures.row_padding_pt),
+                bottom = WriteDocx.pt * (0.5 * measures.row_padding_pt),
+                start = WriteDocx.pt * (0.5 * measures.column_padding_pt),
+                stop = WriteDocx.pt * (0.5 * measures.column_padding_pt),
             ),
             # this spacing allows adjacent column underlines to be ever-so-slightly spaced apart,
             # which is otherwise not possible to achieve in Word (aside from adding empty spacing columns maybe)
@@ -124,12 +157,15 @@ function to_docx(ct::Table)
     return tablenode
 end
 
+docx_justification(halign::Symbol) =
+    halign === :center ? WriteDocx.Justification.center :
+    halign === :left ? WriteDocx.Justification.start :
+    halign === :right ? WriteDocx.Justification.stop :
+    error("Unhandled halign $(halign)")
+
 function paragraph_and_run_properties(st::CellStyle)
     para = WriteDocx.ParagraphProperties(
-        justification = st.halign === :center ? WriteDocx.Justification.center :
-            st.halign === :left ? WriteDocx.Justification.start :
-            st.halign === :right ? WriteDocx.Justification.stop :
-            error("Unhandled halign $(st.halign)"),
+        justification = docx_justification(st.halign),
     )
     run = WriteDocx.RunProperties(
         bold = st.bold ? true : nothing, # TODO: fix bug in WriteDocx?
@@ -142,10 +178,13 @@ function hardcoded_styles(class::Nothing)
     WriteDocx.ParagraphProperties(), (;)
 end
 
-function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, rowgaps, colgaps)
+function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, rowgaps, colgaps, measures)
     cs = cell.style
 
     pt = WriteDocx.pt
+    bf = measures.base_fontsize
+    gap_pt(gap) = 0.5 * resolve_pt(gap, bf)
+    indent_pt = resolve_pt(cs.indent, bf)
 
     bottom_rowgap = get(rowgaps, cell.span[1].stop, nothing)
     if bottom_rowgap === nothing
@@ -155,29 +194,29 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
             bottom_margin = nothing
         end
     else
-        bottom_margin = 0.5 * bottom_rowgap * pt
+        bottom_margin = gap_pt(bottom_rowgap) * pt
     end
 
     top_rowgap = get(rowgaps, cell.span[1].start-1, nothing)
-    top_margin = top_rowgap === nothing ? nothing : 0.5 * top_rowgap * pt
+    top_margin = top_rowgap === nothing ? nothing : gap_pt(top_rowgap) * pt
 
     left_colgap = get(colgaps, cell.span[2].start-1, nothing)
     if left_colgap === nothing
-        if cs.indent_pt != 0
-            left_margin = cs.indent_pt * pt
+        if !iszero(cs.indent)
+            left_margin = indent_pt * pt
         else
             left_margin = nothing
         end
     else
-        if cs.indent_pt != 0
-            left_margin = (cs.indent_pt + 0.5 * left_colgap) * pt
+        if !iszero(cs.indent)
+            left_margin = (indent_pt + gap_pt(left_colgap)) * pt
         else
-            left_margin = 0.5 * left_colgap * pt
+            left_margin = gap_pt(left_colgap) * pt
         end
     end
 
     right_colgap = get(colgaps, cell.span[2].stop, nothing)
-    right_margin = right_colgap === nothing ? nothing : 0.5 * right_colgap * pt
+    right_margin = right_colgap === nothing ? nothing : gap_pt(right_colgap) * pt
 
     left_end = col == cell.span[2].start
     right_end = col == cell.span[2].stop
@@ -206,9 +245,9 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
             stop = right_margin,
         ),
         borders = cs.border_bottom ? WriteDocx.TableCellBorders(
-            bottom = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = DOCX_INNER_RULE_SIZE, style = WriteDocx.BorderStyle.single),
-            start = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = DOCX_INNER_RULE_SIZE, style = WriteDocx.BorderStyle.none), # the left/right none styles keep adjacent cells' bottom borders from merging together
-            stop = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = DOCX_INNER_RULE_SIZE, style = WriteDocx.BorderStyle.none),
+            bottom = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = measures.cell_rule_size, style = WriteDocx.BorderStyle.single),
+            start = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = measures.cell_rule_size, style = WriteDocx.BorderStyle.none), # the left/right none styles keep adjacent cells' bottom borders from merging together
+            stop = WriteDocx.TableCellBorder(color = WriteDocx.automatic, size = measures.cell_rule_size, style = WriteDocx.BorderStyle.none),
         ) : nothing,
         valign = cs.valign === :center ? WriteDocx.VerticalAlign.center :
             cs.valign === :bottom ? WriteDocx.VerticalAlign.bottom :
@@ -219,7 +258,7 @@ function cell_properties(cell::SpannedCell, row, col, vertical_merge, gridspan, 
     )
 end
 
-function docx_cell(row, col, cell, rowgaps, colgaps)    
+function docx_cell(row, col, cell, rowgaps, colgaps, measures)
     ncols = length(cell.span[2])
     is_firstrow = row == cell.span[1].start
     is_firstcol = col == cell.span[2].start
@@ -237,7 +276,7 @@ function docx_cell(row, col, cell, rowgaps, colgaps)
     else
         [WriteDocx.Run([WriteDocx.Text("")], runproperties)]
     end
-    cellprops = cell_properties(cell, row, col, vertical_merge, gridspan, rowgaps, colgaps)
+    cellprops = cell_properties(cell, row, col, vertical_merge, gridspan, rowgaps, colgaps, measures)
 
     WriteDocx.TableCell([
         WriteDocx.Paragraph(runs, paraproperties),

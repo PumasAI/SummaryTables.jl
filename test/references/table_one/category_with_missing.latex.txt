@@ -6,21 +6,23 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{lccc}}
-\toprule
- &  & \multicolumn{2}{c}{\textbf{group}} \\
-\cmidrule{3-4}
- & \textbf{Total} & 1 & 2 \\
-\midrule
-\textbf{category} &  &  &  \\
-\hspace{12.0pt}a & 1 (12.5\%) & 1 (25\%) & 0 (0\%) \\
-\hspace{12.0pt}b & 3 (37.5\%) & 2 (50\%) & 1 (25\%) \\
-\hspace{12.0pt}c & 3 (37.5\%) & 1 (25\%) & 2 (50\%) \\
-\hspace{12.0pt}Missing & 1 (12.5\%) & 0 (0\%) & 1 (25\%) \\
-\bottomrule
+\begin{tabular}{lccc}
+\toprule[0.1em]
+ &  & \multicolumn{2}{c}{\textbf{group}} \\[0.2em]
+\cmidrule[0.075em]{3-4}
+ & \textbf{Total} & 1 & 2 \\[0.2em]
+\midrule[0.075em]
+\textbf{category} &  &  &  \\[0.2em]
+\hspace{12pt}a & 1 (12.5\%) & 1 (25\%) & 0 (0\%) \\[0.2em]
+\hspace{12pt}b & 3 (37.5\%) & 2 (50\%) & 1 (25\%) \\[0.2em]
+\hspace{12pt}c & 3 (37.5\%) & 1 (25\%) & 2 (50\%) \\[0.2em]
+\hspace{12pt}Missing & 1 (12.5\%) & 0 (0\%) & 1 (25\%) \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

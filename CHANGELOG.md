@@ -2,7 +2,17 @@
 
 ## Unreleased
 
+- `Table` now errors for `header` or `footer` indices that lie outside the table or overlap each other, instead of silently producing broken output [#160](https://github.com/PumasAI/SummaryTables.jl/pull/160).
 - Added `pagination` support to `table_one`, using the same `Pagination`/`PaginatedTable` pattern `listingtable` already has [#147](https://github.com/PumasAI/SummaryTables.jl/pull/147).
+
+## 3.7.1 - 2026-09-04
+
+- Allowed `HypothesisTests` 0.12 [#158](https://github.com/PumasAI/SummaryTables.jl/pull/158).
+
+## 3.7.0 - 2026-09-03
+
+- Added `Table` settings `outer_rule_width`, `inner_rule_width`, `cell_rule_width`, `column_padding`, `row_padding`, `footnote_size` and `footnote_halign` (also available as global defaults), using font-relative (`em`) or absolute (`pt`) lengths that render consistently across all backends; `to_docx` gained an optional `DocxDefaults` argument whose `base_fontsize` resolves relative lengths for Word [#155](https://github.com/PumasAI/SummaryTables.jl/pull/155).
+- The cell `indent` and the `rowgaps`/`colgaps` values now accept `em` and `pt` lengths (bare numbers still mean points); the `indent_pt` keyword is deprecated in favor of `indent` [#155](https://github.com/PumasAI/SummaryTables.jl/pull/155).
 
 ## 3.6.1 - 2026-08-07
 

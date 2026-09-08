@@ -6,15 +6,17 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
-\toprule
-1.4 & 12352131 \\
-106071821.2 & 0 \\
-1.2 \& 0 & \begin{tabular}{@{}c@{}}1.2 \\ 0\end{tabular} \\
-\bottomrule
+\begin{tabular}{cc}
+\toprule[0.1em]
+1.4 & 12352131 \\[0.2em]
+106071821.2 & 0 \\[0.2em]
+1.2 \& 0 & \begin{tabular}{@{}c@{}}1.2 \\ 0\end{tabular} \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}

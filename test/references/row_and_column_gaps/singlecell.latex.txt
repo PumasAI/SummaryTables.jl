@@ -6,16 +6,18 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{4}{cc@{\hskip 4.0pt}c@{\hskip 8.0pt}c}}
-\toprule
-1, 1 & 1, 2 & 1, 3 & 1, 4 \\[4.0pt]
-2, 1 & 2, 2 & 2, 3 & 2, 4 \\[8.0pt]
-3, 1 & 3, 2 & 3, 3 & 3, 4 \\
-4, 1 & 4, 2 & 4, 3 & 4, 4 \\
-\bottomrule
+\begin{tabular}{cc@{\hskip \dimexpr 2\tabcolsep+4pt\relax}c@{\hskip \dimexpr 2\tabcolsep+8pt\relax}c}
+\toprule[0.1em]
+1, 1 & 1, 2 & 1, 3 & 1, 4 \\[\dimexpr 0.2em + 4pt\relax]
+2, 1 & 2, 2 & 2, 3 & 2, 4 \\[\dimexpr 0.2em + 8pt\relax]
+3, 1 & 3, 2 & 3, 3 & 3, 4 \\[0.2em]
+4, 1 & 4, 2 & 4, 3 & 4, 4 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \end{threeparttable}
 \end{table}
