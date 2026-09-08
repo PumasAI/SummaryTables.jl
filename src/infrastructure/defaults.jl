@@ -36,6 +36,8 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     footnote_size::Length = 0.8em
     "Horizontal alignment of the footnotes, either `:left`, `:center` or `:right`."
     footnote_halign::Symbol = :left
+    "If `true`, row-group label cells are vertically merged across their rows in DOCX. Word cannot page-break a merged region, so set `false` when a group can span more rows than fit on a page (the label then top-anchors in the group's first row)."
+    merge_row_labels::Bool = true
     "Defaults for Word-specific rendering options."
     docx::DocxDefaults = DocxDefaults()
     "Defaults for the `table_one` function"

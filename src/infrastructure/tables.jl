@@ -8,6 +8,7 @@ struct Table
     postprocess::Vector{Any}
     number_format::Union{Nothing,NumberFormat}
     linebreak_footnotes::Bool
+    merge_row_labels::Bool
     style::TableStyle
 end
 
@@ -28,11 +29,13 @@ function Table(cells, header, footer;
         row_padding = default,
         footnote_size = default,
         footnote_halign = default,
+        merge_row_labels = default,
     )
     validate_header_footer(size(cells, 1), header, footer)
     defs = defaults()
     _number_format = resolve_number_format(number_format, round_digits, round_mode, trailing_zeros, defs)
     _linebreak_footnotes = fallback(linebreak_footnotes, defs.linebreak_footnotes)
+    _merge_row_labels = fallback(merge_row_labels, defs.merge_row_labels)
     style = TableStyle(
         outer_rule_width = fallback(outer_rule_width, defs.outer_rule_width),
         inner_rule_width = fallback(inner_rule_width, defs.inner_rule_width),
@@ -44,7 +47,7 @@ function Table(cells, header, footer;
     )
     _rowgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in rowgaps]
     _colgaps = Pair{Int,Length}[k => to_length(v) for (k, v) in colgaps]
-    Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, style)
+    Table(cells, header, footer, footnotes, _rowgaps, _colgaps, postprocess, _number_format, _linebreak_footnotes, _merge_row_labels, style)
 end
 
 function validate_header_footer(nrows, header, footer)
@@ -153,6 +156,9 @@ Create a `Table` which can be rendered in multiple formats, such as HTML or LaTe
   values are converted to absolute points when exporting via `to_docx`, using its `DocxDefaults`
   `base_fontsize`. Like the other settings, each of these is inherited from the global defaults
   when left unset.
+- `merge_row_labels = true`: If `true`, row-group label cells are vertically merged across their rows in DOCX.
+    Word cannot page-break a merged region, so set `false` when a group can span more rows than fit on a page
+    (the label then top-anchors in the group's first row).
 """
 Table(cells; header = nothing, footer = nothing, kwargs...) = Table(cells, header, footer; kwargs...)
 
@@ -304,7 +310,7 @@ function postprocess_table(ct::Table, any)
         end
         return new_cell
     end
-    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes, ct.style)
+    Table(new_cl, ct.header, ct.footer, ct.footnotes, ct.rowgaps, ct.colgaps, [], ct.number_format, ct.linebreak_footnotes, ct.merge_row_labels, ct.style)
 end
 
 function postprocess_table(ct::Table, v::AbstractVector)
