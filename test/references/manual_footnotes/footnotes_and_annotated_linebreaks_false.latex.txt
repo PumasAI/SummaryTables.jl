@@ -6,13 +6,15 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
-\toprule
-Cell 1\tnote{1} & Cell 2 \\
-\bottomrule
+\begin{tabular}{cc}
+\toprule[0.1em]
+Cell 1\tnote{1} & Cell 2 \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \begin{tablenotes}[flushleft,para]
 \footnotesize

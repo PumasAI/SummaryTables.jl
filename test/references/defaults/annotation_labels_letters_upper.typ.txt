@@ -1,11 +1,13 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 4,
     columns: 3,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (center, center, center),
     stroke: none,
-    table.hline(y: 0, stroke: 1pt),
+    table.hline(y: 0, stroke: 0.1em),
     [#"1A"#super[#"A"]],
     [#"1B"#super[#"B"]],
     [#"1C"#super[#"C"]],
@@ -18,7 +20,7 @@
     [#"4A"#super[#"J"]],
     [#"4B"#super[#"K"]],
     [#"4C"#super[#"L"]],
-    table.hline(y: 4, stroke: 1pt),
+    table.hline(y: 4, stroke: 0.1em),
     table.cell(align: left, colspan: 3)[#text(size: 0.8em)[
         #super[#"A"]#"annotation 1A"\
         #super[#"B"]#"annotation 1B"\
@@ -34,3 +36,4 @@
         #super[#"L"]#"annotation 4C"
     ]],
 )
+}

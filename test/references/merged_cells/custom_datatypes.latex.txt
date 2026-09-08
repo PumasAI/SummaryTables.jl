@@ -6,17 +6,19 @@
 \usepackage{tikz}
 \begin{document}
 \begin{table}[!ht]
-\setlength\tabcolsep{0pt}
+\setlength\tabcolsep{0.425em}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0.2em}
 \centering
 \begin{threeparttable}
-\begin{tabular}{@{\extracolsep{2ex}}*{2}{cc}}
-\toprule
-\multicolumn{2}{c}{\begin{tabular}{@{}c@{}}A \\ B\end{tabular}} \\
-\multicolumn{2}{c}{\textsuperscript{Sup}} \\
-\multicolumn{2}{c}{\textsubscript{Sub}} \\
-\multicolumn{2}{c}{AB} \\
-\multicolumn{2}{c}{Label\tnote{1}} \\
-\bottomrule
+\begin{tabular}{cc}
+\toprule[0.1em]
+\multicolumn{2}{c}{\begin{tabular}{@{}c@{}}A \\ B\end{tabular}} \\[0.2em]
+\multicolumn{2}{c}{\textsuperscript{Sup}} \\[0.2em]
+\multicolumn{2}{c}{\textsubscript{Sub}} \\[0.2em]
+\multicolumn{2}{c}{AB} \\[0.2em]
+\multicolumn{2}{c}{Label\tnote{1}} \\[0.2em]
+\bottomrule[0.1em]
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize

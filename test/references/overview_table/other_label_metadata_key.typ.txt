@@ -1,12 +1,14 @@
 
-#table(
+#{
+set text(top-edge: "ascender", bottom-edge: "descender")
+table(
     rows: 3,
     columns: 8,
-    column-gutter: 0.25em,
+    inset: (x: 0.425em, y: 0.1em),
     align: (left, left, left, left, left, left, left, left),
     stroke: none,
     table.header(
-        table.hline(y: 0, stroke: 1pt),
+        table.hline(y: 0, stroke: 0.1em),
         [*#"No"*],
         [*#"Variable"*],
         [*#"Label"*],
@@ -15,7 +17,7 @@
         [*#"Graph"*],
         [*#"Valid"*],
         [*#"Missing"*],
-        table.hline(y: 1, stroke: 0.75pt),
+        table.hline(y: 1, stroke: 0.075em),
     ),
     table.cell(align: horizon)[#"1"],
     table.cell(align: horizon)[#"a" #linebreak() #"[Int64]"],
@@ -33,9 +35,10 @@
     table.cell(align: horizon)[#box(width: 0pt, hide[1])#box(rect(width: 2.083em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 2.083em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080"))) #linebreak() #box(width: 0pt, hide[1])#box(rect(width: 2.083em, height: 0.6em, outset: (y: 0.1em), fill: rgb("#d3d3d3"), stroke: 0.75pt + rgb("#808080")))],
     table.cell(align: horizon)[#"3" #linebreak() #"("#"100"#"%)"],
     table.cell(align: horizon)[#"0" #linebreak() #"("#"0"#"%)"],
-    table.hline(y: 3, stroke: 1pt),
+    table.hline(y: 3, stroke: 0.1em),
     table.cell(colspan: 8)[#text(size: 0.8em)[
         #"Dimensions: 3 x 2"\
         #"Duplicate rows: 0"
     ]],
 )
+}
