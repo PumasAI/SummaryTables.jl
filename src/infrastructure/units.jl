@@ -91,4 +91,4 @@ struct DocxDefaults <: AbstractDefaults
     full_width::Union{Default,Bool}
 end
 DocxDefaults(; base_fontsize = default, full_width = default) = DocxDefaults(base_fontsize, full_width)
-DocxDefaults(base_fontsize::Real) = error("`DocxDefaults` `base_fontsize` must be a `Pt` length such as `$(base_fontsize)pt`, not a bare number.")
+DocxDefaults(base_fontsize::Real, full_width = default) = error("`DocxDefaults` `base_fontsize` must be a `Pt` length such as `$(base_fontsize)pt`, not a bare number.")
