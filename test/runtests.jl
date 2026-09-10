@@ -493,6 +493,14 @@ end
             DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
             t = summarytable(df_with_labels, :A, rows = [:B, :C], summary = [only])
             reftest(t, "references/summarytable/column_label_metadata")
+
+            # `full_width` renders the table at the full text width instead of sized to content.
+            # It is read at export time, so the scope has to cover the reference test, not just the
+            # table. Only the docx reference differs; the other backends size from the outside.
+            SummaryTables.with_defaults(docx = (; full_width = true)) do
+                t = summarytable(df, :value1, rows = [:group1], cols = [:group2], summary = [mean, std])
+                reftest(t, "references/summarytable/full_width")
+            end
         end
 
         @testset "simple table" begin
