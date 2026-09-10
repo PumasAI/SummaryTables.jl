@@ -71,18 +71,24 @@ Base.@kwdef struct TableStyle
 end
 
 """
-    DocxDefaults(; base_fontsize = default)
+    DocxDefaults(; base_fontsize = default, full_width = default)
 
 Backend-specific defaults for the `docx` output. Because Word cannot express
 font-relative lengths, a table's `Em` lengths are converted to absolute points
 at export time relative to `base_fontsize`, a `Pt` length such as `12pt` that
 should match the font size of the surrounding document.
 
+With `full_width = true`, the table fills the text width using Word's
+"AutoFit to window" instead of being sized to its content. This is a Word-only
+setting because the other backends express it from the surrounding document,
+HTML with CSS and Typst with a show rule.
+
 Options left unset fall back to the `docx` default and finally to the
-package default of `10pt`.
+package defaults of `10pt` and `false`.
 """
 struct DocxDefaults <: AbstractDefaults
     base_fontsize::Union{Default,Pt}
+    full_width::Union{Default,Bool}
 end
-DocxDefaults(; base_fontsize = default) = DocxDefaults(base_fontsize)
+DocxDefaults(; base_fontsize = default, full_width = default) = DocxDefaults(base_fontsize, full_width)
 DocxDefaults(base_fontsize::Real) = error("`DocxDefaults` `base_fontsize` must be a `Pt` length such as `$(base_fontsize)pt`, not a bare number.")

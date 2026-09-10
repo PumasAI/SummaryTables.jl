@@ -3,7 +3,7 @@
 ## Unreleased
 
 - `Table` now errors for `header` or `footer` indices that lie outside the table or overlap each other, instead of silently producing broken output [#160](https://github.com/PumasAI/SummaryTables.jl/pull/160).
-- Added a `full_width` option that fits a table to the full text width (Typst `fr` columns / Word's "AutoFit to window"), settable per table or globally with `defaults!`. The Word output needs `WriteDocx`'s table width, so the `WriteDocx` compat bound is raised to 1.3 [#143](https://github.com/PumasAI/SummaryTables.jl/pull/143).
+- Added a `full_width` option to `DocxDefaults` that fits a table to the full text width in Word ("AutoFit to window"), settable on `to_docx` or globally with `defaults!`. This needs `WriteDocx`'s table width, so the `WriteDocx` compat bound is raised to 1.3 [#143](https://github.com/PumasAI/SummaryTables.jl/pull/143).
 
 ## 3.7.1 - 2026-09-04
 

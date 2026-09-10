@@ -30,6 +30,11 @@ function resolve_docx_base_fontsize(docx::DocxDefaults)
     fallback(docx.base_fontsize, fallback(theme.base_fontsize, 10pt)).value
 end
 
+function resolve_docx_full_width(docx::DocxDefaults)
+    theme = defaults().docx
+    fallback(docx.full_width, fallback(theme.full_width, false))
+end
+
 """
     to_docx(ct::Table, docx::DocxDefaults = DocxDefaults())
 
@@ -44,6 +49,7 @@ function to_docx(ct::Table, docx::DocxDefaults = DocxDefaults())
     ct = postprocess(ct)
     style = ct.style
     base_fontsize = resolve_docx_base_fontsize(docx)
+    full_width = resolve_docx_full_width(docx)
     measures = DocxMeasures(style, base_fontsize)
 
     cells = sort(to_spanned_cells(ct.cells), by = x -> (x.span[1].start, x.span[2].start))
@@ -142,9 +148,9 @@ function to_docx(ct::Table, docx::DocxDefaults = DocxDefaults())
 
     tablenode = WriteDocx.Table(tablerows,
         WriteDocx.TableProperties(
-            # Opt-in full width (`full_width` default): Word "AutoFit to window" spreads columns proportionally
-            # across the text column. Unset otherwise, so every other consumer keeps content-sized tables.
-            width = ct.full_width ? 100 * WriteDocx.percent : nothing,
+            # Opt-in full width: Word "AutoFit to window" spreads columns across the text column.
+            # Unset otherwise, so every other consumer keeps content-sized tables.
+            width = full_width ? 100 * WriteDocx.percent : nothing,
             margins = WriteDocx.TableLevelCellMargins(
                 top = WriteDocx.pt * (0.5 * measures.row_padding_pt),
                 bottom = WriteDocx.pt * (0.5 * measures.row_padding_pt),

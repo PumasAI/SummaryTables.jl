@@ -128,6 +128,14 @@ SummaryTables.to_docx(tbl, SummaryTables.DocxDefaults(base_fontsize = 12pt))
 
 It can also be set globally with `SummaryTables.defaults!(docx = SummaryTables.DocxDefaults(base_fontsize = 12pt))`.
 
+By default a table is sized to its content. With `full_width = true` it fills the text width instead, using Word's "AutoFit to window":
+
+```julia
+SummaryTables.to_docx(tbl, SummaryTables.DocxDefaults(full_width = true))
+```
+
+This setting is Word-only. The other backends express the same thing from the surrounding document, HTML with CSS and Typst with a show rule on `table`.
+
 ## Typst
 
 You can print [Typst](https://github.com/typst/typst) table code to any IO via `show(io, MIME"text/typst", table)`.

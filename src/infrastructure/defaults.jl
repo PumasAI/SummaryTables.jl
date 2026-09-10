@@ -22,8 +22,6 @@ Base.@kwdef struct Defaults <: AbstractDefaults
     annotation_labels = :numbers
     "Key to look up column label metadata with. A value of `nothing` disables lookup."
     label_key::Union{Nothing,String} = "label"
-    "If `true`, tables render at the full text width (Typst `fr` columns / Word \"AutoFit to window\") instead of sized to content."
-    full_width::Bool = false
     "Width of the rules above and below the table, as an `Em` or `Pt` length."
     outer_rule_width::Length = 0.1em
     "Width of the rules below the header and above the footer, as an `Em` or `Pt` length."
