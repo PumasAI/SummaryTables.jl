@@ -1,0 +1,4 @@
+━━━━━━━━━━━━━━━
+Cell 1¹  Cell 2
+━━━━━━━━━━━━━━━
+¹Note 1  First footnote.  Second footnote.

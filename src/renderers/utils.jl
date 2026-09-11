@@ -6,8 +6,12 @@ function _showas(io::IO, mime::MIME, value)
     fn(io::IO, ::MIME"text/typst", value::AbstractString) = _str_typst_escaped(io, value)
     fn(io::IO, ::MIME"text/typst", value) = _str_typst_escaped(io, repr(value))
     fn(io::IO, ::MIME, value) = print(io, value)
-    return showable(mime, value) ? show(io, mime, value) : fn(io, mime, value)
+    return use_mime_show(mime, value) ? show(io, mime, value) : fn(io, mime, value)
 end
+use_mime_show(mime::MIME, value) = showable(mime, value)
+# every value is showable as text/plain, but the REPL-oriented output of `show`
+# (quoted strings, verbose chars) is not what a table cell should contain
+use_mime_show(::MIME"text/plain", value) = false
 _showas(io::IO, m::MIME, r::FormattedFloat) = _showas(io, m, formatted_value(r))
 
 function formatted_value(r::FormattedFloat)

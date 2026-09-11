@@ -179,3 +179,30 @@ Download `example_typst.pdf`:
 ```@raw html
 <a href="../example_typst.pdf" download><img src="/assets/icon_pdf.png" width="60" /></a>
 ```
+
+## Plain text
+
+You can print a plain text rendering of a table to any IO via `show(io, MIME"text/plain", table)`, which is also what the REPL uses to display a `Table`.
+This backend is meant for quick inspection in a terminal or in logs, so it only approximates the visual features of the other backends: cell borders and rules are drawn with box-drawing characters, `em` and `pt` lengths are rounded to whole characters, and bold, italic, underline and color formatting is dropped.
+Long cell contents are not wrapped. In the REPL, lines wider than the terminal are cut off and end in `…`, while output to a plain IO object is always printed in full.
+
+```@example
+using SummaryTables
+using DataFrames
+
+data = DataFrame(
+    sex = ["m", "m", "m", "m", "f", "f", "f", "f", "f", "f"],
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76],
+    blood_type = ["A", "0", "B", "B", "B", "A", "0", "A", "A", "B"],
+    smoker = [true, false, false, false, true, true, true, false, false, false],
+)
+
+tbl = table_one(
+    data,
+    [:age => "Age (years)", :blood_type => "Blood type", :smoker => "Smoker"],
+    groupby = :sex => "Sex",
+    show_n = true
+)
+
+show(stdout, MIME"text/plain"(), tbl)
+```
