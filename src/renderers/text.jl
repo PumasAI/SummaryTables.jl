@@ -44,7 +44,7 @@ function print_text_table(io::IO, ct::Table)
     validate_rowgaps(ct.rowgaps, nrows)
     validate_colgaps(ct.colgaps, ncols)
 
-    layout = text_layout(cells, matrix, ct.rowgaps, ct.colgaps)
+    layout = text_layout(cells, matrix, ct)
     width = sum(layout.colwidths) + sum(layout.colseps)
 
     println(io, OUTER_RULE_CHAR ^ width)
@@ -52,7 +52,7 @@ function print_text_table(io::IO, ct::Table)
         for line in row_lines(layout, row)
             println(io, line)
         end
-        if row == ct.header || (ct.footer !== nothing && row == ct.footer - 1)
+        if has_rule_below(ct, row)
             println(io, INNER_RULE_CHAR ^ width)
         elseif any(c -> c.span[1].stop == row && c.style.border_bottom, cells)
             println(io, cell_border_line(layout, row))
@@ -64,14 +64,17 @@ function print_text_table(io::IO, ct::Table)
     return
 end
 
-function text_layout(cells, matrix, rowgaps, colgaps)
+has_rule_below(ct::Table, row) = row == ct.header || (ct.footer !== nothing && row == ct.footer - 1)
+
+function text_layout(cells, matrix, ct::Table)
     nrows, ncols = size(matrix)
     colseps = fill(COLUMN_SEPARATION, ncols - 1)
-    for (i, gap) in colgaps
+    for (i, gap) in ct.colgaps
         colseps[i] += max(1, length_to_chars(gap))
     end
     rowgap_lines = zeros(Int, nrows - 1)
-    for (i, gap) in rowgaps
+    for (i, gap) in ct.rowgaps
+        has_rule_below(ct, i) && continue
         rowgap_lines[i] = max(1, length_to_lines(gap))
     end
 

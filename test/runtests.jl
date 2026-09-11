@@ -1347,7 +1347,7 @@ end
         Cell(Multiline("a", "b", "c"), merge = true, valign = :center) Cell(1.23456) Cell(Annotated("x", "note"), halign = :right)
         Cell(Multiline("a", "b", "c"), merge = true, valign = :center) Cell(2) Cell(Superscript("2"))
         Cell("foot", halign = :left, indent = 12pt) Cell(nothing) Cell(missing)
-    ]; header = 1, footer = 4, rowgaps = [2 => 6], colgaps = [1 => 12], footnotes = ["A footnote"], footnote_halign = :right)
+    ]; header = 1, footer = 4, rowgaps = [1 => 6, 2 => 6, 3 => 6], colgaps = [1 => 12], footnotes = ["A footnote"], footnote_halign = :right)
     @test as_string(t) == """
         ━━━━━━━━━━━━━━━━━━━━━━━
              Span          C   
