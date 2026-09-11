@@ -1,0 +1,6 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Red and Blue^Orange  Green, bold, italic, underlined
+Nested red and blue               0.985             
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+^Orange This annotation should have italics
+This footnote should have bold

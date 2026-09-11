@@ -6,8 +6,12 @@ function _showas(io::IO, mime::MIME, value)
     fn(io::IO, ::MIME"text/typst", value::AbstractString) = _str_typst_escaped(io, value)
     fn(io::IO, ::MIME"text/typst", value) = _str_typst_escaped(io, repr(value))
     fn(io::IO, ::MIME, value) = print(io, value)
-    return showable(mime, value) ? show(io, mime, value) : fn(io, mime, value)
+    return use_mime_show(mime, value) ? show(io, mime, value) : fn(io, mime, value)
 end
+use_mime_show(mime::MIME, value) = showable(mime, value)
+# every value is showable as text/plain via Base's REPL-oriented methods (quoted
+# strings, verbose chars, multi-line arrays), so only methods from elsewhere count
+use_mime_show(M::MIME"text/plain", value) = which(show, Tuple{IO, typeof(M), typeof(value)}).module !== Base
 _showas(io::IO, m::MIME, r::FormattedFloat) = _showas(io, m, formatted_value(r))
 
 function formatted_value(r::FormattedFloat)

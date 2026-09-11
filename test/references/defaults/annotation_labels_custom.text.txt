@@ -1,0 +1,6 @@
+━━━━━━━━━━━━━━━━
+1A^*  1B^†  1C^‡
+━━━━━━━━━━━━━━━━
+^* annotation 1A
+^† annotation 1B
+^‡ annotation 1C

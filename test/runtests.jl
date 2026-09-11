@@ -36,6 +36,7 @@ as_html(object) = AsMIME{MIME"text/html"}(object)
 as_latex(object) = AsMIME{MIME"text/latex"}(object)
 as_docx(object) = nothing
 as_typst(object) = AsMIME{MIME"text/typst"}(object)
+as_text(object) = AsMIME{MIME"text/plain"}(object)
 
 function run_reftest(table, path, func)
     path_full = joinpath(@__DIR__, path * extension(func))
@@ -99,6 +100,7 @@ extension(f::typeof(as_html)) = ".txt"
 extension(f::typeof(as_latex)) = ".latex.txt"
 extension(f::typeof(as_docx)) = ".docx.txt"
 extension(f::typeof(as_typst)) = ".typ.txt"
+extension(f::typeof(as_text)) = ".text.txt"
 
 # This can be removed for `@test_throws` once CI only uses Julia 1.8 and up
 macro test_throws_message(message::String, exp)
@@ -152,7 +154,7 @@ end
         B = [4, 2, 8, 2, 4, 4]
     )
 
-    @testset for func in [as_html, as_latex, as_docx, as_typst]
+    @testset for func in [as_html, as_latex, as_docx, as_typst, as_text]
         reftest(t, path) = @testset "$path" begin
             run_reftest(t, path, func)
         end
@@ -1335,4 +1337,98 @@ end
     @test_throws "header = 2 and footer = 1" Table(cells; header = 2, footer = 1)
     @test Table(cells; header = 1, footer = 3) isa Table
     @test Table(cells; header = 3) isa Table
+end
+
+struct TextShowable
+    v::Float64
+end
+Base.show(io::IO, ::MIME"text/plain", x::TextShowable) = print(io, "plain:", x.v)
+Base.show(io::IO, x::TextShowable) = print(io, "fallback(", x.v, ")")
+
+@testset "text renderer" begin
+    as_string(t) = sprint(show, MIME"text/plain"(), t)
+
+    t = Table([
+        Cell("Span", merge = true, border_bottom = true) Cell("Span", merge = true, border_bottom = true) Cell("C")
+        Cell(Multiline("a", "b", "c"), merge = true, valign = :center) Cell(1.23456) Cell(Annotated("x", "note"), halign = :right)
+        Cell(Multiline("a", "b", "c"), merge = true, valign = :center) Cell(2) Cell(Superscript("2"))
+        Cell("foot", halign = :left, indent = 12pt) Cell(nothing) Cell(missing)
+    ]; header = 1, footer = 4, rowgaps = [1 => 6, 2 => 6, 3 => 6], colgaps = [1 => 12], footnotes = ["A footnote"], footnote_halign = :right)
+    @test as_string(t) == """
+        ━━━━━━━━━━━━━━━━━━━━━━━
+             Span          C   
+        ───────────────────────
+          a       1.23       x¹
+          b                    
+          c        2       ²   
+        ───────────────────────
+          foot          missing
+        ━━━━━━━━━━━━━━━━━━━━━━━
+                         ¹ note
+                     A footnote
+        """
+
+    t = Table([
+        Cell("A wide spanning header", merge = true, border_bottom = true) Cell("A wide spanning header", merge = true, border_bottom = true) Cell("C", border_bottom = true)
+        Cell("a", valign = :bottom) Cell("b", valign = :center) Cell(Multiline("c", "d", "e"), halign = :left)
+    ]; footnotes = ["one", "two"], linebreak_footnotes = false)
+    @test as_string(t) == """
+        ━━━━━━━━━━━━━━━━━━━━━━━━━
+        A wide spanning header  C
+        ──────────────────────  ─
+                                c
+                        b       d
+            a                   e
+        ━━━━━━━━━━━━━━━━━━━━━━━━━
+        one  two
+        """
+
+    narrow = IOContext(IOBuffer(), :limit => true, :displaysize => (24, 12))
+    show(narrow, MIME"text/plain"(), t)
+    @test String(take!(narrow.io)) == """
+        ━━━━━━━━━━━…
+        A wide span…
+        ───────────…
+                   …
+                   …
+            a      …
+        ━━━━━━━━━━━…
+        one  two
+        """
+
+    t = Table([Cell("a") Cell("b"); Cell(nothing) Cell(nothing); Cell("c") Cell("d")])
+    @test as_string(t) == """
+        ━━━━
+        a  b
+            
+        c  d
+        ━━━━
+        """
+
+    t = Table([Cell("aaaaaaaa") Cell("b")]; footnotes = [Multiline("line one", "line two")], footnote_halign = :right)
+    @test as_string(t) == """
+        ━━━━━━━━━━━
+        aaaaaaaa  b
+        ━━━━━━━━━━━
+           line one
+           line two
+        """
+
+    t = Table([Cell("aaaaaaaa") Cell("b")]; footnotes = ["A footnote that is longer than the table is wide, longer even than forty characters, with an overlongwordattheend"])
+    @test as_string(t) == """
+        ━━━━━━━━━━━
+        aaaaaaaa  b
+        ━━━━━━━━━━━
+        A footnote that is longer than the table
+        is wide, longer even than forty
+        characters, with an overlongwordattheend
+        """
+
+    @test as_string(Table([Cell("a") Cell("b")]; column_padding = 2em)) == "━━━━━━\na    b\n━━━━━━\n"
+    @test as_string(Table([Cell("a") Cell("b")]; colgaps = [1 => 12, 1 => 12])) == "━━━━━━\na    b\n━━━━━━\n"
+
+    @test_throws "Invalid halign :justified" as_string(Table([Cell("a", halign = :justified);;]))
+    @test_throws "Invalid valign :middle" as_string(Table([Cell("a", valign = :middle);;]))
+
+    @test as_string(Table([Cell(TextShowable(1.5));;])) == "━━━━━━━━━\nplain:1.5\n━━━━━━━━━\n"
 end

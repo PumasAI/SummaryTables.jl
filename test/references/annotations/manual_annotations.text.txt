@@ -1,0 +1,8 @@
+━━━━━━━━
+A^X  B^Y
+C¹   D² 
+━━━━━━━━
+¹ Note 3
+² Note 4
+^X Note 1
+^Y Note 2

@@ -1,0 +1,18 @@
+━━━━━━━━━━━━━━━━
+1A^A  1B^B  1C^C
+2A^D  2B^E  2C^F
+3A^G  3B^H  3C^I
+4A^J  4B^K  4C^L
+━━━━━━━━━━━━━━━━
+^A annotation 1A
+^B annotation 1B
+^C annotation 1C
+^D annotation 2A
+^E annotation 2B
+^F annotation 2C
+^G annotation 3A
+^H annotation 3B
+^I annotation 3C
+^J annotation 4A
+^K annotation 4B
+^L annotation 4C
