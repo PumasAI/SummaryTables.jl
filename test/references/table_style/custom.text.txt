@@ -1,7 +1,7 @@
-━━━━━━━━━━━━━━
-    Header    
-──────────────
-Body 1  Body 2
-Body 3  Body 4
-━━━━━━━━━━━━━━
-   A footnote.
+━━━━━━━━━━━━━━━━
+     Header     
+────────────────
+Body 1    Body 2
+Body 3    Body 4
+━━━━━━━━━━━━━━━━
+     A footnote.

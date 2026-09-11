@@ -2,5 +2,5 @@
 Red and Blue^Orange  Green, bold, italic, underlined
 Nested red and blue               0.985             
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-^OrangeThis annotation should have italics
+^Orange This annotation should have italics
 This footnote should have bold

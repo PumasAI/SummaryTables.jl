@@ -1,4 +1,3 @@
-const COLUMN_SEPARATION = 2
 const OUTER_RULE_CHAR = '━'
 const INNER_RULE_CHAR = '─'
 
@@ -68,12 +67,12 @@ has_rule_below(ct::Table, row) = row == ct.header || (ct.footer !== nothing && r
 
 function text_layout(cells, matrix, ct::Table)
     nrows, ncols = size(matrix)
-    colseps = fill(COLUMN_SEPARATION, ncols - 1)
-    for (i, gap) in ct.colgaps
+    colseps = fill(length_to_chars(ct.style.column_padding), ncols - 1)
+    for (i, gap) in Dict(ct.colgaps)
         colseps[i] += max(1, length_to_chars(gap))
     end
     rowgap_lines = zeros(Int, nrows - 1)
-    for (i, gap) in ct.rowgaps
+    for (i, gap) in Dict(ct.rowgaps)
         has_rule_below(ct, i) && continue
         rowgap_lines[i] = max(1, length_to_lines(gap))
     end
@@ -93,7 +92,7 @@ function text_layout(cells, matrix, ct::Table)
 end
 
 function cell_text_lines(cell::SpannedCell)
-    cell.value === nothing && return String[]
+    cell.value === nothing && return [""]
     s = sprint(io -> _showas(io, MIME"text/plain"(), cell.value))
     indent = " " ^ length_to_chars(cell.style.indent)
     return [indent * line for line in split(s, '\n')]
@@ -132,10 +131,12 @@ end
 
 function align_block(lines, width, height, style::CellStyle)
     padded = [pad_line(line, width, style.halign) for line in lines]
+    free = height - length(padded)
     top = style.valign === :top ? 0 :
-        style.valign === :bottom ? height - length(padded) :
-        div(height - length(padded), 2)
-    bottom = height - length(padded) - top
+        style.valign === :bottom ? free :
+        style.valign === :center ? div(free, 2) :
+        error("Invalid valign $(repr(style.valign)). Options are :top, :center, :bottom.")
+    bottom = free - top
     return [blank_lines(top, width); padded; blank_lines(bottom, width)]
 end
 
@@ -144,6 +145,7 @@ blank_lines(n, width) = n == 0 ? String[] : fill(" " ^ width, n)
 function pad_line(line, width, halign)
     halign === :left && return rpad(line, width)
     halign === :right && return lpad(line, width)
+    halign === :center || error("Invalid halign $(repr(halign)). Options are :left, :center, :right.")
     return rpad(lpad(line, textwidth(line) + div(width - textwidth(line), 2)), width)
 end
 
@@ -186,7 +188,10 @@ function print_text_footnotes(io::IO, annotations, ct::Table, width::Int)
     notes = String[]
     for (annotation, label) in annotations
         push!(notes, sprint() do io
-            label === NoLabel() || _showas(io, MIME"text/plain"(), Superscript(label))
+            if label !== NoLabel()
+                _showas(io, MIME"text/plain"(), Superscript(label))
+                print(io, ' ')
+            end
             _showas(io, MIME"text/plain"(), annotation)
         end)
     end
@@ -194,8 +199,8 @@ function print_text_footnotes(io::IO, annotations, ct::Table, width::Int)
         push!(notes, sprint(io -> _showas(io, MIME"text/plain"(), footnote)))
     end
     isempty(notes) && return
-    lines = ct.linebreak_footnotes ? notes : [join(notes, "  ")]
-    for line in lines
+    blocks = ct.linebreak_footnotes ? notes : [join(notes, "  ")]
+    for line in Iterators.flatten(split.(blocks, '\n'))
         println(io, rstrip(pad_line(line, max(width, textwidth(line)), ct.style.footnote_halign)))
     end
 end

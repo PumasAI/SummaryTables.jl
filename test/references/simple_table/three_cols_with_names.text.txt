@@ -10,4 +10,4 @@ value1  Group 3  Group 1¹
   7        d        b    
   8        d        b    
 ━━━━━━━━━━━━━━━━━━━━━━━━━
-¹is annotated
+¹ is annotated

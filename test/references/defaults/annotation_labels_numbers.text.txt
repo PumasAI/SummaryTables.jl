@@ -4,15 +4,15 @@
 3A⁷   3B⁸   3C⁹ 
 4A¹⁰  4B¹¹  4C¹²
 ━━━━━━━━━━━━━━━━
-¹annotation 1A
-²annotation 1B
-³annotation 1C
-⁴annotation 2A
-⁵annotation 2B
-⁶annotation 2C
-⁷annotation 3A
-⁸annotation 3B
-⁹annotation 3C
-¹⁰annotation 4A
-¹¹annotation 4B
-¹²annotation 4C
+¹ annotation 1A
+² annotation 1B
+³ annotation 1C
+⁴ annotation 2A
+⁵ annotation 2B
+⁶ annotation 2C
+⁷ annotation 3A
+⁸ annotation 3B
+⁹ annotation 3C
+¹⁰ annotation 4A
+¹¹ annotation 4B
+¹² annotation 4C

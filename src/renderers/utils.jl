@@ -9,9 +9,9 @@ function _showas(io::IO, mime::MIME, value)
     return use_mime_show(mime, value) ? show(io, mime, value) : fn(io, mime, value)
 end
 use_mime_show(mime::MIME, value) = showable(mime, value)
-# every value is showable as text/plain, but the REPL-oriented output of `show`
-# (quoted strings, verbose chars) is not what a table cell should contain
-use_mime_show(::MIME"text/plain", value) = false
+# every value is showable as text/plain via Base's REPL-oriented methods (quoted
+# strings, verbose chars, multi-line arrays), so only methods from elsewhere count
+use_mime_show(M::MIME"text/plain", value) = which(show, Tuple{IO, typeof(M), typeof(value)}).module !== Base
 _showas(io::IO, m::MIME, r::FormattedFloat) = _showas(io, m, formatted_value(r))
 
 function formatted_value(r::FormattedFloat)

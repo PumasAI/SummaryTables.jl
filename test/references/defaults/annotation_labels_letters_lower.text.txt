@@ -4,15 +4,15 @@
 3A^g  3B^h  3C^i
 4A^j  4B^k  4C^l
 ━━━━━━━━━━━━━━━━
-^aannotation 1A
-^bannotation 1B
-^cannotation 1C
-^dannotation 2A
-^eannotation 2B
-^fannotation 2C
-^gannotation 3A
-^hannotation 3B
-^iannotation 3C
-^jannotation 4A
-^kannotation 4B
-^lannotation 4C
+^a annotation 1A
+^b annotation 1B
+^c annotation 1C
+^d annotation 2A
+^e annotation 2B
+^f annotation 2C
+^g annotation 3A
+^h annotation 3B
+^i annotation 3C
+^j annotation 4A
+^k annotation 4B
+^l annotation 4C

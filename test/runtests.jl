@@ -1339,6 +1339,12 @@ end
     @test Table(cells; header = 3) isa Table
 end
 
+struct TextShowable
+    v::Float64
+end
+Base.show(io::IO, ::MIME"text/plain", x::TextShowable) = print(io, "plain:", x.v)
+Base.show(io::IO, x::TextShowable) = print(io, "fallback(", x.v, ")")
+
 @testset "text renderer" begin
     as_string(t) = sprint(show, MIME"text/plain"(), t)
 
@@ -1358,7 +1364,7 @@ end
         ───────────────────────
           foot          missing
         ━━━━━━━━━━━━━━━━━━━━━━━
-                          ¹note
+                         ¹ note
                      A footnote
         """
 
@@ -1389,4 +1395,30 @@ end
         ━━━━━━━━━━━…
         one  two
         """
+
+    t = Table([Cell("a") Cell("b"); Cell(nothing) Cell(nothing); Cell("c") Cell("d")])
+    @test as_string(t) == """
+        ━━━━
+        a  b
+            
+        c  d
+        ━━━━
+        """
+
+    t = Table([Cell("aaaaaaaa") Cell("b")]; footnotes = [Multiline("line one", "line two")], footnote_halign = :right)
+    @test as_string(t) == """
+        ━━━━━━━━━━━
+        aaaaaaaa  b
+        ━━━━━━━━━━━
+           line one
+           line two
+        """
+
+    @test as_string(Table([Cell("a") Cell("b")]; column_padding = 2em)) == "━━━━━━\na    b\n━━━━━━\n"
+    @test as_string(Table([Cell("a") Cell("b")]; colgaps = [1 => 12, 1 => 12])) == "━━━━━━\na    b\n━━━━━━\n"
+
+    @test_throws "Invalid halign :justified" as_string(Table([Cell("a", halign = :justified);;]))
+    @test_throws "Invalid valign :middle" as_string(Table([Cell("a", valign = :middle);;]))
+
+    @test as_string(Table([Cell(TextShowable(1.5));;])) == "━━━━━━━━━\nplain:1.5\n━━━━━━━━━\n"
 end

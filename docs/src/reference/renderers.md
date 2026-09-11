@@ -4,11 +4,11 @@
 
 In IDEs that support the `MIME"text/html"` or `MIME"juliavscode/html"` types, just `display`ing a `Table` will render it in HTML for you.
 All examples in this documentation are rendered this way.
-Alternatively, you can print HTML to any IO object via `show(io, MIME"text/html", table)`.
+Alternatively, you can print HTML to any IO object via `show(io, MIME"text/html"(), table)`.
 
 ## LaTeX
 
-You can print LaTeX code to any IO via `show(io, MIME"text/latex", table)`.
+You can print LaTeX code to any IO via `show(io, MIME"text/latex"(), table)`.
 Keep in mind that the `threeparttable`, `multirow` and `booktabs` packages need to separately be included in your preamble due to the way LaTeX documents are structured.
 
 ```@example
@@ -130,7 +130,7 @@ It can also be set globally with `SummaryTables.defaults!(docx = SummaryTables.D
 
 ## Typst
 
-You can print [Typst](https://github.com/typst/typst) table code to any IO via `show(io, MIME"text/typst", table)`.
+You can print [Typst](https://github.com/typst/typst) table code to any IO via `show(io, MIME"text/typst"(), table)`.
 From SummaryTables v2.0 on, the Typst backend is using the native table functionality in Typst v0.11.
 Previous versions used the [tablex](https://github.com/PgBiel/typst-tablex/) package.
 
@@ -182,7 +182,7 @@ Download `example_typst.pdf`:
 
 ## Plain text
 
-You can print a plain text rendering of a table to any IO via `show(io, MIME"text/plain", table)`, which is also what the REPL uses to display a `Table`.
+You can print a plain text rendering of a table to any IO via `show(io, MIME"text/plain"(), table)`, which is also what the REPL uses to display a `Table`.
 This backend is meant for quick inspection in a terminal or in logs, so it only approximates the visual features of the other backends: cell borders and rules are drawn with box-drawing characters, `em` and `pt` lengths are rounded to whole characters, and bold, italic, underline and color formatting is dropped.
 Long cell contents are not wrapped. In the REPL, lines wider than the terminal are cut off and end in `…`, while output to a plain IO object is always printed in full.
 

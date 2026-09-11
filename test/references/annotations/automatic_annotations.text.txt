@@ -2,6 +2,6 @@
 A¹  B²
 C³  D¹
 ━━━━━━
-¹Note 1
-²Note 2
-³Note 3
+¹ Note 1
+² Note 2
+³ Note 3
