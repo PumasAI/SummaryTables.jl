@@ -201,8 +201,28 @@ function print_text_footnotes(io::IO, annotations, ct::Table, width::Int)
     isempty(notes) && return
     blocks = ct.linebreak_footnotes ? notes : [join(notes, "  ")]
     for line in Iterators.flatten(split.(blocks, '\n'))
-        println(io, rstrip(pad_line(line, max(width, textwidth(line)), ct.style.footnote_halign)))
+        for wrapped in wrap_words(line, max(width, MIN_FOOTNOTE_WRAP_WIDTH))
+            println(io, rstrip(pad_line(wrapped, max(width, textwidth(wrapped)), ct.style.footnote_halign)))
+        end
     end
+end
+
+const MIN_FOOTNOTE_WRAP_WIDTH = 40
+
+function wrap_words(line, width)
+    lines = String[]
+    current = ""
+    for word in split(line, ' ')
+        candidate = isempty(current) ? word : current * " " * word
+        if !isempty(current) && textwidth(candidate) > width
+            push!(lines, current)
+            current = word
+        else
+            current = candidate
+        end
+    end
+    push!(lines, current)
+    return lines
 end
 
 function _showas(io::IO, M::MIME"text/plain", m::Multiline)

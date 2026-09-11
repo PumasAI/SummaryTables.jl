@@ -1414,6 +1414,16 @@ Base.show(io::IO, x::TextShowable) = print(io, "fallback(", x.v, ")")
            line two
         """
 
+    t = Table([Cell("aaaaaaaa") Cell("b")]; footnotes = ["A footnote that is longer than the table is wide, longer even than forty characters, with an overlongwordattheend"])
+    @test as_string(t) == """
+        ━━━━━━━━━━━
+        aaaaaaaa  b
+        ━━━━━━━━━━━
+        A footnote that is longer than the table
+        is wide, longer even than forty
+        characters, with an overlongwordattheend
+        """
+
     @test as_string(Table([Cell("a") Cell("b")]; column_padding = 2em)) == "━━━━━━\na    b\n━━━━━━\n"
     @test as_string(Table([Cell("a") Cell("b")]; colgaps = [1 => 12, 1 => 12])) == "━━━━━━\na    b\n━━━━━━\n"
 

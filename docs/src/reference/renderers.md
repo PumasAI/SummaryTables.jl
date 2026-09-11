@@ -184,7 +184,7 @@ Download `example_typst.pdf`:
 
 You can print a plain text rendering of a table to any IO via `show(io, MIME"text/plain"(), table)`, which is also what the REPL uses to display a `Table`.
 This backend is meant for quick inspection in a terminal or in logs, so it only approximates the visual features of the other backends: cell borders and rules are drawn with box-drawing characters, `em` and `pt` lengths are rounded to whole characters, and bold, italic, underline and color formatting is dropped.
-Long cell contents are not wrapped. In the REPL, lines wider than the terminal are cut off and end in `…`, while output to a plain IO object is always printed in full.
+Long cell contents are not wrapped, but footnotes are wrapped at spaces to the width of the table (or at least 40 characters). In the REPL, lines wider than the terminal are cut off and end in `…`, while output to a plain IO object is always printed in full.
 
 ```@example
 using SummaryTables
