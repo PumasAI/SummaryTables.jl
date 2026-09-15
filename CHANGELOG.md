@@ -4,6 +4,7 @@
 
 - Added a plain text renderer, used by `show(io, MIME"text/plain"(), table)` and therefore by the REPL display of `Table` [#161](https://github.com/PumasAI/SummaryTables.jl/pull/161).
 - `Table` now errors for `header` or `footer` indices that lie outside the table or overlap each other, instead of silently producing broken output [#160](https://github.com/PumasAI/SummaryTables.jl/pull/160).
+- Added a `merge_row_labels` option (default `true`); set it to `false` to keep each row-group label in its own row so DOCX tables can page-break cleanly across long groups [#145](https://github.com/PumasAI/SummaryTables.jl/pull/145).
 
 ## 3.7.1 - 2026-09-04
 
