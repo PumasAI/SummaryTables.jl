@@ -114,12 +114,9 @@ function summarytable(
     paginate_cols = get(pagination.options, :cols, nothing)
     paginate_rows = get(pagination.options, :rows, nothing)
 
-    paginated_rowgroupers = rowsymbols[1:_summary.groupindex]
-    paginated_colgroupers = colsymbols
-
     pages = Page{SummaryPageMetadata}[]
-    for (rowframe, rowkeys) in summary_pages(df, paginated_rowgroupers, paginate_rows; sort)
-        for (page_df, colkeys) in summary_pages(rowframe, paginated_colgroupers, paginate_cols; sort)
+    for (rowframe, rowkeys) in summary_pages(df, rowsymbols, paginate_rows; sort)
+        for (page_df, colkeys) in summary_pages(rowframe, colsymbols, paginate_cols; sort)
             t = _summarytable(page_df, var, rowgroups, colgroups, _summary; variable_header, sort, celltable_kws...)
             push!(pages, Page(SummaryPageMetadata(rows = rowkeys, cols = colkeys), t))
         end
