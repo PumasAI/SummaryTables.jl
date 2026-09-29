@@ -132,6 +132,55 @@ data = DataFrame(
 summarytable(data, :value1 => "Value", cols = :group, summary = [mean, std])
 ```
 
+## Optional argument 3: `pagination`
+
+A summary table can grow large, in which case it may make sense to split it into multiple pages.
+You can pass a `Pagination` object with `rows` and / or `cols` keyword arguments.
+The number you pass to `rows` and / or `cols` is how many groups are included per page along that dimension.
+
+If the `pagination` argument is provided, the return type of `summarytable` changes to `PaginatedTable{SummaryPageMetadata}`.
+This object has an interactive HTML representation for convenience, the exact form of which should not be considered stable across SummaryTables versions.
+The `PaginatedTable` should be deconstructed into separate `Table`s when you want to include these in a document.
+The table of page `i` is available as `paginated.pages[i].table`.
+
+Here we paginate along the rows:
+
+```@example pagination
+using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    value = 1:24,
+    group1 = repeat(["A", "B", "C", "D"], 6),
+    group2 = repeat(["E", "F", "G"], inner = 8),
+)
+
+paginated = summarytable(data, :value, Pagination(rows = 2), rows = :group1, cols = :group2, summary = [mean, std])
+```
+
+This is the table of the second page:
+
+```@example pagination
+paginated.pages[2].table
+```
+
+Or only along the columns:
+
+```@example
+using DataFrames
+using SummaryTables
+using Statistics
+
+data = DataFrame(
+    value = 1:24,
+    group1 = repeat(["A", "B", "C", "D"], 6),
+    group2 = repeat(["E", "F", "G"], inner = 8),
+)
+
+summarytable(data, :value, Pagination(cols = 1), rows = :group1, cols = :group2, summary = [mean, std])
+```
+
 ## Keyword: `rows`
 
 The `rows` keyword determines the grouping structure along the rows.
@@ -371,53 +420,4 @@ data = DataFrame(
 )
 
 summarytable(data, :value, rows = [:group1, :group2], summary = [mean], sort = false)
-```
-
-## Optional argument 3: `pagination`
-
-A summary table can grow large, in which case it may make sense to split it into multiple pages.
-You can pass a `Pagination` object with `rows` and / or `cols` keyword arguments.
-The number you pass to `rows` and / or `cols` is how many groups are included per page along that dimension.
-
-If the `pagination` argument is provided, the return type of `summarytable` changes to `PaginatedTable{SummaryPageMetadata}`.
-This object has an interactive HTML representation for convenience, the exact form of which should not be considered stable across SummaryTables versions.
-The `PaginatedTable` should be deconstructed into separate `Table`s when you want to include these in a document.
-The table of page `i` is available as `paginated.pages[i].table`.
-
-Here we paginate along the rows:
-
-```@example pagination
-using DataFrames
-using SummaryTables
-using Statistics
-
-data = DataFrame(
-    value = 1:24,
-    group1 = repeat(["A", "B", "C", "D"], 6),
-    group2 = repeat(["E", "F", "G"], inner = 8),
-)
-
-paginated = summarytable(data, :value, Pagination(rows = 2), rows = :group1, cols = :group2, summary = [mean, std])
-```
-
-This is the table of the second page:
-
-```@example pagination
-paginated.pages[2].table
-```
-
-Or only along the columns:
-
-```@example
-using DataFrames
-using SummaryTables
-using Statistics
-
-data = DataFrame(
-    value = 1:24,
-    group1 = repeat(["A", "B", "C", "D"], 6),
-    group2 = repeat(["E", "F", "G"], inner = 8),
-)
-
-summarytable(data, :value, Pagination(cols = 1), rows = :group1, cols = :group2, summary = [mean, std])
 ```
