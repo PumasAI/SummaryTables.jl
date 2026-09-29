@@ -87,11 +87,11 @@ struct ListingTable
 end
 
 """
-    Pagination(; rows, cols)
+    Pagination(; kwargs...)
 
 Options for splitting a table across multiple pages.
-Pass the maximum number of row and / or column sections to include on each page as the `rows` and / or `cols` keyword arguments.
-When a table function receives a `Pagination`, it returns a [`PaginatedTable`](@ref) instead of a single table.
+Which keyword arguments are accepted depends on the table function that receives the `Pagination`, refer to its docstring for details.
+A table function that receives a `Pagination` returns a [`PaginatedTable`](@ref) instead of a single table.
 """
 struct Pagination{T<:NamedTuple}
     options::T

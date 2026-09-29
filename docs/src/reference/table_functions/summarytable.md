@@ -382,6 +382,7 @@ The number you pass to `rows` and / or `cols` is how many groups are included pe
 If the `pagination` argument is provided, the return type of `summarytable` changes to `PaginatedTable{SummaryPageMetadata}`.
 This object has an interactive HTML representation for convenience, the exact form of which should not be considered stable across SummaryTables versions.
 The `PaginatedTable` should be deconstructed into separate `Table`s when you want to include these in a document.
+The table of page `i` is available as `paginated.pages[i].table`.
 
 Here we paginate along the rows:
 
@@ -396,7 +397,13 @@ data = DataFrame(
     group2 = repeat(["E", "F", "G"], inner = 8),
 )
 
-summarytable(data, :value, Pagination(rows = 2), rows = :group1, cols = :group2, summary = [mean, std])
+paginated = summarytable(data, :value, Pagination(rows = 2), rows = :group1, cols = :group2, summary = [mean, std])
+```
+
+This is the table of the second page:
+
+```@example
+paginated.pages[2].table
 ```
 
 Or only along the columns:
