@@ -74,6 +74,7 @@ include("renderers/latex.jl")
 include("renderers/html.jl")
 include("renderers/docx.jl")
 include("renderers/typst.jl")
+include("renderers/text.jl")
 
 include("infrastructure/defaults.jl")
 
