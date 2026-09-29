@@ -386,7 +386,7 @@ The table of page `i` is available as `paginated.pages[i].table`.
 
 Here we paginate along the rows:
 
-```@example
+```@example pagination
 using DataFrames
 using SummaryTables
 using Statistics
@@ -402,7 +402,7 @@ paginated = summarytable(data, :value, Pagination(rows = 2), rows = :group1, col
 
 This is the table of the second page:
 
-```@example
+```@example pagination
 paginated.pages[2].table
 ```
 
