@@ -1,4 +1,4 @@
-import{_ as s,c as i,o as n,az as a}from"./chunks/framework.CAkcY2eT.js";const o=JSON.parse('{"title":"summarytable","description":"","frontmatter":{},"headers":[],"relativePath":"reference/table_functions/summarytable.md","filePath":"reference/table_functions/summarytable.md","lastUpdated":null}'),e={name:"reference/table_functions/summarytable.md"};function l(h,t,d,r,p,k){return n(),i("div",null,t[0]||(t[0]=[a(`<h1 id="summarytable" tabindex="-1"><code>summarytable</code> <a class="header-anchor" href="#summarytable" aria-label="Permalink to &quot;\`summarytable\` {#summarytable}&quot;">​</a></h1><h2 id="Synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#Synopsis" aria-label="Permalink to &quot;Synopsis {#Synopsis}&quot;">​</a></h2><p>A summary table summarizes the raw data from one column of a source table for different groups defined by grouping columns. It is similar to a <a href="/SummaryTables.jl/dev/resources/api#SummaryTables.listingtable"><code>listingtable</code></a> without the raw values.</p><p>Here is an example of a hypothetical clinical trial with drug concentration measurements of two participants with five time points each.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+import{_ as s,c as n,o as i,az as a}from"./chunks/framework.CAkcY2eT.js";const o=JSON.parse('{"title":"summarytable","description":"","frontmatter":{},"headers":[],"relativePath":"reference/table_functions/summarytable.md","filePath":"reference/table_functions/summarytable.md","lastUpdated":null}'),e={name:"reference/table_functions/summarytable.md"};function l(d,t,h,r,p,k){return i(),n("div",null,t[0]||(t[0]=[a(`<h1 id="summarytable" tabindex="-1"><code>summarytable</code> <a class="header-anchor" href="#summarytable" aria-label="Permalink to &quot;\`summarytable\` {#summarytable}&quot;">​</a></h1><h2 id="Synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#Synopsis" aria-label="Permalink to &quot;Synopsis {#Synopsis}&quot;">​</a></h2><p>A summary table summarizes the raw data from one column of a source table for different groups defined by grouping columns. It is similar to a <a href="/SummaryTables.jl/dev/resources/api#SummaryTables.listingtable"><code>listingtable</code></a> without the raw values.</p><p>Here is an example of a hypothetical clinical trial with drug concentration measurements of two participants with five time points each.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
 <span class="line"></span>
@@ -500,7 +500,555 @@ import{_ as s,c as i,o as n,az as a}from"./chunks/framework.CAkcY2eT.js";const o
         <td style="text-align:center;">2.12</td>
     </tr>
     <tr><td colspan="4" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
-</table></div><h2 id="Keyword:-rows" tabindex="-1">Keyword: <code>rows</code> <a class="header-anchor" href="#Keyword:-rows" aria-label="Permalink to &quot;Keyword: \`rows\` {#Keyword:-rows}&quot;">​</a></h2><p>The <code>rows</code> keyword determines the grouping structure along the rows. It can either be a <code>Symbol</code> or <code>String</code> specifying a grouping column, a <code>Pair{Symbol,Any}</code> or <code>Pair{String,Any}</code> where the second element overrides the group&#39;s label, or a <code>Vector</code> with multiple groups of the aforementioned format.</p><p>This example uses a single group with default label.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+</table></div><h2 id="Optional-argument-3:-pagination" tabindex="-1">Optional argument 3: <code>pagination</code> <a class="header-anchor" href="#Optional-argument-3:-pagination" aria-label="Permalink to &quot;Optional argument 3: \`pagination\` {#Optional-argument-3:-pagination}&quot;">​</a></h2><p>A summary table can grow large, in which case it may make sense to split it into multiple pages. You can pass a <code>Pagination</code> object with <code>rows</code> and / or <code>cols</code> keyword arguments. The number you pass to <code>rows</code> and / or <code>cols</code> is how many groups are included per page along that dimension.</p><p>If the <code>pagination</code> argument is provided, the return type of <code>summarytable</code> changes to <code>PaginatedTable{SummaryPageMetadata}</code>. This object has an interactive HTML representation for convenience, the exact form of which should not be considered stable across SummaryTables versions. The <code>PaginatedTable</code> should be deconstructed into separate <code>Table</code>s when you want to include these in a document. The table of page <code>i</code> is available as <code>paginated.pages[i].table</code>.</p><p>Here we paginate along the rows:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">24</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;F&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;G&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">paginated </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Pagination</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><div>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==0 ? 'block' : 'none');
+">Page 1</button>
+
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==1 ? 'block' : 'none');
+">Page 2</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table id="st-49b28c95">
+    <style>
+        #st-49b28c95 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-49b28c95 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-49b28c95 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-49b28c95 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-49b28c95 sub {
+            line-height: 0;
+        }
+        #st-49b28c95 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+        <td style="text-align:center;">11</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+        <td style="text-align:center;">12</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table id="st-f2f2f32b">
+    <style>
+        #st-f2f2f32b {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-f2f2f32b tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-f2f2f32b tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-f2f2f32b br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-f2f2f32b sub {
+            line-height: 0;
+        }
+        #st-f2f2f32b sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>
+</div><p>This is the table of the second page:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">paginated</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">pages[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">table</span></span></code></pre></div><div><table id="st-f2f2f32b">
+    <style>
+        #st-f2f2f32b {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-f2f2f32b tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-f2f2f32b tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-f2f2f32b br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-f2f2f32b sub {
+            line-height: 0;
+        }
+        #st-f2f2f32b sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+        <td style="text-align:center;">F</td>
+        <td style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td colspan="3" style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+        <td style="text-align:center;">13</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+        <td style="text-align:center;">14</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table></div><p>Or only along the columns:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">24</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;D&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    group2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;E&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;F&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;G&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">summarytable</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Pagination</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), rows </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> :group2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, summary </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [mean, std])</span></span></code></pre></div><div><div>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==0 ? 'block' : 'none');
+">Page 1</button>
+
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==1 ? 'block' : 'none');
+">Page 2</button>
+
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==2 ? 'block' : 'none');
+">Page 3</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table id="st-2e892415">
+    <style>
+        #st-2e892415 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-2e892415 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-2e892415 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-2e892415 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-2e892415 sub {
+            line-height: 0;
+        }
+        #st-2e892415 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">E</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">3</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">4</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">5</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">6</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table id="st-ccd72d59">
+    <style>
+        #st-ccd72d59 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-ccd72d59 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-ccd72d59 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-ccd72d59 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-ccd72d59 sub {
+            line-height: 0;
+        }
+        #st-ccd72d59 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">F</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">11</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">12</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">13</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">14</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 3</h3>
+<table id="st-38a24afd">
+    <style>
+        #st-38a24afd {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-38a24afd tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-38a24afd tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-38a24afd br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-38a24afd sub {
+            line-height: 0;
+        }
+        #st-38a24afd sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">group2</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">G</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">group1</td>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">value</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td rowspan="2" style="text-align:left;">A</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">19</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">B</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">20</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">C</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">21</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr>
+        <td rowspan="2" style="text-align:left;">D</td>
+        <td style="font-weight:bold;text-align:left;">mean</td>
+        <td style="text-align:center;">22</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold;text-align:left;">std</td>
+        <td style="text-align:center;">2.83</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>
+</div><h2 id="Keyword:-rows" tabindex="-1">Keyword: <code>rows</code> <a class="header-anchor" href="#Keyword:-rows" aria-label="Permalink to &quot;Keyword: \`rows\` {#Keyword:-rows}&quot;">​</a></h2><p>The <code>rows</code> keyword determines the grouping structure along the rows. It can either be a <code>Symbol</code> or <code>String</code> specifying a grouping column, a <code>Pair{Symbol,Any}</code> or <code>Pair{String,Any}</code> where the second element overrides the group&#39;s label, or a <code>Vector</code> with multiple groups of the aforementioned format.</p><p>This example uses a single group with default label.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> Statistics</span></span>
 <span class="line"></span>
@@ -1670,4 +2218,4 @@ import{_ as s,c as i,o as n,az as a}from"./chunks/framework.CAkcY2eT.js";const o
         <td style="text-align:center;">4</td>
     </tr>
     <tr><td colspan="4" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
-</table></div>`,74)]))}const E=s(e,[["render",l]]);export{o as __pageData,E as default};
+</table></div>`,86)]))}const E=s(e,[["render",l]]);export{o as __pageData,E as default};
