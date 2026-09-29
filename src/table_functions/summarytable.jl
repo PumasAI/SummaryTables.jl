@@ -12,9 +12,9 @@ end
 """
     SummaryPageMetadata
 
-Describes which row and column group sections of a full summary table are included in a given page,
-the summarytable counterpart of [`ListingPageMetadata`](@ref). Fields `rows::Vector{GroupKey}` and
-`cols::Vector{GroupKey}`; a vector is empty if the table was not paginated along that side.
+Describes which row and column group sections of a full summary table are included in a given page.
+Fields `rows::Vector{GroupKey}` and `cols::Vector{GroupKey}` hold the group keys along each side.
+A vector is empty if the table was not paginated along that side.
 """
 Base.@kwdef struct SummaryPageMetadata
     rows::Vector{GroupKey} = []
@@ -24,7 +24,7 @@ end
 Base.show(io::IO, ::MIME"text/plain", p::SummaryPageMetadata) = show_page_metadata(io, p)
 
 """
-    summarytable(table, variable, pagination = nothing;
+    summarytable(table, variable, [pagination];
         rows = [],
         cols = [],
         summary = [],
@@ -126,11 +126,14 @@ end
 
 function summary_pages(df, groupers, per; sort)
     (isempty(groupers) || per === nothing) && return [(df, GroupKey[])]
-    gdf = try
-        DataFrames.groupby(df, groupers; sort = sort ? (; lt = natural_lt) : false)
-    catch
-        throw(SortingError())
+    if sort
+        try
+            df = Base.sort(df, groupers, lt = natural_lt)
+        catch
+            throw(SortingError())
+        end
     end
+    gdf = DataFrames.groupby(df, groupers, sort = false)
     return [
         (DataFrames.DataFrame(gdf[indices]), GroupKey.(keys(gdf)[indices]))
         for indices in Iterators.partition(1:length(gdf), per)
