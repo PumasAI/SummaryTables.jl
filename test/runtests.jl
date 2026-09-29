@@ -495,6 +495,26 @@ end
             DataFrames.colmetadata!(df_with_labels, :C, "label", "Group C")
             t = summarytable(df_with_labels, :A, rows = [:B, :C], summary = [only])
             reftest(t, "references/summarytable/column_label_metadata")
+
+            pt = summarytable(df, :value1, Pagination(cols = 1); rows = [:group1], cols = [:group2], summary = [mean, std])
+            for (i, page) in enumerate(pt.pages)
+                reftest(page.table, "references/summarytable/pagination_cols=1_$i")
+            end
+
+            pt = summarytable(df, :value1, Pagination(rows = 1); rows = [:group1, :group2], cols = [:group3], summary = [mean, std])
+            @test length(pt.pages) == 4
+            @test [k.entries for k in pt.pages[2].metadata.rows] == [[:group1 => "a", :group2 => "f"]]
+            @test pt.pages[2].metadata.cols == []
+            for (i, page) in enumerate(pt.pages)
+                reftest(page.table, "references/summarytable/pagination_rows=1_$i")
+            end
+
+            pt = summarytable(df, :value1, Pagination(rows = 2, cols = 1); rows = [:group1, :group2], cols = [:group3], summary = [mean])
+            @test length(pt.pages) == 4
+            @test [k.entries for k in pt.pages[3].metadata.rows] == [[:group1 => "b", :group2 => "e"], [:group1 => "b", :group2 => "f"]]
+            @test [k.entries for k in pt.pages[3].metadata.cols] == [[:group3 => "c"]]
+
+            @test_throws "only accepts `rows` and `cols`" summarytable(df, :value1, Pagination(pages = 1); rows = :group1, summary = [mean])
         end
 
         @testset "simple table" begin

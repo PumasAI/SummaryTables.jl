@@ -9,13 +9,27 @@ struct SummaryTable
     gdf_summary::DataFrames.GroupedDataFrame
 end
 
+"""
+    SummaryPageMetadata
+
+Describes which row and column group sections of a full summary table are included in a given page.
+Fields `rows::Vector{GroupKey}` and `cols::Vector{GroupKey}` hold the group keys along each side.
+A vector is empty if the table was not paginated along that side.
+"""
+Base.@kwdef struct SummaryPageMetadata
+    rows::Vector{GroupKey} = []
+    cols::Vector{GroupKey} = []
+end
+
+Base.show(io::IO, ::MIME"text/plain", p::SummaryPageMetadata) = show_page_metadata(io, p)
 
 """
-    summarytable(table, variable;
+    summarytable(table, variable, [pagination];
         rows = [],
         cols = [],
         summary = [],
         variable_header = true,
+        sort = true,
         celltable_kws...
     )
 
@@ -24,6 +38,9 @@ Create a summary table `Table` from `table`, which summarizes values from column
 ## Arguments
 - `table`: Data source which must be convertible to a `DataFrames.DataFrame`.
 - `variable`: Determines which variable from `table` is summarized. Can either be a `Symbol` or `String` such as `:ColumnA`, or alternatively a `Pair` where the second element is the display name, such as `:ColumnA => "Column A"`.
+- `pagination::Pagination`: If a pagination object is passed, the return type changes to `PaginatedTable`.
+  The `Pagination` object may be created with keywords `rows` and/or `cols`.
+  These must be set to `Int`s that determine how many group sections along each side are included in one page.
 
 ## Keyword arguments
 - `rows = []`: Grouping structure along the rows. Should be a `Vector` where each element is a grouping variable, specified as a `Symbol` or `String` such as `:Column1`, or a `Pair`, where the first element is the symbol and the second a display name, such as `:Column1 => "Column 1"`. Specifying multiple grouping variables creates nested groups, with the last variable changing the fastest.
@@ -62,11 +79,12 @@ summarytable(
 ```
 """
 function summarytable(
-    table, variable;
+    table, variable, pagination::Union{Nothing,Pagination} = nothing;
     rows = [],
     cols = [],
     summary = [],
     variable_header = true,
+    sort = true,
     celltable_kws...
 )
 
@@ -78,13 +96,48 @@ function summarytable(
     colgroups = make_groups(df, cols)
 
     rowsymbols = [r.symbol for r in rowgroups]
+    colsymbols = [c.symbol for c in colgroups]
     _summary = Summary(summary, rowsymbols)
 
     if isempty(_summary.analyses)
         throw(ArgumentError("No summary analyses defined."))
     end
 
-    _summarytable(df, var, rowgroups, colgroups, _summary; variable_header, celltable_kws...)
+    if pagination === nothing
+        return _summarytable(df, var, rowgroups, colgroups, _summary; variable_header, sort, celltable_kws...)
+    end
+
+    sd = setdiff(keys(pagination.options), [:rows, :cols])
+    if !isempty(sd)
+        throw(ArgumentError("`summarytable` only accepts `rows` and `cols` as pagination arguments. Found $(join(sd, ", ", " and "))"))
+    end
+    paginate_cols = get(pagination.options, :cols, nothing)
+    paginate_rows = get(pagination.options, :rows, nothing)
+
+    pages = Page{SummaryPageMetadata}[]
+    for (rowframe, rowkeys) in summary_pages(df, rowsymbols, paginate_rows; sort)
+        for (page_df, colkeys) in summary_pages(rowframe, colsymbols, paginate_cols; sort)
+            t = _summarytable(page_df, var, rowgroups, colgroups, _summary; variable_header, sort, celltable_kws...)
+            push!(pages, Page(SummaryPageMetadata(rows = rowkeys, cols = colkeys), t))
+        end
+    end
+    return PaginatedTable(pages)
+end
+
+function summary_pages(df, groupers, per; sort)
+    (isempty(groupers) || per === nothing) && return [(df, GroupKey[])]
+    if sort
+        try
+            df = Base.sort(df, groupers, lt = natural_lt)
+        catch
+            throw(SortingError())
+        end
+    end
+    gdf = DataFrames.groupby(df, groupers, sort = false)
+    return [
+        (DataFrames.DataFrame(gdf[indices]), GroupKey.(keys(gdf)[indices]))
+        for indices in Iterators.partition(1:length(gdf), per)
+    ]
 end
 
 function _summarytable(
