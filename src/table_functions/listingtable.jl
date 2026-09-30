@@ -86,6 +86,13 @@ struct ListingTable
     gdf_colsummary::DataFrames.GroupedDataFrame
 end
 
+"""
+    Pagination(; kwargs...)
+
+Options for splitting a table across multiple pages.
+Which keyword arguments are accepted depends on the table function that receives the `Pagination`, refer to its docstring for details.
+A table function that receives a `Pagination` returns a [`PaginatedTable`](@ref) instead of a single table.
+"""
 struct Pagination{T<:NamedTuple}
     options::T
 end
@@ -149,20 +156,22 @@ Base.@kwdef struct ListingPageMetadata
     cols::Vector{GroupKey} = []
 end
 
-function Base.show(io::IO, M::MIME"text/plain", p::ListingPageMetadata)
+Base.show(io::IO, ::MIME"text/plain", p::ListingPageMetadata) = show_page_metadata(io, p)
+
+function show_page_metadata(io::IO, p)
     indent = " " ^ get(io, :indent, 0)
-    println(io, indent, "ListingPageMetadata")
+    println(io, indent, nameof(typeof(p)))
     print(io, indent, "  rows:")
-    isempty(p.rows) && print(io, " no pagination")
-    for r in p.rows
-        print(io, "\n    ", indent,)
-        print(io, "[", join(("$key => $value" for (key, value) in r.entries), ", "), "]")
-    end
+    show_page_keys(io, indent, p.rows)
     print(io, "\n", indent, "  cols:")
-    isempty(p.cols) && print(io, " no pagination")
-    for c in p.cols
+    show_page_keys(io, indent, p.cols)
+end
+
+function show_page_keys(io::IO, indent, keys)
+    isempty(keys) && print(io, " no pagination")
+    for k in keys
         print(io, "\n    ", indent)
-        print(io, "[", join(("$key => $value" for (key, value) in c.entries), ", "), "]")
+        print(io, "[", join(("$key => $value" for (key, value) in k.entries), ", "), "]")
     end
 end
 

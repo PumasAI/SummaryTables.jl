@@ -1,0 +1,18 @@
+━━━━━━━━━━━━━━━━
+1A¹   1B²   1C³ 
+2A⁴   2B⁵   2C⁶ 
+3A⁷   3B⁸   3C⁹ 
+4A¹⁰  4B¹¹  4C¹²
+━━━━━━━━━━━━━━━━
+¹ annotation 1A
+² annotation 1B
+³ annotation 1C
+⁴ annotation 2A
+⁵ annotation 2B
+⁶ annotation 2C
+⁷ annotation 3A
+⁸ annotation 3B
+⁹ annotation 3C
+¹⁰ annotation 4A
+¹¹ annotation 4B
+¹² annotation 4C

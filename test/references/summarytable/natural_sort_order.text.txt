@@ -1,0 +1,16 @@
+━━━━━━━━━━━━━━━━━━━━━━
+id  dose         value
+──────────────────────
+1   1 mg   mean    5  
+    50 mg  mean    2  
+5   1 mg   mean    1  
+    50 mg  mean    2  
+8   1 mg   mean    2  
+    50 mg  mean    3  
+10  5 mg   mean    4  
+    10 mg  mean    5  
+50  5 mg   mean    3  
+    10 mg  mean    4  
+80  5 mg   mean    1  
+    10 mg  mean    4  
+━━━━━━━━━━━━━━━━━━━━━━

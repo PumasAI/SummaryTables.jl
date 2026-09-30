@@ -1,0 +1,18 @@
+━━━━━━━━━━━━━━━━━━━━━━━
+ 1A^I    1B^II   1C^III
+2A^IV    2B^V    2C^VI 
+3A^VII  3B^VIII  3C^IX 
+ 4A^X    4B^XI   4C^XII
+━━━━━━━━━━━━━━━━━━━━━━━
+^I annotation 1A
+^II annotation 1B
+^III annotation 1C
+^IV annotation 2A
+^V annotation 2B
+^VI annotation 2C
+^VII annotation 3A
+^VIII annotation 3B
+^IX annotation 3C
+^X annotation 4A
+^XI annotation 4B
+^XII annotation 4C
