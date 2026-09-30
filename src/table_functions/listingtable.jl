@@ -160,11 +160,11 @@ Base.show(io::IO, ::MIME"text/plain", p::ListingPageMetadata) = show_page_metada
 
 function show_page_metadata(io::IO, p)
     indent = " " ^ get(io, :indent, 0)
-    println(io, indent, nameof(typeof(p)))
-    print(io, indent, "  rows:")
-    show_page_keys(io, indent, p.rows)
-    print(io, "\n", indent, "  cols:")
-    show_page_keys(io, indent, p.cols)
+    print(io, indent, nameof(typeof(p)))
+    for name in fieldnames(typeof(p))
+        print(io, "\n", indent, "  ", name, ":")
+        show_page_keys(io, indent, getfield(p, name))
+    end
 end
 
 function show_page_keys(io::IO, indent, keys)
