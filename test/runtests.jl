@@ -282,6 +282,42 @@ end
             # Bools are categorical for table_one
             t = table_one((; bool = [true, false, true, true, missing]))
             reftest(t, "references/table_one/bool_as_categorical")
+
+            # pages without their repeated label columns joined back together
+            join_pages(pt) = reduce(hcat, [i == 1 ? p.table.cells : p.table.cells[:, 2:end] for (i, p) in enumerate(pt.pages)])
+
+            t = table_one(df, [:value1], groupby = [:group1, :group2], show_pvalues = true)
+            pt = table_one(df, [:value1], Pagination(cols = 2), groupby = [:group1, :group2], show_pvalues = true)
+            for (i, page) in enumerate(pt.pages)
+                reftest(page.table, "references/table_one/pagination_cols=2_$i")
+            end
+            @test length(pt.pages) == 2
+            @test [k.entries for k in pt.pages[2].metadata.cols] == [[:group1 => "b", :group2 => "e"], [:group1 => "b", :group2 => "f"]]
+            # Total is only on the first page and the comparisons only on the last
+            @test join_pages(pt) == t.cells
+            @test sprint(show, MIME"text/plain"(), pt.pages[2].metadata) == """
+                TableOnePageMetadata
+                  cols:
+                    [group1 => b, group2 => e]
+                    [group1 => b, group2 => f]"""
+
+            t = table_one(df, [:value1], groupby = [:group1, :group2], group_totals = :group2, show_total = false)
+            pt = table_one(df, [:value1], Pagination(cols = 1), groupby = [:group1, :group2], group_totals = :group2, show_total = false)
+            @test length(pt.pages) == 4
+            # a group total column stays on the page of the last group it summarizes
+            @test size(pt.pages[2].table.cells, 2) == 3
+            @test join_pages(pt) == t.cells
+
+            pt = table_one(df, Pagination(cols = 1), groupby = :group1)
+            @test length(pt.pages) == 2
+            @test join_pages(pt) == table_one(df, groupby = :group1).cells
+
+            pt = table_one(df, [:value1], Pagination(cols = 1))
+            @test length(pt.pages) == 1
+            @test isempty(pt.pages[1].metadata.cols)
+            @test pt.pages[1].table.cells == table_one(df, [:value1]).cells
+
+            @test_throws "only accepts `cols`" table_one(df, [:value1], Pagination(rows = 1), groupby = :group1)
         end
 
 
@@ -939,40 +975,6 @@ end
     end
 end
 
-
-@testset "table_one pagination" begin
-    df = DataFrame(
-        age = repeat(1:2, 60),
-        dose = repeat(["10mg", "20mg", "50mg"], inner = 40),
-        sex = repeat(["M", "F"], inner = 20, outer = 3),
-        race = repeat(["White", "Black"], 60),
-    )
-
-    t_full = table_one(df, [:age], groupby = [:dose, :sex, :race])
-    @test t_full isa Table  # unpaginated call is unaffected by adding the `pagination` argument
-
-    pt = table_one(df, [:age], Pagination(cols = 4), groupby = [:dose, :sex, :race])
-    @test pt isa SummaryTables.PaginatedTable
-    @test length(pt.pages) == 3  # 3 dose x 2 sex x 2 race = 12 group combinations / 4 per page
-
-    for page in pt.pages
-        @test page.table isa Table
-        @test !isempty(page.metadata.cols)
-        # Total and the analysis-name column must be the SAME on every page as in the unpaginated
-        # table — pagination slices already-computed columns, it never recomputes Total from a
-        # row subset (which would silently show the wrong grand total on later pages).
-        @test page.table.cells[:, 1] == t_full.cells[:, 1]
-        @test page.table.cells[:, 2] == t_full.cells[:, 2]
-    end
-
-    @test_throws ArgumentError table_one(df, [:age], Pagination(rows = 2), groupby = [:dose])
-
-    # No groupby: nothing to split, so pagination is a no-op — one page, same content as unpaginated.
-    t_nogroup = table_one(df, [:age])
-    pt_nogroup = table_one(df, [:age], Pagination(cols = 2))
-    @test length(pt_nogroup.pages) == 1
-    @test pt_nogroup.pages[1].table.cells == t_nogroup.cells
-end
 
 @testset "auto rounding" begin
     @test SummaryTables.auto_round(        1234567, target_digits = 4) == 1.235e6

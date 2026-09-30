@@ -5,7 +5,7 @@
 - Added a plain text renderer, used by `show(io, MIME"text/plain"(), table)` and therefore by the REPL display of `Table` [#161](https://github.com/PumasAI/SummaryTables.jl/pull/161).
 - `Table` now errors for `header` or `footer` indices that lie outside the table or overlap each other, instead of silently producing broken output [#160](https://github.com/PumasAI/SummaryTables.jl/pull/160).
 - Added optional pagination to `summarytable` via a `Pagination` argument, which returns a `PaginatedTable`, matching `listingtable` [#144](https://github.com/PumasAI/SummaryTables.jl/pull/144).
-- Added `pagination` support to `table_one`, using the same `Pagination`/`PaginatedTable` pattern `listingtable` already has [#147](https://github.com/PumasAI/SummaryTables.jl/pull/147).
+- Added optional pagination to `table_one` via a `Pagination` argument, which returns a `PaginatedTable`, matching `listingtable` and `summarytable`. Each page repeats the label column, the total column is only on the first page and the comparison columns only on the last [#147](https://github.com/PumasAI/SummaryTables.jl/pull/147).
 
 ## 3.7.1 - 2026-09-04
 

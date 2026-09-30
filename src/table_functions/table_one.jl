@@ -184,31 +184,18 @@ end
 """
     TableOnePageMetadata
 
-Describes which top-level `groupby` group combinations a given page of a paginated `table_one`
-contains. Has one field:
-
-- `cols::Vector{GroupKey}`
-
-Mirrors `ListingPageMetadata`, restricted to `cols` since `table_one` pagination only splits columns
-(one column per `groupby` combination), never rows.
+Describes which group columns of a full `table_one` are included in a given page.
+Field `cols::Vector{GroupKey}` holds the group key of each group column on the page.
+The vector is empty if the table was not paginated.
 """
 Base.@kwdef struct TableOnePageMetadata
     cols::Vector{GroupKey} = []
 end
 
-function Base.show(io::IO, M::MIME"text/plain", p::TableOnePageMetadata)
-    indent = " " ^ get(io, :indent, 0)
-    println(io, indent, "TableOnePageMetadata")
-    print(io, indent, "  cols:")
-    isempty(p.cols) && print(io, " no pagination")
-    for c in p.cols
-        print(io, "\n    ", indent)
-        print(io, "[", join(("$key => $value" for (key, value) in c.entries), ", "), "]")
-    end
-end
+Base.show(io::IO, ::MIME"text/plain", p::TableOnePageMetadata) = show_page_metadata(io, p)
 
 """
-    table_one(table, [analyses]; keywords...)
+    table_one(table, [analyses], [pagination]; keywords...)
 
 Construct a "Table 1" which summarises the patient baseline
 characteristics from the provided `table` dataset. This table is commonly used
@@ -239,6 +226,12 @@ table_one(
     ]
 )
 ```
+
+If a `Pagination` object is passed as the `pagination` argument, the return type changes to `PaginatedTable`.
+The `Pagination` object may be created with the keyword `cols`, which must be set to an `Int` that determines how many group columns are included in one page.
+Every page repeats the analysis label column.
+The total column is only included in the first page and the comparison columns only in the last page, because their values refer to all groups.
+A group total column is included in the page of the last group column it summarizes.
 
 
 ## Keywords
@@ -422,18 +415,14 @@ function table_one(
         Dict(reverse(t) for t in enumerate(unique(key[i] for key in keys(gdf))))
     end
 
-    # Pagination (below) slices `columns` back into page-sized chunks after everything here is built
-    # exactly as without pagination, so a paginated Total/comparison column is never recomputed from a
-    # row subset — it's the same, already-correct column, just placed on every page. `unit_ranges[ikey]`
-    # records which `columns` indices (the data column plus any group-total columns emitted alongside it)
-    # belong to one top-level pagination unit, so a unit's data and its group-total column always land on
-    # the same page together.
-    unit_ranges = UnitRange{Int}[]
-    unit_keys = []
+    # Pagination slices the finished `columns`, so no value is recomputed from a subset of rows.
+    # `group_col_ranges[ikey]` holds the `columns` indices of the group column for key `ikey`
+    # and of the group total columns that follow it, which always stay on the same page.
+    group_col_ranges = UnitRange{Int}[]
 
     if n_groups > 0
         for (ikey, (key, ggdf)) in enumerate(pairs(df_analyses))
-            _unit_start = length(columns) + 1
+            group_col_start = length(columns) + 1
 
             function group_key_title(igroup)
                 groupkey = ggdf[1, igroup]
@@ -515,12 +504,10 @@ function table_one(
                 end
             end
 
-            push!(unit_ranges, _unit_start:length(columns))
-            push!(unit_keys, key)
+            push!(group_col_ranges, group_col_start:length(columns))
         end
     end
 
-    trailing_start = length(columns) + 1
     for comp in compare_groups
         # the logic here is much less clean than it could be because of the way
         # column names have to be passed via pairs, and it cannot be guaranteed from typing
@@ -559,9 +546,10 @@ function table_one(
         end
     end
 
+    make_table(cols) = Table(reduce(hcat, cols), header_offset-1, nothing; celltable_kws...)
+
     if pagination === nothing
-        cells = reduce(hcat, columns)
-        return Table(cells, header_offset-1, nothing; celltable_kws...)
+        return make_table(columns)
     end
 
     sd = setdiff(keys(pagination.options), [:cols])
@@ -570,42 +558,33 @@ function table_one(
     end
     paginate_cols = get(pagination.options, :cols, nothing)
 
-    leading = columns[1:(show_total ? 2 : 1)]
-    trailing = columns[trailing_start:end]
-
-    # No groupby means no per-group columns to split — the whole (unpaginated) table is one page,
-    # regardless of what page size was requested. Matches calling `table_one` unpaginated: same output,
-    # just wrapped in a single-page `PaginatedTable` so callers don't need two code paths.
-    if n_groups == 0
-        cells = reduce(hcat, columns)
-        t = Table(cells, header_offset-1, nothing; celltable_kws...)
-        return PaginatedTable([Page(TableOnePageMetadata(), t)])
+    if paginate_cols === nothing || isempty(group_col_ranges)
+        return PaginatedTable([Page(TableOnePageMetadata(), make_table(columns))])
     end
 
-    pages = Page{TableOnePageMetadata}[]
-    unit_indices = 1:length(unit_ranges)
-    for u_indices in Iterators.partition(unit_indices, something(paginate_cols, length(unit_indices)))
-        page_col_indices = reduce(vcat, unit_ranges[u_indices])
-        page_columns = [leading; columns[page_col_indices]; trailing]
-        cells = reduce(hcat, page_columns)
-        t = Table(cells, header_offset-1, nothing; celltable_kws...)
-        push!(pages, Page(TableOnePageMetadata(cols = GroupKey.(unit_keys[u_indices])), t))
+    # each page repeats the label column and holds a contiguous run of the other columns,
+    # so the total column lands only on the first page and the comparisons only on the last
+    chunks = collect(Iterators.partition(eachindex(group_col_ranges), paginate_cols))
+    pages = map(enumerate(chunks)) do (i, chunk)
+        start = i == 1 ? 2 : first(group_col_ranges[first(chunk)])
+        stop = i == length(chunks) ? length(columns) : last(group_col_ranges[last(chunk)])
+        Page(TableOnePageMetadata(cols = GroupKey.(keys(df_analyses)[chunk])), make_table(columns[[1; start:stop]]))
     end
     return PaginatedTable(pages)
 end
 
 """
-    table_one(table; kwargs...)
+    table_one(table, [pagination]; kwargs...)
 
 Create a `table_one` with with all columns from `table` except those used in the `groupby` keyword.
 """
-function table_one(table; groupby = [], kwargs...)
+function table_one(table, pagination::Union{Nothing,Pagination} = nothing; groupby = [], kwargs...)
     df = DataFrame(table)
     groups = make_groups(df, groupby)
     groupsyms = [g.symbol for g in groups]
     all_names = Tables.columnnames(df)
     all_names_but_groups = setdiff(all_names, groupsyms)
-    return table_one(df, all_names_but_groups; groupby, kwargs...)
+    return table_one(df, all_names_but_groups, pagination; groupby, kwargs...)
 end
 
 tableone_column_header() = CellStyle(halign = :center, bold = true)

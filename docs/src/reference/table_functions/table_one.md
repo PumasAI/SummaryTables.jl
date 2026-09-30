@@ -160,6 +160,39 @@ end
 table_one(data, :x => custom_analysis => "Variable X")
 ```
 
+## Optional argument 3: `pagination`
+
+A table one with many groups can grow wide, in which case it may make sense to split it into multiple pages.
+You can pass a `Pagination` object with the `cols` keyword argument.
+The number you pass to `cols` is how many group columns are included per page.
+
+Every page repeats the analysis label column.
+The total column is only included in the first page and the comparison columns only in the last page, because their values refer to all groups and not only to those on one page.
+
+If the `pagination` argument is provided, the return type of `table_one` changes to `PaginatedTable{TableOnePageMetadata}`.
+This object has an interactive HTML representation for convenience, the exact form of which should not be considered stable across SummaryTables versions.
+The `PaginatedTable` should be deconstructed into separate `Table`s when you want to include these in a document.
+The table of page `i` is available as `paginated.pages[i].table`.
+
+```@example pagination
+using DataFrames
+using SummaryTables
+
+data = DataFrame(
+    age = [27, 45, 34, 85, 55, 44, 24, 29, 37, 76, 51, 33],
+    dose = repeat(["10 mg", "20 mg", "50 mg"], inner = 4),
+    sex = repeat(["f", "m"], 6),
+)
+
+paginated = table_one(data, :age => "Age (years)", Pagination(cols = 2), groupby = [:dose => "Dose", :sex => "Sex"], show_pvalues = true)
+```
+
+This is the table of the last page, which ends with the comparison columns:
+
+```@example pagination
+paginated.pages[end].table
+```
+
 ## Keyword: `groupby`
 
 The `groupby` keyword takes a vector of column name symbols with optional labels.
