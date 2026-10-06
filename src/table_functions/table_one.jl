@@ -547,10 +547,7 @@ function table_one(
         return make_table(columns)
     end
 
-    sd = setdiff(keys(pagination.options), [:cols])
-    if !isempty(sd)
-        throw(ArgumentError("`table_one` only accepts `cols` as a pagination argument. Found $(join(sd, ", ", " and "))"))
-    end
+    check_pagination_options(pagination, :table_one, [:cols])
     paginate_cols = get(pagination.options, :cols, nothing)
 
     if paginate_cols === nothing || isempty(group_col_starts)
