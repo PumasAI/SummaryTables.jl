@@ -283,7 +283,6 @@ end
             t = table_one((; bool = [true, false, true, true, missing]))
             reftest(t, "references/table_one/bool_as_categorical")
 
-            # pages without their repeated label columns joined back together
             join_pages(pt) = reduce(hcat, [i == 1 ? p.table.cells : p.table.cells[:, 2:end] for (i, p) in enumerate(pt.pages)])
 
             t = table_one(df, [:value1], groupby = [:group1, :group2], show_pvalues = true)
@@ -293,7 +292,6 @@ end
             end
             @test length(pt.pages) == 2
             @test [k.entries for k in pt.pages[2].metadata.cols] == [[:group1 => "b", :group2 => "e"], [:group1 => "b", :group2 => "f"]]
-            # Total is only on the first page and the comparisons only on the last
             @test join_pages(pt) == t.cells
             @test sprint(show, MIME"text/plain"(), pt.pages[2].metadata) == """
                 TableOnePageMetadata
@@ -304,7 +302,6 @@ end
             t = table_one(df, [:value1], groupby = [:group1, :group2], group_totals = :group2, show_total = false)
             pt = table_one(df, [:value1], Pagination(cols = 1), groupby = [:group1, :group2], group_totals = :group2, show_total = false)
             @test length(pt.pages) == 4
-            # a group total column stays on the page of the last group it summarizes
             @test size(pt.pages[2].table.cells, 2) == 3
             @test join_pages(pt) == t.cells
 
