@@ -415,14 +415,11 @@ function table_one(
         Dict(reverse(t) for t in enumerate(unique(key[i] for key in keys(gdf))))
     end
 
-    # Pagination slices the finished `columns`, so no value is recomputed from a subset of rows.
-    # `group_col_ranges[ikey]` holds the `columns` indices of the group column for key `ikey`
-    # and of the group total columns that follow it, which always stay on the same page.
-    group_col_ranges = UnitRange{Int}[]
+    group_col_starts = Int[]
 
     if n_groups > 0
         for (ikey, (key, ggdf)) in enumerate(pairs(df_analyses))
-            group_col_start = length(columns) + 1
+            push!(group_col_starts, length(columns) + 1)
 
             function group_key_title(igroup)
                 groupkey = ggdf[1, igroup]
@@ -503,8 +500,6 @@ function table_one(
                     push!(columns, group_total_col)
                 end
             end
-
-            push!(group_col_ranges, group_col_start:length(columns))
         end
     end
 
@@ -558,17 +553,15 @@ function table_one(
     end
     paginate_cols = get(pagination.options, :cols, nothing)
 
-    if paginate_cols === nothing || isempty(group_col_ranges)
+    if paginate_cols === nothing || isempty(group_col_starts)
         return PaginatedTable([Page(TableOnePageMetadata(), make_table(columns))])
     end
 
-    # each page repeats the label column and holds a contiguous run of the other columns,
-    # so the total column lands only on the first page and the comparisons only on the last
-    chunks = collect(Iterators.partition(eachindex(group_col_ranges), paginate_cols))
-    pages = map(enumerate(chunks)) do (i, chunk)
-        start = i == 1 ? 2 : first(group_col_ranges[first(chunk)])
-        stop = i == length(chunks) ? length(columns) : last(group_col_ranges[last(chunk)])
-        Page(TableOnePageMetadata(cols = GroupKey.(keys(df_analyses)[chunk])), make_table(columns[[1; start:stop]]))
+    page_keys = Iterators.partition(GroupKey.(keys(df_analyses)), paginate_cols)
+    page_starts = [2; group_col_starts[paginate_cols+1:paginate_cols:end]]
+    page_stops = [page_starts[2:end] .- 1; length(columns)]
+    pages = map(page_keys, page_starts, page_stops) do cols, start, stop
+        Page(TableOnePageMetadata(; cols), make_table(columns[[1; start:stop]]))
     end
     return PaginatedTable(pages)
 end
