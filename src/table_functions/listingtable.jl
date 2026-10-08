@@ -98,6 +98,14 @@ struct Pagination{T<:NamedTuple}
 end
 Pagination(; kwargs...) = Pagination(NamedTuple(sort(collect(pairs(kwargs)), by = first)))
 
+function check_pagination_options(pagination::Pagination, funcname, allowed)
+    unknown = setdiff(keys(pagination.options), allowed)
+    isempty(unknown) && return
+    allowed_str = join(("`$a`" for a in allowed), ", ", " and ")
+    noun = length(allowed) == 1 ? "a pagination argument" : "pagination arguments"
+    throw(ArgumentError("`$funcname` only accepts $allowed_str as $noun. Found $(join(unknown, ", ", " and "))"))
+end
+
 """
     Page{M}
 
@@ -160,11 +168,11 @@ Base.show(io::IO, ::MIME"text/plain", p::ListingPageMetadata) = show_page_metada
 
 function show_page_metadata(io::IO, p)
     indent = " " ^ get(io, :indent, 0)
-    println(io, indent, nameof(typeof(p)))
-    print(io, indent, "  rows:")
-    show_page_keys(io, indent, p.rows)
-    print(io, "\n", indent, "  cols:")
-    show_page_keys(io, indent, p.cols)
+    print(io, indent, nameof(typeof(p)))
+    for name in fieldnames(typeof(p))
+        print(io, "\n", indent, "  ", name, ":")
+        show_page_keys(io, indent, getfield(p, name))
+    end
 end
 
 function show_page_keys(io::IO, indent, keys)
@@ -319,10 +327,7 @@ function listingtable(table, variable, pagination::Union{Nothing,Pagination} = n
     if pagination === nothing
         return _listingtable(df, var, rowgroups, colgroups, rowsummary, colsummary; variable_header, sort, format, table_kwargs...)
     else
-        sd = setdiff(keys(pagination.options), [:rows, :cols])
-        if !isempty(sd)
-            throw(ArgumentError("`listingtable` only accepts `rows` and `cols` as pagination arguments. Found $(join(sd, ", ", " and "))"))
-        end
+        check_pagination_options(pagination, :listingtable, [:rows, :cols])
 
         paginate_cols = get(pagination.options, :cols, nothing)
         paginate_rows = get(pagination.options, :rows, nothing)

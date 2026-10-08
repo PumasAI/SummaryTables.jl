@@ -182,7 +182,20 @@ function level_analyses(c)
 end
 
 """
-    table_one(table, [analyses]; keywords...)
+    TableOnePageMetadata
+
+Describes which group columns of a full `table_one` are included in a given page.
+Field `cols::Vector{GroupKey}` holds the group key of each group column on the page.
+The vector is empty if the table was not paginated.
+"""
+Base.@kwdef struct TableOnePageMetadata
+    cols::Vector{GroupKey} = []
+end
+
+Base.show(io::IO, ::MIME"text/plain", p::TableOnePageMetadata) = show_page_metadata(io, p)
+
+"""
+    table_one(table, [analyses], [pagination]; keywords...)
 
 Construct a "Table 1" which summarises the patient baseline
 characteristics from the provided `table` dataset. This table is commonly used
@@ -214,6 +227,12 @@ table_one(
 )
 ```
 
+If a `Pagination` object is passed as the `pagination` argument, the return type changes to `PaginatedTable`.
+The `Pagination` object may be created with the keyword `cols`, which must be set to an `Int` that determines how many group columns are included in one page.
+Every page repeats the analysis label column.
+The total column is only included in the first page and the comparison columns only in the last page, because their values refer to all groups.
+A group total column is included in the page of the last group column it summarizes.
+
 
 ## Keywords
 
@@ -244,7 +263,8 @@ All other keywords are forwarded to the `Table` constructor, refer to its docstr
 """
 function table_one(
     table,
-    analyses;
+    analyses,
+    pagination::Union{Nothing,Pagination} = nothing;
     groupby = [],
     show_total = true,
     show_overall = nothing, # deprecated in version 3
@@ -395,8 +415,11 @@ function table_one(
         Dict(reverse(t) for t in enumerate(unique(key[i] for key in keys(gdf))))
     end
 
+    group_col_starts = Int[]
+
     if n_groups > 0
         for (ikey, (key, ggdf)) in enumerate(pairs(df_analyses))
+            push!(group_col_starts, length(columns) + 1)
 
             function group_key_title(igroup)
                 groupkey = ggdf[1, igroup]
@@ -518,22 +541,40 @@ function table_one(
         end
     end
 
-    cells = reduce(hcat, columns)
-    Table(cells, header_offset-1, nothing; celltable_kws...)
+    make_table(cols) = Table(reduce(hcat, cols), header_offset-1, nothing; celltable_kws...)
+
+    if pagination === nothing
+        return make_table(columns)
+    end
+
+    check_pagination_options(pagination, :table_one, [:cols])
+    paginate_cols = get(pagination.options, :cols, nothing)
+
+    if paginate_cols === nothing || isempty(group_col_starts)
+        return PaginatedTable([Page(TableOnePageMetadata(), make_table(columns))])
+    end
+
+    page_keys = Iterators.partition(GroupKey.(keys(df_analyses)), paginate_cols)
+    page_starts = [2; group_col_starts[paginate_cols+1:paginate_cols:end]]
+    page_stops = [page_starts[2:end] .- 1; length(columns)]
+    pages = map(page_keys, page_starts, page_stops) do cols, start, stop
+        Page(TableOnePageMetadata(; cols), make_table(columns[[1; start:stop]]))
+    end
+    return PaginatedTable(pages)
 end
 
 """
-    table_one(table; kwargs...)
+    table_one(table, [pagination]; kwargs...)
 
 Create a `table_one` with with all columns from `table` except those used in the `groupby` keyword.
 """
-function table_one(table; groupby = [], kwargs...)
+function table_one(table, pagination::Union{Nothing,Pagination} = nothing; groupby = [], kwargs...)
     df = DataFrame(table)
     groups = make_groups(df, groupby)
     groupsyms = [g.symbol for g in groups]
     all_names = Tables.columnnames(df)
     all_names_but_groups = setdiff(all_names, groupsyms)
-    return table_one(df, all_names_but_groups; groupby, kwargs...)
+    return table_one(df, all_names_but_groups, pagination; groupby, kwargs...)
 end
 
 tableone_column_header() = CellStyle(halign = :center, bold = true)

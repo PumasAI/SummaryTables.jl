@@ -107,10 +107,7 @@ function summarytable(
         return _summarytable(df, var, rowgroups, colgroups, _summary; variable_header, sort, celltable_kws...)
     end
 
-    sd = setdiff(keys(pagination.options), [:rows, :cols])
-    if !isempty(sd)
-        throw(ArgumentError("`summarytable` only accepts `rows` and `cols` as pagination arguments. Found $(join(sd, ", ", " and "))"))
-    end
+    check_pagination_options(pagination, :summarytable, [:rows, :cols])
     paginate_cols = get(pagination.options, :cols, nothing)
     paginate_rows = get(pagination.options, :rows, nothing)
 
