@@ -1,4 +1,4 @@
-import{_ as s,c as i,o as n,az as a}from"./chunks/framework.CAkcY2eT.js";const g=JSON.parse('{"title":"table_one","description":"","frontmatter":{},"headers":[],"relativePath":"reference/table_functions/table_one.md","filePath":"reference/table_functions/table_one.md","lastUpdated":null}'),e={name:"reference/table_functions/table_one.md"};function l(d,t,h,r,p,k){return n(),i("div",null,t[0]||(t[0]=[a(`<h1 id="table_one" tabindex="-1"><code>table_one</code> <a class="header-anchor" href="#table_one" aria-label="Permalink to &quot;\`table_one\` {#table_one}&quot;">​</a></h1><h2 id="Synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#Synopsis" aria-label="Permalink to &quot;Synopsis {#Synopsis}&quot;">​</a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+import{_ as s,c as n,o as i,az as e}from"./chunks/framework.CAkcY2eT.js";const g=JSON.parse('{"title":"table_one","description":"","frontmatter":{},"headers":[],"relativePath":"reference/table_functions/table_one.md","filePath":"reference/table_functions/table_one.md","lastUpdated":null}'),a={name:"reference/table_functions/table_one.md"};function l(d,t,r,h,p,k){return i(),n("div",null,t[0]||(t[0]=[e(`<h1 id="table_one" tabindex="-1"><code>table_one</code> <a class="header-anchor" href="#table_one" aria-label="Permalink to &quot;\`table_one\` {#table_one}&quot;">​</a></h1><h2 id="Synopsis" tabindex="-1">Synopsis <a class="header-anchor" href="#Synopsis" aria-label="Permalink to &quot;Synopsis {#Synopsis}&quot;">​</a></h2><p>&quot;Table 1&quot; is a common term for the first table in a paper that summarizes demographic and other individual data of the population that is being studied. In general terms, it is a table where different columns from the source table are summarized separately, stacked along the rows. The types of analysis can be chosen manually, or will be selected given the column types. Optionally, there can be grouping applied along the columns as well.</p><p>In this example, several variables of a hypothetical population are analyzed split by sex.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
@@ -763,6 +763,338 @@ import{_ as s,c as i,o as n,az as a}from"./chunks/framework.CAkcY2eT.js";const g
         <td style="text-align:center;">2 (1)</td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table></div><h2 id="Optional-argument-3:-pagination" tabindex="-1">Optional argument 3: <code>pagination</code> <a class="header-anchor" href="#Optional-argument-3:-pagination" aria-label="Permalink to &quot;Optional argument 3: \`pagination\` {#Optional-argument-3:-pagination}&quot;">​</a></h2><p>A table one with many groups can grow wide, in which case it may make sense to split it into multiple pages. You can pass a <code>Pagination</code> object with the <code>cols</code> keyword argument. The number you pass to <code>cols</code> is how many group columns are included per page.</p><p>Every page repeats the analysis label column. The total column is only included in the first page and the comparison columns only in the last page, because their values refer to all groups and not only to those on one page.</p><p>If the <code>pagination</code> argument is provided, the return type of <code>table_one</code> changes to <code>PaginatedTable{TableOnePageMetadata}</code>. This object has an interactive HTML representation for convenience, the exact form of which should not be considered stable across SummaryTables versions. The <code>PaginatedTable</code> should be deconstructed into separate <code>Table</code>s when you want to include these in a document. The table of page <code>i</code> is available as <code>paginated.pages[i].table</code>.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> DataFrames</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> DataFrame</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    age </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">27</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">45</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">34</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">85</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">55</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">44</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">24</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">29</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">37</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">76</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">51</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">33</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    dose </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;10 mg&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;20 mg&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;50 mg&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], inner </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    sex </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> repeat</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">([</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;f&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;m&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">paginated </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> table_one</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(data, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:age</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Age (years)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">Pagination</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(cols </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">), groupby </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:dose</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Dose&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">:sex</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =&gt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Sex&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], show_pvalues </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span></code></pre></div><div><div>
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==0 ? 'block' : 'none');
+">Page 1</button>
+
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==1 ? 'block' : 'none');
+">Page 2</button>
+
+<button onclick="
+    [...this.parentElement.querySelector('div').children].forEach((e,j) => e.style.display = j==2 ? 'block' : 'none');
+">Page 3</button>
+
+<div>
+<div style="display:block">
+<h3>Page 1</h3>
+<table id="st-115cd90d">
+    <style>
+        #st-115cd90d {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-115cd90d tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-115cd90d tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-115cd90d br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-115cd90d sub {
+            line-height: 0;
+        }
+        #st-115cd90d sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="4" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Dose</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">10 mg</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Sex</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="font-weight:bold;text-align:center;">Total</td>
+        <td style="text-align:center;">f</td>
+        <td style="text-align:center;">m</td>
+    </tr>
+        <tr><td colspan="4" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Age (years)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">45 (19.2)</td>
+        <td style="text-align:center;">30.5 (4.95)</td>
+        <td style="text-align:center;">65 (28.3)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">40.5 [24, 85]</td>
+        <td style="text-align:center;">30.5 [27, 34]</td>
+        <td style="text-align:center;">65 [45, 85]</td>
+    </tr>
+    <tr><td colspan="4" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 2</h3>
+<table id="st-1839c4aa">
+    <style>
+        #st-1839c4aa {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-1839c4aa tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-1839c4aa tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-1839c4aa br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-1839c4aa sub {
+            line-height: 0;
+        }
+        #st-1839c4aa sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Dose</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">20 mg</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Sex</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">f</td>
+        <td style="text-align:center;">m</td>
+    </tr>
+        <tr><td colspan="3" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Age (years)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">39.5 (21.9)</td>
+        <td style="text-align:center;">36.5 (10.6)</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">39.5 [24, 55]</td>
+        <td style="text-align:center;">36.5 [29, 44]</td>
+    </tr>
+    <tr><td colspan="3" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+<div style="display:none">
+<h3>Page 3</h3>
+<table id="st-2f1126f1">
+    <style>
+        #st-2f1126f1 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-2f1126f1 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-2f1126f1 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-2f1126f1 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-2f1126f1 sub {
+            line-height: 0;
+        }
+        #st-2f1126f1 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Dose</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">50 mg</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Sex</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">f</td>
+        <td style="text-align:center;">m</td>
+        <td style="font-weight:bold;text-align:center;">P-Value</td>
+        <td style="font-weight:bold;text-align:center;">Test</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Age (years)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">0.946</td>
+        <td style="text-align:center;">UnequalVarianceTTest</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">44 (9.9)</td>
+        <td style="text-align:center;">54.5 (30.4)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">44 [37, 51]</td>
+        <td style="text-align:center;">54.5 [33, 76]</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+</table>
+</div>
+</div>
+</div>
+</div><p>This is the table of the last page, which ends with the comparison columns:</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">paginated</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">pages[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">end</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">.</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">table</span></span></code></pre></div><div><table id="st-2f1126f1">
+    <style>
+        #st-2f1126f1 {
+            border: none;
+            margin: 0 auto;
+            padding: 0.25rem;
+            border-collapse: separate;
+            border-spacing: 0.85em 0.2em;
+            line-height: 1.2em;
+        }
+        #st-2f1126f1 tr {
+            background-color: transparent;
+            border: none;
+        }
+        #st-2f1126f1 tr td {
+            vertical-align: top;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+        }
+        #st-2f1126f1 br {
+            line-height: 0em;
+            margin: 0;
+        }
+        #st-2f1126f1 sub {
+            line-height: 0;
+        }
+        #st-2f1126f1 sup {
+            line-height: 0;
+        }
+    </style>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Dose</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="text-align:center;">50 mg</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td colspan="2" style="font-weight:bold;border-bottom:0.075em solid currentColor; padding-bottom: 0.25em;text-align:center;">Sex</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">f</td>
+        <td style="text-align:center;">m</td>
+        <td style="font-weight:bold;text-align:center;">P-Value</td>
+        <td style="font-weight:bold;text-align:center;">Test</td>
+    </tr>
+        <tr><td colspan="5" style="border-bottom:0.075em solid currentColor;padding:0"></td></tr>    <tr>
+        <td style="font-weight:bold;text-align:left;">Age (years)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;">0.946</td>
+        <td style="text-align:center;">UnequalVarianceTTest</td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Mean (SD)</td>
+        <td style="text-align:center;">44 (9.9)</td>
+        <td style="text-align:center;">54.5 (30.4)</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr>
+        <td style="padding-left:12pt;text-align:left;">Median [Min, Max]</td>
+        <td style="text-align:center;">44 [37, 51]</td>
+        <td style="text-align:center;">54.5 [33, 76]</td>
+        <td style="text-align:center;"></td>
+        <td style="text-align:center;"></td>
+    </tr>
+    <tr><td colspan="5" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
 </table></div><h2 id="Keyword:-groupby" tabindex="-1">Keyword: <code>groupby</code> <a class="header-anchor" href="#Keyword:-groupby" aria-label="Permalink to &quot;Keyword: \`groupby\` {#Keyword:-groupby}&quot;">​</a></h2><p>The <code>groupby</code> keyword takes a vector of column name symbols with optional labels. If there is only one grouping column, the vector can be omitted. Each analysis is then computed separately for each group.</p><div class="language-julia vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">julia</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">using</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> SummaryTables</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">data </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (; x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">], y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;a&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;a&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;a&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;b&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;b&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;b&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">])</span></span>
@@ -1970,4 +2302,4 @@ import{_ as s,c as i,o as n,az as a}from"./chunks/framework.CAkcY2eT.js";const g
         <td style="text-align:center;">5 (100%)</td>
     </tr>
     <tr><td colspan="2" style="border-bottom: 0.1em solid currentColor; padding: 0"></td></tr>
-</table></div><h2 id="Keyword:-categorical_default" tabindex="-1">Keyword: <code>categorical_default</code> <a class="header-anchor" href="#Keyword:-categorical_default" aria-label="Permalink to &quot;Keyword: \`categorical_default\` {#Keyword:-categorical_default}&quot;">​</a></h2><p>The <code>categorical_default</code> parameter works exactly like the <code>numeric_default</code> parameter, only that it is applied to categorical columns (all columns that are not numeric, with <code>Bool</code>s counting as categorical).</p>`,95)]))}const E=s(e,[["render",l]]);export{g as __pageData,E as default};
+</table></div><h2 id="Keyword:-categorical_default" tabindex="-1">Keyword: <code>categorical_default</code> <a class="header-anchor" href="#Keyword:-categorical_default" aria-label="Permalink to &quot;Keyword: \`categorical_default\` {#Keyword:-categorical_default}&quot;">​</a></h2><p>The <code>categorical_default</code> parameter works exactly like the <code>numeric_default</code> parameter, only that it is applied to categorical columns (all columns that are not numeric, with <code>Bool</code>s counting as categorical).</p>`,104)]))}const y=s(a,[["render",l]]);export{g as __pageData,y as default};
