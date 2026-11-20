@@ -7,6 +7,7 @@ let args = (
     inset: (x: 0.425em, y: 0.1em),
     align: (left, left, left, left, left, left, left, left),
     stroke: none,
+    row-gutter: (6pt, 6pt, 0pt),
 )
 let body = (
     table.header(

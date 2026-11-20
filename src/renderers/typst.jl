@@ -36,6 +36,15 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
         align: ($(join(column_alignments, ", "))),
         stroke: none,
     """)
+    # A gap `i => g` adds `g` between rows (columns) `i` and `i + 1`: entry `i` of
+    # Typst's per-track gutter. The footnote row, if any, follows without a gap.
+    if !isempty(rowgaps)
+        nrows = size(matrix, 1) + (has_notes ? 1 : 0)
+        println(io, "    row-gutter: (", _typst_gutters(rowgaps, nrows), "),")
+    end
+    if !isempty(colgaps)
+        println(io, "    column-gutter: (", _typst_gutters(colgaps, size(matrix, 2)), "),")
+    end
     has_notes && print(io, ")\nlet body = (\n")
 
     _colspan(n) = n == 1 ? "" : "colspan: $n"
@@ -151,6 +160,11 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     println(io, ")") # table()
     println(io, "}")
     return
+end
+
+# The `n - 1` gutters between `n` tracks, the gaps in `gaps` and zero elsewhere.
+function _typst_gutters(gaps::Dict, n::Integer)
+    return join((haskey(gaps, i) ? length_string(gaps[i]) : "0pt" for i in 1:(n - 1)), ", ")
 end
 
 function _showas(io::IO, M::MIME"text/typst", m::Multiline)
