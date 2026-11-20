@@ -17,19 +17,26 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     rowgaps = Dict(ct.rowgaps)
     colgaps = Dict(ct.colgaps)
     
+    has_notes = !isempty(annotations) || !isempty(ct.footnotes)
+
     # text edges are set to the full line box so that row padding measures
     # the space between line boxes, as it does in the other backends
     print(io, """
 
     #{
     set text(top-edge: "ascender", bottom-edge: "descender")
-    table(
+    """)
+    # With footnotes, the arguments and cells are bound to `args` and `body` so that the
+    # footnote cell can measure the table without itself (see below).
+    print(io, has_notes ? "let args = (\n" : "table(\n")
+    print(io, """
         rows: $(size(matrix, 1)),
         columns: $(size(matrix, 2)),
         inset: (x: $(length_string(style.column_padding / 2)), y: $(length_string(style.row_padding / 2))),
         align: ($(join(column_alignments, ", "))),
         stroke: none,
     """)
+    has_notes && print(io, ")\nlet body = (\n")
 
     _colspan(n) = n == 1 ? "" : "colspan: $n"
     _rowspan(n) = n == 1 ? "" : "rowspan: $n"
@@ -104,11 +111,16 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
 
     println(io, "    table.hline(y: $(size(matrix, 1)), stroke: $(length_string(style.outer_rule_width))),")
 
-    if !isempty(annotations) || !isempty(ct.footnotes)
+    if has_notes
+        println(io, ")") # body
+        println(io, "table(..args, ..body,")
         align = _align(CellStyle(halign = style.footnote_halign), 1)
         colspan = "colspan: $(size(matrix, 2))"
         options = join(filter(!isempty, [align, colspan]), ", ")
-        print(io, "    table.cell($options)[#text(size: $(length_string(style.footnote_size)))[")
+        # The footnotes wrap at the width of the table without them, less the cell's
+        # horizontal insets. In a cell spanning all columns at their natural width,
+        # Typst would widen the last column until each footnote fits on one line.
+        print(io, "    table.cell($options)[#context block(width: measure(table(..args, ..body)).width - $(length_string(style.column_padding)))[#text(size: $(length_string(style.footnote_size)))[")
 
         if (!isempty(annotations) || !isempty(ct.footnotes)) && ct.linebreak_footnotes
             print(io, "\n        ")
@@ -133,7 +145,7 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
             print(io, "\n    ")
         end
 
-        println(io, "]],") # table.cell()[#text(..)[
+        println(io, "]]],") # table.cell()[#context block()[#text()[
     end
 
     println(io, ")") # table()
