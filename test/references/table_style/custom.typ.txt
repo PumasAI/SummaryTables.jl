@@ -1,12 +1,14 @@
 
 #{
 set text(top-edge: "ascender", bottom-edge: "descender")
-table(
+let args = (
     rows: 3,
     columns: 2,
     inset: (x: 1em, y: 0.25em),
     align: (center, center),
     stroke: none,
+)
+let body = (
     table.header(
         table.hline(y: 0, stroke: 2pt),
         table.cell(colspan: 2)[#"Header"],
@@ -18,8 +20,10 @@ table(
     [#"Body 3"],
     [#"Body 4"],
     table.hline(y: 3, stroke: 2pt),
-    table.cell(align: right, colspan: 2)[#text(size: 12pt)[
+)
+table(..args, ..body,
+    table.cell(align: right, colspan: 2)[#context block(width: measure(table(..args, ..body)).width - 2em)[#text(size: 12pt)[
         #"A footnote."
-    ]],
+    ]]],
 )
 }

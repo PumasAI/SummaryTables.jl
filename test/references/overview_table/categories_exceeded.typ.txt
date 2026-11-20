@@ -1,12 +1,15 @@
 
 #{
 set text(top-edge: "ascender", bottom-edge: "descender")
-table(
+let args = (
     rows: 2,
     columns: 7,
     inset: (x: 0.425em, y: 0.1em),
     align: (left, left, left, left, left, left, left),
     stroke: none,
+    row-gutter: (6pt, 0pt),
+)
+let body = (
     table.header(
         table.hline(y: 0, stroke: 0.1em),
         [*#"No"*],
@@ -26,9 +29,11 @@ table(
     table.cell(align: horizon)[#"6201" #linebreak() #"("#"100"#"%)"],
     table.cell(align: horizon)[#"0" #linebreak() #"("#"0"#"%)"],
     table.hline(y: 2, stroke: 0.1em),
-    table.cell(colspan: 7)[#text(size: 0.8em)[
+)
+table(..args, ..body,
+    table.cell(colspan: 7)[#context block(width: measure(table(..args, ..body)).width - 0.85em)[#text(size: 0.8em)[
         #"Dimensions: 6201 x 1"\
         #"Duplicate rows: 6175"
-    ]],
+    ]]],
 )
 }

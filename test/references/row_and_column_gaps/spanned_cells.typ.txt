@@ -7,6 +7,8 @@ table(
     inset: (x: 0.425em, y: 0.1em),
     align: (center, center, center, center),
     stroke: none,
+    row-gutter: (4pt, 0pt, 0pt),
+    column-gutter: (0pt, 4pt, 0pt),
     table.hline(y: 0, stroke: 0.1em),
     [],
     table.cell(colspan: 3)[#"Spanned columns"],

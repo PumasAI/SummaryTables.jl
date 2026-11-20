@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed footnotes in the Typst output, which could widen the last column of the table [#164](https://github.com/PumasAI/SummaryTables.jl/pull/164).
+
 ## 3.8.0 - 2026-09-11
 
 - Added a plain text renderer, used by `show(io, MIME"text/plain"(), table)` and therefore by the REPL display of `Table` [#161](https://github.com/PumasAI/SummaryTables.jl/pull/161).
