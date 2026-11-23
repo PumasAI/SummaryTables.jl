@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed `table_one` with `show_pvalues = true` throwing a `DimensionMismatch` when a categorical column stored as a plain vector has a level absent from one group; such levels now count as zero in the chi-square test [#165](https://github.com/PumasAI/SummaryTables.jl/pull/165).
+
 ## 3.8.0 - 2026-09-11
 
 - Added a plain text renderer, used by `show(io, MIME"text/plain"(), table)` and therefore by the REPL display of `Table` [#161](https://github.com/PumasAI/SummaryTables.jl/pull/161).

@@ -600,8 +600,10 @@ function make_testfunction(show_pvalues::Bool, show_tests::Bool, show_confint::B
         variabletype = typedict[variable]
         test = testdict[variabletype]
         if variabletype === :categorical
-            # concatenate the level counts into a matrix which Chi Square Test needs
-            matrix = hcat([map(l -> count(==(l), col), levels(col)) for col in cols_nomissing]...)
+            # level × group count matrix for the Chi Square Test; a level absent from a group counts as zero
+            counts = map(StatsBase.countmap, cols_nomissing)
+            all_levels = unique(Iterators.flatten(map(keys, counts)))
+            matrix = [get(c, l, 0) for l in all_levels, c in counts]
             used_test, result = htester(matrix, test, combine)
         else
             used_test, result = htester(cols_nomissing, test, combine)

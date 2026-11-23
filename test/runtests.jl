@@ -5,6 +5,7 @@ using SummaryTables: SortingError
 const W = WriteDocx
 using Test
 
+import CategoricalArrays
 using DataFrames
 using Statistics
 using ReferenceTests
@@ -972,6 +973,14 @@ end
     end
 end
 
+
+@testset "table_one p-values with a level absent from a group" begin
+    df = DataFrame(group = ["A", "A", "A", "B", "B", "B"], value = ["x", "y", "z", "x", "y", "y"])
+    plain = sprint(show, MIME"text/plain"(), table_one(df, [:value]; groupby = :group, show_pvalues = true))
+    df.value = CategoricalArrays.categorical(df.value)
+    categorical = sprint(show, MIME"text/plain"(), table_one(df, [:value]; groupby = :group, show_pvalues = true))
+    @test plain == categorical
+end
 
 @testset "auto rounding" begin
     @test SummaryTables.auto_round(        1234567, target_digits = 4) == 1.235e6
