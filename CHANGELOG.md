@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Typst tables now have the same row height and line spacing in multiline cells for every font [#166](https://github.com/PumasAI/SummaryTables.jl/pull/166).
 - Fixed `table_one` with `show_pvalues = true` throwing a `DimensionMismatch` when a categorical column stored as a plain vector has a level absent from one group; such levels now count as zero in the chi-square test [#165](https://github.com/PumasAI/SummaryTables.jl/pull/165).
 
 ## 3.8.0 - 2026-09-11

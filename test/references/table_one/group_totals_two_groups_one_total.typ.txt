@@ -1,6 +1,7 @@
 
 #{
-set text(top-edge: "ascender", bottom-edge: "descender")
+set text(top-edge: 0.9em, bottom-edge: -0.3em)
+set par(leading: 0pt)
 table(
     rows: 11,
     columns: 8,
