@@ -17,12 +17,13 @@ function Base.show(io::IO, M::MIME"text/typst", ct::Table)
     rowgaps = Dict(ct.rowgaps)
     colgaps = Dict(ct.colgaps)
     
-    # text edges are set to the full line box so that row padding measures
-    # the space between line boxes, as it does in the other backends
+    # fixed text edges give a 1.2em line box like the html line-height, so that row padding
+    # measures the space between line boxes independent of the font's ascender and descender
     print(io, """
 
     #{
-    set text(top-edge: "ascender", bottom-edge: "descender")
+    set text(top-edge: 0.9em, bottom-edge: -0.3em)
+    set par(leading: 0pt)
     table(
         rows: $(size(matrix, 1)),
         columns: $(size(matrix, 2)),
